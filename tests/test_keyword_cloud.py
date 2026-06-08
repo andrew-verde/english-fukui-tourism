@@ -8,8 +8,10 @@ import pandas as pd
 from src.analysis.keyword_cloud import (
     classify_japanese_topic_category,
     classify_review_category,
+    _display_cloud_term,
     extract_codebook_keyword_frequencies,
     extract_keyword_frequencies,
+    generate_review_language_keyword_cloud_report,
     summarize_japanese_topic_categories,
     summarize_topic_categories,
 )
@@ -30,6 +32,28 @@ def test_extract_keyword_frequencies_prefers_specific_terms():
 
     assert "dinosaur museum" in keywords["term"].tolist()
     assert "museum" not in keywords["term"].tolist()
+
+
+def test_extract_keyword_frequencies_filters_low_signal_come_and_shop():
+    df = pd.DataFrame(
+        {
+            "review_text": [
+                "Come to this shop for the dinosaur museum and fossil exhibit.",
+                "Come to the shop near the dinosaur museum for the fossil exhibit.",
+                "Come shop after seeing the dinosaur museum fossil exhibit.",
+            ]
+        }
+    )
+
+    keywords = extract_keyword_frequencies(df, top_k=12, min_frequency=1)
+
+    assert "come" not in keywords["term"].tolist()
+    assert "shop" not in keywords["term"].tolist()
+    assert "dinosaur museum" in keywords["term"].tolist()
+
+
+def test_english_cloud_terms_show_japanese_translation_on_second_line():
+    assert _display_cloud_term("dinosaur museum") == "Dinosaur Museum\n(恐竜・博物館)"
 
 
 def test_classify_review_category_prefers_useful_topic_bucket():
@@ -107,3 +131,31 @@ def test_japanese_topic_categories_use_english_cloud_buckets():
         "Shopping & Local Crafts",
         "Access & Visitor Logistics",
     }
+
+
+def test_review_language_keyword_cloud_uses_google_review_language_rows(tmp_path):
+    input_csv = tmp_path / "multilingual.csv"
+    output_png = tmp_path / "japanese_review_cloud.png"
+    pd.DataFrame(
+        {
+            "city": ["Fukui", "Fukui", "Fukui"],
+            "review_text": ["駅からバスで移動しました", "美味しい食事でした", "温泉が良かった"],
+            "language_group": ["japanese", "english", "japanese"],
+            "source_platform": ["google_maps_outscraper", "google_maps_outscraper", "survey"],
+        }
+    ).to_csv(input_csv, index=False)
+
+    ranked, report_path = generate_review_language_keyword_cloud_report(
+        input_csv,
+        output_png,
+        language_group="japanese",
+        title="JAPANESE GOOGLE REVIEWS",
+        subtitle="KEYWORD CLOUD",
+        city="Fukui",
+        source_platform="google",
+        min_frequency=1,
+    )
+
+    assert report_path == output_png
+    assert output_png.exists()
+    assert ranked["term"].tolist() == ["Access & Visitor Logistics"]
