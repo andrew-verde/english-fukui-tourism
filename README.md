@@ -23,7 +23,7 @@ Step 3   build_mentions_dataset.py        Sentence-level mention splitting
 Step 4   auto_tag_friction_codes.py       Keyword-based friction/nudge tagging
 Step 5   generate_friction_summaries.py   Summary tables + plots
 Step 6   audit_review_sample_readiness.py Sample adequacy / expected-count audit
-Step 7   generate_presentation_figures.py Presentation-ready slides
+Step 7   generate_presentation_figures.py Presentation figure files
 Step 8   statistical_validation.py        Review-level SR statistical checks
 Step 9   synthesis_pipeline.py            Statistical summary + test explanations
 ```
@@ -73,11 +73,9 @@ make build-mentions            # → output/friction_analysis/mentions_dataset.c
 make tag-codes                 # → tagged_reviews.csv, tagged_mentions.csv
 make summarize                 # → summary CSVs + 4 plots
 make sample-readiness          # → review_sample_readiness.json/.md
+make presentation-figures      # → local presentation figure files
 make stats                     # → output/statistical_results.json
 make synth                     # → output/statistical_summary.md + test explanations
-
-# Presentation figures
-.venv/bin/python3 scripts/generate_presentation_figures.py
 
 # Or run everything in one command (assumes google_fukui.json already exists):
 make friction-all
@@ -308,7 +306,7 @@ scripts/
   build_mentions_dataset.py         Build mentions_dataset.csv
   auto_tag_friction_codes.py        Apply friction codebook
   generate_friction_summaries.py    Generate summary tables + plots
-  generate_presentation_figures.py  Generate presentation-ready slides
+  generate_presentation_figures.py  Generate presentation figure files
   statistical_validation.py         Run English-review SR statistical validation
   synthesis_pipeline.py             Generate English-review statistical summaries
   statistical_validation_official.py Run official FTAS statistical validation
@@ -335,9 +333,8 @@ config/
   nudge_mapping.yaml            Friction → intervention candidates
 
 output/
-  checkpoints/                  Raw API data (JSON, cached)
-  friction_analysis/            Analysis outputs (CSV + PNG)
-    presentation_figures/       Slides 1–5 (presentation-ready, 180dpi)
+  checkpoints/                  Raw API data (JSON, cached; gitignored)
+  friction_analysis/            Aggregate analysis outputs (CSV + PNG)
 
 tests/
   test_friction_tagger.py       Unit tests for schema, splitter, tagger

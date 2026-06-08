@@ -137,6 +137,7 @@ output/friction_analysis/tagged_reviews.csv
 output/friction_analysis/tagged_mentions.csv
 output/friction_analysis/top_excerpts_by_code.csv
 output/friction_analysis/near_miss_sentences.csv
+output/friction_analysis/presentation_figures/
 output/multilingual_review_analysis/reviews_multilingual.csv
 output/multilingual_review_analysis/tagged_reviews_multilingual.csv
 output/multilingual_review_analysis/japanese_reviews_tagged.csv

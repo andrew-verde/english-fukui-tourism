@@ -7,7 +7,7 @@ Reads:
   output/multilingual_review_analysis/tagged_reviews_multilingual.csv
 
 Writes:
-  output/friction_analysis/figures/google_places_keyword_wordcloud_<city>.png
+  output/friction_analysis/figures/google_maps_review_keyword_wordcloud_<city>.png
   output/friction_analysis/figures/english_review_keyword_wordcloud_<city>.png
   output/friction_analysis/figures/japanese_review_keyword_wordcloud_<city>.png
 
@@ -83,7 +83,7 @@ def merge_keyword_cloud_panels(paths: list[Path], output_path: Path, gutter_px: 
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate a keyword word-cloud figure from Google Places reviews.")
+    parser = argparse.ArgumentParser(description="Generate a keyword word-cloud figure from Google Maps reviews.")
     parser.add_argument(
         "--input-csv",
         type=Path,
@@ -130,7 +130,7 @@ def main() -> None:
 
     if args.output is None:
         city_slug = "all_cities" if city is None else city.strip().lower().replace(" ", "_")
-        output_path = FIGURES_DIR / f"google_places_keyword_wordcloud_{city_slug}.png"
+        output_path = FIGURES_DIR / f"google_maps_review_keyword_wordcloud_{city_slug}.png"
     else:
         output_path = args.output
 

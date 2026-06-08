@@ -178,7 +178,7 @@ def write_thesis_assessment(payload: dict, pref_result: dict, kanazawa_area_resu
         "1. Add a 100-200 row manual validation sample for Japanese friction tags with precision estimates by code.",
         "2. Add a curated area crosswalk for Fukui POIs, FTAS areas, and Ishikawa facilities so area-level triangulation is defensible.",
         "3. Use people-flow only for Tojinbo and Fukui Station as contextual congestion/event evidence, not as a core inferential pillar.",
-        "4. If more English-language evidence is needed, expand Google Places POIs or add TripAdvisor/Google review pulls with the same date/language filters, but keep reviewer nationality unspecified.",
+        "4. If more English-language evidence is needed, expand Google Maps review POIs or add TripAdvisor/Google review pulls with the same date/language filters, but keep reviewer nationality unspecified.",
     ]
     THESIS_ASSESSMENT_MD.write_text("\n".join(lines) + "\n")
 
@@ -202,7 +202,7 @@ def main() -> int:
         "# Official Fukui Data Statistical Summary",
         "",
         "## Method Notes",
-        "- Official-data analysis is separate from the English-language Google Places review analysis.",
+        "- Official-data analysis is separate from the English-language Google Maps review analysis.",
         "- Unit of analysis is one FTAS survey respondent unless a test is explicitly labeled as reservation/day context.",
         "- English reviewer friction and Japanese tourist survey friction are compared descriptively because they come from different sampling frames and languages.",
         "- Reviewer nationality is not inferred.",
