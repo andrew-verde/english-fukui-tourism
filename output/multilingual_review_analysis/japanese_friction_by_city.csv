@@ -1,0 +1,37 @@
+city,language_group,code,label,count,denominator_reviews,pct_reviews
+Fukui,japanese,transport_access,Transport / Access,13,1800,0.722
+Fukui,japanese,wayfinding_signage,Wayfinding / Signage,12,1800,0.667
+Fukui,japanese,english_information_gap,English Information Gap,5,1800,0.278
+Fukui,japanese,staff_communication,Staff Communication,3,1800,0.167
+Fukui,japanese,booking_ticketing,Booking / Ticketing,14,1800,0.778
+Fukui,japanese,waiting_crowding,Waiting / Crowding,74,1800,4.111
+Fukui,japanese,price_value,Price / Value,6,1800,0.333
+Fukui,japanese,cleanliness_comfort,Cleanliness / Comfort,21,1800,1.167
+Fukui,japanese,opening_hours_availability,Opening Hours / Availability,34,1800,1.889
+Fukui,japanese,itinerary_fit_time_cost,Itinerary Fit / Time & Cost,7,1800,0.389
+Fukui,japanese,accessibility_mobility,Accessibility / Mobility,158,1800,8.778
+Fukui,japanese,food_amenities_gap,Food / Amenities Gap,0,1800,0.0
+Kanazawa,japanese,transport_access,Transport / Access,5,1050,0.476
+Kanazawa,japanese,wayfinding_signage,Wayfinding / Signage,6,1050,0.571
+Kanazawa,japanese,english_information_gap,English Information Gap,10,1050,0.952
+Kanazawa,japanese,staff_communication,Staff Communication,2,1050,0.19
+Kanazawa,japanese,booking_ticketing,Booking / Ticketing,11,1050,1.048
+Kanazawa,japanese,waiting_crowding,Waiting / Crowding,58,1050,5.524
+Kanazawa,japanese,price_value,Price / Value,3,1050,0.286
+Kanazawa,japanese,cleanliness_comfort,Cleanliness / Comfort,20,1050,1.905
+Kanazawa,japanese,opening_hours_availability,Opening Hours / Availability,13,1050,1.238
+Kanazawa,japanese,itinerary_fit_time_cost,Itinerary Fit / Time & Cost,5,1050,0.476
+Kanazawa,japanese,accessibility_mobility,Accessibility / Mobility,39,1050,3.714
+Kanazawa,japanese,food_amenities_gap,Food / Amenities Gap,2,1050,0.19
+Toyama,japanese,transport_access,Transport / Access,8,1187,0.674
+Toyama,japanese,wayfinding_signage,Wayfinding / Signage,8,1187,0.674
+Toyama,japanese,english_information_gap,English Information Gap,1,1187,0.084
+Toyama,japanese,staff_communication,Staff Communication,4,1187,0.337
+Toyama,japanese,booking_ticketing,Booking / Ticketing,6,1187,0.505
+Toyama,japanese,waiting_crowding,Waiting / Crowding,50,1187,4.212
+Toyama,japanese,price_value,Price / Value,3,1187,0.253
+Toyama,japanese,cleanliness_comfort,Cleanliness / Comfort,11,1187,0.927
+Toyama,japanese,opening_hours_availability,Opening Hours / Availability,22,1187,1.853
+Toyama,japanese,itinerary_fit_time_cost,Itinerary Fit / Time & Cost,5,1187,0.421
+Toyama,japanese,accessibility_mobility,Accessibility / Mobility,33,1187,2.78
+Toyama,japanese,food_amenities_gap,Food / Amenities Gap,0,1187,0.0

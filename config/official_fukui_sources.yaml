@@ -1,0 +1,42 @@
+# Official Code for Fukui data sources used by the parallel FTAS analysis.
+#
+# These are public CSVs exposed through GitHub Pages. The fetch script writes
+# raw copies and a source manifest under output/official_fukui/.
+
+sources:
+  ftas_survey_all:
+    url: "https://code4fukui.github.io/fukui-kanko-survey/all.csv"
+    filename: "ftas_survey_all.csv"
+    description: "FTAS respondent-level tourism survey data"
+  ftas_survey_counts:
+    url: "https://code4fukui.github.io/fukui-kanko-survey/all-cnt.csv"
+    filename: "ftas_survey_counts.csv"
+    description: "Daily FTAS survey response counts"
+  ftas_area_master:
+    url: "https://code4fukui.github.io/fukui-kanko-survey/area.csv"
+    filename: "ftas_area_master.csv"
+    description: "FTAS tourism area master with municipality and coordinates"
+  fukui_reservation_sum:
+    url: "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_sum.csv"
+    filename: "fukui_reservation_sum.csv"
+    description: "Daily Fukui tourism reservation totals"
+  fukui_reservation_prefecture_sum:
+    url: "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_prefecture_sum.csv"
+    filename: "fukui_reservation_prefecture_sum.csv"
+    description: "Daily Fukui tourism reservation totals by origin prefecture"
+  ishikawa_survey_all:
+    url: "https://code4fukui.github.io/ishikawa-kanko-survey/all.csv"
+    filename: "ishikawa_survey_all.csv"
+    description: "Ishikawa respondent-level tourism survey data"
+  ishikawa_survey_kanazawa:
+    url: "https://code4fukui.github.io/ishikawa-kanko-survey/kanazawa.csv"
+    filename: "ishikawa_survey_kanazawa.csv"
+    description: "Ishikawa tourism survey raw Kanazawa-area rows"
+  ishikawa_survey_kaga:
+    url: "https://code4fukui.github.io/ishikawa-kanko-survey/kaga.csv"
+    filename: "ishikawa_survey_kaga.csv"
+    description: "Ishikawa tourism survey raw Kaga-area rows"
+  ishikawa_survey_noto:
+    url: "https://code4fukui.github.io/ishikawa-kanko-survey/noto.csv"
+    filename: "ishikawa_survey_noto.csv"
+    description: "Ishikawa tourism survey raw Noto-area rows"

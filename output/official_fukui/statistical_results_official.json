@@ -1,0 +1,1627 @@
+{
+  "method_notes": {
+    "unit_of_analysis": "one FTAS survey respondent unless test name says reservation/day context",
+    "official_data_source": "Code for Fukui FTAS CSVs and Ishikawa official tourism survey CSVs",
+    "google_review_results_not_mixed": true,
+    "shinkansen_event_date": "2024-03-16"
+  },
+  "results": [
+    {
+      "name": "official_input_data_audit",
+      "n": 95422,
+      "details": {
+        "valid": true,
+        "missing_columns": [],
+        "date_min": "2022-04-28 00:06:15+00:00",
+        "date_max": "2026-05-27 23:15:43+00:00",
+        "n_response_areas": 119,
+        "n_municipalities": 17,
+        "any_friction_count": 7888,
+        "friction_code_counts": {
+          "transport_access": 2042,
+          "wayfinding_signage": 624,
+          "english_information_gap": 58,
+          "staff_communication": 133,
+          "booking_ticketing": 277,
+          "waiting_crowding": 1738,
+          "price_value": 274,
+          "cleanliness_comfort": 859,
+          "opening_hours_availability": 1058,
+          "itinerary_fit_time_cost": 335,
+          "accessibility_mobility": 1003,
+          "food_amenities_gap": 644
+        }
+      }
+    },
+    {
+      "name": "official_friction_vs_satisfaction",
+      "n": 95422,
+      "details": {
+        "overall_satisfaction_score": {
+          "n_friction": 7888,
+          "n_no_friction": 87533,
+          "median_friction": 4.0,
+          "median_no_friction": 4.0,
+          "mannwhitney_u": 299737414.5,
+          "p_value": 1.9199084998679404e-102,
+          "effect_note": "lower median_friction suggests official survey friction text aligns with lower satisfaction/NPS"
+        },
+        "transport_satisfaction_score": {
+          "n_friction": 4478,
+          "n_no_friction": 40632,
+          "median_friction": 4.0,
+          "median_no_friction": 4.0,
+          "mannwhitney_u": 67802732.0,
+          "p_value": 3.6500504907703998e-205,
+          "effect_note": "lower median_friction suggests official survey friction text aligns with lower satisfaction/NPS"
+        },
+        "nps": {
+          "n_friction": 7888,
+          "n_no_friction": 87533,
+          "median_friction": 8.0,
+          "median_no_friction": 8.0,
+          "mannwhitney_u": 319548756.5,
+          "p_value": 4.996362385107853e-29,
+          "effect_note": "lower median_friction suggests official survey friction text aligns with lower satisfaction/NPS"
+        }
+      }
+    },
+    {
+      "name": "official_shinkansen_survey_shift",
+      "n": 95421,
+      "details": {
+        "event_date": "2024-03-16",
+        "pre_shinkansen_rate": 0.06016947021699228,
+        "post_shinkansen_rate": 0.14026954177897574,
+        "delta_rate": 0.08010007156198345,
+        "chi2": 1558.1108422028692,
+        "df": 1,
+        "p_value": 0.0,
+        "cramers_v": 0.12778421019174954,
+        "expected_min": 4250.8926651366055,
+        "contingency_table": {
+          "false": {
+            "false": 37378,
+            "true": 47844
+          },
+          "true": {
+            "false": 2393,
+            "true": 7806
+          }
+        }
+      }
+    },
+    {
+      "name": "official_reservation_event_context",
+      "n": 348,
+      "details": {
+        "event_date": "2024-03-16",
+        "window_days_each_side": 180,
+        "outcomes": {
+          "n_people": {
+            "n_pre_days": 167,
+            "n_post_days": 181,
+            "median_pre": 869.0,
+            "median_post": 1016.0,
+            "mannwhitney_u": 17871.0,
+            "p_value": 0.0032770212914873973
+          },
+          "n_reserve": {
+            "n_pre_days": 167,
+            "n_post_days": 181,
+            "median_pre": 200.0,
+            "median_post": 238.0,
+            "mannwhitney_u": 18202.5,
+            "p_value": 0.00098741583761003
+          },
+          "amount_fee": {
+            "n_pre_days": 167,
+            "n_post_days": 181,
+            "median_pre": 20578199.0,
+            "median_post": 24208166.0,
+            "mannwhitney_u": 16567.0,
+            "p_value": 0.12121493671900417
+          }
+        }
+      }
+    },
+    {
+      "name": "official_top_area_friction_tests",
+      "n": 38483,
+      "details": {
+        "top_n_areas": 12,
+        "areas": [
+          "越前そばの里 エリア",
+          "あわら湯のまち エリア",
+          "大本山 永平寺 エリア",
+          "福井駅前 エリア",
+          "かつやま恐竜の森 エリア",
+          "一乗谷朝倉氏遺跡 エリア",
+          "道の駅「南えちぜん山海里」 エリア",
+          "越前大野城・城下町 エリア",
+          "道の駅「越前」 エリア",
+          "道の駅「恐竜渓谷かつやま」 エリア",
+          "道の駅「越前おおの荒島の郷」 エリア",
+          "丸岡城 エリア"
+        ],
+        "tests": [
+          {
+            "row_col": "response_area",
+            "outcome": "transport_access",
+            "chi2": 329.7393931673697,
+            "df": 11,
+            "p_value": 4.658231332825763e-64,
+            "cramers_v": 0.0925658848126038,
+            "expected_min": 41.51417509029961,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4612,
+                "かつやま恐竜の森 エリア": 3180,
+                "一乗谷朝倉氏遺跡 エリア": 2869,
+                "丸岡城 エリア": 1780,
+                "大本山 永平寺 エリア": 4492,
+                "福井駅前 エリア": 3972,
+                "越前そばの里 エリア": 5033,
+                "越前大野城・城下町 エリア": 2474,
+                "道の駅「南えちぜん山海里」 エリア": 2636,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2155,
+                "道の駅「越前」 エリア": 2458,
+                "道の駅「越前おおの荒島の郷」 エリア": 1949
+              },
+              "true": {
+                "あわら湯のまち エリア": 132,
+                "かつやま恐竜の森 エリア": 89,
+                "一乗谷朝倉氏遺跡 エリア": 125,
+                "丸岡城 エリア": 50,
+                "大本山 永平寺 エリア": 128,
+                "福井駅前 エリア": 184,
+                "越前そばの里 エリア": 29,
+                "越前大野城・城下町 エリア": 68,
+                "道の駅「南えちぜん山海里」 エリア": 9,
+                "道の駅「恐竜渓谷かつやま」 エリア": 6,
+                "道の駅「越前」 エリア": 39,
+                "道の駅「越前おおの荒島の郷」 エリア": 14
+              }
+            },
+            "name": "area_x_transport_access",
+            "p_value_bh": 5.589877599390916e-63
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "wayfinding_signage",
+            "chi2": 82.16427562343617,
+            "df": 11,
+            "p_value": 5.621390477943532e-13,
+            "cramers_v": 0.046206923633645855,
+            "expected_min": 11.365278174778474,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4722,
+                "かつやま恐竜の森 エリア": 3250,
+                "一乗谷朝倉氏遺跡 エリア": 2958,
+                "丸岡城 エリア": 1822,
+                "大本山 永平寺 エリア": 4590,
+                "福井駅前 エリア": 4122,
+                "越前そばの里 エリア": 5045,
+                "越前大野城・城下町 エリア": 2501,
+                "道の駅「南えちぜん山海里」 エリア": 2639,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2153,
+                "道の駅「越前」 エリア": 2489,
+                "道の駅「越前おおの荒島の郷」 エリア": 1953
+              },
+              "true": {
+                "あわら湯のまち エリア": 22,
+                "かつやま恐竜の森 エリア": 19,
+                "一乗谷朝倉氏遺跡 エリア": 36,
+                "丸岡城 エリア": 8,
+                "大本山 永平寺 エリア": 30,
+                "福井駅前 エリア": 34,
+                "越前そばの里 エリア": 17,
+                "越前大野城・城下町 エリア": 41,
+                "道の駅「南えちぜん山海里」 エリア": 6,
+                "道の駅「恐竜渓谷かつやま」 エリア": 8,
+                "道の駅「越前」 エリア": 8,
+                "道の駅「越前おおの荒島の郷」 エリア": 10
+              }
+            },
+            "name": "area_x_wayfinding_signage",
+            "p_value_bh": 1.1242780955887064e-12
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "english_information_gap",
+            "chi2": 43.71484784926583,
+            "df": 11,
+            "p_value": 8.15098325719788e-06,
+            "cramers_v": 0.03370388972749184,
+            "expected_min": 1.6168178156588624,
+            "assumption_expected_ge5": false,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4736,
+                "かつやま恐竜の森 エリア": 3265,
+                "一乗谷朝倉氏遺跡 エリア": 2993,
+                "丸岡城 エリア": 1827,
+                "大本山 永平寺 エリア": 4606,
+                "福井駅前 エリア": 4153,
+                "越前そばの里 エリア": 5062,
+                "越前大野城・城下町 エリア": 2542,
+                "道の駅「南えちぜん山海里」 エリア": 2645,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2161,
+                "道の駅「越前」 エリア": 2496,
+                "道の駅「越前おおの荒島の郷」 エリア": 1963
+              },
+              "true": {
+                "あわら湯のまち エリア": 8,
+                "かつやま恐竜の森 エリア": 4,
+                "一乗谷朝倉氏遺跡 エリア": 1,
+                "丸岡城 エリア": 3,
+                "大本山 永平寺 エリア": 14,
+                "福井駅前 エリア": 3,
+                "越前そばの里 エリア": 0,
+                "越前大野城・城下町 エリア": 0,
+                "道の駅「南えちぜん山海里」 エリア": 0,
+                "道の駅「恐竜渓谷かつやま」 エリア": 0,
+                "道の駅「越前」 エリア": 1,
+                "道の駅「越前おおの荒島の郷」 エリア": 0
+              }
+            },
+            "name": "area_x_english_information_gap",
+            "p_value_bh": 1.0867977676263841e-05
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "staff_communication",
+            "chi2": 24.2969998000321,
+            "df": 11,
+            "p_value": 0.011537551559062728,
+            "cramers_v": 0.02512707087014975,
+            "expected_min": 2.4727801886547307,
+            "assumption_expected_ge5": false,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4727,
+                "かつやま恐竜の森 エリア": 3265,
+                "一乗谷朝倉氏遺跡 エリア": 2989,
+                "丸岡城 エリア": 1827,
+                "大本山 永平寺 エリア": 4615,
+                "福井駅前 エリア": 4154,
+                "越前そばの里 エリア": 5055,
+                "越前大野城・城下町 エリア": 2540,
+                "道の駅「南えちぜん山海里」 エリア": 2644,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2159,
+                "道の駅「越前」 エリア": 2494,
+                "道の駅「越前おおの荒島の郷」 エリア": 1962
+              },
+              "true": {
+                "あわら湯のまち エリア": 17,
+                "かつやま恐竜の森 エリア": 4,
+                "一乗谷朝倉氏遺跡 エリア": 5,
+                "丸岡城 エリア": 3,
+                "大本山 永平寺 エリア": 5,
+                "福井駅前 エリア": 2,
+                "越前そばの里 エリア": 7,
+                "越前大野城・城下町 エリア": 2,
+                "道の駅「南えちぜん山海里」 エリア": 1,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2,
+                "道の駅「越前」 エリア": 3,
+                "道の駅「越前おおの荒島の郷」 エリア": 1
+              }
+            },
+            "name": "area_x_staff_communication",
+            "p_value_bh": 0.011537551559062728
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "booking_ticketing",
+            "chi2": 31.817059676388503,
+            "df": 11,
+            "p_value": 0.0008160128774730957,
+            "cramers_v": 0.02875382073941707,
+            "expected_min": 5.040667307642336,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4739,
+                "かつやま恐竜の森 エリア": 3253,
+                "一乗谷朝倉氏遺跡 エリア": 2986,
+                "丸岡城 エリア": 1830,
+                "大本山 永平寺 エリア": 4610,
+                "福井駅前 エリア": 4145,
+                "越前そばの里 エリア": 5041,
+                "越前大野城・城下町 エリア": 2537,
+                "道の駅「南えちぜん山海里」 エリア": 2640,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2152,
+                "道の駅「越前」 エリア": 2493,
+                "道の駅「越前おおの荒島の郷」 エリア": 1951
+              },
+              "true": {
+                "あわら湯のまち エリア": 5,
+                "かつやま恐竜の森 エリア": 16,
+                "一乗谷朝倉氏遺跡 エリア": 8,
+                "丸岡城 エリア": 0,
+                "大本山 永平寺 エリア": 10,
+                "福井駅前 エリア": 11,
+                "越前そばの里 エリア": 21,
+                "越前大野城・城下町 エリア": 5,
+                "道の駅「南えちぜん山海里」 エリア": 5,
+                "道の駅「恐竜渓谷かつやま」 エリア": 9,
+                "道の駅「越前」 エリア": 4,
+                "道の駅「越前おおの荒島の郷」 エリア": 12
+              }
+            },
+            "name": "area_x_booking_ticketing",
+            "p_value_bh": 0.0008901958663342862
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "waiting_crowding",
+            "chi2": 292.73049944484774,
+            "df": 11,
+            "p_value": 2.9748157745275826e-56,
+            "cramers_v": 0.08721667512550402,
+            "expected_min": 40.18267806563937,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4675,
+                "かつやま恐竜の森 エリア": 3119,
+                "一乗谷朝倉氏遺跡 エリア": 2957,
+                "丸岡城 エリア": 1811,
+                "大本山 永平寺 エリア": 4541,
+                "福井駅前 エリア": 4057,
+                "越前そばの里 エリア": 4836,
+                "越前大野城・城下町 エリア": 2513,
+                "道の駅「南えちぜん山海里」 エリア": 2620,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2128,
+                "道の駅「越前」 エリア": 2447,
+                "道の駅「越前おおの荒島の郷」 エリア": 1934
+              },
+              "true": {
+                "あわら湯のまち エリア": 69,
+                "かつやま恐竜の森 エリア": 150,
+                "一乗谷朝倉氏遺跡 エリア": 37,
+                "丸岡城 エリア": 19,
+                "大本山 永平寺 エリア": 79,
+                "福井駅前 エリア": 99,
+                "越前そばの里 エリア": 226,
+                "越前大野城・城下町 エリア": 29,
+                "道の駅「南えちぜん山海里」 エリア": 25,
+                "道の駅「恐竜渓谷かつやま」 エリア": 33,
+                "道の駅「越前」 エリア": 50,
+                "道の駅「越前おおの荒島の郷」 エリア": 29
+              }
+            },
+            "name": "area_x_waiting_crowding",
+            "p_value_bh": 1.7848894647165494e-55
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "price_value",
+            "chi2": 47.171807867895545,
+            "df": 11,
+            "p_value": 2.0046081712984922e-06,
+            "cramers_v": 0.035011184179365315,
+            "expected_min": 4.898006912143024,
+            "assumption_expected_ge5": false,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4735,
+                "かつやま恐竜の森 エリア": 3254,
+                "一乗谷朝倉氏遺跡 エリア": 2988,
+                "丸岡城 エリア": 1825,
+                "大本山 永平寺 エリア": 4613,
+                "福井駅前 エリア": 4142,
+                "越前そばの里 エリア": 5057,
+                "越前大野城・城下町 エリア": 2540,
+                "道の駅「南えちぜん山海里」 エリア": 2625,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2159,
+                "道の駅「越前」 エリア": 2487,
+                "道の駅「越前おおの荒島の郷」 エリア": 1955
+              },
+              "true": {
+                "あわら湯のまち エリア": 9,
+                "かつやま恐竜の森 エリア": 15,
+                "一乗谷朝倉氏遺跡 エリア": 6,
+                "丸岡城 エリア": 5,
+                "大本山 永平寺 エリア": 7,
+                "福井駅前 エリア": 14,
+                "越前そばの里 エリア": 5,
+                "越前大野城・城下町 エリア": 2,
+                "道の駅「南えちぜん山海里」 エリア": 20,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2,
+                "道の駅「越前」 エリア": 10,
+                "道の駅「越前おおの荒島の郷」 エリア": 8
+              }
+            },
+            "name": "area_x_price_value",
+            "p_value_bh": 3.0069122569477383e-06
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "cleanliness_comfort",
+            "chi2": 84.96417015236008,
+            "df": 11,
+            "p_value": 1.6057636560069188e-13,
+            "cramers_v": 0.04698762019108416,
+            "expected_min": 14.313593015097576,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4723,
+                "かつやま恐竜の森 エリア": 3232,
+                "一乗谷朝倉氏遺跡 エリア": 2958,
+                "丸岡城 エリア": 1823,
+                "大本山 永平寺 エリア": 4603,
+                "福井駅前 エリア": 4114,
+                "越前そばの里 エリア": 5055,
+                "越前大野城・城下町 エリア": 2513,
+                "道の駅「南えちぜん山海里」 エリア": 2618,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2138,
+                "道の駅「越前」 エリア": 2462,
+                "道の駅「越前おおの荒島の郷」 エリア": 1943
+              },
+              "true": {
+                "あわら湯のまち エリア": 21,
+                "かつやま恐竜の森 エリア": 37,
+                "一乗谷朝倉氏遺跡 エリア": 36,
+                "丸岡城 エリア": 7,
+                "大本山 永平寺 エリア": 17,
+                "福井駅前 エリア": 42,
+                "越前そばの里 エリア": 7,
+                "越前大野城・城下町 エリア": 29,
+                "道の駅「南えちぜん山海里」 エリア": 27,
+                "道の駅「恐竜渓谷かつやま」 エリア": 23,
+                "道の駅「越前」 エリア": 35,
+                "道の駅「越前おおの荒島の郷」 エリア": 20
+              }
+            },
+            "name": "area_x_cleanliness_comfort",
+            "p_value_bh": 3.853832774416605e-13
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "opening_hours_availability",
+            "chi2": 52.0066282290514,
+            "df": 11,
+            "p_value": 2.718903978327806e-07,
+            "cramers_v": 0.036761640912450835,
+            "expected_min": 16.833926668918743,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4701,
+                "かつやま恐竜の森 エリア": 3250,
+                "一乗谷朝倉氏遺跡 エリア": 2964,
+                "丸岡城 エリア": 1819,
+                "大本山 永平寺 エリア": 4573,
+                "福井駅前 エリア": 4114,
+                "越前そばの里 エリア": 5044,
+                "越前大野城・城下町 エリア": 2510,
+                "道の駅「南えちぜん山海里」 エリア": 2629,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2127,
+                "道の駅「越前」 エリア": 2463,
+                "道の駅「越前おおの荒島の郷」 エリア": 1935
+              },
+              "true": {
+                "あわら湯のまち エリア": 43,
+                "かつやま恐竜の森 エリア": 19,
+                "一乗谷朝倉氏遺跡 エリア": 30,
+                "丸岡城 エリア": 11,
+                "大本山 永平寺 エリア": 47,
+                "福井駅前 エリア": 42,
+                "越前そばの里 エリア": 18,
+                "越前大野城・城下町 エリア": 32,
+                "道の駅「南えちぜん山海里」 エリア": 16,
+                "道の駅「恐竜渓谷かつやま」 エリア": 34,
+                "道の駅「越前」 エリア": 34,
+                "道の駅「越前おおの荒島の郷」 エリア": 28
+              }
+            },
+            "name": "area_x_opening_hours_availability",
+            "p_value_bh": 4.6609782485619527e-07
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "itinerary_fit_time_cost",
+            "chi2": 38.3289100247461,
+            "df": 11,
+            "p_value": 6.883923613405119e-05,
+            "cramers_v": 0.03155940263905554,
+            "expected_min": 7.085466309799132,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4725,
+                "かつやま恐竜の森 エリア": 3241,
+                "一乗谷朝倉氏遺跡 エリア": 2983,
+                "丸岡城 エリア": 1820,
+                "大本山 永平寺 エリア": 4612,
+                "福井駅前 エリア": 4132,
+                "越前そばの里 エリア": 5040,
+                "越前大野城・城下町 エリア": 2538,
+                "道の駅「南えちぜん山海里」 エリア": 2638,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2155,
+                "道の駅「越前」 エリア": 2490,
+                "道の駅「越前おおの荒島の郷」 エリア": 1960
+              },
+              "true": {
+                "あわら湯のまち エリア": 19,
+                "かつやま恐竜の森 エリア": 28,
+                "一乗谷朝倉氏遺跡 エリア": 11,
+                "丸岡城 エリア": 10,
+                "大本山 永平寺 エリア": 8,
+                "福井駅前 エリア": 24,
+                "越前そばの里 エリア": 22,
+                "越前大野城・城下町 エリア": 4,
+                "道の駅「南えちぜん山海里」 エリア": 7,
+                "道の駅「恐竜渓谷かつやま」 エリア": 6,
+                "道の駅「越前」 エリア": 7,
+                "道の駅「越前おおの荒島の郷」 エリア": 3
+              }
+            },
+            "name": "area_x_itinerary_fit_time_cost",
+            "p_value_bh": 8.260708336086143e-05
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "accessibility_mobility",
+            "chi2": 268.59958419519256,
+            "df": 11,
+            "p_value": 3.519741775777536e-51,
+            "cramers_v": 0.0835445660682555,
+            "expected_min": 26.201959306706858,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4719,
+                "かつやま恐竜の森 エリア": 3231,
+                "一乗谷朝倉氏遺跡 エリア": 2961,
+                "丸岡城 エリア": 1765,
+                "大本山 永平寺 エリア": 4469,
+                "福井駅前 エリア": 4120,
+                "越前そばの里 エリア": 5030,
+                "越前大野城・城下町 エリア": 2481,
+                "道の駅「南えちぜん山海里」 エリア": 2621,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2122,
+                "道の駅「越前」 エリア": 2460,
+                "道の駅「越前おおの荒島の郷」 エリア": 1953
+              },
+              "true": {
+                "あわら湯のまち エリア": 25,
+                "かつやま恐竜の森 エリア": 38,
+                "一乗谷朝倉氏遺跡 エリア": 33,
+                "丸岡城 エリア": 65,
+                "大本山 永平寺 エリア": 151,
+                "福井駅前 エリア": 36,
+                "越前そばの里 エリア": 32,
+                "越前大野城・城下町 エリア": 61,
+                "道の駅「南えちぜん山海里」 エリア": 24,
+                "道の駅「恐竜渓谷かつやま」 エリア": 39,
+                "道の駅「越前」 エリア": 37,
+                "道の駅「越前おおの荒島の郷」 エリア": 10
+              }
+            },
+            "name": "area_x_accessibility_mobility",
+            "p_value_bh": 1.4078967103110145e-50
+          },
+          {
+            "row_col": "response_area",
+            "outcome": "food_amenities_gap",
+            "chi2": 100.14692632133816,
+            "df": 11,
+            "p_value": 1.6701158717641615e-16,
+            "cramers_v": 0.051013409639343074,
+            "expected_min": 10.509315801782606,
+            "assumption_expected_ge5": true,
+            "contingency_table": {
+              "false": {
+                "あわら湯のまち エリア": 4703,
+                "かつやま恐竜の森 エリア": 3248,
+                "一乗谷朝倉氏遺跡 エリア": 2980,
+                "丸岡城 エリア": 1820,
+                "大本山 永平寺 エリア": 4601,
+                "福井駅前 エリア": 4103,
+                "越前そばの里 エリア": 5054,
+                "越前大野城・城下町 エリア": 2511,
+                "道の駅「南えちぜん山海里」 エリア": 2641,
+                "道の駅「恐竜渓谷かつやま」 エリア": 2154,
+                "道の駅「越前」 エリア": 2485,
+                "道の駅「越前おおの荒島の郷」 エリア": 1962
+              },
+              "true": {
+                "あわら湯のまち エリア": 41,
+                "かつやま恐竜の森 エリア": 21,
+                "一乗谷朝倉氏遺跡 エリア": 14,
+                "丸岡城 エリア": 10,
+                "大本山 永平寺 エリア": 19,
+                "福井駅前 エリア": 53,
+                "越前そばの里 エリア": 8,
+                "越前大野城・城下町 エリア": 31,
+                "道の駅「南えちぜん山海里」 エリア": 4,
+                "道の駅「恐竜渓谷かつやま」 エリア": 7,
+                "道の駅「越前」 エリア": 12,
+                "道の駅「越前おおの荒島の郷」 エリア": 1
+              }
+            },
+            "name": "area_x_food_amenities_gap",
+            "p_value_bh": 5.010347615292484e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "official_prefecture_comparison",
+      "n": 121064,
+      "details": {
+        "any_friction": {
+          "groups": [
+            "Fukui",
+            "Ishikawa"
+          ],
+          "outcome": "any_friction",
+          "counts": {
+            "Fukui": {
+              "n": 95422,
+              "true": 7888
+            },
+            "Ishikawa": {
+              "n": 25642,
+              "true": 3295
+            }
+          },
+          "rates": {
+            "Fukui": 0.08266437509169793,
+            "Ishikawa": 0.12850011699555416
+          },
+          "chi2": 505.9109718451522,
+          "df": 1,
+          "p_value": 4.919002800290346e-112,
+          "cramers_v": 0.06464419617744509,
+          "expected_min": 2368.618961871407
+        },
+        "friction_code_tests": [
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "waiting_crowding",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 1738
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 826
+              }
+            },
+            "rates": {
+              "Fukui": 0.018213829096015596,
+              "Ishikawa": 0.03221277591451525
+            },
+            "chi2": 190.38531422571555,
+            "df": 1,
+            "p_value": 2.61954406613092e-43,
+            "cramers_v": 0.03965602804425545,
+            "expected_min": 543.0688561422057,
+            "p_value_bh": 3.143452879357104e-42
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "staff_communication",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 133
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 148
+              }
+            },
+            "rates": {
+              "Fukui": 0.0013938085556789838,
+              "Ishikawa": 0.005771780672334451
+            },
+            "chi2": 165.3968058406761,
+            "df": 1,
+            "p_value": 7.492542800794721e-38,
+            "cramers_v": 0.03696204994582973,
+            "expected_min": 59.51729663648979,
+            "p_value_bh": 4.4955256804768325e-37
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "cleanliness_comfort",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 859
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 461
+              }
+            },
+            "rates": {
+              "Fukui": 0.00900211691224246,
+              "Ishikawa": 0.01797831682396069
+            },
+            "chi2": 150.16736583331567,
+            "df": 1,
+            "p_value": 1.5935939619761238e-34,
+            "cramers_v": 0.03521926365908008,
+            "expected_min": 279.58303046322607,
+            "p_value_bh": 6.374375847904496e-34
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_access",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 2042
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 874
+              }
+            },
+            "rates": {
+              "Fukui": 0.021399677223281843,
+              "Ishikawa": 0.03408470478121831
+            },
+            "chi2": 137.8125392991888,
+            "df": 1,
+            "p_value": 8.009158617866473e-32,
+            "cramers_v": 0.03373936137814244,
+            "expected_min": 617.6243309323994,
+            "p_value_bh": 2.402747585359942e-31
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "english_information_gap",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 58
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 86
+              }
+            },
+            "rates": {
+              "Fukui": 0.0006078262874389553,
+              "Ishikawa": 0.003353872552842992
+            },
+            "chi2": 125.98241133578783,
+            "df": 1,
+            "p_value": 3.10220634017905e-29,
+            "cramers_v": 0.032258743607758385,
+            "expected_min": 30.49996695962466,
+            "p_value_bh": 7.445295216429719e-29
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "price_value",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 274
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 149
+              }
+            },
+            "rates": {
+              "Fukui": 0.0028714552199702375,
+              "Ishikawa": 0.005810779190390765
+            },
+            "chi2": 49.309833282786684,
+            "df": 1,
+            "p_value": 2.1856415210986487e-12,
+            "cramers_v": 0.020181770236714934,
+            "expected_min": 89.59365294389744,
+            "p_value_bh": 4.3712830421972974e-12
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "accessibility_mobility",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 1003
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 345
+              }
+            },
+            "rates": {
+              "Fukui": 0.010511202867263314,
+              "Ishikawa": 0.013454488729428282
+            },
+            "chi2": 15.635315177770625,
+            "df": 1,
+            "p_value": 7.680668837078282e-05,
+            "cramers_v": 0.011364381659508021,
+            "expected_min": 285.5135795942642,
+            "p_value_bh": 0.0001316686086356277
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "itinerary_fit_time_cost",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 335
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 122
+              }
+            },
+            "rates": {
+              "Fukui": 0.003510720798138794,
+              "Ishikawa": 0.004757819202870291
+            },
+            "chi2": 8.030164674237914,
+            "df": 1,
+            "p_value": 0.004600465671512199,
+            "cramers_v": 0.00814431787917349,
+            "expected_min": 96.7950340315866,
+            "p_value_bh": 0.006900698507268299
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "booking_ticketing",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 277
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 100
+              }
+            },
+            "rates": {
+              "Fukui": 0.002902894510699839,
+              "Ishikawa": 0.003899851805631386
+            },
+            "chi2": 6.153766885509044,
+            "df": 1,
+            "p_value": 0.013113250965287072,
+            "cramers_v": 0.007129564636845984,
+            "expected_min": 79.85060794290624,
+            "p_value_bh": 0.017484334620382763
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "food_amenities_gap",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 644
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 156
+              }
+            },
+            "rates": {
+              "Fukui": 0.006748967743287712,
+              "Ishikawa": 0.006083768816784962
+            },
+            "chi2": 1.2629132792438682,
+            "df": 1,
+            "p_value": 0.2611003661358482,
+            "cramers_v": 0.003229826960008856,
+            "expected_min": 169.44426088680368,
+            "p_value_bh": 0.31332043936301784
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "opening_hours_availability",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 1058
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 302
+              }
+            },
+            "rates": {
+              "Fukui": 0.01108758986397267,
+              "Ishikawa": 0.011777552453006785
+            },
+            "chi2": 0.8051984992201707,
+            "df": 1,
+            "p_value": 0.3695436344639591,
+            "cramers_v": 0.002578956215039491,
+            "expected_min": 288.0552435075663,
+            "p_value_bh": 0.403138510324319
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "wayfinding_signage",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 624
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 175
+              }
+            },
+            "rates": {
+              "Fukui": 0.006539372471757037,
+              "Ishikawa": 0.006824740659854925
+            },
+            "chi2": 0.20939920469485757,
+            "df": 1,
+            "p_value": 0.647238709205154,
+            "cramers_v": 0.0013151642785918225,
+            "expected_min": 169.23245556069517,
+            "p_value_bh": 0.647238709205154
+          }
+        ],
+        "outcome_tests": [
+          {
+            "outcome": "overall_satisfaction_score",
+            "n_fukui": 95421,
+            "n_ishikawa": 25642,
+            "median_fukui": 4.0,
+            "median_ishikawa": 5.0,
+            "mean_fukui": 4.225904151077855,
+            "mean_ishikawa": 4.473792995866157,
+            "mannwhitney_u": 991111962.0,
+            "p_value": 0.0
+          },
+          {
+            "outcome": "transport_satisfaction_score",
+            "n_fukui": 45110,
+            "n_ishikawa": 13165,
+            "median_fukui": 4.0,
+            "median_ishikawa": 4.0,
+            "mean_fukui": 4.249057858567945,
+            "mean_ishikawa": 4.188302316748955,
+            "mannwhitney_u": 306002009.5,
+            "p_value": 6.148659069217532e-09
+          },
+          {
+            "outcome": "nps",
+            "n_fukui": 95421,
+            "n_ishikawa": 25642,
+            "median_fukui": 8.0,
+            "median_ishikawa": 9.0,
+            "mean_fukui": 7.699384831431236,
+            "mean_ishikawa": 8.696513532485765,
+            "mannwhitney_u": 854331250.5,
+            "p_value": 0.0
+          }
+        ],
+        "transport_mode_tests": [
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_to_fukui_private_car",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 72363
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 11307
+              }
+            },
+            "rates": {
+              "Fukui": 0.7583471316887092,
+              "Ishikawa": 0.44095624366274083
+            },
+            "chi2": 9535.971423229641,
+            "df": 1,
+            "p_value": 0.0,
+            "cramers_v": 0.28065640694730265,
+            "expected_min": 7920.248364501421
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_to_fukui_rental_car",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 7605
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 1144
+              }
+            },
+            "rates": {
+              "Fukui": 0.07969860199953889,
+              "Ishikawa": 0.044614304656423055
+            },
+            "chi2": 370.5374684620672,
+            "df": 1,
+            "p_value": 1.4294559903992074e-82,
+            "cramers_v": 0.055323360877266435,
+            "expected_min": 1853.0847981233067
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_to_fukui_shinkansen",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 10199
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 7748
+              }
+            },
+            "rates": {
+              "Fukui": 0.10688310871706734,
+              "Ishikawa": 0.3021605179003198
+            },
+            "chi2": 6102.211562418499,
+            "df": 1,
+            "p_value": 0.0,
+            "cramers_v": 0.22451022271727492,
+            "expected_min": 3801.270187669332
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_to_fukui_local_train",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 7027
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 3331
+              }
+            },
+            "rates": {
+              "Fukui": 0.0736412986523024,
+              "Ishikawa": 0.12990406364558146
+            },
+            "chi2": 817.0121179137429,
+            "df": 1,
+            "p_value": 1.0798629379048532e-179,
+            "cramers_v": 0.08214984332320231,
+            "expected_min": 2193.8795678318907
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_to_fukui_airplane",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 2274
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 3138
+              }
+            },
+            "rates": {
+              "Fukui": 0.023830982373037664,
+              "Ishikawa": 0.1223773496607129
+            },
+            "chi2": 4593.7531575246,
+            "df": 1,
+            "p_value": 0.0,
+            "cramers_v": 0.19479433291152554,
+            "expected_min": 1146.2904248992268
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_in_fukui_route_bus",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 4112
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 4414
+              }
+            },
+            "rates": {
+              "Fukui": 0.04309278782670663,
+              "Ishikawa": 0.17213945870056938
+            },
+            "chi2": 5139.229221652722,
+            "df": 1,
+            "p_value": 0.0,
+            "cramers_v": 0.20603522904762864,
+            "expected_min": 1805.8522104011101
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa"
+            ],
+            "outcome": "transport_in_fukui_walk",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 4480
+              },
+              "Ishikawa": {
+                "n": 25642,
+                "true": 4255
+              }
+            },
+            "rates": {
+              "Fukui": 0.046949340822871034,
+              "Ishikawa": 0.16593869432961547
+            },
+            "chi2": 4272.63929330781,
+            "df": 1,
+            "p_value": 0.0,
+            "cramers_v": 0.18786271978336566,
+            "expected_min": 1850.1195235577877
+          }
+        ]
+      }
+    },
+    {
+      "name": "official_fukui_vs_ishikawa_kanazawa_area_comparison",
+      "n": 105951,
+      "details": {
+        "scope_note": "Compares all Fukui official survey rows against Ishikawa official survey rows whose survey_area_group is 金沢.",
+        "any_friction": {
+          "groups": [
+            "Fukui",
+            "Ishikawa_Kanazawa_area"
+          ],
+          "outcome": "any_friction",
+          "counts": {
+            "Fukui": {
+              "n": 95422,
+              "true": 7888
+            },
+            "Ishikawa_Kanazawa_area": {
+              "n": 10529,
+              "true": 1538
+            }
+          },
+          "rates": {
+            "Fukui": 0.08266437509169793,
+            "Ishikawa_Kanazawa_area": 0.14607275144838067
+          },
+          "chi2": 469.6173542232608,
+          "df": 1,
+          "p_value": 3.881819243012274e-104,
+          "cramers_v": 0.06657628210236785,
+          "expected_min": 936.7193702749385
+        },
+        "friction_code_tests": [
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "cleanliness_comfort",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 859
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 306
+              }
+            },
+            "rates": {
+              "Fukui": 0.00900211691224246,
+              "Ishikawa_Kanazawa_area": 0.02906258903979485
+            },
+            "chi2": 349.0661791660117,
+            "df": 1,
+            "p_value": 6.768510177204875e-78,
+            "cramers_v": 0.05739860745243526,
+            "expected_min": 115.77318760559126,
+            "p_value_bh": 8.12221221264585e-77
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "staff_communication",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 133
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 86
+              }
+            },
+            "rates": {
+              "Fukui": 0.0013938085556789838,
+              "Ishikawa_Kanazawa_area": 0.008167917181118815
+            },
+            "chi2": 207.68596440905768,
+            "df": 1,
+            "p_value": 4.392743187573305e-47,
+            "cramers_v": 0.04427423274061244,
+            "expected_min": 21.763371747317155,
+            "p_value_bh": 2.635645912543983e-46
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "english_information_gap",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 58
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 57
+              }
+            },
+            "rates": {
+              "Fukui": 0.0006078262874389553,
+              "Ishikawa_Kanazawa_area": 0.00541361952702061
+            },
+            "chi2": 197.58639387739822,
+            "df": 1,
+            "p_value": 7.02344856413002e-45,
+            "cramers_v": 0.043184310265069636,
+            "expected_min": 11.42825457050901,
+            "p_value_bh": 2.809379425652008e-44
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "waiting_crowding",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 1738
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 394
+              }
+            },
+            "rates": {
+              "Fukui": 0.018213829096015596,
+              "Ishikawa_Kanazawa_area": 0.03742045778326527
+            },
+            "chi2": 176.4375960197722,
+            "df": 1,
+            "p_value": 2.905894193294065e-40,
+            "cramers_v": 0.04080778626630134,
+            "expected_min": 211.869902124567,
+            "p_value_bh": 8.717682579882194e-40
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "price_value",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 274
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 89
+              }
+            },
+            "rates": {
+              "Fukui": 0.0028714552199702375,
+              "Ishikawa_Kanazawa_area": 0.008452844524646215
+            },
+            "chi2": 84.89058333947933,
+            "df": 1,
+            "p_value": 3.1534139827600656e-20,
+            "cramers_v": 0.028305917002842317,
+            "expected_min": 36.07353399212844,
+            "p_value_bh": 7.568193558624158e-20
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "transport_access",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 2042
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 345
+              }
+            },
+            "rates": {
+              "Fukui": 0.021399677223281843,
+              "Ishikawa_Kanazawa_area": 0.03276664450565106
+            },
+            "chi2": 55.12266444107266,
+            "df": 1,
+            "p_value": 1.1323760816096179e-13,
+            "cramers_v": 0.022809332221465955,
+            "expected_min": 237.210814433087,
+            "p_value_bh": 2.264752163219236e-13
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "food_amenities_gap",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 644
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 30
+              }
+            },
+            "rates": {
+              "Fukui": 0.006748967743287712,
+              "Ishikawa_Kanazawa_area": 0.002849273435274005
+            },
+            "chi2": 22.201592154429513,
+            "df": 1,
+            "p_value": 2.454701535187498e-06,
+            "cramers_v": 0.014475698536600013,
+            "expected_min": 66.9795093958528,
+            "p_value_bh": 4.208059774607139e-06
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "wayfinding_signage",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 624
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 105
+              }
+            },
+            "rates": {
+              "Fukui": 0.006539372471757037,
+              "Ishikawa_Kanazawa_area": 0.009972457023459018
+            },
+            "chi2": 15.857389746664852,
+            "df": 1,
+            "p_value": 6.829930445937983e-05,
+            "cramers_v": 0.012233854758829989,
+            "expected_min": 72.4451963643571,
+            "p_value_bh": 0.00010244895668906975
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "booking_ticketing",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 277
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 51
+              }
+            },
+            "rates": {
+              "Fukui": 0.002902894510699839,
+              "Ishikawa_Kanazawa_area": 0.004843764839965809
+            },
+            "chi2": 10.954130746202534,
+            "df": 1,
+            "p_value": 0.0009339517545896953,
+            "cramers_v": 0.010168020897022196,
+            "expected_min": 32.595369557625695,
+            "p_value_bh": 0.0012452690061195938
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "accessibility_mobility",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 1003
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 135
+              }
+            },
+            "rates": {
+              "Fukui": 0.010511202867263314,
+              "Ishikawa_Kanazawa_area": 0.012821730458733024
+            },
+            "chi2": 4.549400329452022,
+            "df": 1,
+            "p_value": 0.03293027766385677,
+            "cramers_v": 0.006552764307034018,
+            "expected_min": 113.09003218468915,
+            "p_value_bh": 0.039516333196628124
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "itinerary_fit_time_cost",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 335
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 49
+              }
+            },
+            "rates": {
+              "Fukui": 0.003510720798138794,
+              "Ishikawa_Kanazawa_area": 0.004653813277614208
+            },
+            "chi2": 3.121942270292075,
+            "df": 1,
+            "p_value": 0.07724466133854181,
+            "cramers_v": 0.005428250786495581,
+            "expected_min": 38.16043265283008,
+            "p_value_bh": 0.08426690327840926
+          },
+          {
+            "groups": [
+              "Fukui",
+              "Ishikawa_Kanazawa_area"
+            ],
+            "outcome": "opening_hours_availability",
+            "counts": {
+              "Fukui": {
+                "n": 95422,
+                "true": 1058
+              },
+              "Ishikawa_Kanazawa_area": {
+                "n": 10529,
+                "true": 126
+              }
+            },
+            "rates": {
+              "Fukui": 0.01108758986397267,
+              "Ishikawa_Kanazawa_area": 0.011966948428150822
+            },
+            "chi2": 0.5863914744287857,
+            "df": 1,
+            "p_value": 0.44381791543738225,
+            "cramers_v": 0.0023525631697024576,
+            "expected_min": 117.66133401289275,
+            "p_value_bh": 0.44381791543738225
+          }
+        ],
+        "outcome_tests": [
+          {
+            "outcome": "overall_satisfaction_score",
+            "n_fukui": 95421,
+            "n_ishikawa_kanazawa_area": 10529,
+            "median_fukui": 4.0,
+            "median_ishikawa_kanazawa_area": 5.0,
+            "mean_fukui": 4.225904151077855,
+            "mean_ishikawa_kanazawa_area": 4.495963529300028,
+            "mannwhitney_u": 398420995.0,
+            "p_value": 0.0
+          },
+          {
+            "outcome": "transport_satisfaction_score",
+            "n_fukui": 45110,
+            "n_ishikawa_kanazawa_area": 5689,
+            "median_fukui": 4.0,
+            "median_ishikawa_kanazawa_area": 4.0,
+            "mean_fukui": 4.249057858567945,
+            "mean_ishikawa_kanazawa_area": 4.121110915802426,
+            "mannwhitney_u": 138357030.0,
+            "p_value": 9.025177223863953e-26
+          },
+          {
+            "outcome": "nps",
+            "n_fukui": 95421,
+            "n_ishikawa_kanazawa_area": 10529,
+            "median_fukui": 8.0,
+            "median_ishikawa_kanazawa_area": 9.0,
+            "mean_fukui": 7.699384831431236,
+            "mean_ishikawa_kanazawa_area": 8.781650679076835,
+            "mannwhitney_u": 336688409.5,
+            "p_value": 0.0
+          }
+        ]
+      }
+    }
+  ]
+}

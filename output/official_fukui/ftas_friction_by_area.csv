@@ -1,0 +1,1441 @@
+response_area,friction_code,count,n_respondents,pct_of_respondents
+JAM福井勝山マウンテンリゾート エリア,transport_access,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,wayfinding_signage,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,english_information_gap,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,staff_communication,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,booking_ticketing,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,waiting_crowding,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,price_value,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,cleanliness_comfort,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,opening_hours_availability,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,itinerary_fit_time_cost,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,accessibility_mobility,0,1,0.0
+JAM福井勝山マウンテンリゾート エリア,food_amenities_gap,0,1,0.0
+JA福井県ファーマーズマーケットきららの丘 エリア,transport_access,3,296,1.01
+JA福井県ファーマーズマーケットきららの丘 エリア,wayfinding_signage,1,296,0.34
+JA福井県ファーマーズマーケットきららの丘 エリア,english_information_gap,0,296,0.0
+JA福井県ファーマーズマーケットきららの丘 エリア,staff_communication,0,296,0.0
+JA福井県ファーマーズマーケットきららの丘 エリア,booking_ticketing,4,296,1.35
+JA福井県ファーマーズマーケットきららの丘 エリア,waiting_crowding,5,296,1.69
+JA福井県ファーマーズマーケットきららの丘 エリア,price_value,1,296,0.34
+JA福井県ファーマーズマーケットきららの丘 エリア,cleanliness_comfort,3,296,1.01
+JA福井県ファーマーズマーケットきららの丘 エリア,opening_hours_availability,1,296,0.34
+JA福井県ファーマーズマーケットきららの丘 エリア,itinerary_fit_time_cost,1,296,0.34
+JA福井県ファーマーズマーケットきららの丘 エリア,accessibility_mobility,1,296,0.34
+JA福井県ファーマーズマーケットきららの丘 エリア,food_amenities_gap,0,296,0.0
+JR九頭竜湖駅 エリア,transport_access,10,720,1.39
+JR九頭竜湖駅 エリア,wayfinding_signage,6,720,0.83
+JR九頭竜湖駅 エリア,english_information_gap,0,720,0.0
+JR九頭竜湖駅 エリア,staff_communication,0,720,0.0
+JR九頭竜湖駅 エリア,booking_ticketing,3,720,0.42
+JR九頭竜湖駅 エリア,waiting_crowding,7,720,0.97
+JR九頭竜湖駅 エリア,price_value,0,720,0.0
+JR九頭竜湖駅 エリア,cleanliness_comfort,13,720,1.81
+JR九頭竜湖駅 エリア,opening_hours_availability,7,720,0.97
+JR九頭竜湖駅 エリア,itinerary_fit_time_cost,3,720,0.42
+JR九頭竜湖駅 エリア,accessibility_mobility,5,720,0.69
+JR九頭竜湖駅 エリア,food_amenities_gap,5,720,0.69
+JR敦賀駅前 エリア,transport_access,88,1723,5.11
+JR敦賀駅前 エリア,wayfinding_signage,17,1723,0.99
+JR敦賀駅前 エリア,english_information_gap,1,1723,0.06
+JR敦賀駅前 エリア,staff_communication,4,1723,0.23
+JR敦賀駅前 エリア,booking_ticketing,7,1723,0.41
+JR敦賀駅前 エリア,waiting_crowding,37,1723,2.15
+JR敦賀駅前 エリア,price_value,6,1723,0.35
+JR敦賀駅前 エリア,cleanliness_comfort,16,1723,0.93
+JR敦賀駅前 エリア,opening_hours_availability,49,1723,2.84
+JR敦賀駅前 エリア,itinerary_fit_time_cost,6,1723,0.35
+JR敦賀駅前 エリア,accessibility_mobility,11,1723,0.64
+JR敦賀駅前 エリア,food_amenities_gap,45,1723,2.61
+JR美浜駅 エリア,transport_access,22,1374,1.6
+JR美浜駅 エリア,wayfinding_signage,2,1374,0.15
+JR美浜駅 エリア,english_information_gap,0,1374,0.0
+JR美浜駅 エリア,staff_communication,2,1374,0.15
+JR美浜駅 エリア,booking_ticketing,1,1374,0.07
+JR美浜駅 エリア,waiting_crowding,19,1374,1.38
+JR美浜駅 エリア,price_value,1,1374,0.07
+JR美浜駅 エリア,cleanliness_comfort,22,1374,1.6
+JR美浜駅 エリア,opening_hours_availability,17,1374,1.24
+JR美浜駅 エリア,itinerary_fit_time_cost,0,1374,0.0
+JR美浜駅 エリア,accessibility_mobility,6,1374,0.44
+JR美浜駅 エリア,food_amenities_gap,6,1374,0.44
+JR芦原温泉駅 エリア,transport_access,34,781,4.35
+JR芦原温泉駅 エリア,wayfinding_signage,9,781,1.15
+JR芦原温泉駅 エリア,english_information_gap,0,781,0.0
+JR芦原温泉駅 エリア,staff_communication,1,781,0.13
+JR芦原温泉駅 エリア,booking_ticketing,2,781,0.26
+JR芦原温泉駅 エリア,waiting_crowding,13,781,1.66
+JR芦原温泉駅 エリア,price_value,2,781,0.26
+JR芦原温泉駅 エリア,cleanliness_comfort,4,781,0.51
+JR芦原温泉駅 エリア,opening_hours_availability,12,781,1.54
+JR芦原温泉駅 エリア,itinerary_fit_time_cost,6,781,0.77
+JR芦原温泉駅 エリア,accessibility_mobility,5,781,0.64
+JR芦原温泉駅 エリア,food_amenities_gap,26,781,3.33
+UMIKARA エリア,transport_access,1,79,1.27
+UMIKARA エリア,wayfinding_signage,0,79,0.0
+UMIKARA エリア,english_information_gap,0,79,0.0
+UMIKARA エリア,staff_communication,0,79,0.0
+UMIKARA エリア,booking_ticketing,0,79,0.0
+UMIKARA エリア,waiting_crowding,2,79,2.53
+UMIKARA エリア,price_value,1,79,1.27
+UMIKARA エリア,cleanliness_comfort,0,79,0.0
+UMIKARA エリア,opening_hours_availability,0,79,0.0
+UMIKARA エリア,itinerary_fit_time_cost,0,79,0.0
+UMIKARA エリア,accessibility_mobility,0,79,0.0
+UMIKARA エリア,food_amenities_gap,0,79,0.0
+あわら温泉 エリア,transport_access,71,1368,5.19
+あわら温泉 エリア,wayfinding_signage,6,1368,0.44
+あわら温泉 エリア,english_information_gap,0,1368,0.0
+あわら温泉 エリア,staff_communication,0,1368,0.0
+あわら温泉 エリア,booking_ticketing,5,1368,0.37
+あわら温泉 エリア,waiting_crowding,22,1368,1.61
+あわら温泉 エリア,price_value,4,1368,0.29
+あわら温泉 エリア,cleanliness_comfort,3,1368,0.22
+あわら温泉 エリア,opening_hours_availability,14,1368,1.02
+あわら温泉 エリア,itinerary_fit_time_cost,5,1368,0.37
+あわら温泉 エリア,accessibility_mobility,5,1368,0.37
+あわら温泉 エリア,food_amenities_gap,24,1368,1.75
+あわら湯のまち エリア,transport_access,132,4744,2.78
+あわら湯のまち エリア,wayfinding_signage,22,4744,0.46
+あわら湯のまち エリア,english_information_gap,8,4744,0.17
+あわら湯のまち エリア,staff_communication,17,4744,0.36
+あわら湯のまち エリア,booking_ticketing,5,4744,0.11
+あわら湯のまち エリア,waiting_crowding,69,4744,1.45
+あわら湯のまち エリア,price_value,9,4744,0.19
+あわら湯のまち エリア,cleanliness_comfort,21,4744,0.44
+あわら湯のまち エリア,opening_hours_availability,43,4744,0.91
+あわら湯のまち エリア,itinerary_fit_time_cost,19,4744,0.4
+あわら湯のまち エリア,accessibility_mobility,25,4744,0.53
+あわら湯のまち エリア,food_amenities_gap,41,4744,0.86
+うみんぴあ大飯 エリア,transport_access,21,1702,1.23
+うみんぴあ大飯 エリア,wayfinding_signage,6,1702,0.35
+うみんぴあ大飯 エリア,english_information_gap,0,1702,0.0
+うみんぴあ大飯 エリア,staff_communication,1,1702,0.06
+うみんぴあ大飯 エリア,booking_ticketing,8,1702,0.47
+うみんぴあ大飯 エリア,waiting_crowding,17,1702,1.0
+うみんぴあ大飯 エリア,price_value,2,1702,0.12
+うみんぴあ大飯 エリア,cleanliness_comfort,8,1702,0.47
+うみんぴあ大飯 エリア,opening_hours_availability,35,1702,2.06
+うみんぴあ大飯 エリア,itinerary_fit_time_cost,4,1702,0.24
+うみんぴあ大飯 エリア,accessibility_mobility,6,1702,0.35
+うみんぴあ大飯 エリア,food_amenities_gap,9,1702,0.53
+うるしの里 エリア,transport_access,12,498,2.41
+うるしの里 エリア,wayfinding_signage,3,498,0.6
+うるしの里 エリア,english_information_gap,0,498,0.0
+うるしの里 エリア,staff_communication,0,498,0.0
+うるしの里 エリア,booking_ticketing,0,498,0.0
+うるしの里 エリア,waiting_crowding,6,498,1.2
+うるしの里 エリア,price_value,1,498,0.2
+うるしの里 エリア,cleanliness_comfort,4,498,0.8
+うるしの里 エリア,opening_hours_availability,3,498,0.6
+うるしの里 エリア,itinerary_fit_time_cost,0,498,0.0
+うるしの里 エリア,accessibility_mobility,0,498,0.0
+うるしの里 エリア,food_amenities_gap,5,498,1.0
+えちぜん鉄道 松岡駅 エリア,transport_access,7,514,1.36
+えちぜん鉄道 松岡駅 エリア,wayfinding_signage,0,514,0.0
+えちぜん鉄道 松岡駅 エリア,english_information_gap,0,514,0.0
+えちぜん鉄道 松岡駅 エリア,staff_communication,0,514,0.0
+えちぜん鉄道 松岡駅 エリア,booking_ticketing,1,514,0.19
+えちぜん鉄道 松岡駅 エリア,waiting_crowding,7,514,1.36
+えちぜん鉄道 松岡駅 エリア,price_value,1,514,0.19
+えちぜん鉄道 松岡駅 エリア,cleanliness_comfort,1,514,0.19
+えちぜん鉄道 松岡駅 エリア,opening_hours_availability,2,514,0.39
+えちぜん鉄道 松岡駅 エリア,itinerary_fit_time_cost,0,514,0.0
+えちぜん鉄道 松岡駅 エリア,accessibility_mobility,0,514,0.0
+えちぜん鉄道 松岡駅 エリア,food_amenities_gap,0,514,0.0
+えちぜん鉄道 永平寺口駅 エリア,transport_access,2,305,0.66
+えちぜん鉄道 永平寺口駅 エリア,wayfinding_signage,2,305,0.66
+えちぜん鉄道 永平寺口駅 エリア,english_information_gap,0,305,0.0
+えちぜん鉄道 永平寺口駅 エリア,staff_communication,0,305,0.0
+えちぜん鉄道 永平寺口駅 エリア,booking_ticketing,0,305,0.0
+えちぜん鉄道 永平寺口駅 エリア,waiting_crowding,3,305,0.98
+えちぜん鉄道 永平寺口駅 エリア,price_value,0,305,0.0
+えちぜん鉄道 永平寺口駅 エリア,cleanliness_comfort,1,305,0.33
+えちぜん鉄道 永平寺口駅 エリア,opening_hours_availability,2,305,0.66
+えちぜん鉄道 永平寺口駅 エリア,itinerary_fit_time_cost,0,305,0.0
+えちぜん鉄道 永平寺口駅 エリア,accessibility_mobility,0,305,0.0
+えちぜん鉄道 永平寺口駅 エリア,food_amenities_gap,5,305,1.64
+かずら橋 エリア,transport_access,10,1717,0.58
+かずら橋 エリア,wayfinding_signage,25,1717,1.46
+かずら橋 エリア,english_information_gap,1,1717,0.06
+かずら橋 エリア,staff_communication,3,1717,0.17
+かずら橋 エリア,booking_ticketing,9,1717,0.52
+かずら橋 エリア,waiting_crowding,24,1717,1.4
+かずら橋 エリア,price_value,7,1717,0.41
+かずら橋 エリア,cleanliness_comfort,10,1717,0.58
+かずら橋 エリア,opening_hours_availability,13,1717,0.76
+かずら橋 エリア,itinerary_fit_time_cost,3,1717,0.17
+かずら橋 エリア,accessibility_mobility,14,1717,0.82
+かずら橋 エリア,food_amenities_gap,10,1717,0.58
+かつやま恐竜の森 エリア,transport_access,89,3269,2.72
+かつやま恐竜の森 エリア,wayfinding_signage,19,3269,0.58
+かつやま恐竜の森 エリア,english_information_gap,4,3269,0.12
+かつやま恐竜の森 エリア,staff_communication,4,3269,0.12
+かつやま恐竜の森 エリア,booking_ticketing,16,3269,0.49
+かつやま恐竜の森 エリア,waiting_crowding,150,3269,4.59
+かつやま恐竜の森 エリア,price_value,15,3269,0.46
+かつやま恐竜の森 エリア,cleanliness_comfort,37,3269,1.13
+かつやま恐竜の森 エリア,opening_hours_availability,19,3269,0.58
+かつやま恐竜の森 エリア,itinerary_fit_time_cost,28,3269,0.86
+かつやま恐竜の森 エリア,accessibility_mobility,38,3269,1.16
+かつやま恐竜の森 エリア,food_amenities_gap,21,3269,0.64
+きのこの森 エリア,transport_access,1,28,3.57
+きのこの森 エリア,wayfinding_signage,0,28,0.0
+きのこの森 エリア,english_information_gap,0,28,0.0
+きのこの森 エリア,staff_communication,0,28,0.0
+きのこの森 エリア,booking_ticketing,0,28,0.0
+きのこの森 エリア,waiting_crowding,1,28,3.57
+きのこの森 エリア,price_value,0,28,0.0
+きのこの森 エリア,cleanliness_comfort,0,28,0.0
+きのこの森 エリア,opening_hours_availability,0,28,0.0
+きのこの森 エリア,itinerary_fit_time_cost,0,28,0.0
+きのこの森 エリア,accessibility_mobility,3,28,10.71
+きのこの森 エリア,food_amenities_gap,1,28,3.57
+だるまちゃん広場 エリア,transport_access,3,354,0.85
+だるまちゃん広場 エリア,wayfinding_signage,2,354,0.56
+だるまちゃん広場 エリア,english_information_gap,0,354,0.0
+だるまちゃん広場 エリア,staff_communication,1,354,0.28
+だるまちゃん広場 エリア,booking_ticketing,1,354,0.28
+だるまちゃん広場 エリア,waiting_crowding,8,354,2.26
+だるまちゃん広場 エリア,price_value,0,354,0.0
+だるまちゃん広場 エリア,cleanliness_comfort,4,354,1.13
+だるまちゃん広場 エリア,opening_hours_availability,0,354,0.0
+だるまちゃん広場 エリア,itinerary_fit_time_cost,1,354,0.28
+だるまちゃん広場 エリア,accessibility_mobility,1,354,0.28
+だるまちゃん広場 エリア,food_amenities_gap,0,354,0.0
+ちひろの生まれた家記念館 エリア,transport_access,1,121,0.83
+ちひろの生まれた家記念館 エリア,wayfinding_signage,1,121,0.83
+ちひろの生まれた家記念館 エリア,english_information_gap,0,121,0.0
+ちひろの生まれた家記念館 エリア,staff_communication,1,121,0.83
+ちひろの生まれた家記念館 エリア,booking_ticketing,0,121,0.0
+ちひろの生まれた家記念館 エリア,waiting_crowding,2,121,1.65
+ちひろの生まれた家記念館 エリア,price_value,0,121,0.0
+ちひろの生まれた家記念館 エリア,cleanliness_comfort,1,121,0.83
+ちひろの生まれた家記念館 エリア,opening_hours_availability,0,121,0.0
+ちひろの生まれた家記念館 エリア,itinerary_fit_time_cost,0,121,0.0
+ちひろの生まれた家記念館 エリア,accessibility_mobility,2,121,1.65
+ちひろの生まれた家記念館 エリア,food_amenities_gap,0,121,0.0
+はたや記念館 ゆめおーれ勝山 エリア,transport_access,6,609,0.99
+はたや記念館 ゆめおーれ勝山 エリア,wayfinding_signage,4,609,0.66
+はたや記念館 ゆめおーれ勝山 エリア,english_information_gap,0,609,0.0
+はたや記念館 ゆめおーれ勝山 エリア,staff_communication,0,609,0.0
+はたや記念館 ゆめおーれ勝山 エリア,booking_ticketing,1,609,0.16
+はたや記念館 ゆめおーれ勝山 エリア,waiting_crowding,5,609,0.82
+はたや記念館 ゆめおーれ勝山 エリア,price_value,1,609,0.16
+はたや記念館 ゆめおーれ勝山 エリア,cleanliness_comfort,2,609,0.33
+はたや記念館 ゆめおーれ勝山 エリア,opening_hours_availability,3,609,0.49
+はたや記念館 ゆめおーれ勝山 エリア,itinerary_fit_time_cost,4,609,0.66
+はたや記念館 ゆめおーれ勝山 エリア,accessibility_mobility,3,609,0.49
+はたや記念館 ゆめおーれ勝山 エリア,food_amenities_gap,2,609,0.33
+ふくい鮮いちば エリア,transport_access,7,701,1.0
+ふくい鮮いちば エリア,wayfinding_signage,2,701,0.29
+ふくい鮮いちば エリア,english_information_gap,0,701,0.0
+ふくい鮮いちば エリア,staff_communication,0,701,0.0
+ふくい鮮いちば エリア,booking_ticketing,0,701,0.0
+ふくい鮮いちば エリア,waiting_crowding,16,701,2.28
+ふくい鮮いちば エリア,price_value,2,701,0.29
+ふくい鮮いちば エリア,cleanliness_comfort,9,701,1.28
+ふくい鮮いちば エリア,opening_hours_availability,24,701,3.42
+ふくい鮮いちば エリア,itinerary_fit_time_cost,0,701,0.0
+ふくい鮮いちば エリア,accessibility_mobility,5,701,0.71
+ふくい鮮いちば エリア,food_amenities_gap,19,701,2.71
+まちの市場 こってコテいけだ エリア,transport_access,7,705,0.99
+まちの市場 こってコテいけだ エリア,wayfinding_signage,3,705,0.43
+まちの市場 こってコテいけだ エリア,english_information_gap,0,705,0.0
+まちの市場 こってコテいけだ エリア,staff_communication,0,705,0.0
+まちの市場 こってコテいけだ エリア,booking_ticketing,5,705,0.71
+まちの市場 こってコテいけだ エリア,waiting_crowding,13,705,1.84
+まちの市場 こってコテいけだ エリア,price_value,4,705,0.57
+まちの市場 こってコテいけだ エリア,cleanliness_comfort,3,705,0.43
+まちの市場 こってコテいけだ エリア,opening_hours_availability,3,705,0.43
+まちの市場 こってコテいけだ エリア,itinerary_fit_time_cost,3,705,0.43
+まちの市場 こってコテいけだ エリア,accessibility_mobility,2,705,0.28
+まちの市場 こってコテいけだ エリア,food_amenities_gap,4,705,0.57
+まちの駅 こってコテいけだ エリア,transport_access,0,28,0.0
+まちの駅 こってコテいけだ エリア,wayfinding_signage,0,28,0.0
+まちの駅 こってコテいけだ エリア,english_information_gap,0,28,0.0
+まちの駅 こってコテいけだ エリア,staff_communication,0,28,0.0
+まちの駅 こってコテいけだ エリア,booking_ticketing,0,28,0.0
+まちの駅 こってコテいけだ エリア,waiting_crowding,1,28,3.57
+まちの駅 こってコテいけだ エリア,price_value,0,28,0.0
+まちの駅 こってコテいけだ エリア,cleanliness_comfort,0,28,0.0
+まちの駅 こってコテいけだ エリア,opening_hours_availability,0,28,0.0
+まちの駅 こってコテいけだ エリア,itinerary_fit_time_cost,0,28,0.0
+まちの駅 こってコテいけだ エリア,accessibility_mobility,0,28,0.0
+まちの駅 こってコテいけだ エリア,food_amenities_gap,0,28,0.0
+めがねミュージアム エリア,transport_access,4,163,2.45
+めがねミュージアム エリア,wayfinding_signage,3,163,1.84
+めがねミュージアム エリア,english_information_gap,0,163,0.0
+めがねミュージアム エリア,staff_communication,0,163,0.0
+めがねミュージアム エリア,booking_ticketing,1,163,0.61
+めがねミュージアム エリア,waiting_crowding,1,163,0.61
+めがねミュージアム エリア,price_value,0,163,0.0
+めがねミュージアム エリア,cleanliness_comfort,0,163,0.0
+めがねミュージアム エリア,opening_hours_availability,5,163,3.07
+めがねミュージアム エリア,itinerary_fit_time_cost,0,163,0.0
+めがねミュージアム エリア,accessibility_mobility,0,163,0.0
+めがねミュージアム エリア,food_amenities_gap,0,163,0.0
+ガラガラ山キャンプ場 エリア,transport_access,0,37,0.0
+ガラガラ山キャンプ場 エリア,wayfinding_signage,0,37,0.0
+ガラガラ山キャンプ場 エリア,english_information_gap,0,37,0.0
+ガラガラ山キャンプ場 エリア,staff_communication,0,37,0.0
+ガラガラ山キャンプ場 エリア,booking_ticketing,0,37,0.0
+ガラガラ山キャンプ場 エリア,waiting_crowding,0,37,0.0
+ガラガラ山キャンプ場 エリア,price_value,0,37,0.0
+ガラガラ山キャンプ場 エリア,cleanliness_comfort,0,37,0.0
+ガラガラ山キャンプ場 エリア,opening_hours_availability,0,37,0.0
+ガラガラ山キャンプ場 エリア,itinerary_fit_time_cost,0,37,0.0
+ガラガラ山キャンプ場 エリア,accessibility_mobility,2,37,5.41
+ガラガラ山キャンプ場 エリア,food_amenities_gap,0,37,0.0
+スキージャム勝山 エリア,transport_access,8,480,1.67
+スキージャム勝山 エリア,wayfinding_signage,0,480,0.0
+スキージャム勝山 エリア,english_information_gap,0,480,0.0
+スキージャム勝山 エリア,staff_communication,2,480,0.42
+スキージャム勝山 エリア,booking_ticketing,3,480,0.62
+スキージャム勝山 エリア,waiting_crowding,7,480,1.46
+スキージャム勝山 エリア,price_value,9,480,1.88
+スキージャム勝山 エリア,cleanliness_comfort,1,480,0.21
+スキージャム勝山 エリア,opening_hours_availability,4,480,0.83
+スキージャム勝山 エリア,itinerary_fit_time_cost,1,480,0.21
+スキージャム勝山 エリア,accessibility_mobility,4,480,0.83
+スキージャム勝山 エリア,food_amenities_gap,2,480,0.42
+スーベニアショップ ラプトル エリア,transport_access,18,923,1.95
+スーベニアショップ ラプトル エリア,wayfinding_signage,3,923,0.33
+スーベニアショップ ラプトル エリア,english_information_gap,0,923,0.0
+スーベニアショップ ラプトル エリア,staff_communication,1,923,0.11
+スーベニアショップ ラプトル エリア,booking_ticketing,7,923,0.76
+スーベニアショップ ラプトル エリア,waiting_crowding,49,923,5.31
+スーベニアショップ ラプトル エリア,price_value,4,923,0.43
+スーベニアショップ ラプトル エリア,cleanliness_comfort,11,923,1.19
+スーベニアショップ ラプトル エリア,opening_hours_availability,7,923,0.76
+スーベニアショップ ラプトル エリア,itinerary_fit_time_cost,4,923,0.43
+スーベニアショップ ラプトル エリア,accessibility_mobility,12,923,1.3
+スーベニアショップ ラプトル エリア,food_amenities_gap,7,923,0.76
+スーベニアショップふらぷとる エリア,transport_access,9,436,2.06
+スーベニアショップふらぷとる エリア,wayfinding_signage,2,436,0.46
+スーベニアショップふらぷとる エリア,english_information_gap,0,436,0.0
+スーベニアショップふらぷとる エリア,staff_communication,2,436,0.46
+スーベニアショップふらぷとる エリア,booking_ticketing,3,436,0.69
+スーベニアショップふらぷとる エリア,waiting_crowding,22,436,5.05
+スーベニアショップふらぷとる エリア,price_value,1,436,0.23
+スーベニアショップふらぷとる エリア,cleanliness_comfort,5,436,1.15
+スーベニアショップふらぷとる エリア,opening_hours_availability,2,436,0.46
+スーベニアショップふらぷとる エリア,itinerary_fit_time_cost,5,436,1.15
+スーベニアショップふらぷとる エリア,accessibility_mobility,3,436,0.69
+スーベニアショップふらぷとる エリア,food_amenities_gap,2,436,0.46
+タケフナイフビレッジ エリア,transport_access,3,343,0.87
+タケフナイフビレッジ エリア,wayfinding_signage,1,343,0.29
+タケフナイフビレッジ エリア,english_information_gap,0,343,0.0
+タケフナイフビレッジ エリア,staff_communication,0,343,0.0
+タケフナイフビレッジ エリア,booking_ticketing,0,343,0.0
+タケフナイフビレッジ エリア,waiting_crowding,4,343,1.17
+タケフナイフビレッジ エリア,price_value,0,343,0.0
+タケフナイフビレッジ エリア,cleanliness_comfort,3,343,0.87
+タケフナイフビレッジ エリア,opening_hours_availability,3,343,0.87
+タケフナイフビレッジ エリア,itinerary_fit_time_cost,3,343,0.87
+タケフナイフビレッジ エリア,accessibility_mobility,1,343,0.29
+タケフナイフビレッジ エリア,food_amenities_gap,2,343,0.58
+ツリーピクニックアドベンチャーいけだ エリア,transport_access,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,wayfinding_signage,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,english_information_gap,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,staff_communication,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,booking_ticketing,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,waiting_crowding,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,price_value,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,cleanliness_comfort,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,opening_hours_availability,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,itinerary_fit_time_cost,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,accessibility_mobility,0,21,0.0
+ツリーピクニックアドベンチャーいけだ エリア,food_amenities_gap,0,21,0.0
+フルーツライン エリア,transport_access,4,548,0.73
+フルーツライン エリア,wayfinding_signage,2,548,0.36
+フルーツライン エリア,english_information_gap,0,548,0.0
+フルーツライン エリア,staff_communication,0,548,0.0
+フルーツライン エリア,booking_ticketing,2,548,0.36
+フルーツライン エリア,waiting_crowding,9,548,1.64
+フルーツライン エリア,price_value,1,548,0.18
+フルーツライン エリア,cleanliness_comfort,3,548,0.55
+フルーツライン エリア,opening_hours_availability,4,548,0.73
+フルーツライン エリア,itinerary_fit_time_cost,3,548,0.55
+フルーツライン エリア,accessibility_mobility,4,548,0.73
+フルーツライン エリア,food_amenities_gap,2,548,0.36
+メガネストリート エリア,transport_access,14,383,3.66
+メガネストリート エリア,wayfinding_signage,5,383,1.31
+メガネストリート エリア,english_information_gap,0,383,0.0
+メガネストリート エリア,staff_communication,0,383,0.0
+メガネストリート エリア,booking_ticketing,1,383,0.26
+メガネストリート エリア,waiting_crowding,3,383,0.78
+メガネストリート エリア,price_value,0,383,0.0
+メガネストリート エリア,cleanliness_comfort,2,383,0.52
+メガネストリート エリア,opening_hours_availability,1,383,0.26
+メガネストリート エリア,itinerary_fit_time_cost,2,383,0.52
+メガネストリート エリア,accessibility_mobility,2,383,0.52
+メガネストリート エリア,food_amenities_gap,2,383,0.52
+レインボーライン エリア,transport_access,16,1694,0.94
+レインボーライン エリア,wayfinding_signage,11,1694,0.65
+レインボーライン エリア,english_information_gap,1,1694,0.06
+レインボーライン エリア,staff_communication,2,1694,0.12
+レインボーライン エリア,booking_ticketing,13,1694,0.77
+レインボーライン エリア,waiting_crowding,56,1694,3.31
+レインボーライン エリア,price_value,16,1694,0.94
+レインボーライン エリア,cleanliness_comfort,19,1694,1.12
+レインボーライン エリア,opening_hours_availability,18,1694,1.06
+レインボーライン エリア,itinerary_fit_time_cost,4,1694,0.24
+レインボーライン エリア,accessibility_mobility,16,1694,0.94
+レインボーライン エリア,food_amenities_gap,5,1694,0.3
+一乗谷朝倉氏遺跡 エリア,transport_access,125,2994,4.18
+一乗谷朝倉氏遺跡 エリア,wayfinding_signage,36,2994,1.2
+一乗谷朝倉氏遺跡 エリア,english_information_gap,1,2994,0.03
+一乗谷朝倉氏遺跡 エリア,staff_communication,5,2994,0.17
+一乗谷朝倉氏遺跡 エリア,booking_ticketing,8,2994,0.27
+一乗谷朝倉氏遺跡 エリア,waiting_crowding,37,2994,1.24
+一乗谷朝倉氏遺跡 エリア,price_value,6,2994,0.2
+一乗谷朝倉氏遺跡 エリア,cleanliness_comfort,36,2994,1.2
+一乗谷朝倉氏遺跡 エリア,opening_hours_availability,30,2994,1.0
+一乗谷朝倉氏遺跡 エリア,itinerary_fit_time_cost,11,2994,0.37
+一乗谷朝倉氏遺跡 エリア,accessibility_mobility,33,2994,1.1
+一乗谷朝倉氏遺跡 エリア,food_amenities_gap,14,2994,0.47
+三国湊 エリア,transport_access,31,1056,2.94
+三国湊 エリア,wayfinding_signage,7,1056,0.66
+三国湊 エリア,english_information_gap,0,1056,0.0
+三国湊 エリア,staff_communication,1,1056,0.09
+三国湊 エリア,booking_ticketing,0,1056,0.0
+三国湊 エリア,waiting_crowding,11,1056,1.04
+三国湊 エリア,price_value,3,1056,0.28
+三国湊 エリア,cleanliness_comfort,7,1056,0.66
+三国湊 エリア,opening_hours_availability,10,1056,0.95
+三国湊 エリア,itinerary_fit_time_cost,3,1056,0.28
+三国湊 エリア,accessibility_mobility,10,1056,0.95
+三国湊 エリア,food_amenities_gap,8,1056,0.76
+三方五湖 エリア,transport_access,4,349,1.15
+三方五湖 エリア,wayfinding_signage,7,349,2.01
+三方五湖 エリア,english_information_gap,0,349,0.0
+三方五湖 エリア,staff_communication,0,349,0.0
+三方五湖 エリア,booking_ticketing,1,349,0.29
+三方五湖 エリア,waiting_crowding,4,349,1.15
+三方五湖 エリア,price_value,0,349,0.0
+三方五湖 エリア,cleanliness_comfort,3,349,0.86
+三方五湖 エリア,opening_hours_availability,7,349,2.01
+三方五湖 エリア,itinerary_fit_time_cost,1,349,0.29
+三方五湖 エリア,accessibility_mobility,2,349,0.57
+三方五湖 エリア,food_amenities_gap,6,349,1.72
+三方五湖ネイチャークルーズ エリア,transport_access,0,22,0.0
+三方五湖ネイチャークルーズ エリア,wayfinding_signage,1,22,4.55
+三方五湖ネイチャークルーズ エリア,english_information_gap,0,22,0.0
+三方五湖ネイチャークルーズ エリア,staff_communication,0,22,0.0
+三方五湖ネイチャークルーズ エリア,booking_ticketing,0,22,0.0
+三方五湖ネイチャークルーズ エリア,waiting_crowding,1,22,4.55
+三方五湖ネイチャークルーズ エリア,price_value,0,22,0.0
+三方五湖ネイチャークルーズ エリア,cleanliness_comfort,0,22,0.0
+三方五湖ネイチャークルーズ エリア,opening_hours_availability,0,22,0.0
+三方五湖ネイチャークルーズ エリア,itinerary_fit_time_cost,0,22,0.0
+三方五湖ネイチャークルーズ エリア,accessibility_mobility,0,22,0.0
+三方五湖ネイチャークルーズ エリア,food_amenities_gap,0,22,0.0
+丸岡城 エリア,transport_access,50,1830,2.73
+丸岡城 エリア,wayfinding_signage,8,1830,0.44
+丸岡城 エリア,english_information_gap,3,1830,0.16
+丸岡城 エリア,staff_communication,3,1830,0.16
+丸岡城 エリア,booking_ticketing,0,1830,0.0
+丸岡城 エリア,waiting_crowding,19,1830,1.04
+丸岡城 エリア,price_value,5,1830,0.27
+丸岡城 エリア,cleanliness_comfort,7,1830,0.38
+丸岡城 エリア,opening_hours_availability,11,1830,0.6
+丸岡城 エリア,itinerary_fit_time_cost,10,1830,0.55
+丸岡城 エリア,accessibility_mobility,65,1830,3.55
+丸岡城 エリア,food_amenities_gap,10,1830,0.55
+九頭竜川 エリア（鮎・釣り）,transport_access,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,wayfinding_signage,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,english_information_gap,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,staff_communication,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,booking_ticketing,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,waiting_crowding,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,price_value,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,cleanliness_comfort,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,opening_hours_availability,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,itinerary_fit_time_cost,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,accessibility_mobility,0,20,0.0
+九頭竜川 エリア（鮎・釣り）,food_amenities_gap,0,20,0.0
+五湖の駅 エリア,transport_access,2,94,2.13
+五湖の駅 エリア,wayfinding_signage,1,94,1.06
+五湖の駅 エリア,english_information_gap,0,94,0.0
+五湖の駅 エリア,staff_communication,0,94,0.0
+五湖の駅 エリア,booking_ticketing,0,94,0.0
+五湖の駅 エリア,waiting_crowding,0,94,0.0
+五湖の駅 エリア,price_value,0,94,0.0
+五湖の駅 エリア,cleanliness_comfort,1,94,1.06
+五湖の駅 エリア,opening_hours_availability,1,94,1.06
+五湖の駅 エリア,itinerary_fit_time_cost,0,94,0.0
+五湖の駅 エリア,accessibility_mobility,1,94,1.06
+五湖の駅 エリア,food_amenities_gap,0,94,0.0
+今庄宿 エリア,transport_access,18,279,6.45
+今庄宿 エリア,wayfinding_signage,2,279,0.72
+今庄宿 エリア,english_information_gap,0,279,0.0
+今庄宿 エリア,staff_communication,1,279,0.36
+今庄宿 エリア,booking_ticketing,0,279,0.0
+今庄宿 エリア,waiting_crowding,7,279,2.51
+今庄宿 エリア,price_value,1,279,0.36
+今庄宿 エリア,cleanliness_comfort,4,279,1.43
+今庄宿 エリア,opening_hours_availability,8,279,2.87
+今庄宿 エリア,itinerary_fit_time_cost,3,279,1.08
+今庄宿 エリア,accessibility_mobility,2,279,0.72
+今庄宿 エリア,food_amenities_gap,3,279,1.08
+六呂師高原 エリア,transport_access,3,394,0.76
+六呂師高原 エリア,wayfinding_signage,4,394,1.02
+六呂師高原 エリア,english_information_gap,0,394,0.0
+六呂師高原 エリア,staff_communication,1,394,0.25
+六呂師高原 エリア,booking_ticketing,0,394,0.0
+六呂師高原 エリア,waiting_crowding,4,394,1.02
+六呂師高原 エリア,price_value,0,394,0.0
+六呂師高原 エリア,cleanliness_comfort,1,394,0.25
+六呂師高原 エリア,opening_hours_availability,4,394,1.02
+六呂師高原 エリア,itinerary_fit_time_cost,3,394,0.76
+六呂師高原 エリア,accessibility_mobility,1,394,0.25
+六呂師高原 エリア,food_amenities_gap,4,394,1.02
+刃物の里 エリア,transport_access,2,41,4.88
+刃物の里 エリア,wayfinding_signage,0,41,0.0
+刃物の里 エリア,english_information_gap,0,41,0.0
+刃物の里 エリア,staff_communication,0,41,0.0
+刃物の里 エリア,booking_ticketing,0,41,0.0
+刃物の里 エリア,waiting_crowding,0,41,0.0
+刃物の里 エリア,price_value,0,41,0.0
+刃物の里 エリア,cleanliness_comfort,0,41,0.0
+刃物の里 エリア,opening_hours_availability,1,41,2.44
+刃物の里 エリア,itinerary_fit_time_cost,0,41,0.0
+刃物の里 エリア,accessibility_mobility,0,41,0.0
+刃物の里 エリア,food_amenities_gap,0,41,0.0
+劔神社 エリア,transport_access,6,524,1.15
+劔神社 エリア,wayfinding_signage,3,524,0.57
+劔神社 エリア,english_information_gap,0,524,0.0
+劔神社 エリア,staff_communication,0,524,0.0
+劔神社 エリア,booking_ticketing,0,524,0.0
+劔神社 エリア,waiting_crowding,3,524,0.57
+劔神社 エリア,price_value,0,524,0.0
+劔神社 エリア,cleanliness_comfort,3,524,0.57
+劔神社 エリア,opening_hours_availability,1,524,0.19
+劔神社 エリア,itinerary_fit_time_cost,0,524,0.0
+劔神社 エリア,accessibility_mobility,2,524,0.38
+劔神社 エリア,food_amenities_gap,3,524,0.57
+北ノ庄 エリア,transport_access,5,414,1.21
+北ノ庄 エリア,wayfinding_signage,5,414,1.21
+北ノ庄 エリア,english_information_gap,0,414,0.0
+北ノ庄 エリア,staff_communication,0,414,0.0
+北ノ庄 エリア,booking_ticketing,1,414,0.24
+北ノ庄 エリア,waiting_crowding,2,414,0.48
+北ノ庄 エリア,price_value,1,414,0.24
+北ノ庄 エリア,cleanliness_comfort,4,414,0.97
+北ノ庄 エリア,opening_hours_availability,3,414,0.72
+北ノ庄 エリア,itinerary_fit_time_cost,0,414,0.0
+北ノ庄 エリア,accessibility_mobility,1,414,0.24
+北ノ庄 エリア,food_amenities_gap,1,414,0.24
+北前船主の館 右近家 エリア,transport_access,0,236,0.0
+北前船主の館 右近家 エリア,wayfinding_signage,1,236,0.42
+北前船主の館 右近家 エリア,english_information_gap,0,236,0.0
+北前船主の館 右近家 エリア,staff_communication,0,236,0.0
+北前船主の館 右近家 エリア,booking_ticketing,0,236,0.0
+北前船主の館 右近家 エリア,waiting_crowding,2,236,0.85
+北前船主の館 右近家 エリア,price_value,0,236,0.0
+北前船主の館 右近家 エリア,cleanliness_comfort,2,236,0.85
+北前船主の館 右近家 エリア,opening_hours_availability,2,236,0.85
+北前船主の館 右近家 エリア,itinerary_fit_time_cost,0,236,0.0
+北前船主の館 右近家 エリア,accessibility_mobility,3,236,1.27
+北前船主の館 右近家 エリア,food_amenities_gap,0,236,0.0
+北潟湖 エリア,transport_access,12,1162,1.03
+北潟湖 エリア,wayfinding_signage,8,1162,0.69
+北潟湖 エリア,english_information_gap,0,1162,0.0
+北潟湖 エリア,staff_communication,3,1162,0.26
+北潟湖 エリア,booking_ticketing,2,1162,0.17
+北潟湖 エリア,waiting_crowding,13,1162,1.12
+北潟湖 エリア,price_value,1,1162,0.09
+北潟湖 エリア,cleanliness_comfort,9,1162,0.77
+北潟湖 エリア,opening_hours_availability,9,1162,0.77
+北潟湖 エリア,itinerary_fit_time_cost,5,1162,0.43
+北潟湖 エリア,accessibility_mobility,11,1162,0.95
+北潟湖 エリア,food_amenities_gap,7,1162,0.6
+北陸新幹線 越前たけふ駅 エリア,transport_access,26,1581,1.64
+北陸新幹線 越前たけふ駅 エリア,wayfinding_signage,13,1581,0.82
+北陸新幹線 越前たけふ駅 エリア,english_information_gap,0,1581,0.0
+北陸新幹線 越前たけふ駅 エリア,staff_communication,1,1581,0.06
+北陸新幹線 越前たけふ駅 エリア,booking_ticketing,2,1581,0.13
+北陸新幹線 越前たけふ駅 エリア,waiting_crowding,35,1581,2.21
+北陸新幹線 越前たけふ駅 エリア,price_value,6,1581,0.38
+北陸新幹線 越前たけふ駅 エリア,cleanliness_comfort,26,1581,1.64
+北陸新幹線 越前たけふ駅 エリア,opening_hours_availability,16,1581,1.01
+北陸新幹線 越前たけふ駅 エリア,itinerary_fit_time_cost,10,1581,0.63
+北陸新幹線 越前たけふ駅 エリア,accessibility_mobility,20,1581,1.27
+北陸新幹線 越前たけふ駅 エリア,food_amenities_gap,9,1581,0.57
+名勝 養浩館庭園 エリア,transport_access,9,533,1.69
+名勝 養浩館庭園 エリア,wayfinding_signage,7,533,1.31
+名勝 養浩館庭園 エリア,english_information_gap,0,533,0.0
+名勝 養浩館庭園 エリア,staff_communication,1,533,0.19
+名勝 養浩館庭園 エリア,booking_ticketing,0,533,0.0
+名勝 養浩館庭園 エリア,waiting_crowding,2,533,0.38
+名勝 養浩館庭園 エリア,price_value,0,533,0.0
+名勝 養浩館庭園 エリア,cleanliness_comfort,3,533,0.56
+名勝 養浩館庭園 エリア,opening_hours_availability,3,533,0.56
+名勝 養浩館庭園 エリア,itinerary_fit_time_cost,1,533,0.19
+名勝 養浩館庭園 エリア,accessibility_mobility,4,533,0.75
+名勝 養浩館庭園 エリア,food_amenities_gap,2,533,0.38
+名田庄 エリア,transport_access,3,508,0.59
+名田庄 エリア,wayfinding_signage,3,508,0.59
+名田庄 エリア,english_information_gap,0,508,0.0
+名田庄 エリア,staff_communication,2,508,0.39
+名田庄 エリア,booking_ticketing,0,508,0.0
+名田庄 エリア,waiting_crowding,4,508,0.79
+名田庄 エリア,price_value,0,508,0.0
+名田庄 エリア,cleanliness_comfort,22,508,4.33
+名田庄 エリア,opening_hours_availability,11,508,2.17
+名田庄 エリア,itinerary_fit_time_cost,2,508,0.39
+名田庄 エリア,accessibility_mobility,2,508,0.39
+名田庄 エリア,food_amenities_gap,1,508,0.2
+大安禅寺 エリア,transport_access,0,64,0.0
+大安禅寺 エリア,wayfinding_signage,0,64,0.0
+大安禅寺 エリア,english_information_gap,0,64,0.0
+大安禅寺 エリア,staff_communication,1,64,1.56
+大安禅寺 エリア,booking_ticketing,0,64,0.0
+大安禅寺 エリア,waiting_crowding,3,64,4.69
+大安禅寺 エリア,price_value,0,64,0.0
+大安禅寺 エリア,cleanliness_comfort,0,64,0.0
+大安禅寺 エリア,opening_hours_availability,0,64,0.0
+大安禅寺 エリア,itinerary_fit_time_cost,1,64,1.56
+大安禅寺 エリア,accessibility_mobility,2,64,3.12
+大安禅寺 エリア,food_amenities_gap,0,64,0.0
+大本山 永平寺 エリア,transport_access,128,4620,2.77
+大本山 永平寺 エリア,wayfinding_signage,30,4620,0.65
+大本山 永平寺 エリア,english_information_gap,14,4620,0.3
+大本山 永平寺 エリア,staff_communication,5,4620,0.11
+大本山 永平寺 エリア,booking_ticketing,10,4620,0.22
+大本山 永平寺 エリア,waiting_crowding,79,4620,1.71
+大本山 永平寺 エリア,price_value,7,4620,0.15
+大本山 永平寺 エリア,cleanliness_comfort,17,4620,0.37
+大本山 永平寺 エリア,opening_hours_availability,47,4620,1.02
+大本山 永平寺 エリア,itinerary_fit_time_cost,8,4620,0.17
+大本山 永平寺 エリア,accessibility_mobility,151,4620,3.27
+大本山 永平寺 エリア,food_amenities_gap,19,4620,0.41
+小浜 エリア（宿泊施設）,transport_access,26,610,4.26
+小浜 エリア（宿泊施設）,wayfinding_signage,4,610,0.66
+小浜 エリア（宿泊施設）,english_information_gap,2,610,0.33
+小浜 エリア（宿泊施設）,staff_communication,3,610,0.49
+小浜 エリア（宿泊施設）,booking_ticketing,1,610,0.16
+小浜 エリア（宿泊施設）,waiting_crowding,8,610,1.31
+小浜 エリア（宿泊施設）,price_value,3,610,0.49
+小浜 エリア（宿泊施設）,cleanliness_comfort,7,610,1.15
+小浜 エリア（宿泊施設）,opening_hours_availability,9,610,1.48
+小浜 エリア（宿泊施設）,itinerary_fit_time_cost,4,610,0.66
+小浜 エリア（宿泊施設）,accessibility_mobility,8,610,1.31
+小浜 エリア（宿泊施設）,food_amenities_gap,12,610,1.97
+小浜市 阿納 エリア,transport_access,18,673,2.67
+小浜市 阿納 エリア,wayfinding_signage,2,673,0.3
+小浜市 阿納 エリア,english_information_gap,0,673,0.0
+小浜市 阿納 エリア,staff_communication,2,673,0.3
+小浜市 阿納 エリア,booking_ticketing,0,673,0.0
+小浜市 阿納 エリア,waiting_crowding,7,673,1.04
+小浜市 阿納 エリア,price_value,3,673,0.45
+小浜市 阿納 エリア,cleanliness_comfort,1,673,0.15
+小浜市 阿納 エリア,opening_hours_availability,2,673,0.3
+小浜市 阿納 エリア,itinerary_fit_time_cost,2,673,0.3
+小浜市 阿納 エリア,accessibility_mobility,7,673,1.04
+小浜市 阿納 エリア,food_amenities_gap,11,673,1.63
+小浜市まちの駅 エリア,transport_access,11,296,3.72
+小浜市まちの駅 エリア,wayfinding_signage,1,296,0.34
+小浜市まちの駅 エリア,english_information_gap,0,296,0.0
+小浜市まちの駅 エリア,staff_communication,1,296,0.34
+小浜市まちの駅 エリア,booking_ticketing,2,296,0.68
+小浜市まちの駅 エリア,waiting_crowding,3,296,1.01
+小浜市まちの駅 エリア,price_value,0,296,0.0
+小浜市まちの駅 エリア,cleanliness_comfort,5,296,1.69
+小浜市まちの駅 エリア,opening_hours_availability,3,296,1.01
+小浜市まちの駅 エリア,itinerary_fit_time_cost,2,296,0.68
+小浜市まちの駅 エリア,accessibility_mobility,4,296,1.35
+小浜市まちの駅 エリア,food_amenities_gap,5,296,1.69
+小浜町家ステイ エリア,transport_access,4,64,6.25
+小浜町家ステイ エリア,wayfinding_signage,2,64,3.12
+小浜町家ステイ エリア,english_information_gap,0,64,0.0
+小浜町家ステイ エリア,staff_communication,0,64,0.0
+小浜町家ステイ エリア,booking_ticketing,0,64,0.0
+小浜町家ステイ エリア,waiting_crowding,0,64,0.0
+小浜町家ステイ エリア,price_value,0,64,0.0
+小浜町家ステイ エリア,cleanliness_comfort,1,64,1.56
+小浜町家ステイ エリア,opening_hours_availability,1,64,1.56
+小浜町家ステイ エリア,itinerary_fit_time_cost,0,64,0.0
+小浜町家ステイ エリア,accessibility_mobility,3,64,4.69
+小浜町家ステイ エリア,food_amenities_gap,2,64,3.12
+平泉寺白山神社 エリア,transport_access,24,513,4.68
+平泉寺白山神社 エリア,wayfinding_signage,8,513,1.56
+平泉寺白山神社 エリア,english_information_gap,1,513,0.19
+平泉寺白山神社 エリア,staff_communication,1,513,0.19
+平泉寺白山神社 エリア,booking_ticketing,2,513,0.39
+平泉寺白山神社 エリア,waiting_crowding,8,513,1.56
+平泉寺白山神社 エリア,price_value,0,513,0.0
+平泉寺白山神社 エリア,cleanliness_comfort,5,513,0.97
+平泉寺白山神社 エリア,opening_hours_availability,14,513,2.73
+平泉寺白山神社 エリア,itinerary_fit_time_cost,2,513,0.39
+平泉寺白山神社 エリア,accessibility_mobility,5,513,0.97
+平泉寺白山神社 エリア,food_amenities_gap,3,513,0.58
+御食国若狭おばま食文化館 エリア,transport_access,11,699,1.57
+御食国若狭おばま食文化館 エリア,wayfinding_signage,2,699,0.29
+御食国若狭おばま食文化館 エリア,english_information_gap,0,699,0.0
+御食国若狭おばま食文化館 エリア,staff_communication,2,699,0.29
+御食国若狭おばま食文化館 エリア,booking_ticketing,3,699,0.43
+御食国若狭おばま食文化館 エリア,waiting_crowding,10,699,1.43
+御食国若狭おばま食文化館 エリア,price_value,1,699,0.14
+御食国若狭おばま食文化館 エリア,cleanliness_comfort,0,699,0.0
+御食国若狭おばま食文化館 エリア,opening_hours_availability,2,699,0.29
+御食国若狭おばま食文化館 エリア,itinerary_fit_time_cost,1,699,0.14
+御食国若狭おばま食文化館 エリア,accessibility_mobility,2,699,0.29
+御食国若狭おばま食文化館 エリア,food_amenities_gap,2,699,0.29
+敦賀市立博物館 エリア,transport_access,9,400,2.25
+敦賀市立博物館 エリア,wayfinding_signage,4,400,1.0
+敦賀市立博物館 エリア,english_information_gap,1,400,0.25
+敦賀市立博物館 エリア,staff_communication,1,400,0.25
+敦賀市立博物館 エリア,booking_ticketing,0,400,0.0
+敦賀市立博物館 エリア,waiting_crowding,4,400,1.0
+敦賀市立博物館 エリア,price_value,1,400,0.25
+敦賀市立博物館 エリア,cleanliness_comfort,2,400,0.5
+敦賀市立博物館 エリア,opening_hours_availability,2,400,0.5
+敦賀市立博物館 エリア,itinerary_fit_time_cost,0,400,0.0
+敦賀市立博物館 エリア,accessibility_mobility,3,400,0.75
+敦賀市立博物館 エリア,food_amenities_gap,9,400,2.25
+新庄 渓流の里 エリア,transport_access,0,4,0.0
+新庄 渓流の里 エリア,wayfinding_signage,0,4,0.0
+新庄 渓流の里 エリア,english_information_gap,0,4,0.0
+新庄 渓流の里 エリア,staff_communication,0,4,0.0
+新庄 渓流の里 エリア,booking_ticketing,0,4,0.0
+新庄 渓流の里 エリア,waiting_crowding,0,4,0.0
+新庄 渓流の里 エリア,price_value,0,4,0.0
+新庄 渓流の里 エリア,cleanliness_comfort,0,4,0.0
+新庄 渓流の里 エリア,opening_hours_availability,0,4,0.0
+新庄 渓流の里 エリア,itinerary_fit_time_cost,0,4,0.0
+新庄 渓流の里 エリア,accessibility_mobility,0,4,0.0
+新庄 渓流の里 エリア,food_amenities_gap,0,4,0.0
+日本海さかな街 エリア,transport_access,12,1215,0.99
+日本海さかな街 エリア,wayfinding_signage,14,1215,1.15
+日本海さかな街 エリア,english_information_gap,0,1215,0.0
+日本海さかな街 エリア,staff_communication,2,1215,0.16
+日本海さかな街 エリア,booking_ticketing,0,1215,0.0
+日本海さかな街 エリア,waiting_crowding,16,1215,1.32
+日本海さかな街 エリア,price_value,16,1215,1.32
+日本海さかな街 エリア,cleanliness_comfort,24,1215,1.98
+日本海さかな街 エリア,opening_hours_availability,10,1215,0.82
+日本海さかな街 エリア,itinerary_fit_time_cost,1,1215,0.08
+日本海さかな街 エリア,accessibility_mobility,6,1215,0.49
+日本海さかな街 エリア,food_amenities_gap,5,1215,0.41
+明通寺 エリア,transport_access,40,1213,3.3
+明通寺 エリア,wayfinding_signage,15,1213,1.24
+明通寺 エリア,english_information_gap,2,1213,0.16
+明通寺 エリア,staff_communication,1,1213,0.08
+明通寺 エリア,booking_ticketing,4,1213,0.33
+明通寺 エリア,waiting_crowding,16,1213,1.32
+明通寺 エリア,price_value,4,1213,0.33
+明通寺 エリア,cleanliness_comfort,14,1213,1.15
+明通寺 エリア,opening_hours_availability,13,1213,1.07
+明通寺 エリア,itinerary_fit_time_cost,6,1213,0.49
+明通寺 エリア,accessibility_mobility,19,1213,1.57
+明通寺 エリア,food_amenities_gap,13,1213,1.07
+東尋坊 エリア,transport_access,84,1762,4.77
+東尋坊 エリア,wayfinding_signage,21,1762,1.19
+東尋坊 エリア,english_information_gap,0,1762,0.0
+東尋坊 エリア,staff_communication,4,1762,0.23
+東尋坊 エリア,booking_ticketing,3,1762,0.17
+東尋坊 エリア,waiting_crowding,40,1762,2.27
+東尋坊 エリア,price_value,7,1762,0.4
+東尋坊 エリア,cleanliness_comfort,38,1762,2.16
+東尋坊 エリア,opening_hours_availability,57,1762,3.23
+東尋坊 エリア,itinerary_fit_time_cost,9,1762,0.51
+東尋坊 エリア,accessibility_mobility,45,1762,2.55
+東尋坊 エリア,food_amenities_gap,10,1762,0.57
+武生駅 エリア,transport_access,11,231,4.76
+武生駅 エリア,wayfinding_signage,1,231,0.43
+武生駅 エリア,english_information_gap,0,231,0.0
+武生駅 エリア,staff_communication,1,231,0.43
+武生駅 エリア,booking_ticketing,1,231,0.43
+武生駅 エリア,waiting_crowding,4,231,1.73
+武生駅 エリア,price_value,0,231,0.0
+武生駅 エリア,cleanliness_comfort,0,231,0.0
+武生駅 エリア,opening_hours_availability,5,231,2.16
+武生駅 エリア,itinerary_fit_time_cost,0,231,0.0
+武生駅 エリア,accessibility_mobility,1,231,0.43
+武生駅 エリア,food_amenities_gap,3,231,1.3
+氣比神宮 エリア,transport_access,2,165,1.21
+氣比神宮 エリア,wayfinding_signage,0,165,0.0
+氣比神宮 エリア,english_information_gap,0,165,0.0
+氣比神宮 エリア,staff_communication,0,165,0.0
+氣比神宮 エリア,booking_ticketing,0,165,0.0
+氣比神宮 エリア,waiting_crowding,0,165,0.0
+氣比神宮 エリア,price_value,1,165,0.61
+氣比神宮 エリア,cleanliness_comfort,2,165,1.21
+氣比神宮 エリア,opening_hours_availability,0,165,0.0
+氣比神宮 エリア,itinerary_fit_time_cost,0,165,0.0
+氣比神宮 エリア,accessibility_mobility,1,165,0.61
+氣比神宮 エリア,food_amenities_gap,0,165,0.0
+水島 エリア,transport_access,1,35,2.86
+水島 エリア,wayfinding_signage,0,35,0.0
+水島 エリア,english_information_gap,0,35,0.0
+水島 エリア,staff_communication,0,35,0.0
+水島 エリア,booking_ticketing,0,35,0.0
+水島 エリア,waiting_crowding,0,35,0.0
+水島 エリア,price_value,0,35,0.0
+水島 エリア,cleanliness_comfort,1,35,2.86
+水島 エリア,opening_hours_availability,0,35,0.0
+水島 エリア,itinerary_fit_time_cost,0,35,0.0
+水島 エリア,accessibility_mobility,0,35,0.0
+水島 エリア,food_amenities_gap,2,35,5.71
+水晶浜 エリア,transport_access,3,173,1.73
+水晶浜 エリア,wayfinding_signage,0,173,0.0
+水晶浜 エリア,english_information_gap,0,173,0.0
+水晶浜 エリア,staff_communication,0,173,0.0
+水晶浜 エリア,booking_ticketing,0,173,0.0
+水晶浜 エリア,waiting_crowding,3,173,1.73
+水晶浜 エリア,price_value,1,173,0.58
+水晶浜 エリア,cleanliness_comfort,1,173,0.58
+水晶浜 エリア,opening_hours_availability,0,173,0.0
+水晶浜 エリア,itinerary_fit_time_cost,1,173,0.58
+水晶浜 エリア,accessibility_mobility,0,173,0.0
+水晶浜 エリア,food_amenities_gap,3,173,1.73
+永平寺町 エリア,transport_access,5,285,1.75
+永平寺町 エリア,wayfinding_signage,1,285,0.35
+永平寺町 エリア,english_information_gap,0,285,0.0
+永平寺町 エリア,staff_communication,0,285,0.0
+永平寺町 エリア,booking_ticketing,0,285,0.0
+永平寺町 エリア,waiting_crowding,4,285,1.4
+永平寺町 エリア,price_value,1,285,0.35
+永平寺町 エリア,cleanliness_comfort,0,285,0.0
+永平寺町 エリア,opening_hours_availability,0,285,0.0
+永平寺町 エリア,itinerary_fit_time_cost,0,285,0.0
+永平寺町 エリア,accessibility_mobility,1,285,0.35
+永平寺町 エリア,food_amenities_gap,0,285,0.0
+永平寺門前 エリア,transport_access,13,333,3.9
+永平寺門前 エリア,wayfinding_signage,1,333,0.3
+永平寺門前 エリア,english_information_gap,0,333,0.0
+永平寺門前 エリア,staff_communication,0,333,0.0
+永平寺門前 エリア,booking_ticketing,4,333,1.2
+永平寺門前 エリア,waiting_crowding,3,333,0.9
+永平寺門前 エリア,price_value,3,333,0.9
+永平寺門前 エリア,cleanliness_comfort,3,333,0.9
+永平寺門前 エリア,opening_hours_availability,8,333,2.4
+永平寺門前 エリア,itinerary_fit_time_cost,0,333,0.0
+永平寺門前 エリア,accessibility_mobility,5,333,1.5
+永平寺門前 エリア,food_amenities_gap,2,333,0.6
+河野北前船主通りエリア,transport_access,0,88,0.0
+河野北前船主通りエリア,wayfinding_signage,1,88,1.14
+河野北前船主通りエリア,english_information_gap,0,88,0.0
+河野北前船主通りエリア,staff_communication,0,88,0.0
+河野北前船主通りエリア,booking_ticketing,0,88,0.0
+河野北前船主通りエリア,waiting_crowding,3,88,3.41
+河野北前船主通りエリア,price_value,0,88,0.0
+河野北前船主通りエリア,cleanliness_comfort,6,88,6.82
+河野北前船主通りエリア,opening_hours_availability,1,88,1.14
+河野北前船主通りエリア,itinerary_fit_time_cost,1,88,1.14
+河野北前船主通りエリア,accessibility_mobility,0,88,0.0
+河野北前船主通りエリア,food_amenities_gap,0,88,0.0
+波松 エリア,transport_access,1,46,2.17
+波松 エリア,wayfinding_signage,0,46,0.0
+波松 エリア,english_information_gap,0,46,0.0
+波松 エリア,staff_communication,0,46,0.0
+波松 エリア,booking_ticketing,0,46,0.0
+波松 エリア,waiting_crowding,0,46,0.0
+波松 エリア,price_value,0,46,0.0
+波松 エリア,cleanliness_comfort,0,46,0.0
+波松 エリア,opening_hours_availability,0,46,0.0
+波松 エリア,itinerary_fit_time_cost,0,46,0.0
+波松 エリア,accessibility_mobility,0,46,0.0
+波松 エリア,food_amenities_gap,0,46,0.0
+湖上館パムコ（水月湖）エリア,transport_access,9,524,1.72
+湖上館パムコ（水月湖）エリア,wayfinding_signage,5,524,0.95
+湖上館パムコ（水月湖）エリア,english_information_gap,0,524,0.0
+湖上館パムコ（水月湖）エリア,staff_communication,0,524,0.0
+湖上館パムコ（水月湖）エリア,booking_ticketing,0,524,0.0
+湖上館パムコ（水月湖）エリア,waiting_crowding,20,524,3.82
+湖上館パムコ（水月湖）エリア,price_value,3,524,0.57
+湖上館パムコ（水月湖）エリア,cleanliness_comfort,4,524,0.76
+湖上館パムコ（水月湖）エリア,opening_hours_availability,3,524,0.57
+湖上館パムコ（水月湖）エリア,itinerary_fit_time_cost,3,524,0.57
+湖上館パムコ（水月湖）エリア,accessibility_mobility,3,524,0.57
+湖上館パムコ（水月湖）エリア,food_amenities_gap,5,524,0.95
+熊川宿 エリア,transport_access,14,1291,1.08
+熊川宿 エリア,wayfinding_signage,7,1291,0.54
+熊川宿 エリア,english_information_gap,1,1291,0.08
+熊川宿 エリア,staff_communication,2,1291,0.15
+熊川宿 エリア,booking_ticketing,5,1291,0.39
+熊川宿 エリア,waiting_crowding,17,1291,1.32
+熊川宿 エリア,price_value,0,1291,0.0
+熊川宿 エリア,cleanliness_comfort,14,1291,1.08
+熊川宿 エリア,opening_hours_availability,39,1291,3.02
+熊川宿 エリア,itinerary_fit_time_cost,4,1291,0.31
+熊川宿 エリア,accessibility_mobility,0,1291,0.0
+熊川宿 エリア,food_amenities_gap,13,1291,1.01
+神楽通り エリア,transport_access,9,270,3.33
+神楽通り エリア,wayfinding_signage,2,270,0.74
+神楽通り エリア,english_information_gap,0,270,0.0
+神楽通り エリア,staff_communication,0,270,0.0
+神楽通り エリア,booking_ticketing,1,270,0.37
+神楽通り エリア,waiting_crowding,5,270,1.85
+神楽通り エリア,price_value,0,270,0.0
+神楽通り エリア,cleanliness_comfort,3,270,1.11
+神楽通り エリア,opening_hours_availability,9,270,3.33
+神楽通り エリア,itinerary_fit_time_cost,0,270,0.0
+神楽通り エリア,accessibility_mobility,0,270,0.0
+神楽通り エリア,food_amenities_gap,3,270,1.11
+福井県立若狭歴史博物館 エリア,transport_access,1,48,2.08
+福井県立若狭歴史博物館 エリア,wayfinding_signage,0,48,0.0
+福井県立若狭歴史博物館 エリア,english_information_gap,0,48,0.0
+福井県立若狭歴史博物館 エリア,staff_communication,0,48,0.0
+福井県立若狭歴史博物館 エリア,booking_ticketing,0,48,0.0
+福井県立若狭歴史博物館 エリア,waiting_crowding,0,48,0.0
+福井県立若狭歴史博物館 エリア,price_value,0,48,0.0
+福井県立若狭歴史博物館 エリア,cleanliness_comfort,0,48,0.0
+福井県立若狭歴史博物館 エリア,opening_hours_availability,0,48,0.0
+福井県立若狭歴史博物館 エリア,itinerary_fit_time_cost,0,48,0.0
+福井県立若狭歴史博物館 エリア,accessibility_mobility,0,48,0.0
+福井県立若狭歴史博物館 エリア,food_amenities_gap,1,48,2.08
+福井駅前 エリア,transport_access,184,4156,4.43
+福井駅前 エリア,wayfinding_signage,34,4156,0.82
+福井駅前 エリア,english_information_gap,3,4156,0.07
+福井駅前 エリア,staff_communication,2,4156,0.05
+福井駅前 エリア,booking_ticketing,11,4156,0.26
+福井駅前 エリア,waiting_crowding,99,4156,2.38
+福井駅前 エリア,price_value,14,4156,0.34
+福井駅前 エリア,cleanliness_comfort,42,4156,1.01
+福井駅前 エリア,opening_hours_availability,42,4156,1.01
+福井駅前 エリア,itinerary_fit_time_cost,24,4156,0.58
+福井駅前 エリア,accessibility_mobility,36,4156,0.87
+福井駅前 エリア,food_amenities_gap,53,4156,1.28
+福井駅前 エリア（宿泊施設）,transport_access,36,1185,3.04
+福井駅前 エリア（宿泊施設）,wayfinding_signage,13,1185,1.1
+福井駅前 エリア（宿泊施設）,english_information_gap,3,1185,0.25
+福井駅前 エリア（宿泊施設）,staff_communication,4,1185,0.34
+福井駅前 エリア（宿泊施設）,booking_ticketing,9,1185,0.76
+福井駅前 エリア（宿泊施設）,waiting_crowding,25,1185,2.11
+福井駅前 エリア（宿泊施設）,price_value,15,1185,1.27
+福井駅前 エリア（宿泊施設）,cleanliness_comfort,16,1185,1.35
+福井駅前 エリア（宿泊施設）,opening_hours_availability,16,1185,1.35
+福井駅前 エリア（宿泊施設）,itinerary_fit_time_cost,11,1185,0.93
+福井駅前 エリア（宿泊施設）,accessibility_mobility,12,1185,1.01
+福井駅前 エリア（宿泊施設）,food_amenities_gap,21,1185,1.77
+竹田エリア,transport_access,9,269,3.35
+竹田エリア,wayfinding_signage,0,269,0.0
+竹田エリア,english_information_gap,1,269,0.37
+竹田エリア,staff_communication,0,269,0.0
+竹田エリア,booking_ticketing,1,269,0.37
+竹田エリア,waiting_crowding,8,269,2.97
+竹田エリア,price_value,0,269,0.0
+竹田エリア,cleanliness_comfort,0,269,0.0
+竹田エリア,opening_hours_availability,2,269,0.74
+竹田エリア,itinerary_fit_time_cost,0,269,0.0
+竹田エリア,accessibility_mobility,3,269,1.12
+竹田エリア,food_amenities_gap,1,269,0.37
+箸のふるさと館WAKASA エリア,transport_access,0,152,0.0
+箸のふるさと館WAKASA エリア,wayfinding_signage,0,152,0.0
+箸のふるさと館WAKASA エリア,english_information_gap,0,152,0.0
+箸のふるさと館WAKASA エリア,staff_communication,0,152,0.0
+箸のふるさと館WAKASA エリア,booking_ticketing,0,152,0.0
+箸のふるさと館WAKASA エリア,waiting_crowding,1,152,0.66
+箸のふるさと館WAKASA エリア,price_value,0,152,0.0
+箸のふるさと館WAKASA エリア,cleanliness_comfort,0,152,0.0
+箸のふるさと館WAKASA エリア,opening_hours_availability,0,152,0.0
+箸のふるさと館WAKASA エリア,itinerary_fit_time_cost,0,152,0.0
+箸のふるさと館WAKASA エリア,accessibility_mobility,1,152,0.66
+箸のふるさと館WAKASA エリア,food_amenities_gap,0,152,0.0
+紫式部公園 エリア,transport_access,18,737,2.44
+紫式部公園 エリア,wayfinding_signage,8,737,1.09
+紫式部公園 エリア,english_information_gap,1,737,0.14
+紫式部公園 エリア,staff_communication,0,737,0.0
+紫式部公園 エリア,booking_ticketing,2,737,0.27
+紫式部公園 エリア,waiting_crowding,10,737,1.36
+紫式部公園 エリア,price_value,1,737,0.14
+紫式部公園 エリア,cleanliness_comfort,8,737,1.09
+紫式部公園 エリア,opening_hours_availability,5,737,0.68
+紫式部公園 エリア,itinerary_fit_time_cost,2,737,0.27
+紫式部公園 エリア,accessibility_mobility,6,737,0.81
+紫式部公園 エリア,food_amenities_gap,1,737,0.14
+美浜町レイクセンター エリア,transport_access,4,389,1.03
+美浜町レイクセンター エリア,wayfinding_signage,1,389,0.26
+美浜町レイクセンター エリア,english_information_gap,1,389,0.26
+美浜町レイクセンター エリア,staff_communication,2,389,0.51
+美浜町レイクセンター エリア,booking_ticketing,0,389,0.0
+美浜町レイクセンター エリア,waiting_crowding,1,389,0.26
+美浜町レイクセンター エリア,price_value,0,389,0.0
+美浜町レイクセンター エリア,cleanliness_comfort,2,389,0.51
+美浜町レイクセンター エリア,opening_hours_availability,4,389,1.03
+美浜町レイクセンター エリア,itinerary_fit_time_cost,0,389,0.0
+美浜町レイクセンター エリア,accessibility_mobility,3,389,0.77
+美浜町レイクセンター エリア,food_amenities_gap,0,389,0.0
+美浜町健康楽膳拠点施設こるぱエリア,transport_access,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,wayfinding_signage,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,english_information_gap,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,staff_communication,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,booking_ticketing,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,waiting_crowding,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,price_value,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,cleanliness_comfort,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,opening_hours_availability,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,itinerary_fit_time_cost,1,31,3.23
+美浜町健康楽膳拠点施設こるぱエリア,accessibility_mobility,0,31,0.0
+美浜町健康楽膳拠点施設こるぱエリア,food_amenities_gap,0,31,0.0
+芝政ワールド エリア,transport_access,2,311,0.64
+芝政ワールド エリア,wayfinding_signage,6,311,1.93
+芝政ワールド エリア,english_information_gap,0,311,0.0
+芝政ワールド エリア,staff_communication,0,311,0.0
+芝政ワールド エリア,booking_ticketing,1,311,0.32
+芝政ワールド エリア,waiting_crowding,15,311,4.82
+芝政ワールド エリア,price_value,7,311,2.25
+芝政ワールド エリア,cleanliness_comfort,5,311,1.61
+芝政ワールド エリア,opening_hours_availability,4,311,1.29
+芝政ワールド エリア,itinerary_fit_time_cost,2,311,0.64
+芝政ワールド エリア,accessibility_mobility,1,311,0.32
+芝政ワールド エリア,food_amenities_gap,2,311,0.64
+花の駅 ゆりの里公園 エリア,transport_access,5,1104,0.45
+花の駅 ゆりの里公園 エリア,wayfinding_signage,1,1104,0.09
+花の駅 ゆりの里公園 エリア,english_information_gap,0,1104,0.0
+花の駅 ゆりの里公園 エリア,staff_communication,0,1104,0.0
+花の駅 ゆりの里公園 エリア,booking_ticketing,2,1104,0.18
+花の駅 ゆりの里公園 エリア,waiting_crowding,14,1104,1.27
+花の駅 ゆりの里公園 エリア,price_value,1,1104,0.09
+花の駅 ゆりの里公園 エリア,cleanliness_comfort,2,1104,0.18
+花の駅 ゆりの里公園 エリア,opening_hours_availability,6,1104,0.54
+花の駅 ゆりの里公園 エリア,itinerary_fit_time_cost,1,1104,0.09
+花の駅 ゆりの里公園 エリア,accessibility_mobility,6,1104,0.54
+花の駅 ゆりの里公園 エリア,food_amenities_gap,1,1104,0.09
+若州一滴文庫 エリア,transport_access,1,121,0.83
+若州一滴文庫 エリア,wayfinding_signage,1,121,0.83
+若州一滴文庫 エリア,english_information_gap,0,121,0.0
+若州一滴文庫 エリア,staff_communication,0,121,0.0
+若州一滴文庫 エリア,booking_ticketing,0,121,0.0
+若州一滴文庫 エリア,waiting_crowding,2,121,1.65
+若州一滴文庫 エリア,price_value,0,121,0.0
+若州一滴文庫 エリア,cleanliness_comfort,0,121,0.0
+若州一滴文庫 エリア,opening_hours_availability,0,121,0.0
+若州一滴文庫 エリア,itinerary_fit_time_cost,1,121,0.83
+若州一滴文庫 エリア,accessibility_mobility,0,121,0.0
+若州一滴文庫 エリア,food_amenities_gap,3,121,2.48
+若狭フィッシャーマンズワーフ エリア,transport_access,19,939,2.02
+若狭フィッシャーマンズワーフ エリア,wayfinding_signage,1,939,0.11
+若狭フィッシャーマンズワーフ エリア,english_information_gap,0,939,0.0
+若狭フィッシャーマンズワーフ エリア,staff_communication,1,939,0.11
+若狭フィッシャーマンズワーフ エリア,booking_ticketing,2,939,0.21
+若狭フィッシャーマンズワーフ エリア,waiting_crowding,12,939,1.28
+若狭フィッシャーマンズワーフ エリア,price_value,7,939,0.75
+若狭フィッシャーマンズワーフ エリア,cleanliness_comfort,5,939,0.53
+若狭フィッシャーマンズワーフ エリア,opening_hours_availability,5,939,0.53
+若狭フィッシャーマンズワーフ エリア,itinerary_fit_time_cost,2,939,0.21
+若狭フィッシャーマンズワーフ エリア,accessibility_mobility,1,939,0.11
+若狭フィッシャーマンズワーフ エリア,food_amenities_gap,3,939,0.32
+若狭和田 エリア,transport_access,3,145,2.07
+若狭和田 エリア,wayfinding_signage,1,145,0.69
+若狭和田 エリア,english_information_gap,1,145,0.69
+若狭和田 エリア,staff_communication,0,145,0.0
+若狭和田 エリア,booking_ticketing,1,145,0.69
+若狭和田 エリア,waiting_crowding,2,145,1.38
+若狭和田 エリア,price_value,0,145,0.0
+若狭和田 エリア,cleanliness_comfort,1,145,0.69
+若狭和田 エリア,opening_hours_availability,1,145,0.69
+若狭和田 エリア,itinerary_fit_time_cost,0,145,0.0
+若狭和田 エリア,accessibility_mobility,1,145,0.69
+若狭和田 エリア,food_amenities_gap,2,145,1.38
+若狭海遊バザール 千鳥苑 エリア,transport_access,4,339,1.18
+若狭海遊バザール 千鳥苑 エリア,wayfinding_signage,0,339,0.0
+若狭海遊バザール 千鳥苑 エリア,english_information_gap,1,339,0.29
+若狭海遊バザール 千鳥苑 エリア,staff_communication,0,339,0.0
+若狭海遊バザール 千鳥苑 エリア,booking_ticketing,0,339,0.0
+若狭海遊バザール 千鳥苑 エリア,waiting_crowding,3,339,0.88
+若狭海遊バザール 千鳥苑 エリア,price_value,0,339,0.0
+若狭海遊バザール 千鳥苑 エリア,cleanliness_comfort,2,339,0.59
+若狭海遊バザール 千鳥苑 エリア,opening_hours_availability,5,339,1.47
+若狭海遊バザール 千鳥苑 エリア,itinerary_fit_time_cost,0,339,0.0
+若狭海遊バザール 千鳥苑 エリア,accessibility_mobility,2,339,0.59
+若狭海遊バザール 千鳥苑 エリア,food_amenities_gap,0,339,0.0
+若狭高浜 エリア,transport_access,13,273,4.76
+若狭高浜 エリア,wayfinding_signage,1,273,0.37
+若狭高浜 エリア,english_information_gap,0,273,0.0
+若狭高浜 エリア,staff_communication,0,273,0.0
+若狭高浜 エリア,booking_ticketing,0,273,0.0
+若狭高浜 エリア,waiting_crowding,6,273,2.2
+若狭高浜 エリア,price_value,0,273,0.0
+若狭高浜 エリア,cleanliness_comfort,1,273,0.37
+若狭高浜 エリア,opening_hours_availability,3,273,1.1
+若狭高浜 エリア,itinerary_fit_time_cost,0,273,0.0
+若狭高浜 エリア,accessibility_mobility,1,273,0.37
+若狭高浜 エリア,food_amenities_gap,4,273,1.47
+赤礁崎オートキャンプ場 エリア,transport_access,0,57,0.0
+赤礁崎オートキャンプ場 エリア,wayfinding_signage,0,57,0.0
+赤礁崎オートキャンプ場 エリア,english_information_gap,0,57,0.0
+赤礁崎オートキャンプ場 エリア,staff_communication,0,57,0.0
+赤礁崎オートキャンプ場 エリア,booking_ticketing,0,57,0.0
+赤礁崎オートキャンプ場 エリア,waiting_crowding,0,57,0.0
+赤礁崎オートキャンプ場 エリア,price_value,1,57,1.75
+赤礁崎オートキャンプ場 エリア,cleanliness_comfort,0,57,0.0
+赤礁崎オートキャンプ場 エリア,opening_hours_availability,1,57,1.75
+赤礁崎オートキャンプ場 エリア,itinerary_fit_time_cost,0,57,0.0
+赤礁崎オートキャンプ場 エリア,accessibility_mobility,0,57,0.0
+赤礁崎オートキャンプ場 エリア,food_amenities_gap,2,57,3.51
+越前そばの里 エリア,transport_access,29,5062,0.57
+越前そばの里 エリア,wayfinding_signage,17,5062,0.34
+越前そばの里 エリア,english_information_gap,0,5062,0.0
+越前そばの里 エリア,staff_communication,7,5062,0.14
+越前そばの里 エリア,booking_ticketing,21,5062,0.41
+越前そばの里 エリア,waiting_crowding,226,5062,4.46
+越前そばの里 エリア,price_value,5,5062,0.1
+越前そばの里 エリア,cleanliness_comfort,7,5062,0.14
+越前そばの里 エリア,opening_hours_availability,18,5062,0.36
+越前そばの里 エリア,itinerary_fit_time_cost,22,5062,0.43
+越前そばの里 エリア,accessibility_mobility,32,5062,0.63
+越前そばの里 エリア,food_amenities_gap,8,5062,0.16
+越前和紙の里 エリア,transport_access,11,511,2.15
+越前和紙の里 エリア,wayfinding_signage,4,511,0.78
+越前和紙の里 エリア,english_information_gap,0,511,0.0
+越前和紙の里 エリア,staff_communication,3,511,0.59
+越前和紙の里 エリア,booking_ticketing,1,511,0.2
+越前和紙の里 エリア,waiting_crowding,2,511,0.39
+越前和紙の里 エリア,price_value,1,511,0.2
+越前和紙の里 エリア,cleanliness_comfort,1,511,0.2
+越前和紙の里 エリア,opening_hours_availability,1,511,0.2
+越前和紙の里 エリア,itinerary_fit_time_cost,6,511,1.17
+越前和紙の里 エリア,accessibility_mobility,0,511,0.0
+越前和紙の里 エリア,food_amenities_gap,4,511,0.78
+越前大仏 エリア,transport_access,11,453,2.43
+越前大仏 エリア,wayfinding_signage,2,453,0.44
+越前大仏 エリア,english_information_gap,0,453,0.0
+越前大仏 エリア,staff_communication,0,453,0.0
+越前大仏 エリア,booking_ticketing,2,453,0.44
+越前大仏 エリア,waiting_crowding,3,453,0.66
+越前大仏 エリア,price_value,0,453,0.0
+越前大仏 エリア,cleanliness_comfort,5,453,1.1
+越前大仏 エリア,opening_hours_availability,35,453,7.73
+越前大仏 エリア,itinerary_fit_time_cost,1,453,0.22
+越前大仏 エリア,accessibility_mobility,9,453,1.99
+越前大仏 エリア,food_amenities_gap,3,453,0.66
+越前大野城・城下町 エリア,transport_access,68,2542,2.68
+越前大野城・城下町 エリア,wayfinding_signage,41,2542,1.61
+越前大野城・城下町 エリア,english_information_gap,0,2542,0.0
+越前大野城・城下町 エリア,staff_communication,2,2542,0.08
+越前大野城・城下町 エリア,booking_ticketing,5,2542,0.2
+越前大野城・城下町 エリア,waiting_crowding,29,2542,1.14
+越前大野城・城下町 エリア,price_value,2,2542,0.08
+越前大野城・城下町 エリア,cleanliness_comfort,29,2542,1.14
+越前大野城・城下町 エリア,opening_hours_availability,32,2542,1.26
+越前大野城・城下町 エリア,itinerary_fit_time_cost,4,2542,0.16
+越前大野城・城下町 エリア,accessibility_mobility,61,2542,2.4
+越前大野城・城下町 エリア,food_amenities_gap,31,2542,1.22
+越前岬 エリア,transport_access,5,228,2.19
+越前岬 エリア,wayfinding_signage,3,228,1.32
+越前岬 エリア,english_information_gap,0,228,0.0
+越前岬 エリア,staff_communication,0,228,0.0
+越前岬 エリア,booking_ticketing,0,228,0.0
+越前岬 エリア,waiting_crowding,3,228,1.32
+越前岬 エリア,price_value,1,228,0.44
+越前岬 エリア,cleanliness_comfort,6,228,2.63
+越前岬 エリア,opening_hours_availability,2,228,0.88
+越前岬 エリア,itinerary_fit_time_cost,1,228,0.44
+越前岬 エリア,accessibility_mobility,7,228,3.07
+越前岬 エリア,food_amenities_gap,4,228,1.75
+越前松島水族館 エリア,transport_access,13,588,2.21
+越前松島水族館 エリア,wayfinding_signage,1,588,0.17
+越前松島水族館 エリア,english_information_gap,1,588,0.17
+越前松島水族館 エリア,staff_communication,2,588,0.34
+越前松島水族館 エリア,booking_ticketing,0,588,0.0
+越前松島水族館 エリア,waiting_crowding,16,588,2.72
+越前松島水族館 エリア,price_value,0,588,0.0
+越前松島水族館 エリア,cleanliness_comfort,10,588,1.7
+越前松島水族館 エリア,opening_hours_availability,7,588,1.19
+越前松島水族館 エリア,itinerary_fit_time_cost,4,588,0.68
+越前松島水族館 エリア,accessibility_mobility,10,588,1.7
+越前松島水族館 エリア,food_amenities_gap,4,588,0.68
+越前海岸 くりや旅館街 エリア,transport_access,18,269,6.69
+越前海岸 くりや旅館街 エリア,wayfinding_signage,0,269,0.0
+越前海岸 くりや旅館街 エリア,english_information_gap,1,269,0.37
+越前海岸 くりや旅館街 エリア,staff_communication,0,269,0.0
+越前海岸 くりや旅館街 エリア,booking_ticketing,0,269,0.0
+越前海岸 くりや旅館街 エリア,waiting_crowding,2,269,0.74
+越前海岸 くりや旅館街 エリア,price_value,0,269,0.0
+越前海岸 くりや旅館街 エリア,cleanliness_comfort,1,269,0.37
+越前海岸 くりや旅館街 エリア,opening_hours_availability,0,269,0.0
+越前海岸 くりや旅館街 エリア,itinerary_fit_time_cost,0,269,0.0
+越前海岸 くりや旅館街 エリア,accessibility_mobility,7,269,2.6
+越前海岸 くりや旅館街 エリア,food_amenities_gap,2,269,0.74
+越前海岸 エリア,transport_access,0,137,0.0
+越前海岸 エリア,wayfinding_signage,4,137,2.92
+越前海岸 エリア,english_information_gap,0,137,0.0
+越前海岸 エリア,staff_communication,0,137,0.0
+越前海岸 エリア,booking_ticketing,0,137,0.0
+越前海岸 エリア,waiting_crowding,1,137,0.73
+越前海岸 エリア,price_value,0,137,0.0
+越前海岸 エリア,cleanliness_comfort,4,137,2.92
+越前海岸 エリア,opening_hours_availability,2,137,1.46
+越前海岸 エリア,itinerary_fit_time_cost,0,137,0.0
+越前海岸 エリア,accessibility_mobility,5,137,3.65
+越前海岸 エリア,food_amenities_gap,2,137,1.46
+越前海岸 北部 エリア,transport_access,17,380,4.47
+越前海岸 北部 エリア,wayfinding_signage,2,380,0.53
+越前海岸 北部 エリア,english_information_gap,0,380,0.0
+越前海岸 北部 エリア,staff_communication,0,380,0.0
+越前海岸 北部 エリア,booking_ticketing,0,380,0.0
+越前海岸 北部 エリア,waiting_crowding,1,380,0.26
+越前海岸 北部 エリア,price_value,1,380,0.26
+越前海岸 北部 エリア,cleanliness_comfort,2,380,0.53
+越前海岸 北部 エリア,opening_hours_availability,2,380,0.53
+越前海岸 北部 エリア,itinerary_fit_time_cost,1,380,0.26
+越前海岸 北部 エリア,accessibility_mobility,4,380,1.05
+越前海岸 北部 エリア,food_amenities_gap,1,380,0.26
+越前海岸 茂原民宿街 エリア,transport_access,1,31,3.23
+越前海岸 茂原民宿街 エリア,wayfinding_signage,0,31,0.0
+越前海岸 茂原民宿街 エリア,english_information_gap,0,31,0.0
+越前海岸 茂原民宿街 エリア,staff_communication,0,31,0.0
+越前海岸 茂原民宿街 エリア,booking_ticketing,0,31,0.0
+越前海岸 茂原民宿街 エリア,waiting_crowding,0,31,0.0
+越前海岸 茂原民宿街 エリア,price_value,0,31,0.0
+越前海岸 茂原民宿街 エリア,cleanliness_comfort,0,31,0.0
+越前海岸 茂原民宿街 エリア,opening_hours_availability,1,31,3.23
+越前海岸 茂原民宿街 エリア,itinerary_fit_time_cost,0,31,0.0
+越前海岸 茂原民宿街 エリア,accessibility_mobility,0,31,0.0
+越前海岸 茂原民宿街 エリア,food_amenities_gap,0,31,0.0
+越前海岸 越前岬 エリア,transport_access,3,329,0.91
+越前海岸 越前岬 エリア,wayfinding_signage,3,329,0.91
+越前海岸 越前岬 エリア,english_information_gap,0,329,0.0
+越前海岸 越前岬 エリア,staff_communication,2,329,0.61
+越前海岸 越前岬 エリア,booking_ticketing,0,329,0.0
+越前海岸 越前岬 エリア,waiting_crowding,7,329,2.13
+越前海岸 越前岬 エリア,price_value,1,329,0.3
+越前海岸 越前岬 エリア,cleanliness_comfort,3,329,0.91
+越前海岸 越前岬 エリア,opening_hours_availability,5,329,1.52
+越前海岸 越前岬 エリア,itinerary_fit_time_cost,3,329,0.91
+越前海岸 越前岬 エリア,accessibility_mobility,10,329,3.04
+越前海岸 越前岬 エリア,food_amenities_gap,2,329,0.61
+越前海岸 高佐米ノ旅館街 エリア,transport_access,2,137,1.46
+越前海岸 高佐米ノ旅館街 エリア,wayfinding_signage,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,english_information_gap,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,staff_communication,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,booking_ticketing,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,waiting_crowding,1,137,0.73
+越前海岸 高佐米ノ旅館街 エリア,price_value,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,cleanliness_comfort,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,opening_hours_availability,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,itinerary_fit_time_cost,0,137,0.0
+越前海岸 高佐米ノ旅館街 エリア,accessibility_mobility,2,137,1.46
+越前海岸 高佐米ノ旅館街 エリア,food_amenities_gap,1,137,0.73
+越前漁港 エリア,transport_access,1,69,1.45
+越前漁港 エリア,wayfinding_signage,0,69,0.0
+越前漁港 エリア,english_information_gap,0,69,0.0
+越前漁港 エリア,staff_communication,0,69,0.0
+越前漁港 エリア,booking_ticketing,0,69,0.0
+越前漁港 エリア,waiting_crowding,1,69,1.45
+越前漁港 エリア,price_value,1,69,1.45
+越前漁港 エリア,cleanliness_comfort,1,69,1.45
+越前漁港 エリア,opening_hours_availability,1,69,1.45
+越前漁港 エリア,itinerary_fit_time_cost,0,69,0.0
+越前漁港 エリア,accessibility_mobility,2,69,2.9
+越前漁港 エリア,food_amenities_gap,0,69,0.0
+越前陶芸村 エリア,transport_access,22,764,2.88
+越前陶芸村 エリア,wayfinding_signage,3,764,0.39
+越前陶芸村 エリア,english_information_gap,1,764,0.13
+越前陶芸村 エリア,staff_communication,3,764,0.39
+越前陶芸村 エリア,booking_ticketing,1,764,0.13
+越前陶芸村 エリア,waiting_crowding,9,764,1.18
+越前陶芸村 エリア,price_value,0,764,0.0
+越前陶芸村 エリア,cleanliness_comfort,4,764,0.52
+越前陶芸村 エリア,opening_hours_availability,6,764,0.79
+越前陶芸村 エリア,itinerary_fit_time_cost,2,764,0.26
+越前陶芸村 エリア,accessibility_mobility,7,764,0.92
+越前陶芸村 エリア,food_amenities_gap,5,764,0.65
+道の駅「シーサイド高浜」 エリア,transport_access,3,534,0.56
+道の駅「シーサイド高浜」 エリア,wayfinding_signage,1,534,0.19
+道の駅「シーサイド高浜」 エリア,english_information_gap,0,534,0.0
+道の駅「シーサイド高浜」 エリア,staff_communication,2,534,0.37
+道の駅「シーサイド高浜」 エリア,booking_ticketing,2,534,0.37
+道の駅「シーサイド高浜」 エリア,waiting_crowding,4,534,0.75
+道の駅「シーサイド高浜」 エリア,price_value,1,534,0.19
+道の駅「シーサイド高浜」 エリア,cleanliness_comfort,11,534,2.06
+道の駅「シーサイド高浜」 エリア,opening_hours_availability,11,534,2.06
+道の駅「シーサイド高浜」 エリア,itinerary_fit_time_cost,1,534,0.19
+道の駅「シーサイド高浜」 エリア,accessibility_mobility,1,534,0.19
+道の駅「シーサイド高浜」 エリア,food_amenities_gap,2,534,0.37
+道の駅「パークイン丹生ヶ丘」 エリア,transport_access,6,1028,0.58
+道の駅「パークイン丹生ヶ丘」 エリア,wayfinding_signage,4,1028,0.39
+道の駅「パークイン丹生ヶ丘」 エリア,english_information_gap,0,1028,0.0
+道の駅「パークイン丹生ヶ丘」 エリア,staff_communication,2,1028,0.19
+道の駅「パークイン丹生ヶ丘」 エリア,booking_ticketing,5,1028,0.49
+道の駅「パークイン丹生ヶ丘」 エリア,waiting_crowding,12,1028,1.17
+道の駅「パークイン丹生ヶ丘」 エリア,price_value,0,1028,0.0
+道の駅「パークイン丹生ヶ丘」 エリア,cleanliness_comfort,9,1028,0.88
+道の駅「パークイン丹生ヶ丘」 エリア,opening_hours_availability,7,1028,0.68
+道の駅「パークイン丹生ヶ丘」 エリア,itinerary_fit_time_cost,2,1028,0.19
+道の駅「パークイン丹生ヶ丘」 エリア,accessibility_mobility,5,1028,0.49
+道の駅「パークイン丹生ヶ丘」 エリア,food_amenities_gap,1,1028,0.1
+道の駅「三方五湖」  エリア,transport_access,23,1302,1.77
+道の駅「三方五湖」  エリア,wayfinding_signage,9,1302,0.69
+道の駅「三方五湖」  エリア,english_information_gap,2,1302,0.15
+道の駅「三方五湖」  エリア,staff_communication,1,1302,0.08
+道の駅「三方五湖」  エリア,booking_ticketing,2,1302,0.15
+道の駅「三方五湖」  エリア,waiting_crowding,23,1302,1.77
+道の駅「三方五湖」  エリア,price_value,1,1302,0.08
+道の駅「三方五湖」  エリア,cleanliness_comfort,10,1302,0.77
+道の駅「三方五湖」  エリア,opening_hours_availability,22,1302,1.69
+道の駅「三方五湖」  エリア,itinerary_fit_time_cost,7,1302,0.54
+道の駅「三方五湖」  エリア,accessibility_mobility,9,1302,0.69
+道の駅「三方五湖」  エリア,food_amenities_gap,8,1302,0.61
+道の駅「九頭竜」 エリア,transport_access,5,192,2.6
+道の駅「九頭竜」 エリア,wayfinding_signage,0,192,0.0
+道の駅「九頭竜」 エリア,english_information_gap,1,192,0.52
+道の駅「九頭竜」 エリア,staff_communication,0,192,0.0
+道の駅「九頭竜」 エリア,booking_ticketing,1,192,0.52
+道の駅「九頭竜」 エリア,waiting_crowding,2,192,1.04
+道の駅「九頭竜」 エリア,price_value,0,192,0.0
+道の駅「九頭竜」 エリア,cleanliness_comfort,6,192,3.12
+道の駅「九頭竜」 エリア,opening_hours_availability,2,192,1.04
+道の駅「九頭竜」 エリア,itinerary_fit_time_cost,0,192,0.0
+道の駅「九頭竜」 エリア,accessibility_mobility,0,192,0.0
+道の駅「九頭竜」 エリア,food_amenities_gap,1,192,0.52
+道の駅「南えちぜん山海里」 エリア,transport_access,9,2645,0.34
+道の駅「南えちぜん山海里」 エリア,wayfinding_signage,6,2645,0.23
+道の駅「南えちぜん山海里」 エリア,english_information_gap,0,2645,0.0
+道の駅「南えちぜん山海里」 エリア,staff_communication,1,2645,0.04
+道の駅「南えちぜん山海里」 エリア,booking_ticketing,5,2645,0.19
+道の駅「南えちぜん山海里」 エリア,waiting_crowding,25,2645,0.95
+道の駅「南えちぜん山海里」 エリア,price_value,20,2645,0.76
+道の駅「南えちぜん山海里」 エリア,cleanliness_comfort,27,2645,1.02
+道の駅「南えちぜん山海里」 エリア,opening_hours_availability,16,2645,0.6
+道の駅「南えちぜん山海里」 エリア,itinerary_fit_time_cost,7,2645,0.26
+道の駅「南えちぜん山海里」 エリア,accessibility_mobility,24,2645,0.91
+道の駅「南えちぜん山海里」 エリア,food_amenities_gap,4,2645,0.15
+道の駅「名田庄」 エリア,transport_access,3,174,1.72
+道の駅「名田庄」 エリア,wayfinding_signage,0,174,0.0
+道の駅「名田庄」 エリア,english_information_gap,0,174,0.0
+道の駅「名田庄」 エリア,staff_communication,0,174,0.0
+道の駅「名田庄」 エリア,booking_ticketing,0,174,0.0
+道の駅「名田庄」 エリア,waiting_crowding,1,174,0.57
+道の駅「名田庄」 エリア,price_value,0,174,0.0
+道の駅「名田庄」 エリア,cleanliness_comfort,5,174,2.87
+道の駅「名田庄」 エリア,opening_hours_availability,3,174,1.72
+道の駅「名田庄」 エリア,itinerary_fit_time_cost,0,174,0.0
+道の駅「名田庄」 エリア,accessibility_mobility,0,174,0.0
+道の駅「名田庄」 エリア,food_amenities_gap,1,174,0.57
+道の駅「恐竜渓谷かつやま」 エリア,transport_access,6,2161,0.28
+道の駅「恐竜渓谷かつやま」 エリア,wayfinding_signage,8,2161,0.37
+道の駅「恐竜渓谷かつやま」 エリア,english_information_gap,0,2161,0.0
+道の駅「恐竜渓谷かつやま」 エリア,staff_communication,2,2161,0.09
+道の駅「恐竜渓谷かつやま」 エリア,booking_ticketing,9,2161,0.42
+道の駅「恐竜渓谷かつやま」 エリア,waiting_crowding,33,2161,1.53
+道の駅「恐竜渓谷かつやま」 エリア,price_value,2,2161,0.09
+道の駅「恐竜渓谷かつやま」 エリア,cleanliness_comfort,23,2161,1.06
+道の駅「恐竜渓谷かつやま」 エリア,opening_hours_availability,34,2161,1.57
+道の駅「恐竜渓谷かつやま」 エリア,itinerary_fit_time_cost,6,2161,0.28
+道の駅「恐竜渓谷かつやま」 エリア,accessibility_mobility,39,2161,1.8
+道の駅「恐竜渓谷かつやま」 エリア,food_amenities_gap,7,2161,0.32
+道の駅「禅の里」 エリア,transport_access,5,976,0.51
+道の駅「禅の里」 エリア,wayfinding_signage,4,976,0.41
+道の駅「禅の里」 エリア,english_information_gap,0,976,0.0
+道の駅「禅の里」 エリア,staff_communication,0,976,0.0
+道の駅「禅の里」 エリア,booking_ticketing,8,976,0.82
+道の駅「禅の里」 エリア,waiting_crowding,7,976,0.72
+道の駅「禅の里」 エリア,price_value,2,976,0.2
+道の駅「禅の里」 エリア,cleanliness_comfort,21,976,2.15
+道の駅「禅の里」 エリア,opening_hours_availability,12,976,1.23
+道の駅「禅の里」 エリア,itinerary_fit_time_cost,2,976,0.2
+道の駅「禅の里」 エリア,accessibility_mobility,13,976,1.33
+道の駅「禅の里」 エリア,food_amenities_gap,2,976,0.2
+道の駅「若狭おばま」 エリア,transport_access,13,1770,0.73
+道の駅「若狭おばま」 エリア,wayfinding_signage,11,1770,0.62
+道の駅「若狭おばま」 エリア,english_information_gap,0,1770,0.0
+道の駅「若狭おばま」 エリア,staff_communication,2,1770,0.11
+道の駅「若狭おばま」 エリア,booking_ticketing,7,1770,0.4
+道の駅「若狭おばま」 エリア,waiting_crowding,24,1770,1.36
+道の駅「若狭おばま」 エリア,price_value,4,1770,0.23
+道の駅「若狭おばま」 エリア,cleanliness_comfort,10,1770,0.56
+道の駅「若狭おばま」 エリア,opening_hours_availability,14,1770,0.79
+道の駅「若狭おばま」 エリア,itinerary_fit_time_cost,6,1770,0.34
+道の駅「若狭おばま」 エリア,accessibility_mobility,7,1770,0.4
+道の駅「若狭おばま」 エリア,food_amenities_gap,1,1770,0.06
+道の駅「西山公園」 エリア,transport_access,4,1058,0.38
+道の駅「西山公園」 エリア,wayfinding_signage,4,1058,0.38
+道の駅「西山公園」 エリア,english_information_gap,0,1058,0.0
+道の駅「西山公園」 エリア,staff_communication,3,1058,0.28
+道の駅「西山公園」 エリア,booking_ticketing,2,1058,0.19
+道の駅「西山公園」 エリア,waiting_crowding,17,1058,1.61
+道の駅「西山公園」 エリア,price_value,2,1058,0.19
+道の駅「西山公園」 エリア,cleanliness_comfort,6,1058,0.57
+道の駅「西山公園」 エリア,opening_hours_availability,12,1058,1.13
+道の駅「西山公園」 エリア,itinerary_fit_time_cost,2,1058,0.19
+道の駅「西山公園」 エリア,accessibility_mobility,20,1058,1.89
+道の駅「西山公園」 エリア,food_amenities_gap,0,1058,0.0
+道の駅「越前」 エリア,transport_access,39,2497,1.56
+道の駅「越前」 エリア,wayfinding_signage,8,2497,0.32
+道の駅「越前」 エリア,english_information_gap,1,2497,0.04
+道の駅「越前」 エリア,staff_communication,3,2497,0.12
+道の駅「越前」 エリア,booking_ticketing,4,2497,0.16
+道の駅「越前」 エリア,waiting_crowding,50,2497,2.0
+道の駅「越前」 エリア,price_value,10,2497,0.4
+道の駅「越前」 エリア,cleanliness_comfort,35,2497,1.4
+道の駅「越前」 エリア,opening_hours_availability,34,2497,1.36
+道の駅「越前」 エリア,itinerary_fit_time_cost,7,2497,0.28
+道の駅「越前」 エリア,accessibility_mobility,37,2497,1.48
+道の駅「越前」 エリア,food_amenities_gap,12,2497,0.48
+道の駅「越前おおの荒島の郷」 エリア,transport_access,14,1963,0.71
+道の駅「越前おおの荒島の郷」 エリア,wayfinding_signage,10,1963,0.51
+道の駅「越前おおの荒島の郷」 エリア,english_information_gap,0,1963,0.0
+道の駅「越前おおの荒島の郷」 エリア,staff_communication,1,1963,0.05
+道の駅「越前おおの荒島の郷」 エリア,booking_ticketing,12,1963,0.61
+道の駅「越前おおの荒島の郷」 エリア,waiting_crowding,29,1963,1.48
+道の駅「越前おおの荒島の郷」 エリア,price_value,8,1963,0.41
+道の駅「越前おおの荒島の郷」 エリア,cleanliness_comfort,20,1963,1.02
+道の駅「越前おおの荒島の郷」 エリア,opening_hours_availability,28,1963,1.43
+道の駅「越前おおの荒島の郷」 エリア,itinerary_fit_time_cost,3,1963,0.15
+道の駅「越前おおの荒島の郷」 エリア,accessibility_mobility,10,1963,0.51
+道の駅「越前おおの荒島の郷」 エリア,food_amenities_gap,1,1963,0.05
+道の駅みくに ふれあいパーク三里浜 エリア,transport_access,7,1193,0.59
+道の駅みくに ふれあいパーク三里浜 エリア,wayfinding_signage,7,1193,0.59
+道の駅みくに ふれあいパーク三里浜 エリア,english_information_gap,0,1193,0.0
+道の駅みくに ふれあいパーク三里浜 エリア,staff_communication,1,1193,0.08
+道の駅みくに ふれあいパーク三里浜 エリア,booking_ticketing,9,1193,0.75
+道の駅みくに ふれあいパーク三里浜 エリア,waiting_crowding,16,1193,1.34
+道の駅みくに ふれあいパーク三里浜 エリア,price_value,2,1193,0.17
+道の駅みくに ふれあいパーク三里浜 エリア,cleanliness_comfort,14,1193,1.17
+道の駅みくに ふれあいパーク三里浜 エリア,opening_hours_availability,10,1193,0.84
+道の駅みくに ふれあいパーク三里浜 エリア,itinerary_fit_time_cost,2,1193,0.17
+道の駅みくに ふれあいパーク三里浜 エリア,accessibility_mobility,4,1193,0.34
+道の駅みくに ふれあいパーク三里浜 エリア,food_amenities_gap,0,1193,0.0
+金ヶ崎 エリア,transport_access,69,1787,3.86
+金ヶ崎 エリア,wayfinding_signage,19,1787,1.06
+金ヶ崎 エリア,english_information_gap,0,1787,0.0
+金ヶ崎 エリア,staff_communication,2,1787,0.11
+金ヶ崎 エリア,booking_ticketing,4,1787,0.22
+金ヶ崎 エリア,waiting_crowding,21,1787,1.18
+金ヶ崎 エリア,price_value,2,1787,0.11
+金ヶ崎 エリア,cleanliness_comfort,21,1787,1.18
+金ヶ崎 エリア,opening_hours_availability,13,1787,0.73
+金ヶ崎 エリア,itinerary_fit_time_cost,2,1787,0.11
+金ヶ崎 エリア,accessibility_mobility,6,1787,0.34
+金ヶ崎 エリア,food_amenities_gap,8,1787,0.45
+金津創作の森 エリア,transport_access,2,39,5.13
+金津創作の森 エリア,wayfinding_signage,1,39,2.56
+金津創作の森 エリア,english_information_gap,0,39,0.0
+金津創作の森 エリア,staff_communication,0,39,0.0
+金津創作の森 エリア,booking_ticketing,0,39,0.0
+金津創作の森 エリア,waiting_crowding,0,39,0.0
+金津創作の森 エリア,price_value,0,39,0.0
+金津創作の森 エリア,cleanliness_comfort,1,39,2.56
+金津創作の森 エリア,opening_hours_availability,1,39,2.56
+金津創作の森 エリア,itinerary_fit_time_cost,1,39,2.56
+金津創作の森 エリア,accessibility_mobility,0,39,0.0
+金津創作の森 エリア,food_amenities_gap,0,39,0.0
+青葉山ハーバルビレッジ エリア,transport_access,0,70,0.0
+青葉山ハーバルビレッジ エリア,wayfinding_signage,1,70,1.43
+青葉山ハーバルビレッジ エリア,english_information_gap,0,70,0.0
+青葉山ハーバルビレッジ エリア,staff_communication,0,70,0.0
+青葉山ハーバルビレッジ エリア,booking_ticketing,0,70,0.0
+青葉山ハーバルビレッジ エリア,waiting_crowding,0,70,0.0
+青葉山ハーバルビレッジ エリア,price_value,0,70,0.0
+青葉山ハーバルビレッジ エリア,cleanliness_comfort,1,70,1.43
+青葉山ハーバルビレッジ エリア,opening_hours_availability,0,70,0.0
+青葉山ハーバルビレッジ エリア,itinerary_fit_time_cost,0,70,0.0
+青葉山ハーバルビレッジ エリア,accessibility_mobility,0,70,0.0
+青葉山ハーバルビレッジ エリア,food_amenities_gap,0,70,0.0
+,transport_access,0,1,0.0
+,wayfinding_signage,0,1,0.0
+,english_information_gap,0,1,0.0
+,staff_communication,0,1,0.0
+,booking_ticketing,0,1,0.0
+,waiting_crowding,0,1,0.0
+,price_value,0,1,0.0
+,cleanliness_comfort,0,1,0.0
+,opening_hours_availability,0,1,0.0
+,itinerary_fit_time_cost,0,1,0.0
+,accessibility_mobility,0,1,0.0
+,food_amenities_gap,0,1,0.0

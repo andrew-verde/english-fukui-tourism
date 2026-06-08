@@ -1,0 +1,89 @@
+# Nudge Opportunity Mapping
+#
+# Maps friction codes to candidate intervention opportunities.
+# All interventions are framed as low-cost, information-based nudges
+# grounded in observed mention frequencies. Evidence counts are small
+# (n=1–4 per code across all cities); treat as directional signals only.
+#
+# Fields:
+#   friction_label        — human-readable friction name
+#   likely_journey_stage  — when in the visitor journey this friction occurs
+#   possible_nudge_type   — category of intervention
+#   example_intervention  — concrete, low-cost candidate suggestion
+#
+# evidence_count, cities_observed, and poi_categories_observed are
+# computed automatically from tagged_mentions.csv by generate_friction_summaries.py
+
+nudge_mappings:
+
+  transport_access:
+    friction_label: "Transport / Access"
+    likely_journey_stage: "pre-arrival / en-route"
+    possible_nudge_type: "Information provision"
+    example_intervention: "Publish a consolidated English-language transit guide at Fukui Station and on the DMO website covering bus, train, and rental options to key POIs; note infrequent service and recommend combining destinations on the same route."
+
+  wayfinding_signage:
+    friction_label: "Wayfinding / Signage"
+    likely_journey_stage: "on-site / arrival"
+    possible_nudge_type: "Environmental design"
+    example_intervention: "Install English-language directional signage at key route decision points (station exits, car parks, trailheads); supplement with QR codes linking to a mobile-friendly map of the site."
+
+  english_information_gap:
+    friction_label: "English Information Gap"
+    likely_journey_stage: "pre-visit / on-site"
+    possible_nudge_type: "Information provision"
+    example_intervention: "Add bilingual (EN/JA) information panels at entry points and key exhibits; make a downloadable English PDF guide available via QR code at the entrance; ensure Google Maps listing includes an English description."
+
+  staff_communication:
+    friction_label: "Staff Communication"
+    likely_journey_stage: "on-site"
+    possible_nudge_type: "Capacity building"
+    example_intervention: "Provide front-line staff with a laminated reference card of common English visitor phrases (directions, tickets, opening times); consider pairing with a simple visual menu or floor plan in English."
+
+  booking_ticketing:
+    friction_label: "Booking / Ticketing"
+    likely_journey_stage: "pre-visit / arrival"
+    possible_nudge_type: "Process simplification"
+    example_intervention: "Offer an English-language online booking option or clearly communicate reservation requirements on the attraction website and Google Maps listing; display accepted payment methods (cash/card) at the entrance."
+
+  waiting_crowding:
+    friction_label: "Waiting / Crowding"
+    likely_journey_stage: "on-site"
+    possible_nudge_type: "Demand management"
+    example_intervention: "Add visit timing guidance to the attraction website and Google Maps listing (e.g. 'quietest before 10am on weekdays'); consider a simple real-time or estimated crowd-level indicator at the entrance."
+
+  price_value:
+    friction_label: "Price / Value"
+    likely_journey_stage: "pre-visit / on-site"
+    possible_nudge_type: "Expectation framing"
+    example_intervention: "Clearly state entry fees and what is included on all pre-visit touchpoints (website, Google Maps, DMO listing); explore a combination ticket with a nearby attraction to improve perceived value."
+
+  cleanliness_comfort:
+    friction_label: "Cleanliness / Comfort"
+    likely_journey_stage: "on-site"
+    possible_nudge_type: "Facilities management"
+    example_intervention: "Introduce a visible scheduled maintenance log at restrooms and high-footfall areas; add seating and shade at key viewing points where practicable."
+
+  opening_hours_availability:
+    friction_label: "Opening Hours / Availability"
+    likely_journey_stage: "pre-visit"
+    possible_nudge_type: "Information provision"
+    example_intervention: "Standardise and keep up-to-date: Google Maps hours, official website, and physical entrance signage; flag seasonal closures at least 4 weeks in advance on all channels; add a 'check before you visit' note on DMO listings for POIs with variable hours."
+
+  itinerary_fit_time_cost:
+    friction_label: "Itinerary Fit / Time & Cost"
+    likely_journey_stage: "pre-visit / planning"
+    possible_nudge_type: "Planning support"
+    example_intervention: "Publish DMO-curated half-day and full-day itinerary templates that pair lower-traffic or remote attractions with anchor destinations on the same transport corridor; include realistic travel time estimates."
+
+  accessibility_mobility:
+    friction_label: "Accessibility / Mobility"
+    likely_journey_stage: "pre-visit / on-site"
+    possible_nudge_type: "Environmental design"
+    example_intervention: "Map and publish step-free and wheelchair-accessible routes for each attraction; indicate surface type, gradient, and lift/ramp availability on the website and at the entrance."
+
+  food_amenities_gap:
+    friction_label: "Food / Amenities Gap"
+    likely_journey_stage: "on-site"
+    possible_nudge_type: "Information provision"
+    example_intervention: "Post a nearby dining guide (English, with opening hours) at the attraction entrance; for remote sites, add a 'bring food and water' advisory to pre-visit materials; flag the nearest convenience store on the site map."

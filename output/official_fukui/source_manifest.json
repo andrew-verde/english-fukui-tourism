@@ -1,0 +1,78 @@
+{
+  "fetched_at_utc": "2026-05-28T09:36:38.318991+00:00",
+  "config": "/Users/andrewgreen/Repositories/america-fukui-tourism/config/official_fukui_sources.yaml",
+  "sources": {
+    "ftas_survey_all": {
+      "url": "https://code4fukui.github.io/fukui-kanko-survey/all.csv",
+      "description": "FTAS respondent-level tourism survey data",
+      "path": "output/official_fukui/raw/ftas_survey_all.csv",
+      "bytes": 92500121,
+      "sha256": "5243dbd457ad73388a2dac8f8d2e0b2c2dd8d20bf4c10b7f099ead7330b7b181",
+      "status": "cached"
+    },
+    "ftas_survey_counts": {
+      "url": "https://code4fukui.github.io/fukui-kanko-survey/all-cnt.csv",
+      "description": "Daily FTAS survey response counts",
+      "path": "output/official_fukui/raw/ftas_survey_counts.csv",
+      "bytes": 18134,
+      "sha256": "d7e0a9a4230bf51a349945de8a1ee85c252baa0eebf0b99e62e6e4ca557ff737",
+      "status": "cached"
+    },
+    "ftas_area_master": {
+      "url": "https://code4fukui.github.io/fukui-kanko-survey/area.csv",
+      "description": "FTAS tourism area master with municipality and coordinates",
+      "path": "output/official_fukui/raw/ftas_area_master.csv",
+      "bytes": 55438,
+      "sha256": "4905bae83db0a2d2a1aaa21ec3b0de93261dded395db77693a8bbc47e2ecb254",
+      "status": "cached"
+    },
+    "fukui_reservation_sum": {
+      "url": "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_sum.csv",
+      "description": "Daily Fukui tourism reservation totals",
+      "path": "output/official_fukui/raw/fukui_reservation_sum.csv",
+      "bytes": 38425,
+      "sha256": "468bfb9d02fed679419155a7d1ab6b4f8e705fc379877ebe90294309a6e8eb0b",
+      "status": "cached"
+    },
+    "fukui_reservation_prefecture_sum": {
+      "url": "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_prefecture_sum.csv",
+      "description": "Daily Fukui tourism reservation totals by origin prefecture",
+      "path": "output/official_fukui/raw/fukui_reservation_prefecture_sum.csv",
+      "bytes": 1202786,
+      "sha256": "e2a300672900e255f981e540074ba58037a5c934b32dfea3f4d70351053670d8",
+      "status": "cached"
+    },
+    "ishikawa_survey_all": {
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/all.csv",
+      "description": "Ishikawa respondent-level tourism survey data",
+      "path": "output/official_fukui/raw/ishikawa_survey_all.csv",
+      "bytes": 23006520,
+      "sha256": "a98dbdb8208bc1da6255918ada5dab0905ac3b1c2cf75da00375f78a243592bc",
+      "status": "downloaded"
+    },
+    "ishikawa_survey_kanazawa": {
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/kanazawa.csv",
+      "description": "Ishikawa tourism survey raw Kanazawa-area rows",
+      "path": "output/official_fukui/raw/ishikawa_survey_kanazawa.csv",
+      "bytes": 9556550,
+      "sha256": "07d2d74b931751a65c031d10451fd147d7cd0f6deaa03eef1beb3bf9cd22772a",
+      "status": "downloaded"
+    },
+    "ishikawa_survey_kaga": {
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/kaga.csv",
+      "description": "Ishikawa tourism survey raw Kaga-area rows",
+      "path": "output/official_fukui/raw/ishikawa_survey_kaga.csv",
+      "bytes": 9099025,
+      "sha256": "fea16e97e393e2d425456fcd812ce1420fd055b3518629cbfc6b2fab635b40d2",
+      "status": "downloaded"
+    },
+    "ishikawa_survey_noto": {
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/noto.csv",
+      "description": "Ishikawa tourism survey raw Noto-area rows",
+      "path": "output/official_fukui/raw/ishikawa_survey_noto.csv",
+      "bytes": 4896168,
+      "sha256": "c313edef273143c06749a67b2413e0b308f6216a403f9941f5f31ffffd391bac",
+      "status": "downloaded"
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "input_csv": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/friction_analysis/reviews_unified.csv",
+  "reviews_total": 915,
+  "min_reviews_per_city_target": 100,
+  "city_counts": {
+    "Fukui": 213,
+    "Kanazawa": 533,
+    "Toyama": 169
+  },
+  "additional_reviews_needed_by_city": {
+    "Fukui": 0,
+    "Kanazawa": 0,
+    "Toyama": 0
+  },
+  "source_counts_by_city": {
+    "Fukui": {
+      "google_maps_outscraper": 213
+    },
+    "Kanazawa": {
+      "google_maps_outscraper": 533
+    },
+    "Toyama": {
+      "google_maps_outscraper": 169
+    }
+  },
+  "poi_count_summary": {
+    "pois_total": 69,
+    "min_reviews_per_poi": 1,
+    "median_reviews_per_poi": 11.0,
+    "max_reviews_per_poi": 42,
+    "pois_below_5_reviews": 19
+  },
+  "theme_chi_square_readiness": {
+    "themed_reviews": 402,
+    "themes": [
+      "Dinosaur",
+      "Food",
+      "Scenic",
+      "Cultural",
+      "Logistics"
+    ],
+    "theme_counts": {
+      "Dinosaur": 13,
+      "Food": 72,
+      "Scenic": 108,
+      "Cultural": 168,
+      "Logistics": 41
+    },
+    "city_x_theme_table": {
+      "Fukui": {
+        "Dinosaur": 12,
+        "Food": 11,
+        "Scenic": 31,
+        "Cultural": 50,
+        "Logistics": 16
+      },
+      "Kanazawa": {
+        "Dinosaur": 0,
+        "Food": 45,
+        "Scenic": 33,
+        "Cultural": 100,
+        "Logistics": 13
+      },
+      "Toyama": {
+        "Dinosaur": 1,
+        "Food": 16,
+        "Scenic": 44,
+        "Cultural": 18,
+        "Logistics": 12
+      }
+    },
+    "expected_min": 2.942786069651741,
+    "expected_cells_below_target": 2,
+    "expected_min_target": 5.0,
+    "valid_for_chi_square_approximation": false,
+    "estimated_themed_reviews_needed_for_target": 684,
+    "estimated_additional_themed_reviews_needed": 282
+  },
+  "shared_theme_chi_square_readiness": {
+    "themed_reviews": 389,
+    "themes": [
+      "Food",
+      "Scenic",
+      "Cultural",
+      "Logistics"
+    ],
+    "theme_counts": {
+      "Food": 72,
+      "Scenic": 108,
+      "Cultural": 168,
+      "Logistics": 41
+    },
+    "city_x_theme_table": {
+      "Fukui": {
+        "Food": 11,
+        "Scenic": 31,
+        "Cultural": 50,
+        "Logistics": 16
+      },
+      "Kanazawa": {
+        "Food": 45,
+        "Scenic": 33,
+        "Cultural": 100,
+        "Logistics": 13
+      },
+      "Toyama": {
+        "Food": 16,
+        "Scenic": 44,
+        "Cultural": 18,
+        "Logistics": 12
+      }
+    },
+    "expected_min": 9.48586118251928,
+    "expected_cells_below_target": 0,
+    "expected_min_target": 5.0,
+    "valid_for_chi_square_approximation": true,
+    "estimated_themed_reviews_needed_for_target": 389,
+    "estimated_additional_themed_reviews_needed": 0
+  },
+  "friction_signal_density": {
+    "available": true,
+    "mentions_total": 3130,
+    "signal_mentions_total": 114,
+    "signal_mentions_by_city": {
+      "Fukui": {
+        "signal_mentions": 43,
+        "mentions": 772,
+        "signal_rate": 0.05569948186528497
+      },
+      "Kanazawa": {
+        "signal_mentions": 59,
+        "mentions": 1694,
+        "signal_rate": 0.03482880755608028
+      },
+      "Toyama": {
+        "signal_mentions": 12,
+        "mentions": 664,
+        "signal_rate": 0.018072289156626505
+      }
+    }
+  },
+  "hard_gates": {
+    "all_cities_present": true,
+    "min_reviews_per_city_met": true,
+    "shared_city_x_theme_expected_counts_met": true
+  },
+  "ready_for_stronger_city_level_inference": true,
+  "ready_for_all_theme_city_level_inference": false
+}

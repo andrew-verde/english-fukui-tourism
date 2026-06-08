@@ -1,0 +1,477 @@
+# Friction Codebook — Focused Friction Analysis
+#
+# Each code has a label, type (friction or nudge), and a keyword list.
+# Keywords use word-boundary matching (case-insensitive).
+# Multi-word phrases are supported (e.g. "far from").
+# Edit this file freely — it is the only source of truth for code tagging.
+#
+# Design principle: precision over recall.
+# False positives (positive reviews tagged as friction) are more damaging
+# than missed friction mentions in a small-sample exploratory analysis.
+#
+# Types:
+#   friction — points of difficulty or unmet expectation
+#   nudge    — positive signals, promotional opportunities, or easy-win gaps
+
+friction_codes:
+
+  transport_access:
+    label: "Transport / Access"
+    type: friction
+    keywords:
+      - no bus
+      - no train
+      - no direct
+      - no direct route
+      - infrequent bus
+      - infrequent train
+      - limited service
+      - hard to get to
+      - difficult to get to
+      - hard to get here
+      - hard to get there
+      - hard to reach
+      - difficult to reach
+      - difficult to access
+      - hard to access
+      - remote location
+      - far from station
+      - far from the station
+      - far from town
+      - no public transport
+      - no public transportation
+      - need a car
+      - rent a car
+      - car rental required
+      - inconvenient transport
+      - inconvenient access
+      - transportation is limited
+      - transportation issue
+      - transportation && limited
+      - transportation && schedule
+      - bus && limited
+      - bus && infrequent
+      - bus && interval
+      - bus && schedule
+      - next bus
+      - taxi && service area
+      - taxi && pick you up
+      - walk all the way back
+      - getting here is
+      - getting there is
+
+  wayfinding_signage:
+    label: "Wayfinding / Signage"
+    type: friction
+    keywords:
+      - no signs
+      - no sign
+      - no signage
+      - no signpost
+      - poorly marked
+      - not well signed
+      - hard to find
+      - difficult to find
+      - confusing directions
+      - unclear directions
+      - no directions
+      - no map available
+      - easy to get lost
+      - got lost
+      - we got lost
+      - difficult to navigate
+      - hard to navigate
+
+  english_information_gap:
+    label: "English Information Gap"
+    type: friction
+    keywords:
+      - no english
+      - japanese only
+      - only in japanese
+      - all in japanese
+      - no english sign
+      - no english signs
+      - no english information
+      - no english guide
+      - no english menu
+      - no translation
+      - language barrier
+      - can't read
+      - cannot read
+      - couldn't read
+      - not in english
+      - information only in japanese
+      - no english speaking
+      - doesn't speak english
+      - don't speak english
+
+  staff_communication:
+    label: "Staff Communication"
+    type: friction
+    keywords:
+      - rude staff
+      - unhelpful staff
+      - unfriendly staff
+      - dismissive staff
+      - rude employee
+      - unhelpful employee
+      - staff was rude
+      - staff were rude
+      - staff is rude
+      - staff not helpful
+      - staff ignored
+      - staff couldn't help
+      - couldn't communicate with staff
+      - language problem with staff
+      - staff doesn't speak english
+      - staff don't speak english
+
+  booking_ticketing:
+    label: "Booking / Ticketing"
+    type: friction
+    keywords:
+      - sold out
+      - fully booked
+      - cash only
+      - no card
+      - card not accepted
+      - no credit card
+      - must book in advance
+      - need to book in advance
+      - advance booking required
+      - reservation required
+      - must reserve
+      - difficult to book
+      - hard to book
+      - couldn't book
+      - no online booking
+      - no reservation system
+      - book tickets before
+      - book online before
+
+  waiting_crowding:
+    label: "Waiting / Crowding"
+    type: friction
+    keywords:
+      - long wait
+      - long queue
+      - queue up
+      - queuing
+      - long line
+      - wait for a long
+      - wait for hours
+      - had to wait
+      - crowded
+      - too crowded
+      - very crowded
+      - extremely crowded
+      - overcrowded
+      - gets very crowded
+      - gets crowded
+      - quite crowded
+      - always crowded
+      - too many people
+      - packed
+      - shoulder to shoulder
+      - overtourism
+      - congestion
+      - impossible to move
+      - busy && too
+      - busy && very
+      - delay && hours
+      - delayed && hours
+
+  price_value:
+    label: "Price / Value"
+    type: friction
+    keywords:
+      - expensive
+      - overpriced
+      - pricey
+      - not worth the price
+      - not worth the cost
+      - poor value
+      - costs too much
+      - too expensive
+      - steep price
+      - overcharged
+      - rip off
+      - rip-off
+      - not worth the money
+      - not worth going
+      - too much for what it is
+      - entrance fee is high
+      - entry fee is high
+      - admission is high
+      - admission is expensive
+      - tourist trap
+      - waste your time
+      - don't waste your time
+      - do not waste your time
+
+  cleanliness_comfort:
+    label: "Cleanliness / Comfort"
+    type: friction
+    keywords:
+      - dirty
+      - unclean
+      - filthy
+      - smelly
+      - bad smell
+      - foul smell
+      - poor maintenance
+      - run down
+      - dilapidated
+      - shabby
+      - poorly maintained
+      - needs maintenance
+      - no shelter
+      - no seating
+      - no shade
+      - no benches
+      - toilets were dirty
+      - bathrooms were dirty
+      - restrooms were dirty
+      - bathroom was dirty
+
+  opening_hours_availability:
+    label: "Opening Hours / Availability"
+    type: friction
+    keywords:
+      - was closed
+      - were closed
+      - it was closed
+      - already closed
+      - shops were closed
+      - closed when we arrived
+      - closed when we got there
+      - closed during
+      - check hours
+      - verify hours
+      - wasn't open
+      - weren't open
+      - closes early
+      - closed early
+      - limited hours
+      - short hours
+      - only open certain days
+      - only open on
+      - seasonal closure
+      - off season
+      - closed until
+      - closed for renovation
+      - closed for maintenance
+      - closed because of
+      - closed for winter
+      - under construction
+      - under renovation
+      - can't go in
+      - cannot go in
+      - couldn't go in
+      - update google timing
+      - google && open && closed
+
+  itinerary_fit_time_cost:
+    label: "Itinerary Fit / Time & Cost"
+    type: friction
+    keywords:
+      - not enough to do
+      - not much to do
+      - nothing else nearby
+      - nothing else to do
+      - too short visit
+      - only takes a few minutes
+      - only 15 minutes
+      - only 20 minutes
+      - not worth a separate trip
+      - not worth the long journey
+      - long way for
+      - very long way
+      - too far to justify
+      - out of the way for just
+      - hard to justify
+      - nothing to see
+      - nothing more
+      - not worth visiting
+      - not worth the trip
+      - not worth the visit
+      - not all that interesting
+      - nothing special
+      - not much there
+      - not much things
+      - small display
+      - limited selection
+
+  accessibility_mobility:
+    label: "Accessibility / Mobility"
+    type: friction
+    keywords:
+      - not wheelchair
+      - no wheelchair access
+      - wheelchair difficult
+      - wheelchair not accessible
+      - not accessible for wheelchair
+      - many steps
+      - lots of steps
+      - very steep
+      - steep climb
+      - steep stairs
+      - stairs && steep
+      - stairs && steepest
+      - stairs && narrow
+      - uneven ground
+      - uneven path
+      - no elevator
+      - no lift
+      - difficult for elderly
+      - hard for elderly
+      - difficult for disabled
+      - not suitable for strollers
+      - hard with a stroller
+      - slippery
+      - slippery path
+      - rough terrain
+      - many stairs
+      - a lot of walking
+
+  food_amenities_gap:
+    label: "Food / Amenities Gap"
+    type: friction
+    keywords:
+      - no food options
+      - no food nearby
+      - no restaurants nearby
+      - no restaurant nearby
+      - nowhere to eat
+      - nothing to eat
+      - no cafe nearby
+      - no cafes nearby
+      - limited food options
+      - limited dining options
+      - no english menu
+      - no vegetarian options
+      - no vegan options
+      - bring your own food
+      - pack your own lunch
+      - no shops nearby
+      - no souvenir shop
+      - no amenities
+      - no facilities nearby
+      - no convenience store
+      - shops && closed down
+      - restaurants && closed
+      - food && limited
+      - merchandise && outdated
+
+nudge_codes:
+
+  scenic_value:
+    label: "Scenic Value"
+    type: nudge
+    keywords:
+      - beautiful
+      - stunning
+      - gorgeous
+      - breathtaking
+      - spectacular
+      - incredible view
+      - amazing view
+      - great view
+      - lovely view
+      - scenery
+      - scenic
+      - landscape
+      - picturesque
+      - photogenic
+      - must see
+
+  worthwhile_destination:
+    label: "Worthwhile Destination"
+    type: nudge
+    keywords:
+      - worth it
+      - worth the trip
+      - worth a visit
+      - worth visiting
+      - highly recommend
+      - strongly recommend
+      - don't miss
+      - must visit
+      - must go
+      - hidden gem
+      - underrated
+      - underestimated
+      - pleasantly surprised
+      - better than expected
+      - exceeded expectations
+      - highly recommended
+
+  friendly_service:
+    label: "Friendly Service"
+    type: nudge
+    keywords:
+      - friendly staff
+      - helpful staff
+      - kind staff
+      - welcoming staff
+      - great staff
+      - lovely staff
+      - excellent service
+      - wonderful service
+      - good service
+      - very helpful
+      - very friendly
+      - very welcoming
+      - hospitality was great
+      - hospitality was excellent
+      - polite staff
+      - courteous staff
+
+  underpromoted_feature:
+    label: "Underpromoted Feature"
+    type: nudge
+    keywords:
+      - hidden gem
+      - lesser known
+      - not well known
+      - under the radar
+      - few tourists
+      - not crowded
+      - off the beaten path
+      - off the beaten track
+      - secret spot
+      - authentic experience
+      - local experience
+      - not touristy
+      - away from the crowds
+
+  easy_if_guided:
+    label: "Easy if Guided"
+    type: nudge
+    keywords:
+      - guided tour
+      - tour guide
+      - with a guide
+      - local guide
+      - hire a guide
+      - join a tour
+      - group tour
+      - better with a guide
+      - recommend a guide
+      - tour makes it easy
+
+  good_for_itinerary_bundle:
+    label: "Good for Itinerary Bundle"
+    type: nudge
+    keywords:
+      - combine with
+      - combined with
+      - pair with
+      - on the way to
+      - same day as
+      - also visit
+      - while you're in
+      - day trip from
+      - easy day trip
+      - great day trip

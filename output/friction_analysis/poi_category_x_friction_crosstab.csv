@@ -1,0 +1,8 @@
+,transport_access,wayfinding_signage,english_information_gap,staff_communication,booking_ticketing,waiting_crowding,price_value,cleanliness_comfort,opening_hours_availability,itinerary_fit_time_cost,accessibility_mobility,food_amenities_gap
+castle_historic,4,0,0,0,0,18,7,0,8,6,5,0
+food_dining,0,0,0,0,0,1,1,0,1,1,0,0
+market_shopping,0,0,1,1,0,2,4,0,0,2,0,0
+museum_cultural,0,0,2,0,1,3,3,0,10,0,2,0
+nature_scenic,2,1,0,0,0,2,2,1,4,0,1,0
+other,0,0,0,0,0,0,0,0,0,0,0,0
+temple_shrine,5,1,4,0,0,1,0,1,1,2,2,1
