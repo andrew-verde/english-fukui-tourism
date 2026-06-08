@@ -1,0 +1,211 @@
+# Japanese FTAS friction codebook.
+#
+# Codes intentionally mirror config/friction_codebook.yaml so official Japanese
+# survey friction can be compared with English Google-review friction.
+# Keyword matching is substring-based, not word-boundary-based.
+
+friction_codes:
+
+  transport_access:
+    label: "Transport / Access"
+    type: friction
+    keywords:
+      - アクセスが悪
+      - 交通の便が悪
+      - 交通が不便
+      - 公共交通
+      - バスが少な
+      - バスの本数
+      - 電車が少な
+      - 便が少な
+      - 本数が少な
+      - 乗り継ぎ
+      - 遠い
+      - 行きにく
+      - 車がない
+      - 車でないと
+      - 駅から遠
+      - 移動が大変
+      - タクシーが少な
+      - タクシーがつかまら
+      - タクシー待ち
+
+  wayfinding_signage:
+    label: "Wayfinding / Signage"
+    type: friction
+    keywords:
+      - 案内がわかりにく
+      - 案内表示
+      - 表示がわかりにく
+      - 看板
+      - 標識
+      - 道案内
+      - 道がわかりにく
+      - 迷った
+      - 場所がわかりにく
+      - 入口がわかりにく
+      - 地図
+
+  english_information_gap:
+    label: "English Information Gap"
+    type: friction
+    keywords:
+      - 英語
+      - 外国語
+      - 多言語
+      - 翻訳
+      - インバウンド
+      - 外国人向け
+      - 外国人対応
+
+  staff_communication:
+    label: "Staff Communication"
+    type: friction
+    keywords:
+      - 接客が悪
+      - 接客に不満
+      - 対応が悪
+      - スタッフの対応
+      - 店員の対応
+      - 職員の対応
+      - 説明不足
+      - 不親切
+      - 態度が悪
+      - 案内不足
+
+  booking_ticketing:
+    label: "Booking / Ticketing"
+    type: friction
+    keywords:
+      - 予約でき
+      - 予約が取れ
+      - 予約が必要
+      - チケットが買え
+      - 入場券が買え
+      - 売り切れ
+      - 満席
+      - 事前予約
+      - 現金のみ
+      - キャッシュレス未対応
+      - クレジットが使え
+      - 支払いが不便
+      - 決済が不便
+
+  waiting_crowding:
+    label: "Waiting / Crowding"
+    type: friction
+    keywords:
+      - 混雑
+      - 混んで
+      - 人が多
+      - 行列
+      - 待ち時間
+      - 待った
+      - 並ん
+      - 渋滞
+      - 駐車場待ち
+      - 長蛇
+
+  price_value:
+    label: "Price / Value"
+    type: friction
+    keywords:
+      - 料金が高
+      - 値段が高
+      - 価格が高
+      - 割高
+      - コスパが悪
+      - 入場料が高
+      - 駐車料金が高
+      - 有料なの
+      - 費用が高
+
+  cleanliness_comfort:
+    label: "Cleanliness / Comfort"
+    type: friction
+    keywords:
+      - 汚い
+      - 不衛生
+      - 清潔でない
+      - 清潔感がない
+      - トイレが汚
+      - トイレが少な
+      - 臭い
+      - 暑すぎ
+      - 寒すぎ
+      - 休憩
+      - ベンチが少な
+      - 日陰がない
+      - 雨宿りでき
+      - 施設が古
+      - 老朽
+
+  opening_hours_availability:
+    label: "Opening Hours / Availability"
+    type: friction
+    keywords:
+      - 休み
+      - 休館
+      - 定休日
+      - 閉まって
+      - 営業時間
+      - 時間が短
+      - 早く閉
+      - 開いていな
+      - 利用できな
+      - 中止
+
+  itinerary_fit_time_cost:
+    label: "Itinerary Fit / Time & Cost"
+    type: friction
+    keywords:
+      - 時間が足り
+      - 時間がかか
+      - 見るものが少な
+      - 何もない
+      - 周辺に何も
+      - ついでに行きにく
+      - 効率が悪
+      - 日程が組みにく
+      - 予定が立てにく
+      - 回りにく
+
+  accessibility_mobility:
+    label: "Accessibility / Mobility"
+    type: friction
+    keywords:
+      - 階段
+      - 段差
+      - 坂
+      - 急な坂
+      - 急階段
+      - バリアフリー
+      - 車椅子
+      - ベビーカー
+      - 高齢者
+      - 足が悪
+      - 歩きにく
+      - 滑り
+      - 狭い
+
+  food_amenities_gap:
+    label: "Food / Amenities Gap"
+    type: friction
+    keywords:
+      - 飲食店が少な
+      - 飲食店がない
+      - 食事するところが少な
+      - 食事するところがない
+      - 食べるところが少な
+      - 食べるところがない
+      - レストランが少な
+      - レストランがない
+      - カフェが少な
+      - カフェがない
+      - 売店が少な
+      - 売店がない
+      - お土産が少な
+      - コンビニがない
+      - 施設が少な
+      - 店が少な
+      - 店舗が少な
