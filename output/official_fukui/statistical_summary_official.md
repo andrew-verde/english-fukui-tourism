@@ -1,7 +1,7 @@
 # Official Fukui Data Statistical Summary
 
 ## Method Notes
-- Official-data analysis is separate from the English-language Google Places review analysis.
+- Official-data analysis is separate from the English-language Google Maps review analysis.
 - Unit of analysis is one FTAS survey respondent unless a test is explicitly labeled as reservation/day context.
 - English reviewer friction and Japanese tourist survey friction are compared descriptively because they come from different sampling frames and languages.
 - Reviewer nationality is not inferred.

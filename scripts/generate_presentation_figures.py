@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-generate_presentation_figures.py — Generate presentation-ready slides.
+generate_presentation_figures.py — Generate presentation figure files.
 
 Reads tagged_mentions.csv, reviews_unified.csv, top_excerpts_by_code.csv,
 nudge_opportunity_table.csv, and config/friction_codebook.yaml.
 
 Writes to output/friction_analysis/presentation_figures/:
-  slide1_diverging.png       Fukui frequency difference vs Kanazawa/Toyama baseline
-  slide2_heatmap.png         Full city × code heatmap (count + %)
-  slide3_sentiment.png       VADER sentiment violin + strip by city
-  slide4_excerpts.png        Top friction quote examples (Fukui-first)
-  slide5_nudge_table.png     Evidence-ranked nudge candidate table (codes with n>=1 only)
+  fukui_frequency_difference.png  Fukui frequency difference vs Kanazawa/Toyama baseline
+  city_friction_heatmap.png       Full city × code heatmap (count + %)
+  sentiment_distribution.png      VADER sentiment violin + strip by city
+  friction_quote_examples.png     Top friction quote examples (Fukui-first)
+  nudge_opportunity_table.png     Evidence-ranked nudge candidate table (codes with n>=1 only)
   fukui_frequency_comparison.csv  Fukui vs baseline rates + delta
 
 All rates are sentence-level (denominator = total sentences per city).
@@ -107,9 +107,9 @@ def _build_pct_tables(mentions, friction_codes):
     return ct, pct, city_n
 
 
-# ── Slide 1: Diverging bar — Fukui vs baseline ────────────────────────────────
+# ── Figure: Diverging bar — Fukui vs baseline ────────────────────────────────
 
-def slide1_diverging(mentions, friction_codes, city_n):
+def figure_frequency_difference(mentions, friction_codes, city_n):
     baseline = (
         pd.Series({c: 0.0 for c in friction_codes})
         if not any(c in mentions.columns for c in friction_codes)
@@ -150,7 +150,7 @@ def slide1_diverging(mentions, friction_codes, city_n):
     )
 
     if not SHOW:
-        logger.warning("No codes with non-zero delta — slide 1 will be empty")
+        logger.warning("No codes with non-zero delta — frequency-difference figure will be empty")
         return None, None
 
     # Write comparison CSV
@@ -222,15 +222,15 @@ def slide1_diverging(mentions, friction_codes, city_n):
              "Interpret directionally — sample size not sufficient for statistical inference.",
              fontsize=8.5, color="#64748b", transform=fig.transFigure)
 
-    out = PRES_DIR / "slide1_diverging.png"
+    out = PRES_DIR / "fukui_frequency_difference.png"
     plt.savefig(out, bbox_inches="tight", facecolor="white")
     plt.close()
     return out, FRICTION_DIR / "fukui_frequency_comparison.csv"
 
 
-# ── Slide 2: Heatmap — count + % dual annotation ─────────────────────────────
+# ── Figure: Heatmap — count + % dual annotation ─────────────────────────────
 
-def slide2_heatmap(ct, pct, city_n):
+def figure_heatmap(ct, pct, city_n):
     display_ct  = ct.rename(columns=LABELS)
     display_pct = pct.rename(columns=LABELS)
     display_ct.index = [DISPLAY_PLACE.get(c, c) for c in display_ct.index]
@@ -260,15 +260,15 @@ def slide2_heatmap(ct, pct, city_n):
     )
     plt.tight_layout(rect=[0, 0.10, 1, 1])
     fig.text(0.01, 0.02, n_str, fontsize=9, color="#64748b", transform=fig.transFigure)
-    out = PRES_DIR / "slide2_heatmap.png"
+    out = PRES_DIR / "city_friction_heatmap.png"
     plt.savefig(out, bbox_inches="tight", facecolor="white")
     plt.close()
     return out
 
 
-# ── Slide 3: Sentiment violin + strip ────────────────────────────────────────
+# ── Figure: Sentiment violin + strip ────────────────────────────────────────
 
-def slide3_sentiment(reviews, city_n_reviews):
+def figure_sentiment(reviews, city_n_reviews):
     fig, ax = plt.subplots(figsize=(9, 6))
     parts = ax.violinplot(
         [reviews[reviews.city == c]["vader_compound"].values for c in CITIES],
@@ -304,15 +304,15 @@ def slide3_sentiment(reviews, city_n_reviews):
     ax.set_title("Sentiment skews positive across all prefectures", fontweight="bold", pad=12)
     ax.set_ylim(-1.05, 1.1)
     plt.tight_layout()
-    out = PRES_DIR / "slide3_sentiment.png"
+    out = PRES_DIR / "sentiment_distribution.png"
     plt.savefig(out, bbox_inches="tight", facecolor="white")
     plt.close()
     return out
 
 
-# ── Slide 4: Top friction excerpts ───────────────────────────────────────────
+# ── Figure: Top friction excerpts ───────────────────────────────────────────
 
-def slide4_excerpts(mentions, friction_codes, city_n):
+def figure_excerpts(mentions, friction_codes, city_n):
     # Top codes by Fukui absolute count, then by total
     fukui_counts = {
         code: int(mentions[mentions.city == "Fukui"][code].sum() if code in mentions.columns else 0)
@@ -329,7 +329,7 @@ def slide4_excerpts(mentions, friction_codes, city_n):
     )[:5]
 
     if not top5:
-        logger.warning("No friction hits — skipping excerpts slide")
+        logger.warning("No friction hits — skipping excerpts figure")
         return None
 
     quote_rows = []
@@ -368,24 +368,24 @@ def slide4_excerpts(mentions, friction_codes, city_n):
              "Quotes are illustrative keyword matches, not representative samples.",
              fontsize=9, color="#94a3b8")
     plt.tight_layout()
-    out = PRES_DIR / "slide4_excerpts.png"
+    out = PRES_DIR / "friction_quote_examples.png"
     plt.savefig(out, bbox_inches="tight", facecolor="white")
     plt.close()
     return out
 
 
-# ── Slide 5: Nudge opportunity table (evidence ≥ 1 only) ─────────────────────
+# ── Figure: Nudge opportunity table (evidence ≥ 1 only) ─────────────────────
 
-def slide5_nudge_table():
+def figure_nudge_table():
     if not NUDGE_CSV.exists():
-        logger.warning(f"nudge_opportunity_table.csv not found — skipping slide 5")
+        logger.warning(f"nudge_opportunity_table.csv not found — skipping nudge-opportunity figure")
         return None
 
     nudge_df = pd.read_csv(NUDGE_CSV)
     # Show only codes with evidence (evidence_count >= 1)
     show = nudge_df[nudge_df["evidence_count"] >= 1].sort_values("evidence_count", ascending=False)
     if show.empty:
-        logger.warning("No nudge rows with evidence >= 1 — skipping slide 5")
+        logger.warning("No nudge rows with evidence >= 1 — skipping nudge-opportunity figure")
         return None
 
     show = show[["friction_label", "likely_journey_stage", "possible_nudge_type",
@@ -427,7 +427,7 @@ def slide5_nudge_table():
              "Codes with zero evidence omitted. Interpret directionally.",
              fontsize=8.5, color="#64748b")
     plt.tight_layout()
-    out = PRES_DIR / "slide5_nudge_table.png"
+    out = PRES_DIR / "nudge_opportunity_table.png"
     plt.savefig(out, bbox_inches="tight", facecolor="white")
     plt.close()
     return out
@@ -440,7 +440,7 @@ def main():
     PRES_DIR.mkdir(parents=True, exist_ok=True)
 
     logger.info("=" * 55)
-    logger.info("Generate presentation figures (slides 1–5)")
+    logger.info("Generate presentation figures")
     logger.info("=" * 55)
 
     codebook       = load_codebook(CODEBOOK_PATH)
@@ -456,21 +456,21 @@ def main():
 
     ct, pct, city_n = _build_pct_tables(mentions, friction_codes)
 
-    out1, comp_csv = slide1_diverging(mentions, friction_codes, city_n)
+    out1, comp_csv = figure_frequency_difference(mentions, friction_codes, city_n)
     if out1:
         logger.info(f"  Saved: {out1}")
 
-    out2 = slide2_heatmap(ct, pct, city_n)
+    out2 = figure_heatmap(ct, pct, city_n)
     logger.info(f"  Saved: {out2}")
 
-    out3 = slide3_sentiment(reviews, city_n_reviews)
+    out3 = figure_sentiment(reviews, city_n_reviews)
     logger.info(f"  Saved: {out3}")
 
-    out4 = slide4_excerpts(mentions, friction_codes, city_n)
+    out4 = figure_excerpts(mentions, friction_codes, city_n)
     if out4:
         logger.info(f"  Saved: {out4}")
 
-    out5 = slide5_nudge_table()
+    out5 = figure_nudge_table()
     if out5:
         logger.info(f"  Saved: {out5}")
 

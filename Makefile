@@ -2,7 +2,7 @@ PYTHON = .venv/bin/python3
 
 .PHONY: help friction-all deep-review-all official-all fetch-fukui-data fetch-comparison-data fetch-google-maps-reviews fetch-metadata \
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
-        build-ftas multilingual-reviews stats-official synth-official validate-japanese-tags slides stats synth sample-readiness test
+        build-ftas multilingual-reviews stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test
 
 help:
 	@echo ""
@@ -21,6 +21,7 @@ help:
 	@echo "  make tag-codes               Tag reviews + mentions with friction codes"
 	@echo "  make summarize               Generate summary CSVs and plots"
 	@echo "  make sample-readiness        Audit sample size/statistical readiness"
+	@echo "  make presentation-figures    Generate presentation figure files"
 	@echo "  make stats                   Run SR statistical validation"
 	@echo "  make synth                   Generate output/statistical_summary.md"
 	@echo "  make multilingual-reviews    Build cached Japanese/other-language review comparison suite"
@@ -81,7 +82,7 @@ tag-codes:
 summarize:
 	$(PYTHON) scripts/generate_friction_summaries.py
 
-slides:
+presentation-figures:
 	$(PYTHON) scripts/generate_presentation_figures.py
 
 stats:
