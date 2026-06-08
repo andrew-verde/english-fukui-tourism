@@ -4,11 +4,12 @@ generate_keyword_wordcloud.py — Build a ranked keyword panel + word cloud figu
 
 Reads:
   output/friction_analysis/reviews_unified.csv
+  output/multilingual_review_analysis/tagged_reviews_multilingual.csv
 
 Writes:
   output/friction_analysis/figures/google_places_keyword_wordcloud_<city>.png
   output/friction_analysis/figures/english_review_keyword_wordcloud_<city>.png
-  output/official_fukui/japanese_kanko_keyword_wordcloud_<scope>.png
+  output/friction_analysis/figures/japanese_review_keyword_wordcloud_<city>.png
 
 Usage:
     .venv/bin/python3 scripts/generate_keyword_wordcloud.py
@@ -20,33 +21,65 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import sys
+import tempfile
 from pathlib import Path
+
+os.environ.setdefault("MPLCONFIGDIR", os.path.join(tempfile.gettempdir(), "matplotlib"))
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.analysis.keyword_cloud import generate_japanese_tourism_keyword_cloud_report, generate_keyword_cloud_report
+from src.analysis.keyword_cloud import generate_keyword_cloud_report, generate_review_language_keyword_cloud_report
 from src.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 INPUT_CSV = ROOT_DIR / "output" / "friction_analysis" / "reviews_unified.csv"
-OFFICIAL_CSV = ROOT_DIR / "output" / "official_fukui" / "official_surveys_tagged_combined.csv"
+MULTILINGUAL_CSV = ROOT_DIR / "output" / "multilingual_review_analysis" / "tagged_reviews_multilingual.csv"
 FIGURES_DIR = ROOT_DIR / "output" / "friction_analysis" / "figures"
-OFFICIAL_DIR = ROOT_DIR / "output" / "official_fukui"
-JAPANESE_TEXT_COLUMNS = [
-    "transport_satisfaction_reason",
-    "overall_satisfaction_reason",
-    "product_service_satisfaction_reason",
-    "inconvenience_text",
-    "facility_needs",
-    "fukui_needs",
-    "prefecture_needs",
-    "recommendation_reason",
-    "visited_before_free_text",
-    "planned_after_free_text",
-]
+
+
+def _as_white_rgb(image: np.ndarray) -> np.ndarray:
+    if image.ndim == 2:
+        return np.repeat(image[..., None], 3, axis=2)
+    if image.shape[2] == 3:
+        return image
+    rgb = image[..., :3]
+    alpha = image[..., 3:4]
+    return rgb * alpha + (1.0 - alpha)
+
+
+def merge_keyword_cloud_panels(paths: list[Path], output_path: Path, gutter_px: int = 28) -> Path:
+    """Stack already-rendered keyword cloud panels into one white-background PNG."""
+    panels = [_as_white_rgb(plt.imread(path)) for path in paths]
+    if not panels:
+        raise ValueError("At least one keyword cloud panel is required.")
+
+    max_width = max(panel.shape[1] for panel in panels)
+    padded_panels = []
+    for panel in panels:
+        if panel.shape[1] == max_width:
+            padded_panels.append(panel)
+            continue
+        left = (max_width - panel.shape[1]) // 2
+        right = max_width - panel.shape[1] - left
+        padded_panels.append(np.pad(panel, ((0, 0), (left, right), (0, 0)), constant_values=1.0))
+
+    gutter = np.ones((gutter_px, max_width, 3), dtype=padded_panels[0].dtype)
+    merged_parts = []
+    for idx, panel in enumerate(padded_panels):
+        if idx:
+            merged_parts.append(gutter)
+        merged_parts.append(panel)
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    plt.imsave(output_path, np.vstack(merged_parts))
+    return output_path
 
 
 def parse_args() -> argparse.Namespace:
@@ -80,18 +113,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--comparison-clouds",
         action="store_true",
-        help="Also generate English-review and Japanese kanko-survey overall keyword clouds.",
+        help="Also generate separate English- and Japanese-language Google review keyword clouds.",
     )
     parser.add_argument(
-        "--official-csv",
+        "--multilingual-csv",
         type=Path,
-        default=OFFICIAL_CSV,
-        help="Combined official kanko survey CSV used for the Japanese keyword cloud.",
-    )
-    parser.add_argument(
-        "--official-prefecture",
-        default="",
-        help="Optional official survey_prefecture filter, e.g. Fukui or Ishikawa. Empty uses all official rows.",
+        default=MULTILINGUAL_CSV,
+        help="Review-level multilingual CSV used for English/Japanese comparison clouds.",
     )
     return parser.parse_args()
 
@@ -135,29 +163,31 @@ def main() -> None:
 
     if args.comparison_clouds:
         city_slug = "all_cities" if city is None else city.strip().lower().replace(" ", "_")
-        official_scope = args.official_prefecture.strip()
-        official_slug = official_scope.lower().replace(" ", "_") if official_scope else "fukui_ishikawa"
 
         english_output = FIGURES_DIR / f"english_review_keyword_wordcloud_{city_slug}.png"
-        japanese_output = OFFICIAL_DIR / f"japanese_kanko_keyword_wordcloud_{official_slug}.png"
+        japanese_output = FIGURES_DIR / f"japanese_review_keyword_wordcloud_{city_slug}.png"
 
-        english_ranked, english_path = generate_keyword_cloud_report(
-            input_csv=args.input_csv,
+        english_ranked, english_path = generate_review_language_keyword_cloud_report(
+            input_csv=args.multilingual_csv,
             output_path=english_output,
+            language_group="english",
+            title="ENGLISH GOOGLE REVIEWS（英語グーグルレビュー）",
+            subtitle="WORD CLOUD（ワードクラウド）",
             city=city,
-            source_platform=args.source_platform or None,
+            source_platform="google",
             top_n=args.top_n,
             cloud_terms=args.cloud_terms,
             min_frequency=args.min_frequency,
             seed=args.seed,
         )
-        japanese_ranked, japanese_path = generate_japanese_tourism_keyword_cloud_report(
-            input_csv=args.official_csv,
+        japanese_ranked, japanese_path = generate_review_language_keyword_cloud_report(
+            input_csv=args.multilingual_csv,
             output_path=japanese_output,
-            title="JAPANESE KANKO SURVEY",
-            subtitle="KEYWORD CLOUD（キーワードクラウド）",
-            text_cols=JAPANESE_TEXT_COLUMNS,
-            prefecture=official_scope or None,
+            language_group="japanese",
+            title="JAPANESE GOOGLE REVIEWS（日本語グーグルレビュー）",
+            subtitle="WORD CLOUD（ワードクラウド）",
+            city=city,
+            source_platform="google",
             top_n=args.top_n,
             cloud_terms=args.cloud_terms,
             min_frequency=args.min_frequency,
@@ -167,9 +197,9 @@ def main() -> None:
         logger.info(f"Saved English review keyword cloud: {english_path}")
         if english_ranked.empty:
             logger.warning("No English review keywords were found after filtering.")
-        logger.info(f"Saved Japanese kanko keyword cloud: {japanese_path}")
+        logger.info(f"Saved Japanese review keyword cloud: {japanese_path}")
         if japanese_ranked.empty:
-            logger.warning("No Japanese kanko keywords were found after filtering.")
+            logger.warning("No Japanese review keywords were found after filtering.")
     logger.info("=" * 55)
 
 

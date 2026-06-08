@@ -31,13 +31,13 @@ plt.rcParams["font.sans-serif"] = [
 
 KEYWORD_STOPWORDS = set(ENGLISH_STOP_WORDS) | {
     "actually", "also", "amazing", "area", "around", "beautifully", "better",
-    "came", "definitely", "did", "does", "don", "early", "enjoy", "excellent",
+    "came", "come", "comes", "coming", "definitely", "did", "does", "don", "early", "enjoy", "excellent",
     "experience", "feel", "felt", "free", "good", "google", "great", "highly",
     "inside", "interesting", "it's", "just", "like", "little", "local", "lot",
-    "lots", "love", "loved", "main", "make", "nice", "people", "perfect",
-    "pretty", "quite", "recommend", "recommended", "really", "review", "right",
-    "small", "spot", "stop", "super", "sure", "temple", "things", "think",
-    "time", "traditional", "ve", "way", "went", "worth",
+    "location", "look", "lots", "love", "loved", "main", "make", "making", "nice", "people", "perfect",
+    "pretty", "quite", "real", "recommend", "recommended", "really", "review", "right",
+    "shop", "shops", "small", "special", "spot", "stop", "super", "sure", "temple", "things", "think",
+    "time", "traditional", "ve", "walk", "walking", "way", "went", "work", "worth", "years",
 }
 
 GENERIC_SINGLE_TERMS = {
@@ -204,28 +204,74 @@ JAPANESE_CATEGORY_DEFINITIONS = [
 JAPANESE_CATEGORY_PRIORITY = [item["label"] for item in JAPANESE_CATEGORY_DEFINITIONS]
 JAPANESE_CATEGORY_LOOKUP = {item["label"]: item for item in JAPANESE_CATEGORY_DEFINITIONS}
 WORD_JA_LABELS = {
+    "access": "アクセス",
+    "admission": "入場",
+    "art": "美術",
+    "atmosphere": "雰囲気",
+    "autumn": "秋",
     "beautiful": "美しい",
+    "bus": "バス",
+    "cafe": "カフェ",
     "castle": "城",
     "cherry": "桜",
+    "cliff": "崖",
+    "closed": "閉館",
+    "coast": "海岸",
+    "crab": "カニ",
     "crowded": "混雑",
+    "culture": "文化",
+    "delicious": "美味しい",
     "dinosaur": "恐竜",
     "echizen": "越前",
     "english": "英語",
     "entrance": "入口",
     "exhibit": "展示",
+    "fee": "料金",
+    "fish": "魚",
     "food": "食",
+    "fossil": "化石",
     "friendly": "親切",
     "fukui": "福井",
     "garden": "庭園",
     "ground": "境内",
     "history": "歴史",
     "information": "案内",
+    "kanazawa": "金沢",
     "katsuyama": "勝山",
     "knife": "刃物",
+    "landscape": "風景",
     "large": "大規模",
+    "market": "市場",
+    "modern": "近代的",
+    "mountain": "山",
+    "museum": "博物館",
+    "nature": "自然",
+    "ocean": "海",
+    "parking": "駐車場",
+    "photo": "写真",
+    "restaurant": "飲食店",
+    "river": "川",
+    "samurai": "侍",
+    "sea": "海",
+    "scenic": "景色",
+    "shrine": "神社",
+    "sign": "看板",
     "snow": "雪",
+    "soba": "そば",
+    "souvenir": "お土産",
+    "staff": "スタッフ",
+    "station": "駅",
+    "stone": "石",
+    "stunning": "絶景",
+    "ticket": "チケット",
+    "tojinbo": "東尋坊",
+    "toyama": "富山",
+    "train": "電車",
+    "transport": "交通",
     "tsuruga": "敦賀",
     "view": "眺望",
+    "village": "村",
+    "washi": "和紙",
     "winter": "冬",
 }
 
@@ -652,11 +698,21 @@ def extract_japanese_tourism_keyword_frequencies(
     return df[["rank", "term", "display", "translation", "count", "percentage"]]
 
 
+def _english_term_translation(term: str) -> str:
+    normalized = term.lower().strip()
+    if normalized in WORD_JA_LABELS:
+        return WORD_JA_LABELS[normalized]
+    translated_parts = [WORD_JA_LABELS.get(part, "") for part in normalized.split()]
+    if translated_parts and all(translated_parts):
+        return "・".join(translated_parts)
+    return ""
+
+
 def _display_term(term: str) -> str:
     base = term.title()
-    ja = WORD_JA_LABELS.get(term.lower())
+    ja = _english_term_translation(term)
     if ja:
-        return f"{base} {ja}"
+        return f"{base}\n({ja})"
     return base
 
 
@@ -1025,6 +1081,71 @@ def generate_japanese_tourism_keyword_cloud_report(
         review_count=len(df),
         seed=seed,
         japanese_first=True,
+    )
+    return table_df, report_path
+
+
+def generate_review_language_keyword_cloud_report(
+    input_csv: Path,
+    output_path: Path,
+    *,
+    language_group: str,
+    title: str,
+    subtitle: str,
+    city: str | None = "Fukui",
+    source_platform: str | None = "google",
+    top_n: int = 10,
+    cloud_terms: int = 18,
+    min_frequency: int = 2,
+    seed: int = 7,
+) -> tuple[pd.DataFrame, Path]:
+    reviews_df = pd.read_csv(input_csv, low_memory=False)
+    required_cols = {"review_text", "language_group"}
+    missing_cols = required_cols - set(reviews_df.columns)
+    if missing_cols:
+        raise ValueError(f"Expected columns in {input_csv}: {sorted(missing_cols)}")
+    if city and "city" in reviews_df.columns:
+        reviews_df = reviews_df[reviews_df["city"].fillna("").str.casefold() == city.casefold()]
+    if source_platform and "source_platform" in reviews_df.columns:
+        reviews_df = reviews_df[
+            reviews_df["source_platform"].fillna("").str.casefold().str.contains(source_platform.casefold(), regex=False)
+        ]
+
+    reviews_df = reviews_df[
+        reviews_df["language_group"].fillna("").str.casefold() == language_group.casefold()
+    ].copy()
+    texts = reviews_df["review_text"].fillna("").astype(str).str.strip()
+    reviews_df = reviews_df[texts.ne("")].copy()
+
+    if language_group.casefold() == "japanese":
+        clean_texts = reviews_df["review_text"].fillna("").astype(str)
+        ranked_df = extract_japanese_tourism_keyword_frequencies(
+            clean_texts,
+            top_k=max(top_n, cloud_terms),
+            min_frequency=min_frequency,
+        )
+        table_df = summarize_japanese_topic_categories(clean_texts, top_n=top_n)
+        cloud_df = ranked_df.head(cloud_terms)
+        japanese_first = True
+    else:
+        table_df = summarize_topic_categories(reviews_df, top_n=top_n)
+        keyword_df = extract_keyword_frequencies(
+            reviews_df,
+            top_k=max(top_n, cloud_terms),
+            min_frequency=min_frequency,
+        )
+        cloud_df = keyword_df.head(cloud_terms)
+        japanese_first = False
+
+    report_path = render_keyword_cloud_report(
+        ranked_df=table_df,
+        cloud_df=cloud_df,
+        output_path=output_path,
+        title=title,
+        subtitle=subtitle,
+        review_count=len(reviews_df),
+        seed=seed,
+        japanese_first=japanese_first,
     )
     return table_df, report_path
 

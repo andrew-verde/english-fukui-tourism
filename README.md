@@ -1,10 +1,13 @@
 # Fukui Tourism Friction Analysis
 
-Thesis research pipeline for identifying recurring friction points in English-language Google Maps reviews across three Japanese cities: **Fukui**, **Kanazawa**, and **Toyama**.
+Research pipeline for a master's thesis on tourism friction in Fukui Prefecture after the 2024 Hokuriku Shinkansen extension.
 
-Research goal: identify low-cost, actionable nudge opportunities for improving the inbound tourism experience in Fukui Prefecture following the 2024 Hokuriku Shinkansen extension.
+The project combines two evidence layers:
 
-> **Analytical framing:** This is a mixed-source observational thesis pipeline. English Google Maps reviews support exploratory content analysis and review-level statistical checks; sentence-level friction-code rates remain descriptive because the matched counts are sparse. The official FTAS / Code for Fukui survey layer is the main statistically powered evidence base. Neither layer supports causal claims.
+- English-language Google Maps reviews for Fukui, Kanazawa, and Toyama, used for exploratory content analysis and review-level checks.
+- Official FTAS / Code for Fukui survey data, used as the main statistically powered comparison layer.
+
+The analysis is observational. It identifies recurring friction themes and possible low-cost nudge opportunities, but it does not estimate causal effects.
 
 ---
 
@@ -89,19 +92,26 @@ make official-all
 make test
 ```
 
-## Public Review Notes
+## Data Snapshot and Audit Trail
 
-This repository is safe to describe as a master's thesis research pipeline, not as a production tourism product or causal impact evaluation.
+Current generated outputs use `REVIEW_DATE_CUTOFF=2024-06-01`.
 
-For professors or classmates reviewing the code:
+- English review dataset: 915 rows after language/date filtering and city-text deduplication.
+- Sentence-level mentions: 3,130 rows.
+- Official FTAS dataset: 95,422 Fukui respondent rows.
+- Combined official comparison dataset: 121,064 Fukui + Ishikawa respondent rows.
 
-- Current English-review outputs are regenerated with `REVIEW_DATE_CUTOFF=2024-06-01`.
-- Current unified English-review dataset: 915 rows after language/date filtering and city-text deduplication.
-- Current sentence-level mention dataset: 3,130 mentions.
-- Current official FTAS survey dataset: 95,422 Fukui respondent rows; combined Fukui + Ishikawa comparison dataset: 121,064 respondent rows.
-- Reviewer nationality is never inferred. Use "English-language reviewers," "Japanese-language reviews," or "official Japanese tourist survey respondents" depending on the source.
-- `output/statistical_summary.md`, `output/statistical_test_explanations.md`, `output/review_sample_readiness.md`, and `output/official_fukui/statistical_summary_official.md` are the fastest public-facing audit trail for methods and caveats.
-- Raw checkpoints, row-level review/comment files, reviewer names, full review text, manual validation samples, and presentation-generation workspaces under `outputs/` are intentionally gitignored for public sharing. They can be regenerated locally from the scripts when credentials and cached sources are available.
+Reviewer nationality is not inferred from Google review data. Source labels should stay at the level the data supports: English-language reviews, Japanese-language reviews, or official Japanese tourist survey respondents.
+
+The main method trail is:
+
+- `output/statistical_summary.md`
+- `output/statistical_test_explanations.md`
+- `output/review_sample_readiness.md`
+- `output/official_fukui/statistical_summary_official.md`
+- `output/official_fukui/thesis_readiness_assessment.md`
+
+Raw checkpoints, row-level review/comment files, reviewer names, full review text, manual validation samples, and presentation-generation workspaces under `outputs/` are gitignored. They can be regenerated locally from the scripts when credentials and cached sources are available.
 
 ---
 
