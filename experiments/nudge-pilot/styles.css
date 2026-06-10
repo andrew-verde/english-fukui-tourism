@@ -185,6 +185,11 @@ button {
   font-weight: 700;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
 button.primary {
   background: var(--accent);
   color: white;

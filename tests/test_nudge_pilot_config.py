@@ -3,6 +3,7 @@ from pathlib import Path
 
 
 CONFIG = Path(__file__).resolve().parent.parent / "experiments" / "nudge-pilot" / "study-config.json"
+PILOT_DIR = Path(__file__).resolve().parent.parent / "experiments" / "nudge-pilot"
 
 
 def test_nudge_pilot_config_has_sem_constructs():
@@ -41,3 +42,21 @@ def test_nudge_pilot_avoids_direct_identifiers():
     assert "name" not in background_ids
     assert "email" not in background_ids
     assert "phone" not in background_ids
+
+
+def test_nudge_pilot_vercel_supabase_scaffold_exists():
+    assert (PILOT_DIR / "api" / "health.js").exists()
+    assert (PILOT_DIR / "api" / "submit.js").exists()
+    assert (PILOT_DIR / "database" / "supabase-schema.sql").exists()
+    assert (PILOT_DIR / ".env.example").exists()
+    assert (PILOT_DIR / "vercel.json").exists()
+
+
+def test_nudge_pilot_keeps_service_role_out_of_browser_code():
+    app_js = (PILOT_DIR / "app.js").read_text(encoding="utf-8")
+    schema = (PILOT_DIR / "database" / "supabase-schema.sql").read_text(encoding="utf-8")
+
+    assert "SUPABASE_SERVICE_ROLE_KEY" not in app_js
+    assert "enable row level security" in schema
+    assert "deny anonymous reads" in schema
+    assert "deny anonymous writes" in schema
