@@ -1,10 +1,13 @@
 const STORAGE_KEY = "fukui_nudge_pilot_sessions";
 const CURRENT_KEY = "fukui_nudge_pilot_current";
+const API_HEALTH_ENDPOINT = "/api/health";
+const API_SUBMIT_ENDPOINT = "/api/submit";
 
 let config;
 let state;
 let stepIndex = 0;
 let stepStartedAt = Date.now();
+let remoteApiAvailable = false;
 
 const app = document.getElementById("app");
 const stepLabel = document.getElementById("stepLabel");
@@ -25,6 +28,7 @@ init();
 
 async function init() {
   config = await fetch("study-config.json").then((response) => response.json());
+  remoteApiAvailable = await checkRemoteApi();
   state = loadCurrentState() || createState();
   stepIndex = state.stepIndex || 0;
   render();
@@ -45,6 +49,12 @@ function createState() {
     surveys: {},
     final: {},
     events: [],
+    remote_submission: {
+      status: "not_started",
+      submitted_at: "",
+      response_id: "",
+      message: ""
+    },
     stepIndex: 0
   };
 }
@@ -276,21 +286,28 @@ function renderFinalQuestions() {
     </div>
   `;
   bindBack();
-  document.getElementById("nextBtn").addEventListener("click", () => {
+  document.getElementById("nextBtn").addEventListener("click", async () => {
     const errors = collectQuestions(config.final_questions, state.final);
     if (errors.length) {
       showErrors(errors);
       return;
     }
+    const button = document.getElementById("nextBtn");
+    button.disabled = true;
+    button.textContent = "Saving...";
     state.completed_at = new Date().toISOString();
     logEvent("study_complete", {});
     persistCompletedSession();
+    await submitCurrentSession();
     nextStep();
   });
 }
 
 function renderExport() {
   const sessions = loadCompletedSessions();
+  const remote = state.remote_submission || {};
+  const remoteStatus = getRemoteStatusText(remote);
+  const remoteClass = remote.status === "submitted" ? "success" : "muted";
   app.innerHTML = `
     <h2>Study Complete</h2>
     <p class="success">Response saved in this browser.</p>
@@ -298,15 +315,25 @@ function renderExport() {
     <table class="status-table">
       <tr><th>Session ID</th><td>${escapeHtml(state.session_id)}</td></tr>
       <tr><th>Condition</th><td>${escapeHtml(getCondition().label)}</td></tr>
+      <tr><th>Database status</th><td class="${remoteClass}">${escapeHtml(remoteStatus)}</td></tr>
       <tr><th>Completed sessions in browser</th><td>${sessions.length}</td></tr>
     </table>
     <div class="button-row">
+      <button class="secondary" id="retryBtn">Retry Database Save</button>
       <button class="secondary" id="jsonBtn">Download JSON</button>
       <button class="secondary" id="csvBtn">Download CSV</button>
       <button class="danger" id="resetBtn">Start New Participant</button>
     </div>
   `;
 
+  document.getElementById("retryBtn").addEventListener("click", async () => {
+    const retryButton = document.getElementById("retryBtn");
+    retryButton.disabled = true;
+    retryButton.textContent = "Retrying...";
+    remoteApiAvailable = await checkRemoteApi();
+    await submitCurrentSession({ force: true });
+    renderExport();
+  });
   document.getElementById("jsonBtn").addEventListener("click", () => {
     downloadFile("fukui_nudge_pilot_sessions.json", JSON.stringify(sessions, null, 2), "application/json");
   });
@@ -319,6 +346,97 @@ function renderExport() {
     stepIndex = 0;
     render();
   });
+}
+
+async function checkRemoteApi() {
+  if (!window.location.protocol.startsWith("http")) return false;
+  try {
+    const response = await fetch(API_HEALTH_ENDPOINT, {
+      method: "GET",
+      headers: { "Accept": "application/json" },
+      cache: "no-store"
+    });
+    if (!response.ok) return false;
+    const result = await response.json();
+    return result.status === "ok" && result.storage_configured === true;
+  } catch (_error) {
+    return false;
+  }
+}
+
+async function submitCurrentSession(options = {}) {
+  if (!state.completed_at) return;
+  const remote = state.remote_submission || {};
+  if (remote.status === "submitted" && !options.force) return;
+
+  if (!remoteApiAvailable) {
+    state.remote_submission = {
+      status: "local_only",
+      submitted_at: "",
+      response_id: "",
+      message: "No configured Vercel API was detected. Local export remains available."
+    };
+    persistCompletedSession();
+    return;
+  }
+
+  state.remote_submission = {
+    status: "pending",
+    submitted_at: "",
+    response_id: "",
+    message: "Submitting response to database."
+  };
+  persistCompletedSession();
+
+  try {
+    const response = await fetch(API_SUBMIT_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ session: state })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.ok !== true) {
+      throw new Error(result.error || `Database save failed with HTTP ${response.status}`);
+    }
+    state.remote_submission = {
+      status: "submitted",
+      submitted_at: new Date().toISOString(),
+      response_id: result.response_id || "",
+      message: "Saved to Supabase."
+    };
+  } catch (error) {
+    state.remote_submission = {
+      status: "failed",
+      submitted_at: "",
+      response_id: "",
+      message: error instanceof Error ? error.message : "Database save failed."
+    };
+  }
+  persistCompletedSession();
+}
+
+function getRemoteStatusText(remote) {
+  if (!remote || !remote.status || remote.status === "not_started") {
+    return "Not submitted yet.";
+  }
+  if (remote.status === "submitted") {
+    return remote.response_id
+      ? `Saved to Supabase (${remote.response_id}).`
+      : "Saved to Supabase.";
+  }
+  if (remote.status === "local_only") {
+    return remote.message || "Local-only mode. No database API detected.";
+  }
+  if (remote.status === "pending") {
+    return "Submitting to database.";
+  }
+  if (remote.status === "failed") {
+    return `Database save failed: ${remote.message || "unknown error"}`;
+  }
+  return remote.message || remote.status;
 }
 
 function renderQuestion(question, source) {
@@ -498,7 +616,9 @@ function flattenSession(session) {
     session_id: session.session_id,
     assigned_condition: session.assigned_condition,
     started_at: session.started_at,
-    completed_at: session.completed_at
+    completed_at: session.completed_at,
+    remote_submission_status: session.remote_submission?.status || "",
+    remote_submission_response_id: session.remote_submission?.response_id || ""
   };
   Object.entries(session.background || {}).forEach(([key, value]) => {
     row[`background_${key}`] = value;
