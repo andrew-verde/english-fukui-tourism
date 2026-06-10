@@ -54,6 +54,9 @@ def test_sem_suite_writes_expected_outputs(tmp_path):
 
     readiness = json.loads((tmp_path / "readiness_report.json").read_text(encoding="utf-8"))
     assert readiness["n_participants"] == 5
+    assert readiness["n_sem_eligible_participants"] == 5
+    assert readiness["sem_eligible_participant_rate"] == 1.0
+    assert readiness["ineligible_participants"] == 0
     assert readiness["minimum_sem_status"] == "pilot_only"
     assert readiness["expected_task_rows"] == 10
     assert readiness["complete_task_row_rate"] == 1.0

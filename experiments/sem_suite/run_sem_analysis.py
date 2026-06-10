@@ -591,7 +591,9 @@ def mediation_table(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def readiness_report(df: pd.DataFrame, reliability: pd.DataFrame, config: dict[str, Any]) -> dict[str, Any]:
+def readiness_report(
+    df: pd.DataFrame, reliability: pd.DataFrame, config: dict[str, Any], eligibility: pd.DataFrame | None = None
+) -> dict[str, Any]:
     n_participants = int(df["session_id"].nunique()) if "session_id" in df.columns else 0
     n_task_rows = int(df.shape[0])
     expected_task_rows = n_participants * len(config.get("task_ids", []))
@@ -606,8 +608,23 @@ def readiness_report(df: pd.DataFrame, reliability: pd.DataFrame, config: dict[s
     minimum_participants = int(config.get("minimum_participants_for_sem", 300))
     n_constructs = len(config.get("constructs", {}))
     n_indicators = sum(len(construct.get("item_suffixes", [])) for construct in config.get("constructs", {}).values())
+    n_sem_eligible = (
+        int(eligibility["sem_eligible"].fillna(False).sum())
+        if eligibility is not None and "sem_eligible" in eligibility.columns
+        else n_participants
+    )
+    ineligible_reasons: dict[str, int] = {}
+    if eligibility is not None and "exclusion_reasons" in eligibility.columns:
+        for reason_group in eligibility["exclusion_reasons"].dropna():
+            for reason in str(reason_group).split(";"):
+                if reason:
+                    ineligible_reasons[reason] = ineligible_reasons.get(reason, 0) + 1
     return {
         "n_participants": n_participants,
+        "n_sem_eligible_participants": n_sem_eligible,
+        "sem_eligible_participant_rate": n_sem_eligible / n_participants if n_participants else math.nan,
+        "ineligible_participants": n_participants - n_sem_eligible,
+        "ineligible_reasons": ineligible_reasons,
         "n_task_rows": n_task_rows,
         "expected_task_rows": expected_task_rows,
         "complete_task_row_rate": n_task_rows / expected_task_rows if expected_task_rows else math.nan,
@@ -673,7 +690,7 @@ def run_analysis(input_path: Path, output_dir: Path, config_path: Path = DEFAULT
     paths = path_coefficients(eligible_rows, config)
     participant_paths = path_coefficients(participant_scores, config) if not participant_scores.empty else pd.DataFrame()
     mediation = mediation_table(eligible_rows, config)
-    readiness = readiness_report(analysis_rows, reliability, config)
+    readiness = readiness_report(analysis_rows, reliability, config, eligibility)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     analysis_rows.to_csv(output_dir / "sem_analysis_rows.csv", index=False)
@@ -714,6 +731,8 @@ def write_markdown_summary(path: Path, readiness: dict[str, Any], reliability: p
         "# SEM Pilot Analysis Summary",
         "",
         f"- Participants: {readiness['n_participants']}",
+        f"- SEM-eligible participants: {readiness['n_sem_eligible_participants']} ({readiness['sem_eligible_participant_rate']:.1%})",
+        f"- Ineligible participants: {readiness['ineligible_participants']}",
         f"- Task-level rows: {readiness['n_task_rows']}",
         f"- Complete task-row rate: {readiness['complete_task_row_rate']:.1%}",
         f"- SEM status: `{readiness['minimum_sem_status']}`",
@@ -724,6 +743,12 @@ def write_markdown_summary(path: Path, readiness: dict[str, Any], reliability: p
     ]
     for condition, count in readiness["condition_counts"].items():
         lines.append(f"- {condition}: {count}")
+    lines.extend(["", "## Eligibility Issues", ""])
+    if readiness.get("ineligible_reasons"):
+        for reason, count in readiness["ineligible_reasons"].items():
+            lines.append(f"- {reason}: {count}")
+    else:
+        lines.append("- No eligibility exclusions detected.")
     lines.extend(["", "## Scale Reliability", ""])
     for _, row in reliability.iterrows():
         alpha = row.get("cronbach_alpha")
