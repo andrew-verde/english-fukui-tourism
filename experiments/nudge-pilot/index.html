@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fukui Nudge Pilot Study</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="study-header" aria-label="Study progress">
+        <div>
+          <p class="eyebrow">Pilot experiment</p>
+          <h1>Fukui Tourism Planning Study</h1>
+        </div>
+        <div class="progress-wrap">
+          <div id="stepLabel" class="step-label">Loading</div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="app" class="panel" aria-live="polite"></section>
+    </main>
+
+    <template id="likertTemplate">
+      <fieldset class="likert-row">
+        <legend></legend>
+        <div class="likert-options" role="radiogroup"></div>
+        <div class="scale-anchors">
+          <span>Strongly disagree</span>
+          <span>Strongly agree</span>
+        </div>
+      </fieldset>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
