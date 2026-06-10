@@ -2,7 +2,7 @@ PYTHON = .venv/bin/python3
 
 .PHONY: help friction-all deep-review-all official-all fetch-fukui-data fetch-comparison-data fetch-google-maps-reviews fetch-metadata \
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
-        build-ftas multilingual-reviews stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test
+        build-ftas multilingual-reviews stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve
 
 help:
 	@echo ""
@@ -39,6 +39,7 @@ help:
 	@echo ""
 	@echo "Tests:"
 	@echo "  make test                    Run pytest"
+	@echo "  make nudge-pilot-serve       Serve the standalone nudge pilot app on localhost:8765"
 	@echo ""
 
 # Run full analysis pipeline (assumes google_fukui.json already exists)
@@ -110,3 +111,6 @@ validate-japanese-tags:
 
 test:
 	$(PYTHON) -m pytest tests/ -v
+
+nudge-pilot-serve:
+	python3 -m http.server 8765 --directory experiments/nudge-pilot

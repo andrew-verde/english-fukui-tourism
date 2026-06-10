@@ -1,0 +1,200 @@
+{
+  "study_id": "fukui_nudge_pilot_v1",
+  "version": "2026-06-10",
+  "conditions": [
+    {
+      "id": "control",
+      "label": "Control",
+      "description": "Baseline destination information without an explicit friction-reduction nudge."
+    },
+    {
+      "id": "transport_access",
+      "label": "Transport Access Nudge",
+      "description": "Adds route, travel-time, frequency, and transfer guidance."
+    },
+    {
+      "id": "opening_hours_availability",
+      "label": "Opening Hours Nudge",
+      "description": "Adds availability, seasonal closure, and check-before-visit cues."
+    },
+    {
+      "id": "itinerary_fit_time_cost",
+      "label": "Itinerary Fit Nudge",
+      "description": "Adds realistic half-day planning, sequencing, and time-cost guidance."
+    },
+    {
+      "id": "combined",
+      "label": "Combined Nudge",
+      "description": "Combines transport, availability, and itinerary-fit guidance."
+    }
+  ],
+  "background_questions": [
+    {
+      "id": "primary_language",
+      "label": "Primary language",
+      "type": "select",
+      "options": ["English", "Japanese", "Other"]
+    },
+    {
+      "id": "japan_travel_experience",
+      "label": "Prior travel experience in Japan",
+      "type": "select",
+      "options": ["None", "Once", "2-3 trips", "4+ trips", "Live/lived in Japan"]
+    },
+    {
+      "id": "fukui_familiarity",
+      "label": "Familiarity with Fukui Prefecture",
+      "type": "select",
+      "options": ["Not familiar", "Heard of it", "Somewhat familiar", "Very familiar"]
+    },
+    {
+      "id": "public_transit_confidence",
+      "label": "Confidence using public transit in unfamiliar places",
+      "type": "likert",
+      "anchors": ["Not confident", "Very confident"]
+    },
+    {
+      "id": "planning_style",
+      "label": "Typical travel planning style",
+      "type": "select",
+      "options": ["Plan in detail", "Plan key stops only", "Decide during the trip", "Prefer guided tours"]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "eiheiji_half_day",
+      "poi_name": "Eiheiji Temple",
+      "city": "Fukui",
+      "prompt": "You are planning a half-day visit from Fukui Station to Eiheiji Temple. Decide whether this destination fits your itinerary and choose a basic plan.",
+      "baseline": {
+        "title": "Eiheiji Temple",
+        "body": [
+          "Eiheiji Temple is a major Zen Buddhist temple in Fukui Prefecture.",
+          "The temple grounds include historic buildings, forested paths, and quiet indoor areas.",
+          "Visitors usually spend time walking through the main temple complex and surrounding grounds."
+        ]
+      },
+      "nudges": {
+        "transport_access": [
+          "Transit note: From Fukui Station, plan for a train or bus connection plus local transfer time. Service may be less frequent outside peak periods.",
+          "Planning cue: Check the return connection before departure and avoid leaving the return trip undecided."
+        ],
+        "opening_hours_availability": [
+          "Availability note: Check current entry hours before departure. Some temple areas may close earlier than general grounds.",
+          "Planning cue: Use official site hours and the latest Google Maps hours together before committing to a late-afternoon visit."
+        ],
+        "itinerary_fit_time_cost": [
+          "Itinerary cue: Treat this as a half-day stop, not a quick add-on. Leave buffer time for transfers, walking, and return travel.",
+          "Planning cue: Pair with nearby or same-corridor stops instead of placing it between distant attractions."
+        ]
+      },
+      "decision_options": [
+        "Yes, I would include it in a half-day itinerary",
+        "Maybe, but only with more information",
+        "No, I would skip it for this itinerary"
+      ],
+      "accuracy_question": {
+        "label": "Which planning issue matters most for this task?",
+        "options": ["Transit and timing feasibility", "Hotel check-in policy", "Currency exchange", "Weather forecast only"],
+        "correct": "Transit and timing feasibility"
+      }
+    },
+    {
+      "id": "museum_arrival",
+      "poi_name": "Fukui Prefectural Dinosaur Museum",
+      "city": "Fukui",
+      "prompt": "You are deciding whether to visit the Fukui Prefectural Dinosaur Museum during a short stay. Decide what information you would need before committing.",
+      "baseline": {
+        "title": "Fukui Prefectural Dinosaur Museum",
+        "body": [
+          "The Fukui Prefectural Dinosaur Museum is a major museum attraction with exhibits, fossils, and family-oriented displays.",
+          "Visitors often combine the museum with other activities in the surrounding area.",
+          "The museum can be a destination anchor for visitors interested in science, families, and indoor attractions."
+        ]
+      },
+      "nudges": {
+        "transport_access": [
+          "Transit note: Confirm the route from Fukui Station before departure. The museum is not a simple station-adjacent walk.",
+          "Planning cue: Use a route plan with departure and return times rather than relying on a general map estimate."
+        ],
+        "opening_hours_availability": [
+          "Availability note: Confirm current opening days, timed-entry rules, and ticket availability before travel.",
+          "Planning cue: Avoid assuming same-day entry if your schedule is tight or if visiting during a holiday period."
+        ],
+        "itinerary_fit_time_cost": [
+          "Itinerary cue: Use the museum as an anchor stop. Build the day around it instead of treating it as a short detour.",
+          "Planning cue: Account for travel time, admission flow, exhibit time, and return travel in one plan."
+        ]
+      },
+      "decision_options": [
+        "I would commit to visiting",
+        "I would keep it as optional",
+        "I would remove it from the plan"
+      ],
+      "accuracy_question": {
+        "label": "What should a careful visitor verify before committing?",
+        "options": ["Route, timing, and admission availability", "Only souvenir prices", "Only restaurant reviews", "Only photo spots"],
+        "correct": "Route, timing, and admission availability"
+      }
+    }
+  ],
+  "constructs": [
+    {
+      "id": "information_clarity",
+      "label": "Information Clarity",
+      "items": [
+        "The information was easy to understand.",
+        "The page made the visit requirements clear.",
+        "I knew what to check before visiting."
+      ]
+    },
+    {
+      "id": "perceived_friction",
+      "label": "Perceived Friction",
+      "items": [
+        "Planning this visit would require extra effort.",
+        "The visit seems logistically difficult.",
+        "I would feel uncertain about making this plan work."
+      ]
+    },
+    {
+      "id": "planning_confidence",
+      "label": "Planning Confidence",
+      "items": [
+        "I feel confident that I could plan this visit.",
+        "I understand the practical steps needed for this visit.",
+        "I could explain this plan to another traveler."
+      ]
+    },
+    {
+      "id": "visit_intention",
+      "label": "Visit Intention",
+      "items": [
+        "I would consider visiting this destination.",
+        "I would add this place to a Fukui itinerary.",
+        "I would recommend this destination to another traveler with similar interests."
+      ]
+    },
+    {
+      "id": "information_trust",
+      "label": "Information Trust",
+      "items": [
+        "The information felt reliable.",
+        "The page gave enough detail to support a travel decision.",
+        "I would trust this page as a starting point for planning."
+      ]
+    }
+  ],
+  "final_questions": [
+    {
+      "id": "most_helpful_information",
+      "label": "What information was most helpful for making your decisions?",
+      "type": "textarea"
+    },
+    {
+      "id": "remaining_uncertainty",
+      "label": "What uncertainty, if any, remained after the tasks?",
+      "type": "textarea"
+    }
+  ]
+}
