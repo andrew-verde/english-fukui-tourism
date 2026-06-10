@@ -151,6 +151,7 @@ output/official_fukui/official_surveys_tagged_combined.csv
 output/official_fukui/japanese_friction_validation_sample.csv
 outputs/
 experiments/nudge-pilot/exports/
+experiments/sem_suite/output/
 
 # IDE
 .vscode/settings.json

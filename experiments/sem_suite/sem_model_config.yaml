@@ -1,0 +1,78 @@
+study_id: fukui_nudge_pilot_v1
+task_ids:
+  - eiheiji_half_day
+  - museum_arrival
+
+condition_column: assigned_condition
+condition_reference: control
+condition_order:
+  - control
+  - transport_access
+  - opening_hours_availability
+  - itinerary_fit_time_cost
+  - combined
+
+constructs:
+  information_clarity:
+    label: Information Clarity
+    item_suffixes:
+      - information_clarity_1
+      - information_clarity_2
+      - information_clarity_3
+  perceived_friction:
+    label: Perceived Friction
+    item_suffixes:
+      - perceived_friction_1
+      - perceived_friction_2
+      - perceived_friction_3
+  planning_confidence:
+    label: Planning Confidence
+    item_suffixes:
+      - planning_confidence_1
+      - planning_confidence_2
+      - planning_confidence_3
+  visit_intention:
+    label: Visit Intention
+    item_suffixes:
+      - visit_intention_1
+      - visit_intention_2
+      - visit_intention_3
+  information_trust:
+    label: Information Trust
+    item_suffixes:
+      - information_trust_1
+      - information_trust_2
+      - information_trust_3
+
+path_model:
+  - outcome: information_clarity
+    predictors:
+      - condition
+      - background_public_transit_confidence
+      - background_fukui_familiarity
+  - outcome: perceived_friction
+    predictors:
+      - condition
+      - information_clarity
+      - background_public_transit_confidence
+  - outcome: planning_confidence
+    predictors:
+      - condition
+      - information_clarity
+      - perceived_friction
+      - information_trust
+  - outcome: visit_intention
+    predictors:
+      - condition
+      - information_clarity
+      - perceived_friction
+      - planning_confidence
+      - information_trust
+
+mediation_checks:
+  - name: clarity_to_intention_via_friction_confidence
+    x: information_clarity
+    mediator_1: perceived_friction
+    mediator_2: planning_confidence
+    y: visit_intention
+
