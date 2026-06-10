@@ -5,12 +5,21 @@ task_ids:
 
 condition_column: assigned_condition
 condition_reference: control
+cluster_column: session_id
 condition_order:
   - control
   - transport_access
   - opening_hours_availability
   - itinerary_fit_time_cost
   - combined
+
+minimum_participants_for_sem: 300
+pilot_participant_range:
+  - 20
+  - 30
+main_sample_note: >
+  Final SEM sample size should be justified with a Monte Carlo power simulation
+  for the chosen measurement and structural model before main data collection.
 
 constructs:
   information_clarity:
@@ -76,3 +85,27 @@ mediation_checks:
     mediator_2: planning_confidence
     y: visit_intention
 
+planned_contrasts:
+  - name: transport_access_vs_control
+    treatment: transport_access
+    reference: control
+    rationale: Transport-access nudge against baseline.
+  - name: opening_hours_availability_vs_control
+    treatment: opening_hours_availability
+    reference: control
+    rationale: Availability nudge against baseline.
+  - name: itinerary_fit_time_cost_vs_control
+    treatment: itinerary_fit_time_cost
+    reference: control
+    rationale: Itinerary-fit nudge against baseline.
+  - name: combined_vs_control
+    treatment: combined
+    reference: control
+    rationale: Full bundled intervention against baseline.
+  - name: combined_vs_single_nudges
+    treatment: combined
+    reference:
+      - transport_access
+      - opening_hours_availability
+      - itinerary_fit_time_cost
+    rationale: Combined nudge compared with the average single-nudge condition.

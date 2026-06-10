@@ -5,10 +5,12 @@ import pandas as pd
 
 from experiments.sem_suite.run_sem_analysis import (
     build_analysis_rows,
+    eligibility_table,
     load_config,
     load_response_export,
     run_analysis,
 )
+from experiments.sem_suite.generate_sem_path_figure import draw_figure
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -32,11 +34,16 @@ def test_sem_suite_writes_expected_outputs(tmp_path):
 
     expected = [
         "sem_analysis_rows.csv",
+        "participant_score_rows.csv",
+        "eligibility_report.csv",
         "scale_reliability.csv",
         "item_summary.csv",
         "construct_summary_by_condition_task.csv",
+        "missingness_report.csv",
+        "condition_balance.csv",
         "construct_correlations.csv",
         "path_coefficients.csv",
+        "participant_path_coefficients.csv",
         "mediation_precheck.csv",
         "readiness_report.json",
         "sem_summary.md",
@@ -48,7 +55,15 @@ def test_sem_suite_writes_expected_outputs(tmp_path):
     readiness = json.loads((tmp_path / "readiness_report.json").read_text(encoding="utf-8"))
     assert readiness["n_participants"] == 5
     assert readiness["minimum_sem_status"] == "pilot_only"
+    assert readiness["expected_task_rows"] == 10
+    assert readiness["complete_task_row_rate"] == 1.0
+    assert readiness["measurement_model_indicators"] == 15
+    assert "planned_contrasts" in readiness
     assert outputs.reliability["construct"].nunique() == 5
+    assert outputs.eligibility["sem_eligible"].all()
+    assert outputs.participant_scores.shape[0] == 5
+    assert outputs.missingness["scope"].isin(["item", "construct_by_group"]).all()
+    assert "condition_count" in set(outputs.condition_balance["scope"])
 
 
 def test_sem_suite_expands_supabase_flattened_column(tmp_path):
@@ -75,3 +90,37 @@ def test_sem_suite_expands_supabase_flattened_column(tmp_path):
 
     assert analysis.shape[0] == 10
     assert "visit_intention" in analysis.columns
+
+
+def test_sem_suite_flags_ineligible_participants():
+    config = load_config(CONFIG)
+    raw = load_response_export(FIXTURE)
+    raw.loc[0, "assigned_condition"] = "unexpected"
+    raw.loc[0, "survey_eiheiji_half_day_visit_intention_1"] = 9
+
+    eligibility = eligibility_table(raw, config)
+    first = eligibility[eligibility["session_id"] == "s1"].iloc[0]
+
+    assert not bool(first["sem_eligible"])
+    assert "unexpected_condition" in first["exclusion_reasons"]
+    assert "likert_out_of_range" in first["exclusion_reasons"]
+
+
+def test_sem_suite_generates_path_diagram(tmp_path):
+    outputs = run_analysis(FIXTURE, tmp_path, CONFIG)
+    config = load_config(CONFIG)
+    figure = tmp_path / "sem_path_diagram.png"
+
+    draw_figure(
+        outputs.path_coefficients,
+        outputs.reliability,
+        outputs.readiness,
+        config,
+        figure,
+        alpha=0.05,
+        title="Test SEM Diagram",
+    )
+
+    assert figure.exists()
+    assert figure.with_suffix(".svg").exists()
+    assert figure.stat().st_size > 0

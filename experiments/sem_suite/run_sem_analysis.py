@@ -34,11 +34,16 @@ DEFAULT_CONFIG = Path(__file__).with_name("sem_model_config.yaml")
 @dataclass
 class SemOutputs:
     analysis_rows: pd.DataFrame
+    participant_scores: pd.DataFrame
+    eligibility: pd.DataFrame
     reliability: pd.DataFrame
     item_summary: pd.DataFrame
     construct_summary: pd.DataFrame
+    missingness: pd.DataFrame
+    condition_balance: pd.DataFrame
     correlations: pd.DataFrame
     path_coefficients: pd.DataFrame
+    participant_path_coefficients: pd.DataFrame
     mediation: pd.DataFrame
     readiness: dict[str, Any]
 
@@ -161,6 +166,107 @@ def score_constructs(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
     return out
 
 
+def expected_item_columns(config: dict[str, Any], task_id: str | None = None) -> list[str]:
+    items = [item for construct in config["constructs"].values() for item in construct["item_suffixes"]]
+    if task_id is None:
+        return items
+    return [f"survey_{task_id}_{item}" for item in items]
+
+
+def eligibility_table(raw: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
+    """Participant-level eligibility checks before any SEM precheck."""
+    rows = []
+    task_ids = config["task_ids"]
+    condition_order = set(config.get("condition_order", []))
+    expected_study = config.get("study_id")
+
+    for _, participant in raw.iterrows():
+        reasons = []
+        session_id = participant.get("session_id")
+        assigned_condition = participant.get(config["condition_column"])
+        if not session_id:
+            reasons.append("missing_session_id")
+        if expected_study and participant.get("study_id") != expected_study:
+            reasons.append("unexpected_study_id")
+        if assigned_condition not in condition_order:
+            reasons.append("unexpected_condition")
+        completed_at = participant.get("completed_at")
+        if pd.isna(completed_at) or completed_at == "":
+            reasons.append("missing_completed_at")
+
+        completed_tasks = 0
+        complete_task_surveys = 0
+        out_of_range_items = 0
+        missing_items = 0
+        task_accuracy_values = []
+        for task_id in task_ids:
+            task_cols = [col for col in raw.columns if col.startswith(f"task_{task_id}_")]
+            survey_cols = expected_item_columns(config, task_id)
+            completed_tasks += int(any(pd.notna(participant.get(col)) and participant.get(col) != "" for col in task_cols))
+
+            task_values = []
+            for col in survey_cols:
+                value = pd.to_numeric(pd.Series([participant.get(col)]), errors="coerce").iloc[0]
+                task_values.append(value)
+                if pd.isna(value):
+                    missing_items += 1
+                elif value < 1 or value > 7:
+                    out_of_range_items += 1
+            complete_task_surveys += int(all(not pd.isna(value) for value in task_values))
+
+            accuracy_col = f"task_{task_id}_accuracy_correct"
+            if accuracy_col in raw.columns:
+                task_accuracy_values.append(str(participant.get(accuracy_col)).lower() in {"true", "1", "yes"})
+
+        if completed_tasks < len(task_ids):
+            reasons.append("missing_task_response")
+        if complete_task_surveys < len(task_ids):
+            reasons.append("incomplete_task_survey")
+        if out_of_range_items:
+            reasons.append("likert_out_of_range")
+
+        rows.append(
+            {
+                "session_id": session_id,
+                "assigned_condition": assigned_condition,
+                "completed_tasks": completed_tasks,
+                "complete_task_surveys": complete_task_surveys,
+                "missing_likert_items": missing_items,
+                "out_of_range_likert_items": out_of_range_items,
+                "all_accuracy_correct": bool(task_accuracy_values) and all(task_accuracy_values),
+                "sem_eligible": len(reasons) == 0,
+                "exclusion_reasons": ";".join(reasons),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def participant_score_rows(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
+    """Average task-level construct scores to one row per participant."""
+    if "session_id" not in df.columns:
+        return pd.DataFrame()
+    construct_ids = [construct_id for construct_id in config["constructs"] if construct_id in df.columns]
+    rows = []
+    for session_id, group in df.groupby("session_id", dropna=False):
+        first = group.iloc[0]
+        row: dict[str, Any] = {
+            "session_id": session_id,
+            "assigned_condition": first.get("assigned_condition"),
+            "n_task_rows": int(group.shape[0]),
+        }
+        for col in group.columns:
+            if col.startswith("background_"):
+                row[col] = first.get(col)
+        for construct_id in construct_ids:
+            row[construct_id] = pd.to_numeric(group[construct_id], errors="coerce").mean()
+        if "task_accuracy_correct" in group.columns:
+            row["task_accuracy_rate"] = pd.to_numeric(group["task_accuracy_correct"], errors="coerce").mean()
+        if "task_time_on_task_ms" in group.columns:
+            row["task_time_on_task_ms_mean"] = pd.to_numeric(group["task_time_on_task_ms"], errors="coerce").mean()
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
 def cronbach_alpha(items_df: pd.DataFrame) -> float:
     clean = items_df.dropna()
     if clean.shape[0] < 2 or clean.shape[1] < 2:
@@ -223,6 +329,111 @@ def item_summary_table(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame
     return pd.DataFrame(rows)
 
 
+def missingness_table(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
+    rows = []
+    total_n = int(df.shape[0])
+    for construct_id, construct in config["constructs"].items():
+        for item in construct["item_suffixes"]:
+            if item not in df.columns:
+                rows.append(
+                    {
+                        "scope": "item",
+                        "construct": construct_id,
+                        "variable": item,
+                        "n": total_n,
+                        "n_missing": total_n,
+                        "pct_missing": 1.0 if total_n else math.nan,
+                    }
+                )
+                continue
+            series = pd.to_numeric(df[item], errors="coerce")
+            n_missing = int(series.isna().sum())
+            rows.append(
+                {
+                    "scope": "item",
+                    "construct": construct_id,
+                    "variable": item,
+                    "n": total_n,
+                    "n_missing": n_missing,
+                    "pct_missing": n_missing / total_n if total_n else math.nan,
+                }
+            )
+    group_cols = [col for col in ["assigned_condition", "task_id"] if col in df.columns]
+    for keys, group in df.groupby(group_cols, dropna=False) if group_cols else []:
+        key_values = keys if isinstance(keys, tuple) else (keys,)
+        label = ", ".join(f"{col}={value}" for col, value in zip(group_cols, key_values))
+        for construct_id in config["constructs"]:
+            if construct_id not in group.columns:
+                continue
+            series = pd.to_numeric(group[construct_id], errors="coerce")
+            n_missing = int(series.isna().sum())
+            rows.append(
+                {
+                    "scope": "construct_by_group",
+                    "construct": construct_id,
+                    "variable": label,
+                    "n": int(group.shape[0]),
+                    "n_missing": n_missing,
+                    "pct_missing": n_missing / group.shape[0] if group.shape[0] else math.nan,
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def condition_balance_table(raw: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
+    condition_col = config["condition_column"]
+    if condition_col not in raw.columns:
+        return pd.DataFrame()
+    rows = []
+    participant_rows = raw.drop_duplicates("session_id") if "session_id" in raw.columns else raw
+    total_n = int(participant_rows.shape[0])
+    counts = participant_rows[condition_col].value_counts(dropna=False)
+    expected = total_n / max(len(config.get("condition_order", [])), 1)
+    for condition in config.get("condition_order", counts.index.tolist()):
+        count = int(counts.get(condition, 0))
+        rows.append(
+            {
+                "scope": "condition_count",
+                "variable": condition,
+                "level": condition,
+                "n": count,
+                "proportion": count / total_n if total_n else math.nan,
+                "expected_even_n": expected,
+                "difference_from_even_n": count - expected,
+            }
+        )
+    background_cols = [col for col in participant_rows.columns if col.startswith("background_")]
+    for background_col in background_cols:
+        numeric_values = pd.to_numeric(participant_rows[background_col], errors="coerce")
+        non_empty = participant_rows[background_col].notna() & (participant_rows[background_col] != "")
+        if non_empty.any() and numeric_values[non_empty].notna().all():
+            grouped = numeric_values.groupby(participant_rows[condition_col])
+            for condition, values in grouped:
+                rows.append(
+                    {
+                        "scope": "background_mean",
+                        "variable": background_col,
+                        "level": condition,
+                        "n": int(values.notna().sum()),
+                        "mean": values.mean(),
+                        "sd": values.std(ddof=1),
+                    }
+                )
+        else:
+            grouped = participant_rows.groupby([condition_col, background_col], dropna=False).size()
+            for (condition, level), count in grouped.items():
+                rows.append(
+                    {
+                        "scope": "background_level",
+                        "variable": background_col,
+                        "level": f"{condition}:{level}",
+                        "n": int(count),
+                        "proportion": count / total_n if total_n else math.nan,
+                    }
+                )
+    return pd.DataFrame(rows)
+
+
 def construct_summary_table(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
     rows = []
     group_cols = ["assigned_condition", "task_id"]
@@ -281,18 +492,35 @@ def path_coefficients(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
             continue
         y = pd.to_numeric(model_df[outcome], errors="coerce")
         x = sm.add_constant(model_df[predictor_cols], has_constant="add")
-        fitted = sm.OLS(y, x).fit(cov_type="HC3")
+        cluster_col = "__cluster_group"
+        n_clusters = int(model_df[cluster_col].nunique()) if cluster_col in model_df.columns else 0
+        if n_clusters >= len(predictor_cols) + 2:
+            fitted = sm.OLS(y, x).fit(cov_type="cluster", cov_kwds={"groups": model_df[cluster_col]})
+            covariance = "cluster_session"
+        else:
+            fitted = sm.OLS(y, x).fit(cov_type="HC3")
+            covariance = "HC3"
+        y_sd = y.std(ddof=1)
+        predictor_sds = model_df[predictor_cols].std(ddof=1)
         for predictor in fitted.params.index:
+            standardized_beta = math.nan
+            if predictor != "const" and y_sd and not pd.isna(y_sd):
+                x_sd = predictor_sds.get(predictor, math.nan)
+                if x_sd and not pd.isna(x_sd):
+                    standardized_beta = fitted.params[predictor] * (x_sd / y_sd)
             rows.append(
                 {
                     "outcome": outcome,
                     "predictor": predictor,
                     "n": int(fitted.nobs),
                     "coef": fitted.params[predictor],
-                    "std_err_hc3": fitted.bse[predictor],
+                    "standardized_beta": standardized_beta,
+                    "std_err": fitted.bse[predictor],
                     "t_value": fitted.tvalues[predictor],
                     "p_value": fitted.pvalues[predictor],
                     "r_squared": fitted.rsquared,
+                    "covariance": covariance,
+                    "n_clusters": n_clusters if n_clusters else math.nan,
                     "warning": "",
                 }
             )
@@ -306,6 +534,7 @@ def design_matrix(
     predictor_cols: list[str] = []
     condition_col = config["condition_column"]
     condition_reference = config.get("condition_reference", "control")
+    cluster_col = config.get("cluster_column", "session_id")
 
     for predictor in predictors:
         if predictor == "condition":
@@ -318,6 +547,8 @@ def design_matrix(
             series = pd.to_numeric(df[predictor], errors="coerce").rename(predictor)
             parts.append(series)
             predictor_cols.append(predictor)
+    if cluster_col in df.columns:
+        parts.append(df[cluster_col].rename("__cluster_group"))
     model_df = pd.concat(parts, axis=1).dropna()
     return model_df, predictor_cols
 
@@ -363,6 +594,7 @@ def mediation_table(df: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
 def readiness_report(df: pd.DataFrame, reliability: pd.DataFrame, config: dict[str, Any]) -> dict[str, Any]:
     n_participants = int(df["session_id"].nunique()) if "session_id" in df.columns else 0
     n_task_rows = int(df.shape[0])
+    expected_task_rows = n_participants * len(config.get("task_ids", []))
     condition_counts = (
         df.drop_duplicates("session_id")["assigned_condition"].value_counts(dropna=False).to_dict()
         if "session_id" in df.columns
@@ -371,23 +603,39 @@ def readiness_report(df: pd.DataFrame, reliability: pd.DataFrame, config: dict[s
     low_reliability = reliability[
         reliability["cronbach_alpha"].notna() & (reliability["cronbach_alpha"] < 0.7)
     ]["construct"].tolist()
+    minimum_participants = int(config.get("minimum_participants_for_sem", 300))
+    n_constructs = len(config.get("constructs", {}))
+    n_indicators = sum(len(construct.get("item_suffixes", [])) for construct in config.get("constructs", {}).values())
     return {
         "n_participants": n_participants,
         "n_task_rows": n_task_rows,
+        "expected_task_rows": expected_task_rows,
+        "complete_task_row_rate": n_task_rows / expected_task_rows if expected_task_rows else math.nan,
         "condition_counts": condition_counts,
         "constructs_below_alpha_0_70": low_reliability,
-        "minimum_sem_status": "pilot_only" if n_participants < 200 else "candidate_for_sem",
-        "recommended_next_sample_target": 200 if n_participants < 200 else 300,
+        "measurement_model_indicators": n_indicators,
+        "structural_constructs": n_constructs,
+        "minimum_sem_status": "pilot_only" if n_participants < minimum_participants else "candidate_for_sem",
+        "recommended_next_sample_target": minimum_participants if n_participants < minimum_participants else minimum_participants + 100,
+        "planned_contrasts": config.get("planned_contrasts", []),
         "notes": [
             "Use this as an initial SEM readiness pass, not final causal evidence.",
             "Inspect item distributions and reliability before fitting a full latent-variable SEM.",
+            "Task-level path prechecks use cluster-robust standard errors by participant when enough clusters are available.",
+            "Use participant-level rows as a sensitivity check for repeated-task non-independence.",
             "Keep item-level columns for lavaan/semopy; construct means are proxies for path prechecks.",
+            config.get("main_sample_note", ""),
         ],
     }
 
 
 def write_lavaan_spec(config: dict[str, Any], output_path: Path) -> None:
-    lines = ["# Measurement model"]
+    lines = [
+        "# Measurement model",
+        "# This scaffold assumes one row per participant-task.",
+        "# For final thesis SEM, choose either participant-level averaged rows,",
+        "# multilevel SEM, or task-specific latent factors with correlated residuals.",
+    ]
     for construct_id, construct in config["constructs"].items():
         lines.append(f"{construct_id} =~ " + " + ".join(construct["item_suffixes"]))
     lines.extend(["", "# Structural model"])
@@ -398,6 +646,8 @@ def write_lavaan_spec(config: dict[str, Any], output_path: Path) -> None:
         lines.append(f"{model['outcome']} ~ " + " + ".join(predictors))
     lines.append("")
     lines.append("# Replace condition_dummies with explicit dummy columns after export.")
+    lines.append("# Use WLSMV/ordinal indicators in lavaan if treating Likert items as ordered.")
+    lines.append("# Add cluster = session_id or an equivalent repeated-measures structure before final claims.")
     output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -405,21 +655,38 @@ def run_analysis(input_path: Path, output_dir: Path, config_path: Path = DEFAULT
     config = load_config(config_path)
     raw = load_response_export(input_path)
     analysis_rows = build_analysis_rows(raw, config)
+    eligibility = eligibility_table(raw, config)
+    if "session_id" in analysis_rows.columns and not eligibility.empty:
+        analysis_rows = analysis_rows.merge(
+            eligibility[["session_id", "sem_eligible", "exclusion_reasons"]],
+            on="session_id",
+            how="left",
+        )
+    eligible_rows = analysis_rows[analysis_rows["sem_eligible"].fillna(True)].copy() if "sem_eligible" in analysis_rows.columns else analysis_rows
+    participant_scores = participant_score_rows(eligible_rows, config)
     reliability = reliability_table(analysis_rows, config)
     item_summary = item_summary_table(analysis_rows, config)
     construct_summary = construct_summary_table(analysis_rows, config)
-    correlations = correlation_table(analysis_rows, config)
-    paths = path_coefficients(analysis_rows, config)
-    mediation = mediation_table(analysis_rows, config)
+    missingness = missingness_table(analysis_rows, config)
+    condition_balance = condition_balance_table(raw, config)
+    correlations = correlation_table(eligible_rows, config)
+    paths = path_coefficients(eligible_rows, config)
+    participant_paths = path_coefficients(participant_scores, config) if not participant_scores.empty else pd.DataFrame()
+    mediation = mediation_table(eligible_rows, config)
     readiness = readiness_report(analysis_rows, reliability, config)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     analysis_rows.to_csv(output_dir / "sem_analysis_rows.csv", index=False)
+    participant_scores.to_csv(output_dir / "participant_score_rows.csv", index=False)
+    eligibility.to_csv(output_dir / "eligibility_report.csv", index=False)
     reliability.to_csv(output_dir / "scale_reliability.csv", index=False)
     item_summary.to_csv(output_dir / "item_summary.csv", index=False)
     construct_summary.to_csv(output_dir / "construct_summary_by_condition_task.csv", index=False)
+    missingness.to_csv(output_dir / "missingness_report.csv", index=False)
+    condition_balance.to_csv(output_dir / "condition_balance.csv", index=False)
     correlations.to_csv(output_dir / "construct_correlations.csv", index=False)
     paths.to_csv(output_dir / "path_coefficients.csv", index=False)
+    participant_paths.to_csv(output_dir / "participant_path_coefficients.csv", index=False)
     mediation.to_csv(output_dir / "mediation_precheck.csv", index=False)
     (output_dir / "readiness_report.json").write_text(json.dumps(readiness, indent=2), encoding="utf-8")
     write_markdown_summary(output_dir / "sem_summary.md", readiness, reliability, paths)
@@ -427,11 +694,16 @@ def run_analysis(input_path: Path, output_dir: Path, config_path: Path = DEFAULT
 
     return SemOutputs(
         analysis_rows=analysis_rows,
+        participant_scores=participant_scores,
+        eligibility=eligibility,
         reliability=reliability,
         item_summary=item_summary,
         construct_summary=construct_summary,
+        missingness=missingness,
+        condition_balance=condition_balance,
         correlations=correlations,
         path_coefficients=paths,
+        participant_path_coefficients=participant_paths,
         mediation=mediation,
         readiness=readiness,
     )
@@ -443,7 +715,9 @@ def write_markdown_summary(path: Path, readiness: dict[str, Any], reliability: p
         "",
         f"- Participants: {readiness['n_participants']}",
         f"- Task-level rows: {readiness['n_task_rows']}",
+        f"- Complete task-row rate: {readiness['complete_task_row_rate']:.1%}",
         f"- SEM status: `{readiness['minimum_sem_status']}`",
+        f"- Recommended next sample target: {readiness['recommended_next_sample_target']}",
         "",
         "## Condition Counts",
         "",
@@ -461,7 +735,10 @@ def write_markdown_summary(path: Path, readiness: dict[str, Any], reliability: p
     else:
         model_rows = paths[paths["predictor"] != "__model__"] if "predictor" in paths.columns else paths
         lines.append(f"- Estimated coefficient rows: {len(model_rows)}")
-        lines.append("- See `path_coefficients.csv` for robust HC3 standard errors.")
+        lines.append("- See `path_coefficients.csv` for cluster-robust or HC3 standard errors.")
+    lines.extend(["", "## Planned Contrasts", ""])
+    for contrast in readiness.get("planned_contrasts", []):
+        lines.append(f"- {contrast['name']}: {contrast['rationale']}")
     lines.extend(["", "## Caveats", ""])
     for note in readiness["notes"]:
         lines.append(f"- {note}")
@@ -487,4 +764,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
