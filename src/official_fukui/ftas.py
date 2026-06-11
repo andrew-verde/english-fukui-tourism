@@ -20,6 +20,15 @@ SATISFACTION_MAP = {
 }
 
 VISIT_INTENT_MAP = {
+    # Actual FTAS response labels (行きたい scale). Residents (福井県在住) are
+    # deliberately unmapped -> NaN: "revisit" is not meaningful for locals.
+    "行きたくない": 1,
+    "あまり行きたいと思わない": 2,
+    "どちらともいえない": 3,
+    "機会があれば行きたい": 4,
+    "また行きたい（1年以内）": 5,
+    "また行きたい（１年以内）": 5,  # full-width variant
+    # Legacy agree-scale labels kept for older survey vintages.
     "全くそう思わない": 1,
     "そう思わない": 2,
     "どちらでもない": 3,
