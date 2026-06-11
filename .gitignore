@@ -180,3 +180,6 @@ AGENTS.md
 *.secret
 credentials.json
 config/credentials.json
+
+# Hokuriku merged microdata raw downloads (refetch via scripts/fetch_hokuriku_merged.py)
+output/hokuriku_merged/raw/

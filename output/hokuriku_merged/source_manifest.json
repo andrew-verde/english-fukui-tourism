@@ -1,0 +1,33 @@
+{
+  "license": "CC-BY 4.0. Attribution: 北陸インバウンド観光DX・データコンソーシアム (hokuriku-inbound-kanko/opendata); upstream sources: Fukui FTAS (CC-BY 4.0), Ishikawa QR survey (CC-BY 2.1 JP), Toyama CKAN (CC-BY).",
+  "files": [
+    {
+      "filename": "merged_survey_2023.csv",
+      "url": "https://raw.githubusercontent.com/hokuriku-inbound-kanko/opendata/main/output_merge/merged_survey_2023.csv",
+      "sha256": "298393e0dd050f9540ea8ecb026b179e066a610f45f84d65ab67af61edf7ae45",
+      "bytes": 15873712,
+      "fetched_at": "2026-06-11T10:52:13.125283+00:00"
+    },
+    {
+      "filename": "merged_survey_2024.csv",
+      "url": "https://raw.githubusercontent.com/hokuriku-inbound-kanko/opendata/main/output_merge/merged_survey_2024.csv",
+      "sha256": "dc06d1c5479b06b9b1c539937bcce8c77a8d1078790d4bb04677df4c40c64bbd",
+      "bytes": 28593010,
+      "fetched_at": "2026-06-11T10:52:16.689188+00:00"
+    },
+    {
+      "filename": "merged_survey_2025.csv",
+      "url": "https://raw.githubusercontent.com/hokuriku-inbound-kanko/opendata/main/output_merge/merged_survey_2025.csv",
+      "sha256": "d59e85f5ed5aca3801362da852f9e371ebe8aba32c2c4db8d377b07d5987729f",
+      "bytes": 31021489,
+      "fetched_at": "2026-06-11T10:52:19.854850+00:00"
+    },
+    {
+      "filename": "merged_survey_2026.csv",
+      "url": "https://raw.githubusercontent.com/hokuriku-inbound-kanko/opendata/main/output_merge/merged_survey_2026.csv",
+      "sha256": "2cc19c71e789fda90fb162e5e5552551e784d3bb3bf823f7fadf66f90bec4202",
+      "bytes": 18869866,
+      "fetched_at": "2026-06-11T10:52:22.268129+00:00"
+    }
+  ]
+}
