@@ -73,7 +73,7 @@ function cryptoRandom(length) {
   return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-function render() {
+function render(options = {}) {
   stepStartedAt = Date.now();
   state.stepIndex = stepIndex;
   saveCurrentState();
@@ -86,6 +86,9 @@ function render() {
   if (step.startsWith("survey_")) renderSurvey(Number(step.split("_")[1]));
   if (step === "final") renderFinalQuestions();
   if (step === "export") renderExport();
+
+  bindValidationClearers();
+  if (options.resetScroll) resetPageScroll();
 }
 
 function updateProgress() {
@@ -101,7 +104,7 @@ function renderConsent() {
       <p><strong>Research use:</strong> responses are intended for pilot analysis of whether destination-planning nudges change information clarity, perceived friction, planning confidence, and visit intention.</p>
       <p class="muted">Before using this with real participants, confirm your lab or university requirements for consent language and ethics review.</p>
     </div>
-    <label class="field">
+    <label class="field" data-required-id="consent">
       <span><input id="consentCheck" type="checkbox" ${state.consent ? "checked" : ""}> I consent to participate in this pilot study.</span>
     </label>
     <div class="button-row">
@@ -111,7 +114,7 @@ function renderConsent() {
   document.getElementById("nextBtn").addEventListener("click", () => {
     const checked = document.getElementById("consentCheck").checked;
     if (!checked) {
-      showErrors(["Consent is required to continue."]);
+      showErrors([{ id: "consent", message: "Consent is required to continue." }]);
       return;
     }
     state.consent = true;
@@ -163,7 +166,7 @@ function renderTask(taskIndex) {
       ${nudgeHtml}
     </div>
 
-    <div class="choice-list" role="radiogroup" aria-label="Decision">
+    <div class="choice-list" role="radiogroup" aria-label="Decision" data-required-id="decision">
       <h3>Your decision</h3>
       ${task.decision_options.map((option) => `
         <label>
@@ -173,7 +176,7 @@ function renderTask(taskIndex) {
       `).join("")}
     </div>
 
-    <div class="choice-list" role="radiogroup" aria-label="Accuracy check">
+    <div class="choice-list" role="radiogroup" aria-label="Accuracy check" data-required-id="accuracy">
       <h3>${escapeHtml(task.accuracy_question.label)}</h3>
       ${task.accuracy_question.options.map((option) => `
         <label>
@@ -183,7 +186,7 @@ function renderTask(taskIndex) {
       `).join("")}
     </div>
 
-    <label class="field full">
+    <label class="field full" data-required-id="decision_rationale">
       <span>Briefly explain your decision</span>
       <textarea id="decisionRationale">${escapeHtml(saved.decision_rationale || "")}</textarea>
     </label>
@@ -200,9 +203,9 @@ function renderTask(taskIndex) {
     const accuracy = getCheckedValue("accuracy");
     const rationale = document.getElementById("decisionRationale").value.trim();
     const errors = [];
-    if (!decision) errors.push("Choose a planning decision.");
-    if (!accuracy) errors.push("Choose an answer for the planning issue check.");
-    if (!rationale) errors.push("Add a brief explanation of your decision.");
+    if (!decision) errors.push({ id: "decision", message: "Choose a planning decision." });
+    if (!accuracy) errors.push({ id: "accuracy", message: "Choose an answer for the planning issue check." });
+    if (!rationale) errors.push({ id: "decision_rationale", message: "Add a brief explanation of your decision." });
     if (errors.length) {
       showErrors(errors);
       return;
@@ -256,11 +259,11 @@ function renderSurvey(taskIndex) {
     const errors = [];
     items.forEach((item) => {
       const value = getCheckedValue(item.id);
-      if (!value) errors.push(`Answer: ${item.label}`);
+      if (!value) errors.push({ id: item.id, message: `Answer: ${item.label}` });
       responses[item.id] = value ? Number(value) : "";
     });
     if (errors.length) {
-      showErrors(errors.slice(0, 4).concat(errors.length > 4 ? ["Complete all scale items."] : []));
+      showErrors(errors);
       return;
     }
     state.surveys[task.id] = {
@@ -443,7 +446,7 @@ function renderQuestion(question, source) {
   const value = source[question.id] || "";
   if (question.type === "textarea") {
     return `
-      <label class="field full">
+      <label class="field full" data-required-id="${escapeAttr(question.id)}">
         <span>${escapeHtml(question.label)}</span>
         <textarea data-question-id="${escapeAttr(question.id)}">${escapeHtml(value)}</textarea>
       </label>
@@ -451,7 +454,7 @@ function renderQuestion(question, source) {
   }
   if (question.type === "likert") {
     return `
-      <fieldset class="field">
+      <fieldset class="field" data-required-id="${escapeAttr(question.id)}">
         <legend>${escapeHtml(question.label)}</legend>
         <div class="likert-options">
           ${[1, 2, 3, 4, 5, 6, 7].map((score) => `
@@ -469,7 +472,7 @@ function renderQuestion(question, source) {
     `;
   }
   return `
-    <label class="field">
+    <label class="field" data-required-id="${escapeAttr(question.id)}">
       <span>${escapeHtml(question.label)}</span>
       <select data-question-id="${escapeAttr(question.id)}">
         <option value="">Select</option>
@@ -481,7 +484,7 @@ function renderQuestion(question, source) {
 
 function renderLikertItem(item, value) {
   return `
-    <fieldset class="likert-row">
+    <fieldset class="likert-row" data-required-id="${escapeAttr(item.id)}">
       <legend>${escapeHtml(item.label)}</legend>
       <div class="likert-options">
         ${[1, 2, 3, 4, 5, 6, 7].map((score) => `
@@ -511,7 +514,7 @@ function collectQuestions(questions, target) {
       value = element ? element.value.trim() : "";
       target[question.id] = value;
     }
-    if (!value) errors.push(`Complete: ${question.label}`);
+    if (!value) errors.push({ id: question.id, message: `Complete: ${question.label}` });
   });
   return errors;
 }
@@ -542,26 +545,90 @@ function bindBack() {
   if (!backButton) return;
   backButton.addEventListener("click", () => {
     stepIndex = Math.max(0, stepIndex - 1);
-    render();
+    render({ resetScroll: true });
   });
 }
 
 function nextStep() {
   stepIndex = Math.min(steps.length - 1, stepIndex + 1);
-  render();
+  render({ resetScroll: true });
 }
 
 function showErrors(errors) {
+  clearValidationState();
+  const normalized = errors.map((error) => {
+    if (typeof error === "string") return { id: "", message: error };
+    return error;
+  });
   const existing = app.querySelector(".error-list");
   if (existing) existing.remove();
+  const summary = document.createElement("div");
+  summary.className = "error-list";
+  summary.setAttribute("role", "alert");
+  const heading = document.createElement("p");
+  heading.textContent = "Please answer the highlighted question before continuing.";
+  summary.appendChild(heading);
   const list = document.createElement("ul");
-  list.className = "error-list";
-  errors.forEach((error) => {
+  normalized.slice(0, 5).forEach((error) => {
     const item = document.createElement("li");
-    item.textContent = error;
+    item.textContent = error.message;
     list.appendChild(item);
   });
-  app.appendChild(list);
+  if (normalized.length > 5) {
+    const item = document.createElement("li");
+    item.textContent = `Complete ${normalized.length - 5} more highlighted item${normalized.length - 5 === 1 ? "" : "s"}.`;
+    list.appendChild(item);
+  }
+  summary.appendChild(list);
+  const buttonRow = app.querySelector(".button-row");
+  app.insertBefore(summary, buttonRow || null);
+
+  normalized.forEach((error) => markInvalidQuestion(error.id));
+  scrollToFirstInvalid();
+}
+
+function clearValidationState() {
+  app.querySelectorAll(".is-invalid").forEach((element) => {
+    element.classList.remove("is-invalid");
+    element.removeAttribute("aria-invalid");
+  });
+}
+
+function bindValidationClearers() {
+  app.oninput = clearInvalidForEvent;
+  app.onchange = clearInvalidForEvent;
+}
+
+function clearInvalidForEvent(event) {
+  const wrapper = event.target.closest("[data-required-id]");
+  if (!wrapper) return;
+  wrapper.classList.remove("is-invalid");
+  wrapper.removeAttribute("aria-invalid");
+  const errorList = app.querySelector(".error-list");
+  if (errorList && !app.querySelector(".is-invalid")) errorList.remove();
+}
+
+function markInvalidQuestion(id) {
+  if (!id) return;
+  const wrapper = app.querySelector(`[data-required-id="${CSS.escape(id)}"]`);
+  if (!wrapper) return;
+  wrapper.classList.add("is-invalid");
+  wrapper.setAttribute("aria-invalid", "true");
+}
+
+function scrollToFirstInvalid() {
+  const firstInvalid = app.querySelector(".is-invalid");
+  if (!firstInvalid) return;
+  firstInvalid.scrollIntoView({ block: "center", behavior: "smooth" });
+  const focusTarget = firstInvalid.querySelector("input, select, textarea, button");
+  if (focusTarget) focusTarget.focus({ preventScroll: true });
+}
+
+function resetPageScroll() {
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    app.focus({ preventScroll: true });
+  });
 }
 
 function logEvent(type, detail) {
