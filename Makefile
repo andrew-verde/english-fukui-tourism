@@ -107,6 +107,12 @@ synth-official:
 validate-japanese-tags:
 	$(PYTHON) scripts/build_japanese_friction_validation_sample.py
 
+gold-set:
+	$(PYTHON) scripts/build_gold_set.py
+
+gold-set-eval:
+	$(PYTHON) scripts/evaluate_gold_set.py
+
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test:
