@@ -2,7 +2,7 @@ PYTHON = .venv/bin/python3
 
 .PHONY: help friction-all deep-review-all official-all fetch-fukui-data fetch-comparison-data fetch-google-maps-reviews fetch-metadata \
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
-        build-ftas multilingual-reviews stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve
+        build-ftas multilingual-reviews chinese-social stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve
 
 help:
 	@echo ""
@@ -25,6 +25,7 @@ help:
 	@echo "  make stats                   Run SR statistical validation"
 	@echo "  make synth                   Generate output/statistical_summary.md"
 	@echo "  make multilingual-reviews    Build cached Japanese/other-language review comparison suite"
+	@echo "  make chinese-social          Build Chinese Xiaohongshu/Douyin analysis scaffold"
 	@echo "  make fetch-official-fukui    Fetch Code for Fukui official CSVs"
 	@echo "  make build-ftas              Normalize + tag FTAS survey data"
 	@echo "  make stats-official          Run official FTAS statistical validation"
@@ -97,6 +98,9 @@ sample-readiness:
 
 multilingual-reviews:
 	$(PYTHON) scripts/build_multilingual_review_dataset.py
+
+chinese-social:
+	$(PYTHON) scripts/build_chinese_social_media_dataset.py
 
 stats-official:
 	$(PYTHON) scripts/statistical_validation_official.py

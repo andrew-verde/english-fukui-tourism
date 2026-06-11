@@ -5,6 +5,7 @@ Research pipeline for a master's thesis on tourism friction in Fukui Prefecture 
 The project combines two evidence layers:
 
 - English-language Google Maps reviews for Fukui, Kanazawa, and Toyama, used for exploratory content analysis and review-level checks.
+- Chinese-language Xiaohongshu and Douyin recommendation text, prepared as a parallel social-media layer once colleague CSV exports are populated.
 - Official FTAS / Code for Fukui survey data, used as the main statistically powered comparison layer.
 
 The analysis is observational. It identifies recurring friction themes and possible low-cost nudge opportunities, but it does not estimate causal effects.
@@ -26,6 +27,7 @@ Step 6   audit_review_sample_readiness.py Sample adequacy / expected-count audit
 Step 7   generate_presentation_figures.py Presentation figure files
 Step 8   statistical_validation.py        Review-level SR statistical checks
 Step 9   synthesis_pipeline.py            Statistical summary + test explanations
+Side     build_chinese_social_media_dataset.py Chinese Xiaohongshu/Douyin scaffold
 ```
 
 Steps 2–9 require no API calls once checkpoints exist.
@@ -85,6 +87,9 @@ make deep-review-all
 
 # Official Code for Fukui / FTAS parallel analysis:
 make official-all
+
+# Chinese Xiaohongshu / Douyin parallel layer:
+make chinese-social
 
 # Tests
 make test
@@ -184,6 +189,32 @@ Key outputs:
 Interpret the non-English/non-Japanese segment as a review-language proxy, not confirmed foreign tourist origin. Review language is not reviewer nationality or residency. Japanese and English friction labels are mirrored, but keyword coverage is not a validated cross-language classifier.
 
 Comparison across cities is observational. Observed differences in code rates indicate that certain friction themes appear more frequently in one city's reviews than another's; they do not imply that one city causes more friction, or that any intervention would produce a measurable outcome. All findings should be presented as candidate signals for further investigation.
+
+### Chinese Social-Media Recommendation Text
+
+To prepare Xiaohongshu and Douyin CSV exports from `/Users/andrewgreen/Repositories/tourism-data` for comparison with the Google-review layers:
+
+```bash
+make chinese-social
+```
+
+This target reads local CSV exports only and writes outputs to `output/chinese_social_media_analysis/`. The expected source schemas are the companion project's Xiaohongshu columns (`note_id,title,note_url,author,author_url`) and Douyin columns (`video_id,title,video_url,author`). Empty schema-only CSVs are accepted, so the framework can exist before the colleague data is populated.
+
+Treat this as Chinese-language social-media recommendation text, not as reviewer nationality. The unit of analysis is one Xiaohongshu note row or Douyin video row, currently title/text-level. It is analogous to Google reviews only in its role as traveler-facing recommendation media; source behavior, text length, and platform ranking are different.
+
+Key outputs:
+
+| File | Description |
+|------|-------------|
+| `chinese_social_posts.csv` | Generated locally; normalized row-level title/text data (gitignored because it can contain author handles and source URLs) |
+| `tagged_chinese_social_posts.csv` | Generated locally; row-level Chinese friction tags (gitignored) |
+| `chinese_friction_by_city_platform.csv` | Aggregate city × platform × friction-code rates |
+| `chinese_sentiment_by_city_platform.csv` | Aggregate keyword-polarity sentiment scaffold |
+| `chinese_city_platform_friction_tests.csv` | Fisher exact comparisons across Chinese cities/platforms when populated |
+| `chinese_vs_review_language_friction_comparison.csv` | Descriptive comparison against cached English/Japanese Google-review friction rates when available |
+| `chinese_social_readiness.md` | Human-readable readiness and caveat report |
+
+Chinese friction tags use `config/chinese_social_friction_codebook.yaml`, mirrored to the English/Japanese friction-code labels. Matching is substring-based and should be manually validated once real rows exist. Sentiment fields use a transparent Chinese keyword-polarity scaffold (`sentiment_score`, `sentiment_norm`, `emotional_intensity_score`) rather than VADER; do not treat them as a validated Chinese sentiment model.
 
 ### Assumptions
 
@@ -302,6 +333,7 @@ scripts/
   build_analysis_dataset.py         Build reviews_unified.csv
   audit_review_sample_readiness.py  Audit post-collection sample adequacy
   build_multilingual_review_dataset.py Build cached review-language comparison suite
+  build_chinese_social_media_dataset.py Build Chinese Xiaohongshu/Douyin analysis scaffold
   build_ftas_survey_dataset.py      Build official FTAS survey dataset
   build_mentions_dataset.py         Build mentions_dataset.csv
   auto_tag_friction_codes.py        Apply friction codebook
@@ -328,6 +360,7 @@ src/
 
 config/
   friction_codebook.yaml        Editable keyword rules (12 friction + 6 nudge)
+  chinese_social_friction_codebook.yaml Chinese social-media friction rules mapped to the shared codes
   official_fukui_sources.yaml   Code for Fukui source URLs
   official_japanese_friction_codebook.yaml Japanese friction rules mapped to English codes
   nudge_mapping.yaml            Friction → intervention candidates
