@@ -28,6 +28,10 @@ Step 7   generate_presentation_figures.py Presentation figure files
 Step 8   statistical_validation.py        Review-level SR statistical checks
 Step 9   synthesis_pipeline.py            Statistical summary + test explanations
 Side     build_chinese_social_media_dataset.py Chinese Xiaohongshu/Douyin scaffold
+Side     build_gold_set.py                 Blind gold-set kit for friction-tagger evaluation
+Side     evaluate_gold_set.py              Inter-rater kappa + tagger precision/recall/F1
+Side     fetch_hokuriku_merged.py          Merged tri-prefecture survey microdata (CC-BY)
+Side     hokuriku_did_audit.py             Shinkansen-extension DiD feasibility audit
 ```
 
 Steps 2–9 require no API calls once checkpoints exist.
@@ -91,9 +95,22 @@ make official-all
 # Chinese Xiaohongshu / Douyin parallel layer:
 make chinese-social
 
+# Gold-set evaluation of the Japanese friction tagger:
+make gold-set                  # → output/gold_set/ blind coder sheets + CODING_GUIDE.md
+make gold-set-eval             # after coders fill the sheets: kappa + precision/recall
+
+# Hokuriku merged survey + Shinkansen DiD groundwork:
+make fetch-hokuriku-merged     # → output/hokuriku_merged/raw/ (gitignored, ~94 MB)
+make hokuriku-did-audit        # → did_feasibility_report.md + parallel_trends.png
+
 # Tests
 make test
 ```
+
+Design decisions for the statistical restructure (FTAS-based SEM, Shinkansen
+difference-in-differences, gold-set tagger evaluation) are recorded in
+`docs/adr/0001-ftas-sem-and-shinkansen-did-as-primary-contribution.md`;
+canonical terminology lives in `CONTEXT.md`.
 
 ## Data Snapshot and Audit Trail
 
@@ -343,6 +360,10 @@ scripts/
   synthesis_pipeline.py             Generate English-review statistical summaries
   statistical_validation_official.py Run official FTAS statistical validation
   synthesis_official_pipeline.py    Generate official-data summary
+  build_gold_set.py                 Build blind gold-set coder sheets + answer key
+  evaluate_gold_set.py              Score gold set: Cohen's kappa, tagger P/R/F1
+  fetch_hokuriku_merged.py          Fetch merged Hokuriku survey microdata (CC-BY)
+  hokuriku_did_audit.py             Shinkansen DiD feasibility audit + trends plot
 
 src/
   scrapers/

@@ -2,7 +2,8 @@ PYTHON = .venv/bin/python3
 
 .PHONY: help friction-all deep-review-all official-all fetch-fukui-data fetch-comparison-data fetch-google-maps-reviews fetch-metadata \
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
-        build-ftas multilingual-reviews chinese-social stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve
+        build-ftas multilingual-reviews chinese-social stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve \
+        gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit
 
 help:
 	@echo ""
@@ -31,6 +32,14 @@ help:
 	@echo "  make stats-official          Run official FTAS statistical validation"
 	@echo "  make synth-official          Generate official-data statistical summary"
 	@echo "  make validate-japanese-tags  Generate manual validation sample for Japanese friction tags"
+	@echo ""
+	@echo "Gold-set tagger evaluation:"
+	@echo "  make gold-set                Build blind coder sheets + key in output/gold_set/"
+	@echo "  make gold-set-eval           Score coder sheets: kappa + tagger precision/recall"
+	@echo ""
+	@echo "Hokuriku merged survey / Shinkansen DiD:"
+	@echo "  make fetch-hokuriku-merged   Download merged tri-prefecture survey microdata (CC-BY)"
+	@echo "  make hokuriku-did-audit      Run DiD feasibility audit + parallel-trends plot"
 	@echo ""
 	@echo "Full pipeline:"
 	@echo "  make friction-all            Run fetch-comparison-data through summarize"
@@ -116,6 +125,12 @@ gold-set:
 
 gold-set-eval:
 	$(PYTHON) scripts/evaluate_gold_set.py
+
+fetch-hokuriku-merged:
+	$(PYTHON) scripts/fetch_hokuriku_merged.py
+
+hokuriku-did-audit:
+	$(PYTHON) scripts/hokuriku_did_audit.py
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
