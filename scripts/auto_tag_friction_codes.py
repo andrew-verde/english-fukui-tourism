@@ -18,9 +18,15 @@ Both outputs include:
   - all_codes       (combined)
 
 Usage:
-    python scripts/auto_tag_friction_codes.py
+    python scripts/auto_tag_friction_codes.py                  # keyword tagger (primary)
+    python scripts/auto_tag_friction_codes.py --engine llm     # LLM comparator (ADR 0001 §4)
+
+The keyword engine is the primary instrument. The LLM engine writes to
+separate *_llm.csv outputs so the two never overwrite each other; it exists
+only for the post-hoc gold-set comparison and requires OPENAI_API_KEY (.env).
 """
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -44,7 +50,8 @@ TAGGED_MENTIONS_CSV  = FRICTION_DIR / "tagged_mentions.csv"
 CODEBOOK_PATH        = CONFIG_DIR / "friction_codebook.yaml"
 
 
-def tag_file(input_path: Path, output_path: Path, text_col: str, codebook: dict, label: str):
+def tag_file(input_path: Path, output_path: Path, text_col: str, codebook: dict,
+             label: str, llm_tagger=None):
     if not input_path.exists():
         logger.error(f"Input not found: {input_path}")
         logger.error(f"Run the preceding pipeline step first.")
@@ -53,7 +60,14 @@ def tag_file(input_path: Path, output_path: Path, text_col: str, codebook: dict,
     df = pd.read_csv(input_path)
     logger.info(f"{label}: {len(df)} rows loaded")
 
-    tagged = tag_dataframe(df, text_col=text_col, codebook=codebook)
+    if llm_tagger is not None:
+        tagged = llm_tagger.tag_dataframe(df, text_col=text_col, delay=0.5)
+        n_err = int(tagged["llm_error"].sum())
+        if n_err:
+            logger.warning(f"  {n_err} rows failed LLM tagging (llm_error=True); "
+                           "exclude them from any comparison, do not treat as no-friction")
+    else:
+        tagged = tag_dataframe(df, text_col=text_col, codebook=codebook)
     tagged.to_csv(output_path, index=False)
 
     # Summary stats
@@ -70,6 +84,14 @@ def tag_file(input_path: Path, output_path: Path, text_col: str, codebook: dict,
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Tag reviews/mentions with friction codes")
+    parser.add_argument("--engine", choices=["keyword", "llm"], default="keyword",
+                        help="keyword = primary deterministic tagger; "
+                             "llm = optional OpenAI comparator (ADR 0001)")
+    parser.add_argument("--model", default="gpt-4o-mini",
+                        help="OpenAI model for --engine llm")
+    args = parser.parse_args()
+
     logger.info("=" * 55)
     logger.info("Auto-tag friction and nudge codes")
     logger.info("=" * 55)
@@ -85,8 +107,21 @@ def main():
 
     FRICTION_DIR.mkdir(parents=True, exist_ok=True)
 
-    ok1 = tag_file(REVIEWS_CSV,  TAGGED_REVIEWS_CSV,  "review_text",   codebook, "Reviews")
-    ok2 = tag_file(MENTIONS_CSV, TAGGED_MENTIONS_CSV, "sentence_text", codebook, "Mentions")
+    llm_tagger = None
+    reviews_out, mentions_out = TAGGED_REVIEWS_CSV, TAGGED_MENTIONS_CSV
+    if args.engine == "llm":
+        from dotenv import load_dotenv
+        load_dotenv()
+        from src.friction.llm_tagger import LLMFrictionTagger
+        llm_tagger = LLMFrictionTagger(model=args.model, codebook=codebook)
+        reviews_out  = FRICTION_DIR / "tagged_reviews_llm.csv"
+        mentions_out = FRICTION_DIR / "tagged_mentions_llm.csv"
+        logger.info(f"Engine: LLM comparator ({args.model}) — outputs *_llm.csv")
+    else:
+        logger.info("Engine: keyword (primary instrument)")
+
+    ok1 = tag_file(REVIEWS_CSV,  reviews_out,  "review_text",   codebook, "Reviews",  llm_tagger)
+    ok2 = tag_file(MENTIONS_CSV, mentions_out, "sentence_text", codebook, "Mentions", llm_tagger)
 
     if ok1 and ok2:
         logger.info("")
