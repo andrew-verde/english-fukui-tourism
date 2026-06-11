@@ -92,7 +92,12 @@ def _write_test_explanations(results: dict) -> None:
         lines.append("It tests whether Fukui's themed review discourse is evenly distributed across Dinosaur, Food, Scenic, Cultural, and Logistics themes, or whether some themes are disproportionately represented.")
         lines.append("")
         lines.append("### What the result means")
-        lines.append(f"Fukui has {gof.get('n')} themed reviews. Observed counts are {counts}. The test result is χ²({d.get('df')}) = {d.get('chi2', float('nan')):.3f}, p = {_fmt_p(d.get('p_value'))}, Cramér's V = {d.get('cramers_v', float('nan')):.3f}. This rejects the uniform distribution, meaning Fukui's English-language themed reviews are not balanced across themes. The result supports a claim about theme concentration, not causation or visitor motivations.")
+        gof_verdict = (
+            "This rejects the uniform distribution, meaning Fukui's English-language themed reviews are not balanced across themes."
+            if (d.get("p_value") is not None and d["p_value"] < 0.05)
+            else "This does not reject the uniform distribution at α=0.05."
+        )
+        lines.append(f"Fukui has {gof.get('n')} themed reviews. Observed counts are {counts}. The test result is χ²({d.get('df')}) = {d.get('chi2', float('nan')):.3f}, p = {_fmt_p(d.get('p_value'))}, Cramér's V = {d.get('cramers_v', float('nan')):.3f}. {gof_verdict} The result supports a claim about theme concentration, not causation or visitor motivations.")
         lines.append("")
 
     indep = results.get("SR-01 theme_chi_square_independence", {})
@@ -106,7 +111,12 @@ def _write_test_explanations(results: dict) -> None:
         lines.append("It determines whether the distribution of themes differs by city, which sheds light on whether Fukui's review discourse is positioned differently from Kanazawa and Toyama.")
         lines.append("")
         lines.append("### What the result means")
-        lines.append(f"Across {indep.get('n')} themed reviews, the overall test is χ²({overall.get('df')}) = {overall.get('chi2', float('nan')):.3f}, asymptotic p = {_fmt_p(overall.get('p_value'))}, permutation p = {_fmt_p(overall.get('p_value_permutation'))}, Cramér's V = {overall.get('cramers_v', float('nan')):.3f}. This indicates an association between city and theme mix. However, the minimum expected cell count is {overall.get('expected_min', float('nan')):.3f}, below the usual ≥5 guideline, so the result should be reported with the permutation robustness check and sparse-cell caveat.")
+        indep_verdict = (
+            "This indicates an association between city and theme mix."
+            if (overall.get("p_value") is not None and overall["p_value"] < 0.05)
+            else "This does not provide evidence of an association between city and theme mix at α=0.05."
+        )
+        lines.append(f"Across {indep.get('n')} themed reviews, the overall test is χ²({overall.get('df')}) = {overall.get('chi2', float('nan')):.3f}, asymptotic p = {_fmt_p(overall.get('p_value'))}, permutation p = {_fmt_p(overall.get('p_value_permutation'))}, Cramér's V = {overall.get('cramers_v', float('nan')):.3f}. {indep_verdict} The minimum expected cell count is {overall.get('expected_min', float('nan')):.3f}; if below the usual ≥5 guideline, the result should be reported with the permutation robustness check and sparse-cell caveat.")
         top_cells = overall.get("top_chi2_cell_contributions", [])[:3]
         if top_cells:
             drivers = "; ".join(f"{r['city']}–{r['theme']} observed {r['observed']} vs expected {r['expected']:.1f}" for r in top_cells)
@@ -135,7 +145,12 @@ def _write_test_explanations(results: dict) -> None:
         lines.append("### What the result means")
         exp_min = overall.get("expected_min", float("nan"))
         exp_note = "so the standard expected-count guideline is met" if overall.get("assumption_expected_ge5") else "so sparse-cell caveats still apply"
-        lines.append(f"Across {shared_indep.get('n')} shared-theme reviews, the overall test is χ²({overall.get('df')}) = {overall.get('chi2', float('nan')):.3f}, asymptotic p = {_fmt_p(overall.get('p_value'))}, permutation p = {_fmt_p(overall.get('p_value_permutation'))}, Cramér's V = {overall.get('cramers_v', float('nan')):.3f}. The minimum expected cell count is {exp_min:.3f}, {exp_note} for this shared-theme comparison. In plain terms, city differences remain even after removing the Fukui-specific Dinosaur theme.")
+        shared_verdict = (
+            "In plain terms, city differences remain even after removing the Fukui-specific Dinosaur theme."
+            if (overall.get("p_value") is not None and overall["p_value"] < 0.05)
+            else "In plain terms, the shared-theme comparison does not show significant city differences at α=0.05."
+        )
+        lines.append(f"Across {shared_indep.get('n')} shared-theme reviews, the overall test is χ²({overall.get('df')}) = {overall.get('chi2', float('nan')):.3f}, asymptotic p = {_fmt_p(overall.get('p_value'))}, permutation p = {_fmt_p(overall.get('p_value_permutation'))}, Cramér's V = {overall.get('cramers_v', float('nan')):.3f}. The minimum expected cell count is {exp_min:.3f}, {exp_note} for this shared-theme comparison. {shared_verdict}")
         lines.append("")
 
     anova = results.get("SR-02 theme_anova", {})
@@ -153,7 +168,15 @@ def _write_test_explanations(results: dict) -> None:
         lines.append("### What the result means")
         anova_sig = _sig_text(d.get("p_value"))
         kw_sig = _sig_text(kd.get("p_value"))
-        lines.append(f"ANOVA gives F = {d.get('f_stat', float('nan')):.3f}, p = {_fmt_p(d.get('p_value'))}, η² = {d.get('eta_squared', float('nan')):.4f}. Kruskal-Wallis gives H({kd.get('k_groups', 1) - 1}) = {kd.get('h_stat', float('nan')):.3f}, p = {_fmt_p(kd.get('p_value'))}, ε² = {kd.get('epsilon_squared', float('nan')):.4f}. ANOVA is {anova_sig}, and the rank-based robustness check is {kw_sig}. In plain terms, the current data do not provide strong evidence that emotional-intensity magnitude differs by theme.")
+        both_null = all(
+            p is not None and p >= 0.05 for p in (d.get("p_value"), kd.get("p_value"))
+        )
+        sr02_verdict = (
+            "In plain terms, the current data do not provide strong evidence that emotional-intensity magnitude differs by theme."
+            if both_null
+            else "In plain terms, at least one of the tests indicates emotional-intensity differences by theme; report the significant result with its effect size."
+        )
+        lines.append(f"ANOVA gives F = {d.get('f_stat', float('nan')):.3f}, p = {_fmt_p(d.get('p_value'))}, η² = {d.get('eta_squared', float('nan')):.4f}. Kruskal-Wallis gives H({kd.get('k_groups', 1) - 1}) = {kd.get('h_stat', float('nan')):.3f}, p = {_fmt_p(kd.get('p_value'))}, ε² = {kd.get('epsilon_squared', float('nan')):.4f}. ANOVA is {anova_sig}, and the rank-based robustness check is {kw_sig}. {sr02_verdict}")
         sig_pairs = [p for p in kd.get("pairwise_mann_whitney", []) if p.get("significant_bh")]
         if sig_pairs:
             pair_str = "; ".join(f"{p['themes'][0]} vs {p['themes'][1]} p_BH={_fmt_p(p['p_value_bh'])}, Cliff's δ={p['cliffs_delta']:.3f}" for p in sig_pairs)
@@ -172,15 +195,15 @@ def _write_test_explanations(results: dict) -> None:
         lines.append("### What the result means")
         rows = city.get("details", {}).get("pairwise", [])
         parts = [
-            f"{r['cities'][0]} vs {r['cities'][1]} mean {r['mean_a']:.3f} vs {r['mean_b']:.3f}, p_adj={_fmt_p(r['p_value_bonferroni'])}, d={r['cohens_d']:.3f}"
+            f"{r['cities'][0]} vs {r['cities'][1]} mean {r['mean_a']:.3f} vs {r['mean_b']:.3f}, p_adj={_fmt_p(r['p_value_bonferroni'])}, d_welch={r['cohens_d_welch']:.3f}"
             for r in rows
         ]
         significant = [r for r in rows if r.get("p_value_bonferroni") is not None and r["p_value_bonferroni"] < 0.05]
         if significant:
             sig_text = "; ".join(f"{r['cities'][0]} vs {r['cities'][1]}" for r in significant)
-            interpretation = f"The corrected mean tests find a small sentiment difference for {sig_text}, but not for Fukui against either comparison city."
+            interpretation = f"The corrected mean tests find a sentiment difference for: {sig_text}. Pairs not listed do not differ significantly after correction."
         else:
-            interpretation = "The corrected mean tests do not provide evidence that Fukui's average normalised sentiment differs from the comparison cities."
+            interpretation = "The corrected mean tests do not provide evidence that average normalised sentiment differs between any pair of cities."
         lines.append("; ".join(parts) + f". {interpretation} Because VADER sentiment is bounded and skewed, treat this as a mean-test result rather than proof of destination equivalence or substantive visitor feeling.")
         lines.append("")
 
@@ -199,7 +222,15 @@ def _write_test_explanations(results: dict) -> None:
         for r in city_rows:
             sig = "significant after Bonferroni" if r.get("significant_bonferroni") else "not significant after Bonferroni"
             text.append(f"{r['city']} ρ={r['rho']:.3f}, p_adj={_fmt_p(r['p_value_bonferroni'])}, {sig}")
-        lines.append("; ".join(text) + ". VADER sentiment has a positive, statistically reliable association with star ratings in all three cities, so it behaves as a useful companion measure. The correlations are moderate, so ratings and text sentiment should not be treated as interchangeable.")
+        all_positive_sig = bool(city_rows) and all(
+            r.get("significant_bonferroni") and r.get("rho", 0) > 0 for r in city_rows
+        )
+        spearman_verdict = (
+            "VADER sentiment has a positive, statistically reliable association with star ratings in all three cities, so it behaves as a useful companion measure."
+            if all_positive_sig
+            else "The rating–sentiment association is not uniformly significant across cities, so treat VADER sentiment as a companion measure with city-level caveats."
+        )
+        lines.append("; ".join(text) + f". {spearman_verdict} The correlations are moderate, so ratings and text sentiment should not be treated as interchangeable.")
         lines.append("")
 
     length = results.get("additional_kw_review_length_by_city", {})
@@ -255,8 +286,8 @@ def main():
     lines.append("## Method Notes")
     lines.append("- Unit of analysis: one review (rows in `output/friction_analysis/reviews_unified.csv`).")
     lines.append("- Chi-square tests exclude reviews where `primary_theme` is None.")
-    lines.append("- Bonferroni correction for 3 pairwise city comparisons: α_adjusted = 0.05/3 = 0.0167.")
-    lines.append("- Effect sizes: Cramér's V for chi-square, η² for ANOVA, Cohen's d for t-tests.")
+    lines.append("- Bonferroni correction for 3 pairwise city comparisons. Reported p_adj values are already multiplied by 3 and should be compared against α = 0.05 (equivalently, raw p against 0.05/3 = 0.0167).")
+    lines.append("- Effect sizes: Cramér's V (with Bergsma bias-corrected variant) for chi-square, η² for ANOVA, Welch-consistent Cohen's d for Welch t-tests.")
     lines.append("- Chi-square assumption: expected cell frequencies ≥ 5 required. See 'assumption_expected_ge5' flags.")
     lines.append("- City × theme chi-square results are supplemented with deterministic permutation p-values (10,000 permutations, seed=42) because expected counts are sparse.")
     lines.append("")
@@ -292,7 +323,10 @@ def main():
         d = gof["details"]
         lines.append(f"- n (Fukui themed reviews): {gof['n']}")
         lines.append(f"- χ²({d['df']}) = {d['chi2']:.3f}, p = {_fmt_p(d['p_value'])}, Cramér's V = {d.get('cramers_v', 'n/a'):.3f} (expected: uniform across themes)")
-        lines.append("- Interpretation: Fukui's themed reviews are concentrated rather than evenly distributed across the five theme buckets.")
+        if d.get("p_value") is not None and d["p_value"] < 0.05:
+            lines.append("- Interpretation: Fukui's themed reviews are concentrated rather than evenly distributed across the five theme buckets.")
+        else:
+            lines.append("- Interpretation: no significant departure from an even theme distribution at α=0.05.")
     lines.append("")
 
     # SR-01 Independence
@@ -319,14 +353,19 @@ def main():
                 for r in top_cells
             )
             lines.append(f"- Largest cell drivers: {drivers}.")
-        lines.append("- Interpretation: theme mix varies by city, but the all-theme result has sparse-cell caveats; use the shared-theme test below for the cleaner cross-city comparison.")
+        if overall.get("p_value") is not None and overall["p_value"] < 0.05:
+            lines.append("- Interpretation: theme mix varies by city, but the all-theme result has sparse-cell caveats; use the shared-theme test below for the cleaner cross-city comparison.")
+        else:
+            lines.append("- Interpretation: no significant city–theme association at α=0.05 in the all-theme test.")
         lines.append("- Pairwise (Bonferroni-adjusted p-values):")
         for row in indep["details"]["pairwise"]:
             cities_label = f"{row['cities'][0]} vs {row['cities'][1]}"
             if row.get("suppressed"):
+                p_perm_adj = row.get("p_value_permutation_bonferroni")
+                perm_part = f"perm_p_adj = {_fmt_p(p_perm_adj)} (vs α=0.05)" if p_perm_adj is not None else "no valid p-value"
                 lines.append(
-                    f"  - {cities_label}: NOT REPORTED — "
-                    f"{row.get('suppressed_reason', 'expected_min below threshold')}"
+                    f"  - {cities_label}: asymptotic χ² suppressed "
+                    f"({row.get('suppressed_reason', 'expected_min below threshold')}); {perm_part}"
                 )
             else:
                 p_adj = row["p_value_bonferroni"]
@@ -339,7 +378,7 @@ def main():
                 perm_part = f", perm_p_adj = {_fmt_p(p_perm_adj)}" if p_perm_adj is not None else ""
                 lines.append(
                     f"  - {cities_label}: "
-                    f"χ²({row['df']}) = {row['chi2']:.3f}, asym_p_adj = {_fmt_p(p_adj)}{perm_part}, V = {pw_v_str}{pw_note} (α=0.0167)"
+                    f"χ²({row['df']}) = {row['chi2']:.3f}, asym_p_adj = {_fmt_p(p_adj)}{perm_part}, V = {pw_v_str}{pw_note} (adjusted p vs α=0.05)"
                 )
     lines.append("")
 
@@ -367,7 +406,15 @@ def main():
                 for r in top_cells
             )
             lines.append(f"- Largest cell drivers: {drivers}.")
-        lines.append("- Interpretation: cross-city theme differences remain after excluding Dinosaur, with acceptable expected counts.")
+        shared_sig = overall.get("p_value") is not None and overall["p_value"] < 0.05
+        exp_ok = overall.get("assumption_expected_ge5", False)
+        if shared_sig:
+            lines.append(
+                "- Interpretation: cross-city theme differences remain after excluding Dinosaur"
+                + (", with acceptable expected counts." if exp_ok else "; sparse-cell caveats still apply.")
+            )
+        else:
+            lines.append("- Interpretation: no significant cross-city difference in shared themes at α=0.05.")
     lines.append("")
 
     # SR-02 ANOVA
@@ -399,7 +446,13 @@ def main():
         kd = kw_rob["details"]
         eps2 = kd.get("epsilon_squared")
         eps2_str = f"{eps2:.4f}" if eps2 is not None else "n/a"
-        lines.append(f"- Kruskal-Wallis robustness check (non-normality confirmed in 4/5 groups):")
+        normality = anova.get("details", {}).get("normality_by_theme", {}) or {}
+        n_nonnormal = sum(1 for v in normality.values() if not v.get("normal", True))
+        norm_note = (
+            f"non-normality confirmed in {n_nonnormal}/{len(normality)} groups"
+            if normality else "normality diagnostics unavailable"
+        )
+        lines.append(f"- Kruskal-Wallis robustness check ({norm_note}):")
         lines.append(f"  H({kd['k_groups'] - 1}) = {kd['h_stat']:.3f}, p = {_fmt_p(kd['p_value'])}, ε² = {eps2_str}")
         lines.append(f"  Interpretation: {kd.get('interpretation', '')}")
         sig_pairs = [p for p in kd.get("pairwise_mann_whitney", []) if p.get("significant_bh")]
@@ -410,7 +463,13 @@ def main():
             ))
         else:
             lines.append("  Pairwise Mann-Whitney after BH FDR: no theme pair remains significant.")
-        lines.append("  Interpretation: emotional-intensity magnitude does not differ clearly by theme in the current review sample.")
+        sr02_clear_null = (
+            kd.get("p_value") is not None and kd["p_value"] >= 0.05 and not sig_pairs
+        )
+        if sr02_clear_null:
+            lines.append("  Interpretation: emotional-intensity magnitude does not differ clearly by theme in the current review sample.")
+        else:
+            lines.append("  Interpretation: the rank-based check indicates at least a borderline theme difference; report the significant contrasts above rather than a blanket null.")
     lines.append("")
 
     # SR-05 sentiment
@@ -424,14 +483,15 @@ def main():
             lines.append(
                 f"- {row['cities'][0]} vs {row['cities'][1]}: "
                 f"mean={row['mean_a']:.3f} vs {row['mean_b']:.3f}, "
-                f"p_adj={_fmt_p(row['p_value_bonferroni'])}, d={row['cohens_d']:.3f}"
+                f"p_adj={_fmt_p(row['p_value_bonferroni'])}, d_welch={row['cohens_d_welch']:.3f}"
             )
         sig_pairs = [
             row for row in city["details"]["pairwise"]
             if row.get("p_value_bonferroni") is not None and row["p_value_bonferroni"] < 0.05
         ]
         if sig_pairs:
-            lines.append("- Interpretation: Fukui does not differ significantly from either comparison city; the only corrected mean difference is Kanazawa vs Toyama, and its effect size is small.")
+            sig_str = "; ".join(f"{r['cities'][0]} vs {r['cities'][1]}" for r in sig_pairs)
+            lines.append(f"- Interpretation: corrected mean differences found for: {sig_str}. Pairs not listed do not differ significantly.")
         else:
             lines.append("- Interpretation: corrected mean tests do not show city-level sentiment differences.")
     lines.append("")
@@ -456,13 +516,21 @@ def main():
             )
         ov = sd.get("overall", {})
         lines.append(f"- All cities combined (n={ov.get('n', '?')}): ρ = {ov.get('rho', float('nan')):.3f}, p = {_fmt_p(ov.get('p_value'))}")
-        lines.append("- Interpretation: VADER text sentiment aligns with star ratings in every city, but only moderately.")
+        if sd.get("by_city") and all(cr.get("significant_bonferroni") for cr in sd["by_city"]):
+            lines.append("- Interpretation: VADER text sentiment aligns with star ratings in every city, but only moderately.")
+        else:
+            lines.append("- Interpretation: the rating–sentiment association is not significant in every city; see per-city rows.")
     lines.append("")
 
     # Additional test: KW review length by city
     kw_len = results.get("additional_kw_review_length_by_city", {})
     lines.append("## Additional — Review length by city (Kruskal-Wallis + Mann-Whitney)")
-    lines.append("_(All city groups non-normal by Shapiro-Wilk; KW used in place of one-way ANOVA.)_")
+    _len_norm = kw_len.get("details", {}).get("normality_by_city", {}) or {}
+    _len_nonnormal = sum(1 for v in _len_norm.values() if not v.get("normal", True))
+    if _len_norm:
+        lines.append(f"_({_len_nonnormal}/{len(_len_norm)} city groups non-normal by Shapiro-Wilk; KW used in place of one-way ANOVA.)_")
+    else:
+        lines.append("_(KW used in place of one-way ANOVA for skewed review-length data.)_")
     lines.append("_(Pairwise Mann-Whitney with Benjamini-Hochberg FDR correction; Cliff's δ is signed, positive means first city has longer reviews.)_")
     if kw_len.get("n", 0) == 0:
         lines.append(f"- Not run: {kw_len.get('details', {}).get('error', 'insufficient data')}")
@@ -471,7 +539,17 @@ def main():
         eps2 = ld.get("epsilon_squared")
         eps2_str = f"{eps2:.4f}" if eps2 is not None else "n/a"
         lines.append(f"- n (reviews): {kw_len['n']}")
-        lines.append(f"- Kruskal-Wallis: H = {ld['h_stat']:.3f}, p = {_fmt_p(ld['p_value'])}, ε² = {eps2_str} (small effect)")
+        if eps2 is None:
+            eff_label = ""
+        elif eps2 < 0.01:
+            eff_label = " (negligible effect)"
+        elif eps2 < 0.08:
+            eff_label = " (small effect)"
+        elif eps2 < 0.26:
+            eff_label = " (medium effect)"
+        else:
+            eff_label = " (large effect)"
+        lines.append(f"- Kruskal-Wallis: H = {ld['h_stat']:.3f}, p = {_fmt_p(ld['p_value'])}, ε² = {eps2_str}{eff_label}")
         medians = ld.get("median_by_city", {})
         med_str = ", ".join(f"{c} {int(v)} chars" for c, v in sorted(medians.items()))
         lines.append(f"- Medians: {med_str}")
@@ -484,7 +562,10 @@ def main():
                     f"p = {_fmt_p(pw['p_value'])}, p_BH = {_fmt_p(pw['p_value_bh'])}, "
                     f"δ = {pw['cliffs_delta']:.3f} — {sig}"
                 )
-        lines.append("- Interpretation: review length differs by city overall, but the retained pairwise gap is small.")
+        if ld.get("p_value") is not None and ld["p_value"] < 0.05:
+            lines.append("- Interpretation: review length differs by city overall; see pairwise rows for which gaps survive correction.")
+        else:
+            lines.append("- Interpretation: no significant overall city difference in review length at α=0.05.")
     lines.append("")
 
     # Contextual friction table snippet (descriptive)

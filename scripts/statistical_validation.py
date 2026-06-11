@@ -17,6 +17,7 @@ Notes:
 import json
 import os
 import sys
+import zlib
 from dataclasses import asdict, dataclass
 from itertools import combinations
 from pathlib import Path
@@ -142,7 +143,10 @@ def _permutation_chi2_p(
     if PERMUTATION_N <= 0:
         return {"enabled": False}
 
-    rng = np.random.default_rng(PERMUTATION_SEED)
+    # Derive a distinct stream per test so Monte Carlo error is independent
+    # across tests while staying reproducible from PERMUTATION_SEED.
+    stream = zlib.crc32(f"{cities}|{themes}|{observed_chi2:.6f}".encode()) % (2**16)
+    rng = np.random.default_rng(PERMUTATION_SEED + stream)
     city_to_idx = {city: i for i, city in enumerate(cities)}
     theme_to_idx = {theme: i for i, theme in enumerate(themes)}
     city_codes = np.array([city_to_idx[v] for v in city_labels], dtype=int)
@@ -173,9 +177,38 @@ def _permutation_chi2_p(
     }
 
 
-def _standardized_residuals(observed: pd.DataFrame, expected: np.ndarray) -> dict:
+def _pearson_residuals(observed: pd.DataFrame, expected: np.ndarray) -> dict:
+    """(O - E)/sqrt(E). Variance < 1, so NOT comparable to ±1.96 z cutoffs."""
     residuals = (observed.to_numpy(dtype=float) - expected) / np.sqrt(expected)
     return pd.DataFrame(residuals, index=observed.index, columns=observed.columns).round(4).to_dict()
+
+
+def _adjusted_standardized_residuals(observed: pd.DataFrame, expected: np.ndarray) -> dict:
+    """Haberman adjusted residuals: (O - E)/sqrt(E(1-p_row)(1-p_col)).
+
+    Approximately N(0,1) under independence, so these ARE comparable to ±1.96.
+    """
+    obs = observed.to_numpy(dtype=float)
+    n = obs.sum()
+    row_p = obs.sum(axis=1, keepdims=True) / n
+    col_p = obs.sum(axis=0, keepdims=True) / n
+    denom = np.sqrt(expected * (1.0 - row_p) * (1.0 - col_p))
+    residuals = np.divide(obs - expected, denom, out=np.full_like(obs, np.nan), where=denom > 0)
+    return pd.DataFrame(residuals, index=observed.index, columns=observed.columns).round(4).to_dict()
+
+
+def _cramers_v_bias_corrected(table: np.ndarray, chi2: float) -> float | None:
+    """Bergsma (2013) bias-corrected Cramér's V."""
+    n = table.sum()
+    if n <= 1:
+        return None
+    r, c = table.shape
+    phi2 = chi2 / n
+    phi2_corr = max(0.0, phi2 - (r - 1) * (c - 1) / (n - 1))
+    r_corr = r - (r - 1) ** 2 / (n - 1)
+    c_corr = c - (c - 1) ** 2 / (n - 1)
+    denom = min(r_corr - 1, c_corr - 1)
+    return float(np.sqrt(phi2_corr / denom)) if denom > 0 else None
 
 
 def _chi2_cell_contributions(observed: pd.DataFrame, expected: np.ndarray) -> list[dict]:
@@ -264,10 +297,16 @@ def _theme_chi_square_independence_for_themes(
         "p_value_permutation": permutation.get("p_value"),
         "permutation": permutation,
         "cramers_v": cramers_v_overall,
+        "cramers_v_bias_corrected": _cramers_v_bias_corrected(ct.to_numpy(), float(chi2)),
         "contingency_table": ct.to_dict(),
         "expected_min": exp_min,
         "assumption_expected_ge5": exp_min is not None and exp_min >= 5,
-        "standardized_residuals": _standardized_residuals(ct, expected),
+        "pearson_residuals": _pearson_residuals(ct, expected),
+        "adjusted_standardized_residuals": _adjusted_standardized_residuals(ct, expected),
+        "residual_note": (
+            "Use adjusted_standardized_residuals against ±1.96; pearson_residuals "
+            "have variance < 1 and are not z-comparable."
+        ),
         "top_chi2_cell_contributions": _chi2_cell_contributions(ct, expected)[:10],
     }
 
@@ -292,33 +331,41 @@ def _theme_chi_square_independence_for_themes(
             "assumption_expected_ge5": assumption_ok,
             "suppressed": suppressed,
         }
+        # The permutation test conditions on the observed margins and stays
+        # valid regardless of expected counts, so it is reported even when the
+        # asymptotic chi-square approximation is suppressed.
+        sub_df = d[d["city"].isin([a, b])]
+        permutation_ab = _permutation_chi2_p(
+            sub_df["city"].to_numpy(),
+            sub_df["primary_theme"].to_numpy(),
+            [a, b],
+            themes,
+            float(chi2_ab),
+        )
+        entry.update({
+            "p_value_permutation": permutation_ab.get("p_value"),
+            "p_value_permutation_bonferroni": (
+                float(min(permutation_ab["p_value"] * 3, 1.0))
+                if permutation_ab.get("p_value") is not None else None
+            ),
+            "permutation": permutation_ab,
+            "alpha_for_adjusted_p": 0.05,
+        })
         if suppressed:
             entry["suppressed_reason"] = (
                 f"expected_min={exp_min_ab:.2f} < {_SUPPRESS_EXPECTED_THRESHOLD} — "
-                "chi-square approximation invalid; counts shown only"
+                "asymptotic chi-square approximation invalid; "
+                "exact permutation p-value reported instead"
             )
         else:
-            sub_df = d[d["city"].isin([a, b])]
-            permutation_ab = _permutation_chi2_p(
-                sub_df["city"].to_numpy(),
-                sub_df["primary_theme"].to_numpy(),
-                [a, b],
-                themes,
-                float(chi2_ab),
-            )
             entry.update({
                 "chi2": float(chi2_ab),
                 "df": int(dof_ab),
                 "p_value": float(p_ab),
                 "p_value_bonferroni": float(min(p_ab * 3, 1.0)),
-                "p_value_permutation": permutation_ab.get("p_value"),
-                "p_value_permutation_bonferroni": (
-                    float(min(permutation_ab["p_value"] * 3, 1.0))
-                    if permutation_ab.get("p_value") is not None else None
-                ),
-                "permutation": permutation_ab,
                 "alpha_bonferroni": BONFERRONI_ALPHA,
                 "cramers_v": cramers_v_ab,
+                "cramers_v_bias_corrected": _cramers_v_bias_corrected(sub, float(chi2_ab)),
             })
         pairwise.append(entry)
 
@@ -477,7 +524,7 @@ def theme_anova(df: pd.DataFrame) -> TestResult:
     )
 
 
-def _cohens_d(a: np.ndarray, b: np.ndarray) -> float:
+def _cohens_d_pooled(a: np.ndarray, b: np.ndarray) -> float:
     a = a.astype(float)
     b = b.astype(float)
     na = len(a)
@@ -490,6 +537,18 @@ def _cohens_d(a: np.ndarray, b: np.ndarray) -> float:
     if sp == 0:
         return 0.0
     return float((np.mean(a) - np.mean(b)) / sp)
+
+
+def _cohens_d_welch(a: np.ndarray, b: np.ndarray) -> float:
+    """Effect size consistent with the Welch t-test: no equal-variance pooling."""
+    a = a.astype(float)
+    b = b.astype(float)
+    if len(a) < 2 or len(b) < 2:
+        return float("nan")
+    denom = np.sqrt((np.var(a, ddof=1) + np.var(b, ddof=1)) / 2.0)
+    if denom == 0:
+        return 0.0
+    return float((np.mean(a) - np.mean(b)) / denom)
 
 
 def _benjamini_hochberg(p_values: list[float]) -> list[float]:
@@ -534,7 +593,9 @@ def city_comparison(df: pd.DataFrame) -> TestResult:
             "p_value": float(p),
             "p_value_bonferroni": float(min(p * 3, 1.0)),
             "alpha_bonferroni": BONFERRONI_ALPHA,
-            "cohens_d": _cohens_d(xa, xb),
+            "alpha_for_adjusted_p": 0.05,
+            "cohens_d_welch": _cohens_d_welch(xa, xb),
+            "cohens_d_pooled": _cohens_d_pooled(xa, xb),
         })
 
     return TestResult(

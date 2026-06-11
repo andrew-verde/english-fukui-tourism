@@ -142,14 +142,19 @@ def write_thesis_assessment(payload: dict, pref_result: dict, kanazawa_area_resu
     reservation = _find_result(payload, "official_reservation_event_context")
 
     pref_tests = pref_result.get("details", {}).get("friction_code_tests", [])
-    pref_sig = [t for t in pref_tests if t.get("p_value_bh", 1.0) < 0.05]
+    pref_sig = [t for t in pref_tests if (t.get("p_value_bh") or 1.0) < 0.05]
     kanazawa_area_tests = kanazawa_area_result.get("details", {}).get("friction_code_tests", [])
-    kanazawa_area_sig = [t for t in kanazawa_area_tests if t.get("p_value_bh", 1.0) < 0.05]
-    sat_details = friction_sat.get("details", {})
-    sat_sig = [
-        name for name, result in sat_details.items()
-        if isinstance(result, dict) and result.get("p_value", 1.0) < 0.05
-    ]
+    kanazawa_area_sig = [t for t in kanazawa_area_tests if (t.get("p_value_bh") or 1.0) < 0.05]
+    # Significant outcomes within each friction-exposure analysis (3 outcomes each;
+    # Bonferroni within analysis).
+    sat_sig = []
+    for analysis_name, analysis in friction_sat.get("details", {}).items():
+        if not isinstance(analysis, dict) or "outcomes" not in analysis:
+            continue
+        n_outcomes = max(1, len(analysis["outcomes"]))
+        for outcome, result in analysis["outcomes"].items():
+            if isinstance(result, dict) and (result.get("p_value") or 1.0) * n_outcomes < 0.05:
+                sat_sig.append(f"{analysis_name}:{outcome}")
 
     lines = [
         "# Thesis Readiness Assessment",
@@ -161,12 +166,29 @@ def write_thesis_assessment(payload: dict, pref_result: dict, kanazawa_area_resu
         "The original English-language Google review sample remains too sparse for strong inferential friction claims, but the official Japanese tourist survey layer provides respondent-level tests with large samples.",
         "",
         "## What Now Passes Muster",
-        f"- Official Fukui survey n: {audit.get('n', 0):,} respondent rows.",
-        f"- Official friction text is significantly associated with lower/shifted satisfaction or NPS outcomes for: {', '.join(sat_sig) if sat_sig else 'none'}.",
+        f"- Official Fukui survey n: {audit.get('n', 0):,} deduplicated respondents.",
+        f"- Friction exposure is significantly associated with satisfaction/NPS outcomes for: {', '.join(sat_sig) if sat_sig else 'none'}.",
         f"- Fukui vs Ishikawa official survey friction tests surviving BH correction: {len(pref_sig)} of {len(pref_tests)} friction codes.",
         f"- Fukui vs Ishikawa Kanazawa-area official survey friction tests surviving BH correction: {len(kanazawa_area_sig)} of {len(kanazawa_area_tests)} friction codes.",
-        f"- Shinkansen survey mode shift p-value: {_fmt_p(shinkansen.get('details', {}).get('p_value'))}.",
-        "- Reservation demand context shows statistically detectable post-extension changes for at least some daily demand measures.",
+        f"- Shinkansen survey mode shift: p={_fmt_p(shinkansen.get('details', {}).get('p_value'))}"
+        + (
+            " (significant)."
+            if (shinkansen.get("details", {}).get("p_value") or 1.0) < 0.05
+            else " (not significant)."
+        ),
+    ]
+    reservation_outcomes = reservation.get("details", {}).get("outcomes", {})
+    reservation_sig = [
+        name for name, r in reservation_outcomes.items()
+        if isinstance(r, dict) and (r.get("p_value") or 1.0) < 0.05
+    ]
+    lines += [
+        (
+            f"- Reservation demand context: post-extension shifts detected for {', '.join(reservation_sig)} "
+            "(seasonally confounded — descriptive context only)."
+            if reservation_sig
+            else "- Reservation demand context: no significant post-extension shifts detected (seasonally confounded — descriptive context only)."
+        ),
         "",
         "## Remaining Gaps",
         "- The Japanese friction codebook is keyword-based and needs manual validation on a sampled set of FTAS/Ishikawa comments before final defense claims.",
@@ -203,9 +225,11 @@ def main() -> int:
         "",
         "## Method Notes",
         "- Official-data analysis is separate from the English-language Google Maps review analysis.",
-        "- Unit of analysis is one FTAS survey respondent unless a test is explicitly labeled as reservation/day context.",
+        "- Unit of analysis is one survey respondent; repeat responses by the same member ID are deduplicated to the first response (see method_notes.respondent_dedup in the JSON).",
+        "- Friction-tag comparisons condition on respondents who wrote free text. Text-response rates differ by instrument (Fukui ~42% vs Ishikawa ~100%), so all-respondent friction rates are not comparable across prefectures.",
         "- English reviewer friction and Japanese tourist survey friction are compared descriptively because they come from different sampling frames and languages.",
         "- Reviewer nationality is not inferred.",
+        "- Sample sizes are large; emphasize effect sizes (rank-biserial r, Cramér's V) over p-values.",
         "",
         "## Input Data Audit",
     ]
@@ -219,13 +243,18 @@ def main() -> int:
         "",
         "## Official Friction vs Satisfaction",
     ])
-    for outcome, result in sat.get("details", {}).items():
-        if isinstance(result, dict) and "error" not in result:
-            lines.append(
-                f"- {outcome}: median friction={result['median_friction']:.2f}, "
-                f"median no-friction={result['median_no_friction']:.2f}, "
-                f"Mann-Whitney p={_fmt_p(result['p_value'])}"
-            )
+    for analysis_name, analysis in sat.get("details", {}).items():
+        if not isinstance(analysis, dict) or "outcomes" not in analysis:
+            continue
+        lines.append(f"- Exposure: {analysis.get('exposure')} ({analysis_name}, n={analysis.get('n_analyzed', 0):,})")
+        for outcome, result in analysis["outcomes"].items():
+            if isinstance(result, dict) and "error" not in result:
+                lines.append(
+                    f"  - {outcome}: mean friction={result['mean_friction']:.3f} vs "
+                    f"no-friction={result['mean_no_friction']:.3f} "
+                    f"(Δ={result['mean_difference']:+.3f}), rank-biserial r={result['rank_biserial_r']:.3f}, "
+                    f"Mann-Whitney p={_fmt_p(result['p_value'])} — {result['effect_direction']}"
+                )
     sdet = shinkansen.get("details", {})
     lines.extend([
         "",
@@ -237,7 +266,10 @@ def main() -> int:
         "",
         "## Reservation Demand Context",
     ])
-    for outcome, result in reservation.get("details", {}).get("outcomes", {}).items():
+    rdet = reservation.get("details", {})
+    if rdet.get("caveat"):
+        lines.append(f"- Caveat: {rdet['caveat']}")
+    for outcome, result in rdet.get("outcomes", {}).items():
         if "error" not in result:
             lines.append(
                 f"- {outcome}: median pre={result['median_pre']:.1f}, "
@@ -249,8 +281,9 @@ def main() -> int:
     lines.extend([
         "",
         "## Official Fukui vs Ishikawa Survey Comparison",
-        f"- n: {pref.get('n', 0):,} respondent rows.",
-        f"- Any friction rate: Fukui {_pct(any_friction.get('rates', {}).get('Fukui'))}; Ishikawa {_pct(any_friction.get('rates', {}).get('Ishikawa'))}; p={_fmt_p(any_friction.get('p_value'))}; V={any_friction.get('cramers_v')}",
+        f"- n: {pref.get('n', 0):,} respondent rows; friction rates conditioned on the {pdet.get('n_text_writers', 0):,} respondents with free text.",
+        f"- Text-response rates: Fukui {_pct(pdet.get('text_response_rates', {}).get('Fukui'))}, Ishikawa {_pct(pdet.get('text_response_rates', {}).get('Ishikawa'))} (instrument difference; motivates the text-writer denominator).",
+        f"- Any friction rate (among text-writers): Fukui {_pct(any_friction.get('rates', {}).get('Fukui'))}; Ishikawa {_pct(any_friction.get('rates', {}).get('Ishikawa'))}; p={_fmt_p(any_friction.get('p_value'))}; V={_fmt_float(any_friction.get('cramers_v'))}",
     ])
     if not pref_comparison.empty:
         top_pref = pref_comparison.sort_values("p_value_bh").head(6)
@@ -267,7 +300,7 @@ def main() -> int:
         "## Official Fukui vs Ishikawa Kanazawa-Area Survey Comparison",
         "- Scope: all Fukui official survey rows compared with Ishikawa official survey rows where `survey_area_group` is `金沢`.",
         f"- n: {kanazawa_area.get('n', 0):,} respondent rows.",
-        f"- Any friction rate: Fukui {_pct(ka_any.get('rates', {}).get('Fukui'))}; Ishikawa Kanazawa-area {_pct(ka_any.get('rates', {}).get('Ishikawa_Kanazawa_area'))}; p={_fmt_p(ka_any.get('p_value'))}; V={ka_any.get('cramers_v')}",
+        f"- Any friction rate (among text-writers, n={kadet.get('n_text_writers', 0):,}): Fukui {_pct(ka_any.get('rates', {}).get('Fukui'))}; Ishikawa Kanazawa-area {_pct(ka_any.get('rates', {}).get('Ishikawa_Kanazawa_area'))}; p={_fmt_p(ka_any.get('p_value'))}; V={_fmt_float(ka_any.get('cramers_v'))}",
     ])
     for item in kadet.get("friction_code_tests", [])[:6]:
         lines.append(

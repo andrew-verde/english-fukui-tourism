@@ -50,6 +50,33 @@ class TestResult:
     details: dict
 
 
+def _dedup_respondents(df: pd.DataFrame, scope_cols: list[str] | None = None) -> tuple[pd.DataFrame, dict]:
+    """Keep one response per respondent (earliest by response_datetime).
+
+    Repeat survey submissions by the same member ID violate the independence
+    assumption of every test below. Rows without a respondent_id are kept as-is.
+    """
+    if "respondent_id" not in df.columns:
+        return df, {"n_rows": int(len(df)), "n_dropped_repeat_responses": 0,
+                    "note": "no respondent_id column; dedup skipped"}
+    d = df.copy()
+    if "response_datetime" in d.columns:
+        d["_dt"] = pd.to_datetime(d["response_datetime"], errors="coerce", utc=True)
+        d = d.sort_values("_dt", kind="stable")
+    has_id = d["respondent_id"].notna()
+    keys = (scope_cols or []) + ["respondent_id"]
+    deduped = pd.concat([d[has_id].drop_duplicates(subset=keys, keep="first"), d[~has_id]])
+    deduped = deduped.drop(columns=["_dt"], errors="ignore").sort_index()
+    audit = {
+        "n_rows": int(len(df)),
+        "n_after_dedup": int(len(deduped)),
+        "n_dropped_repeat_responses": int(len(df) - len(deduped)),
+        "rule": "first response per respondent_id retained"
+        + (f" within {scope_cols}" if scope_cols else ""),
+    }
+    return deduped, audit
+
+
 def _load_tagged() -> pd.DataFrame:
     if not TAGGED_CSV.exists():
         raise FileNotFoundError(f"Missing input: {TAGGED_CSV}. Run build_ftas_survey_dataset.py first.")
@@ -60,6 +87,15 @@ def _load_combined() -> pd.DataFrame | None:
     if not COMBINED_TAGGED_CSV.exists():
         return None
     return pd.read_csv(COMBINED_TAGGED_CSV, low_memory=False)
+
+
+def _has_text(df: pd.DataFrame) -> pd.Series:
+    return df["friction_source_text"].fillna("").astype(str).str.strip().ne("")
+
+
+def _safe_p(p: float) -> float:
+    # Avoid storing a literal 0.0 from floating-point underflow.
+    return float(max(p, np.finfo(float).tiny))
 
 
 def _as_bool(series: pd.Series) -> pd.Series:
@@ -81,7 +117,7 @@ def _chi_square_binary(df: pd.DataFrame, row_col: str, col: str, label: str) -> 
     d = df[[row_col, col]].dropna().copy()
     if d.empty or d[row_col].nunique() < 2:
         return TestResult(label, int(len(d)), {"error": "Need at least two groups."})
-    d[col] = d[col].astype(bool)
+    d[col] = _as_bool(d[col])
     ct = pd.crosstab(d[row_col], d[col])
     if ct.shape[1] < 2:
         return TestResult(label, int(len(d)), {"error": "Only one outcome level present.", "contingency_table": ct.to_dict()})
@@ -94,7 +130,7 @@ def _chi_square_binary(df: pd.DataFrame, row_col: str, col: str, label: str) -> 
             "outcome": col,
             "chi2": float(chi2),
             "df": int(dof),
-            "p_value": float(p),
+            "p_value": _safe_p(p),
             "cramers_v": _cramers_v(ct.to_numpy(), float(chi2)),
             "expected_min": float(np.min(expected)),
             "assumption_expected_ge5": bool(np.min(expected) >= 5),
@@ -121,36 +157,76 @@ def input_data_audit(df: pd.DataFrame, codes: list[str]) -> TestResult:
             "date_max": str(dates.max()) if not dates.empty else None,
             "n_response_areas": int(df["response_area"].nunique()) if "response_area" in df.columns else None,
             "n_municipalities": int(df["municipality"].nunique()) if "municipality" in df.columns else None,
-            "any_friction_count": int(df["any_friction"].astype(bool).sum()) if "any_friction" in df.columns else None,
+            "any_friction_count": int(_as_bool(df["any_friction"]).sum()) if "any_friction" in df.columns else None,
             "friction_code_counts": {
-                code: int(df[code].astype(bool).sum()) for code in codes if code in df.columns
+                code: int(_as_bool(df[code]).sum()) for code in codes if code in df.columns
             },
         },
     )
 
 
+def _mannwhitney_outcome(yes: np.ndarray, no: np.ndarray, label_yes: str, label_no: str) -> dict:
+    u, p = stats.mannwhitneyu(yes, no, alternative="two-sided")
+    rank_biserial = float(2.0 * u / (len(yes) * len(no)) - 1.0)
+    mean_diff = float(np.mean(yes) - np.mean(no))
+    if abs(rank_biserial) < 1e-12:
+        direction = f"no rank difference between {label_yes} and {label_no}"
+    else:
+        higher, lower = (label_yes, label_no) if rank_biserial > 0 else (label_no, label_yes)
+        direction = f"{higher} ranks higher than {lower}"
+    return {
+        f"n_{label_yes}": int(len(yes)),
+        f"n_{label_no}": int(len(no)),
+        f"median_{label_yes}": float(np.median(yes)),
+        f"median_{label_no}": float(np.median(no)),
+        f"mean_{label_yes}": float(np.mean(yes)),
+        f"mean_{label_no}": float(np.mean(no)),
+        "mean_difference": mean_diff,
+        "mannwhitney_u": float(u),
+        "p_value": _safe_p(p),
+        "rank_biserial_r": rank_biserial,
+        "effect_direction": direction,
+    }
+
+
 def friction_vs_satisfaction(df: pd.DataFrame) -> TestResult:
-    d = df[["any_friction", "overall_satisfaction_score", "transport_satisfaction_score", "nps"]].copy()
-    d["any_friction"] = d["any_friction"].astype(bool)
-    outcomes = {}
-    for col in ["overall_satisfaction_score", "transport_satisfaction_score", "nps"]:
-        sub = d[[col, "any_friction"]].dropna().copy()
-        if sub.empty or sub["any_friction"].nunique() < 2:
-            outcomes[col] = {"error": "Need both friction and no-friction rows."}
-            continue
-        yes = sub.loc[sub["any_friction"], col].astype(float).to_numpy()
-        no = sub.loc[~sub["any_friction"], col].astype(float).to_numpy()
-        u, p = stats.mannwhitneyu(yes, no, alternative="two-sided")
-        outcomes[col] = {
-            "n_friction": int(len(yes)),
-            "n_no_friction": int(len(no)),
-            "median_friction": float(np.median(yes)),
-            "median_no_friction": float(np.median(no)),
-            "mannwhitney_u": float(u),
-            "p_value": float(p),
-            "effect_note": "lower median_friction suggests official survey friction text aligns with lower satisfaction/NPS",
+    """Friction exposure vs satisfaction outcomes.
+
+    Primary exposure is reported_inconvenience (asked of every respondent, so
+    free of free-text selection bias). The tagged any_friction exposure is
+    reported as a secondary analysis conditioned on respondents who wrote free
+    text, because untagged non-writers are not evidence of "no friction".
+    """
+    outcome_cols = ["overall_satisfaction_score", "transport_satisfaction_score", "nps"]
+    analyses = {}
+
+    exposures = []
+    if "reported_inconvenience" in df.columns:
+        exposures.append(("reported_inconvenience_full_sample", df, "reported_inconvenience"))
+    if "any_friction" in df.columns and "friction_source_text" in df.columns:
+        exposures.append(("tagged_friction_among_text_writers", df[_has_text(df)], "any_friction"))
+
+    for analysis_name, frame, exposure in exposures:
+        outcomes = {}
+        flags = _as_bool(frame[exposure])
+        for col in outcome_cols:
+            sub = frame[[col]].assign(flag=flags.values).dropna(subset=[col])
+            if sub.empty or sub["flag"].nunique() < 2:
+                outcomes[col] = {"error": "Need both friction and no-friction rows."}
+                continue
+            yes = sub.loc[sub["flag"], col].astype(float).to_numpy()
+            no = sub.loc[~sub["flag"], col].astype(float).to_numpy()
+            outcomes[col] = _mannwhitney_outcome(yes, no, "friction", "no_friction")
+        analyses[analysis_name] = {
+            "exposure": exposure,
+            "n_analyzed": int(len(frame)),
+            "outcomes": outcomes,
         }
-    return TestResult("official_friction_vs_satisfaction", int(len(df)), outcomes)
+    analyses["selection_note"] = (
+        "any_friction tags exist only for respondents with free text; the tagged "
+        "analysis is conditioned on text-writers to avoid coding non-writers as friction-free."
+    )
+    return TestResult("official_friction_vs_satisfaction", int(len(df)), analyses)
 
 
 def shinkansen_survey_shift(df: pd.DataFrame) -> TestResult:
@@ -160,7 +236,7 @@ def shinkansen_survey_shift(df: pd.DataFrame) -> TestResult:
     d["response_datetime"] = pd.to_datetime(d["response_datetime"], errors="coerce")
     d = d[d["response_datetime"].notna()]
     d["post"] = d["response_datetime"] >= SHINKANSEN_DATE_UTC
-    d["uses_shinkansen"] = d["transport_to_fukui_shinkansen"].astype(bool)
+    d["uses_shinkansen"] = _as_bool(d["transport_to_fukui_shinkansen"])
     ct = pd.crosstab(d["post"], d["uses_shinkansen"]).reindex(index=[False, True], columns=[False, True], fill_value=0)
     chi2, p, dof, expected = stats.chi2_contingency(ct.to_numpy())
     pre_rate = float(ct.loc[False, True] / ct.loc[False].sum()) if ct.loc[False].sum() else None
@@ -175,7 +251,7 @@ def shinkansen_survey_shift(df: pd.DataFrame) -> TestResult:
             "delta_rate": (post_rate - pre_rate) if pre_rate is not None and post_rate is not None else None,
             "chi2": float(chi2),
             "df": int(dof),
-            "p_value": float(p),
+            "p_value": _safe_p(p),
             "cramers_v": _cramers_v(ct.to_numpy(), float(chi2)),
             "expected_min": float(np.min(expected)),
             "contingency_table": ct.to_dict(),
@@ -208,12 +284,21 @@ def reservation_event_context() -> TestResult:
             "median_pre": float(np.median(pre)),
             "median_post": float(np.median(post)),
             "mannwhitney_u": float(u),
-            "p_value": float(p),
+            "p_value": _safe_p(p),
         }
     return TestResult(
         "official_reservation_event_context",
         int(len(d)),
-        {"event_date": str(SHINKANSEN_DATE.date()), "window_days_each_side": 180, "outcomes": summaries},
+        {
+            "event_date": str(SHINKANSEN_DATE.date()),
+            "window_days_each_side": 180,
+            "outcomes": summaries,
+            "caveat": (
+                "The pre window is autumn/winter and the post window spring/summer, so this "
+                "test confounds the Shinkansen opening with seasonality. Treat as descriptive "
+                "context only; the Hokuriku DiD with a comparison prefecture supersedes it."
+            ),
+        },
     )
 
 
@@ -280,9 +365,10 @@ def _binary_group_test(df: pd.DataFrame, group_col: str, outcome_col: str, group
         "rates": rates,
         "chi2": float(chi2),
         "df": int(dof),
-        "p_value": float(p),
+        "p_value": _safe_p(p),
         "cramers_v": _cramers_v(ct.to_numpy(), float(chi2)),
         "expected_min": float(np.min(expected)),
+        "assumption_expected_ge5": bool(np.min(expected) >= 5),
     }
 
 
@@ -294,15 +380,24 @@ def official_prefecture_comparison(df: pd.DataFrame, codes: list[str]) -> TestRe
     if d.empty:
         return TestResult("official_prefecture_comparison", 0, {"error": "No Fukui/Ishikawa rows."})
 
-    any_friction = _binary_group_test(d, "survey_prefecture", "any_friction", groups)
+    # Friction tags only exist where free text was written, and text-response
+    # rates differ drastically by instrument (Fukui ~42% vs Ishikawa ~100%).
+    # Friction comparisons therefore condition on text-writers; comparing over
+    # all respondents would measure questionnaire format, not friction.
+    text_writers = d[_has_text(d)]
+    text_rates = {
+        g: float(_has_text(d[d["survey_prefecture"] == g]).mean()) for g in groups
+    }
+
+    any_friction = _binary_group_test(text_writers, "survey_prefecture", "any_friction", groups)
     code_tests = []
     p_values = []
     for code in codes:
-        if code not in d.columns:
+        if code not in text_writers.columns:
             continue
-        if int(_as_bool(d[code]).sum()) < 5:
+        if int(_as_bool(text_writers[code]).sum()) < 5:
             continue
-        result = _binary_group_test(d, "survey_prefecture", code, groups)
+        result = _binary_group_test(text_writers, "survey_prefecture", code, groups)
         p_values.append(result["p_value"])
         code_tests.append(result)
     for result, p_adj in zip(code_tests, _benjamini_hochberg(p_values)):
@@ -317,20 +412,12 @@ def official_prefecture_comparison(df: pd.DataFrame, codes: list[str]) -> TestRe
         b = sub.loc[sub["survey_prefecture"] == "Ishikawa", outcome].astype(float).to_numpy()
         if len(a) < 2 or len(b) < 2:
             continue
-        u, p = stats.mannwhitneyu(a, b, alternative="two-sided")
-        outcome_tests.append({
-            "outcome": outcome,
-            "n_fukui": int(len(a)),
-            "n_ishikawa": int(len(b)),
-            "median_fukui": float(np.median(a)),
-            "median_ishikawa": float(np.median(b)),
-            "mean_fukui": float(np.mean(a)),
-            "mean_ishikawa": float(np.mean(b)),
-            "mannwhitney_u": float(u),
-            "p_value": float(p),
-        })
+        record = _mannwhitney_outcome(a, b, "fukui", "ishikawa")
+        record["outcome"] = outcome
+        outcome_tests.append(record)
 
     transport_tests = []
+    transport_p = []
     for mode in [
         "transport_to_fukui_private_car",
         "transport_to_fukui_rental_car",
@@ -342,12 +429,19 @@ def official_prefecture_comparison(df: pd.DataFrame, codes: list[str]) -> TestRe
     ]:
         if mode not in d.columns:
             continue
-        transport_tests.append(_binary_group_test(d, "survey_prefecture", mode, groups))
+        result = _binary_group_test(d, "survey_prefecture", mode, groups)
+        transport_p.append(result["p_value"])
+        transport_tests.append(result)
+    for result, p_adj in zip(transport_tests, _benjamini_hochberg(transport_p)):
+        result["p_value_bh"] = p_adj
 
     return TestResult(
         "official_prefecture_comparison",
         int(len(d)),
         {
+            "friction_denominator": "respondents with non-empty friction_source_text",
+            "text_response_rates": text_rates,
+            "n_text_writers": int(len(text_writers)),
             "any_friction": any_friction,
             "friction_code_tests": sorted(code_tests, key=lambda r: r.get("p_value_bh", 1.0)),
             "outcome_tests": outcome_tests,
@@ -376,12 +470,16 @@ def official_fukui_vs_ishikawa_kanazawa_area_comparison(df: pd.DataFrame, codes:
             {"error": "Need both Fukui and Ishikawa Kanazawa-area rows."},
         )
 
-    any_friction = _binary_group_test(d, "comparison_scope", "any_friction", groups)
+    text_writers = d[_has_text(d)]
+    text_rates = {
+        g: float(_has_text(d[d["comparison_scope"] == g]).mean()) for g in groups
+    }
+    any_friction = _binary_group_test(text_writers, "comparison_scope", "any_friction", groups)
     code_tests = []
     p_values = []
     for code in codes:
-        if code in d.columns and int(_as_bool(d[code]).sum()) >= 5:
-            result = _binary_group_test(d, "comparison_scope", code, groups)
+        if code in text_writers.columns and int(_as_bool(text_writers[code]).sum()) >= 5:
+            result = _binary_group_test(text_writers, "comparison_scope", code, groups)
             p_values.append(result["p_value"])
             code_tests.append(result)
     for result, p_adj in zip(code_tests, _benjamini_hochberg(p_values)):
@@ -396,24 +494,18 @@ def official_fukui_vs_ishikawa_kanazawa_area_comparison(df: pd.DataFrame, codes:
         b = sub.loc[sub["comparison_scope"] == "Ishikawa_Kanazawa_area", outcome].astype(float).to_numpy()
         if len(a) < 2 or len(b) < 2:
             continue
-        u, p = stats.mannwhitneyu(a, b, alternative="two-sided")
-        outcome_tests.append({
-            "outcome": outcome,
-            "n_fukui": int(len(a)),
-            "n_ishikawa_kanazawa_area": int(len(b)),
-            "median_fukui": float(np.median(a)),
-            "median_ishikawa_kanazawa_area": float(np.median(b)),
-            "mean_fukui": float(np.mean(a)),
-            "mean_ishikawa_kanazawa_area": float(np.mean(b)),
-            "mannwhitney_u": float(u),
-            "p_value": float(p),
-        })
+        record = _mannwhitney_outcome(a, b, "fukui", "ishikawa_kanazawa_area")
+        record["outcome"] = outcome
+        outcome_tests.append(record)
 
     return TestResult(
         "official_fukui_vs_ishikawa_kanazawa_area_comparison",
         int(len(d)),
         {
             "scope_note": "Compares all Fukui official survey rows against Ishikawa official survey rows whose survey_area_group is 金沢.",
+            "friction_denominator": "respondents with non-empty friction_source_text",
+            "text_response_rates": text_rates,
+            "n_text_writers": int(len(text_writers)),
             "any_friction": any_friction,
             "friction_code_tests": sorted(code_tests, key=lambda r: r.get("p_value_bh", 1.0)),
             "outcome_tests": outcome_tests,
@@ -422,8 +514,13 @@ def official_fukui_vs_ishikawa_kanazawa_area_comparison(df: pd.DataFrame, codes:
 
 
 def main() -> int:
-    df = _load_tagged()
+    df, dedup_audit = _dedup_respondents(_load_tagged())
     combined_df = _load_combined()
+    combined_dedup_audit = None
+    if combined_df is not None:
+        combined_df, combined_dedup_audit = _dedup_respondents(
+            combined_df, scope_cols=["survey_prefecture"]
+        )
     codebook = load_japanese_codebook(CODEBOOK_PATH)
     codes = list(codebook.keys())
 
@@ -441,7 +538,17 @@ def main() -> int:
         ])
     payload = {
         "method_notes": {
-            "unit_of_analysis": "one FTAS survey respondent unless test name says reservation/day context",
+            "unit_of_analysis": (
+                "one survey respondent (first response retained for members who "
+                "submitted multiple responses) unless test name says reservation/day context"
+            ),
+            "respondent_dedup": dedup_audit,
+            "respondent_dedup_combined": combined_dedup_audit,
+            "friction_rate_denominator": (
+                "friction-tag comparisons condition on respondents with non-empty "
+                "friction_source_text; text-response rates differ by instrument "
+                "(Fukui ~42% vs Ishikawa ~100%), so all-respondent rates are not comparable"
+            ),
             "official_data_source": "Code for Fukui FTAS CSVs and Ishikawa official tourism survey CSVs",
             "google_review_results_not_mixed": True,
             "shinkansen_event_date": str(SHINKANSEN_DATE.date()),

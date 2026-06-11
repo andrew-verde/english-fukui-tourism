@@ -258,7 +258,14 @@ def normalize_ftas_survey(df: pd.DataFrame) -> pd.DataFrame:
     if "future_visit_intent" in out.columns:
         out["future_visit_intent_score"] = out["future_visit_intent"].map(VISIT_INTENT_MAP)
     if "inconvenience" in out.columns:
-        out["reported_inconvenience"] = out["inconvenience"].apply(normalize_flag)
+        # Explicit 感じた/感じなかった (or あり/なし) item, not a checkbox:
+        # normalize_flag (any non-empty string → True) would wrongly code
+        # 感じなかった as True.
+        inconvenience = out["inconvenience"].astype(str).str.strip()
+        out["reported_inconvenience"] = inconvenience.isin({"あり", "有り"}) | (
+            inconvenience.str.contains("感じた", na=False)
+            & ~inconvenience.str.contains("感じなかった", na=False)
+        )
 
     text_fields = [
         "transport_satisfaction_reason",

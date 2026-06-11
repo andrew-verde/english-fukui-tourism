@@ -3,8 +3,8 @@
 ## Method Notes
 - Unit of analysis: one review (rows in `output/friction_analysis/reviews_unified.csv`).
 - Chi-square tests exclude reviews where `primary_theme` is None.
-- Bonferroni correction for 3 pairwise city comparisons: α_adjusted = 0.05/3 = 0.0167.
-- Effect sizes: Cramér's V for chi-square, η² for ANOVA, Cohen's d for t-tests.
+- Bonferroni correction for 3 pairwise city comparisons. Reported p_adj values are already multiplied by 3 and should be compared against α = 0.05 (equivalently, raw p against 0.05/3 = 0.0167).
+- Effect sizes: Cramér's V (with Bergsma bias-corrected variant) for chi-square, η² for ANOVA, Welch-consistent Cohen's d for Welch t-tests.
 - Chi-square assumption: expected cell frequencies ≥ 5 required. See 'assumption_expected_ge5' flags.
 - City × theme chi-square results are supplemented with deterministic permutation p-values (10,000 permutations, seed=42) because expected counts are sparse.
 
@@ -28,9 +28,9 @@
 - Largest cell drivers: Fukui–Dinosaur observed 12 vs expected 3.9; Toyama–Scenic observed 44 vs expected 24.4; Toyama–Cultural observed 18 vs expected 38.0.
 - Interpretation: theme mix varies by city, but the all-theme result has sparse-cell caveats; use the shared-theme test below for the cleaner cross-city comparison.
 - Pairwise (Bonferroni-adjusted p-values):
-  - Fukui vs Kanazawa: χ²(4) = 35.314, asym_p_adj = <0.001, perm_p_adj = <0.001, V = 0.337 ⚠ exp_min=4.63 (α=0.0167)
-  - Fukui vs Toyama: χ²(4) = 24.596, asym_p_adj = <0.001, perm_p_adj = <0.001, V = 0.341 (α=0.0167)
-  - Kanazawa vs Toyama: NOT REPORTED — expected_min=0.32 < 1.0 — chi-square approximation invalid; counts shown only
+  - Fukui vs Kanazawa: χ²(4) = 35.314, asym_p_adj = <0.001, perm_p_adj = <0.001, V = 0.337 ⚠ exp_min=4.63 (adjusted p vs α=0.05)
+  - Fukui vs Toyama: χ²(4) = 24.596, asym_p_adj = <0.001, perm_p_adj = <0.001, V = 0.341 (adjusted p vs α=0.05)
+  - Kanazawa vs Toyama: asymptotic χ² suppressed (expected_min=0.32 < 1.0 — asymptotic chi-square approximation invalid; exact permutation p-value reported instead); perm_p_adj = <0.001 (vs α=0.05)
 
 ## SR-01 — Shared theme distribution differs by city
 - Scope: shared cross-city themes only (Food, Scenic, Cultural, Logistics); Dinosaur is retained elsewhere as a Fukui-specific destination theme.
@@ -56,7 +56,7 @@ _(Theme 'Cultural' was formerly labelled 'Emotional'; renamed 2026-05-19.)_
   - Food vs Logistics: Δmean = 0.041, p = 0.884
   - Food vs Scenic: Δmean = -0.044, p = 0.696
   - Logistics vs Scenic: Δmean = -0.086, p = 0.237
-- Kruskal-Wallis robustness check (non-normality confirmed in 4/5 groups):
+- Kruskal-Wallis robustness check (non-normality confirmed in 5/5 groups):
   H(4) = 9.319, p = 0.054, ε² = 0.0134
   Interpretation: Consistent with ANOVA null
   Pairwise Mann-Whitney after BH FDR: no theme pair remains significant.
@@ -64,9 +64,9 @@ _(Theme 'Cultural' was formerly labelled 'Emotional'; renamed 2026-05-19.)_
 
 ## SR-05 — Sentiment differs by city (pairwise t-tests, Bonferroni)
 - n (reviews): 915
-- Fukui vs Kanazawa: mean=0.847 vs 0.814, p_adj=0.074, d=0.180
-- Fukui vs Toyama: mean=0.847 vs 0.850, p_adj=1.000, d=-0.019
-- Kanazawa vs Toyama: mean=0.814 vs 0.850, p_adj=0.063, d=-0.199
+- Fukui vs Kanazawa: mean=0.847 vs 0.814, p_adj=0.074, d_welch=0.181
+- Fukui vs Toyama: mean=0.847 vs 0.850, p_adj=1.000, d_welch=-0.019
+- Kanazawa vs Toyama: mean=0.814 vs 0.850, p_adj=0.063, d_welch=-0.202
 - Interpretation: corrected mean tests do not show city-level sentiment differences.
 
 ## Additional — Spearman ρ: star rating vs VADER sentiment by city
@@ -79,16 +79,16 @@ _(Bonferroni correction across 3 city tests: α_adj = 0.0167.)_
 - Interpretation: VADER text sentiment aligns with star ratings in every city, but only moderately.
 
 ## Additional — Review length by city (Kruskal-Wallis + Mann-Whitney)
-_(All city groups non-normal by Shapiro-Wilk; KW used in place of one-way ANOVA.)_
+_(3/3 city groups non-normal by Shapiro-Wilk; KW used in place of one-way ANOVA.)_
 _(Pairwise Mann-Whitney with Benjamini-Hochberg FDR correction; Cliff's δ is signed, positive means first city has longer reviews.)_
 - n (reviews): 915
-- Kruskal-Wallis: H = 9.471, p = 0.009, ε² = 0.0082 (small effect)
+- Kruskal-Wallis: H = 9.471, p = 0.009, ε² = 0.0082 (negligible effect)
 - Medians: Fukui 176 chars, Kanazawa 157 chars, Toyama 192 chars
 - Pairwise (BH FDR corrected):
   - Fukui vs Kanazawa: p = 0.006, p_BH = 0.017, δ = 0.129 — ✓
   - Fukui vs Toyama: p = 0.780, p_BH = 0.780, δ = 0.017 — NS
   - Kanazawa vs Toyama: p = 0.040, p_BH = 0.060, δ = -0.105 — NS
-- Interpretation: review length differs by city overall, but the retained pairwise gap is small.
+- Interpretation: review length differs by city overall; see pairwise rows for which gaps survive correction.
 
 ## Descriptive friction context (sentence-level, not inferential)
 - Top friction codes by raw count (across cities, sentence-level denominator):

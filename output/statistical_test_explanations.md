@@ -35,7 +35,7 @@ A chi-square independence test is the standard test for association between two 
 It determines whether the distribution of themes differs by city, which sheds light on whether Fukui's review discourse is positioned differently from Kanazawa and Toyama.
 
 ### What the result means
-Across 402 themed reviews, the overall test is χ²(8) = 74.959, asymptotic p = <0.001, permutation p = <0.001, Cramér's V = 0.305. This indicates an association between city and theme mix. However, the minimum expected cell count is 2.943, below the usual ≥5 guideline, so the result should be reported with the permutation robustness check and sparse-cell caveat.
+Across 402 themed reviews, the overall test is χ²(8) = 74.959, asymptotic p = <0.001, permutation p = <0.001, Cramér's V = 0.305. This indicates an association between city and theme mix. The minimum expected cell count is 2.943; if below the usual ≥5 guideline, the result should be reported with the permutation robustness check and sparse-cell caveat.
 The largest cell drivers are: Fukui–Dinosaur observed 12 vs expected 3.9; Toyama–Scenic observed 44 vs expected 24.4; Toyama–Cultural observed 18 vs expected 38.0. After Bonferroni correction, reported pairwise differences remain for Fukui vs Kanazawa; Fukui vs Toyama; any suppressed comparison should be treated as counts-only because expected cells are too sparse.
 
 ## SR-01c: Shared-Theme City by Theme Test
@@ -66,7 +66,7 @@ Welch's t-test compares the means of a continuous variable between two independe
 It determines whether Fukui's normalised VADER sentiment differs from Kanazawa or Toyama, and whether the comparison cities differ from each other.
 
 ### What the result means
-Fukui vs Kanazawa mean 0.847 vs 0.814, p_adj=0.074, d=0.180; Fukui vs Toyama mean 0.847 vs 0.850, p_adj=1.000, d=-0.019; Kanazawa vs Toyama mean 0.814 vs 0.850, p_adj=0.063, d=-0.199. The corrected mean tests do not provide evidence that Fukui's average normalised sentiment differs from the comparison cities. Because VADER sentiment is bounded and skewed, treat this as a mean-test result rather than proof of destination equivalence or substantive visitor feeling.
+Fukui vs Kanazawa mean 0.847 vs 0.814, p_adj=0.074, d_welch=0.181; Fukui vs Toyama mean 0.847 vs 0.850, p_adj=1.000, d_welch=-0.019; Kanazawa vs Toyama mean 0.814 vs 0.850, p_adj=0.063, d_welch=-0.202. The corrected mean tests do not provide evidence that average normalised sentiment differs between any pair of cities. Because VADER sentiment is bounded and skewed, treat this as a mean-test result rather than proof of destination equivalence or substantive visitor feeling.
 
 ## Additional: Spearman Correlation Between Star Rating and VADER Sentiment
 ### Why this test was chosen
