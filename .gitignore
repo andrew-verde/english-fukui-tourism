@@ -142,6 +142,8 @@ output/multilingual_review_analysis/reviews_multilingual.csv
 output/multilingual_review_analysis/tagged_reviews_multilingual.csv
 output/multilingual_review_analysis/japanese_reviews_tagged.csv
 output/multilingual_review_analysis/non_english_non_japanese_reviews.csv
+output/chinese_social_media_analysis/chinese_social_posts.csv
+output/chinese_social_media_analysis/tagged_chinese_social_posts.csv
 output/official_fukui/raw/*.csv
 output/official_fukui/ftas_survey_normalized.csv
 output/official_fukui/ftas_tagged_survey.csv
