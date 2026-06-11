@@ -193,7 +193,8 @@ def build_readiness_report(
         "additional_reviews_needed_by_city": below_city_target,
         "source_counts_by_city": _source_counts(df),
         "poi_count_summary": {
-            "pois_total": int(poi_counts["poi_name"].nunique()) if not poi_counts.empty else 0,
+            # (city, poi_name) rows — same unit as pois_below_5_reviews.
+            "pois_total": int(len(poi_counts)) if not poi_counts.empty else 0,
             "min_reviews_per_poi": int(poi_counts["reviews"].min()) if not poi_counts.empty else 0,
             "median_reviews_per_poi": float(poi_counts["reviews"].median()) if not poi_counts.empty else 0.0,
             "max_reviews_per_poi": int(poi_counts["reviews"].max()) if not poi_counts.empty else 0,

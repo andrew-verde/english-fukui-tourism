@@ -64,8 +64,11 @@ OUTCOMES = {
 }
 
 
+MEMBER_COL = "会員ID"
+
+
 def load_merged() -> pd.DataFrame:
-    usecols = [PREF_COL, DATE_COL] + list(OUTCOMES.values())
+    usecols = [PREF_COL, DATE_COL, MEMBER_COL] + list(OUTCOMES.values())
     frames = []
     for path in sorted(RAW_DIR.glob("merged_survey_*.csv")):
         frames.append(pd.read_csv(path, usecols=lambda c: c in usecols, low_memory=False))
@@ -169,6 +172,13 @@ def main() -> int:
         "- 2024 Noto earthquake (Jan 2024) hit Ishikawa during the pre-period —",
         "  the single largest threat to parallel trends. Mitigations: drop Jan–Mar 2024,",
         "  drop Noto-area responses, or use event-study coefficients rather than 2x2.",
+        "- Rows are survey responses, not unique respondents, and the public merged",
+        "  file anonymizes 会員ID (constant/blank), so repeat responders cannot be",
+        "  identified here. The local FTAS extract shows ~47% of Fukui rows are",
+        "  repeat responses by the same member, so independence is violated and",
+        "  these SEs are anti-conservative. The thesis estimate should cluster SEs",
+        "  (e.g. by municipality x month) and run a dedup sensitivity check using",
+        "  the local FTAS member IDs for the Fukui arm.",
         "- p-values here are unadjusted and the model has no time or seasonality",
         "  controls; this is a *feasibility* audit, not the thesis estimate.",
         "",
