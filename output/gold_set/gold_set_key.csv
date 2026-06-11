@@ -1,0 +1,447 @@
+gold_id,stratum,survey_prefecture,response_area,friction_source_text,friction_codes,transport_access,wayfinding_signage,english_information_gap,staff_communication,booking_ticketing,waiting_crowding,price_value,cleanliness_comfort,opening_hours_availability,itinerary_fit_time_cost,accessibility_mobility,food_amenities_gap
+gold_0001,untagged_text,Ishikawa,金沢,バス停から7分くらいと近いから。。夕食がない。。夕食がない。。ウニ昆布かな、おいしいです。。何でもおいしいです。。朝食が良いから。。歴史を感じるから。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0002,positive_booking_ticketing,Ishikawa,加賀,小松からの空港バスの支払いに交通系ICなどが使えなかった。清潔感や、快適感は最高ですが、レストラン、お土産屋、コンビニ雑貨など寂しくて〜。せめて最終便まで、芝寿司くらいは頑張って欲しい。。レストランの復活、ラウンジの地元感ある飲み物販売などお願いします。安さもお願いしたいけど、京都に負けない上品さを忘れずにお願いします。お土産の種類(特に生もの、生スイーツ含む)も少なく、レストランも少なく、お持ち帰り寿司も売り切れが早い。食事が安くて美味しい,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0003,positive_cleanliness_comfort,Ishikawa,金沢,休憩スポットとしても利用できるため。金沢おでんや海産物が美味しいのでリピートしてしまいますね。。石川県の観光スポットがパンフレットなどで情報を拾いやすくなっているため。観光スポットが多く、写真映えするので。,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0004,untagged_text,Fukui,越前大野城・城下町 エリア,飲食店で昼に１時間待っが御飯がないので申し訳ないと言われた。他に5組位いた皆気分を害していた。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0005,positive_booking_ticketing,Fukui,JR敦賀駅前 エリア,清潔感があって良い。街が小さいためか店が圧倒的に少なく、平日の夜にも関わらず満席で入店できなかった店が複数あった。飲食店をもう少し増やして欲しい、敦賀らしいお店を。マリンスポーツの際の駐車場の確保（路上駐車がシーズンは多い）ついでに訪れた人が土産でお金を落としていくような仕組みがあるとお互い良い気がする。美味しい魚介を食べることができた,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0006,untagged_text,Fukui,うみんぴあ大飯 エリア,"遊ぶ、食べる、買い物が一つのエリアにあるので楽しい。十分だと思います。のんびりしていて大好きな県です！
+また近いうちに行きます！。こども家族館、子どもが一日遊べる
+道の駅、特産品がたくさんあって楽しい",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0007,untagged_text,Ishikawa,能登,食べ物がおいしいし、復興に向けて応援したい。子供が喜んでいた。閉店している店や、夜のみの営業のお店があるので子連れで昼営業のお店がわかりやすいとありがたいです。穴場だとおもう,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0008,positive_price_value,Fukui,スーベニアショップ ラプトル エリア,"道中の案内もわかりやすかった。
+駐車場も広くてよい。。飲食が割高に感じた。ソフトドリンクの有り無しを選べると良い。",['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0009,untagged_text,Fukui,レインボーライン エリア,空いていた。トイレもきれい。。景色良く涼しかった。シャトルバス。リフトもケーブルカーも選べる,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0010,positive_booking_ticketing,Fukui,道の駅「禅の里」 エリア,食事するところメニューが、ほぼ全て売り切れで食べれなかった,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0011,positive_itinerary_fit_time_cost,Ishikawa,加賀,バスの乗車の際に交通系ICが使えないのは不便でした。周りの観光客も困惑しており、バスの運転手さんもいちいち案内しなければいけないのは効率が悪いなーと。改善されたらより良いと思います！。ご飯が美味しいから,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0012,positive_staff_communication,Fukui,東尋坊 エリア,"雨にも濡れず目的地につくので。食べ物も美味しいかったし店員の対応も良かった。船が出なかったのでタワーの所で船に乗った時の景色をビデオで流してほしかった。海鮮が美味しくて良かった
+
+敦賀から新幹線で近く大阪府から便利で又来ようと思った。お店の対応が明るくて良かった",['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0013,positive_accessibility_mobility,Fukui,道の駅「南えちぜん山海里」 エリア,"駐車場が、分かりやすくて広い。綺麗で清潔感があり
+ずっといたいくらいでした。全体的にオシャレ感はあるのだけど
+品数が少ない
+福井は海があるのだから
+もっと海産物の
+加工したものとか
+期待したい。
+改善すれば
+絶対にみんなが行きたくなる
+道の駅になるはずです
+
+福井が大好きで今年に入って
+5回目です
+また訪問します
+期待してますよ！！
+がんばれー！！。何度もいいますが
+こういうアンケートを
+しっかり見ていただき
+改善したら
+素晴らしい道の駅になりますよ！
+お店が狭いから仕方ないかもだけど
+日本海の物を求めている
+愛知県民たくさんいます
+
+
+茶飯も頂きました。
+初めての味で感動しました
+おしゃれより、
+素朴な地域のものが
+1番ですね！。品数がもっとあったらたのしい
+
+地元野菜が少なかった",['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0014,positive_wayfinding_signage,Fukui,紫式部公園 エリア,駐車場の場所がわかりにくかった,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0015,positive_accessibility_mobility,Fukui,福井駅前 エリア,駐車場ご狭い。工事途中だが恐竜関係のオブジェが多く完成が楽しみです,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0016,untagged_text,Fukui,越前松島水族館 エリア,エンゼルランドふくいでは様々な体験ができ、親子で楽しめました。宿泊した休暇村も、のんびり過ごせてよかったです。。あわら市のトレジャーハンティング(宝石探し)にも参加し、子どもが大喜びでした。。のんびり、ゆったりとした空気感が大きな魅力だと思いました。豊かな自然を満喫できたり、さまざまな人とふれあえたりする体験施設がたくさんあるとうれしいです。お土産は、今回はあまりゆっくり見られなかったのですが、ある程度日持ちして、手軽に食べられるもの(ビスケットなど)や調味料(レシピ付き)も良いかと思います。。景色がとても美しく、出会う方々も親切だったため。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0017,untagged_text,Fukui,花の駅 ゆりの里公園 エリア,空いている。綺麗,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0018,positive_cleanliness_comfort,Ishikawa,金沢,景観が素晴らしいご飯最高。トイレが汚かった。飲食店が充実していて助かります,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0019,positive_english_information_gap,Ishikawa,加賀,金沢市内と空港が直結しており、安心で便利。地方空港で便数も少ないのでこんなものと思っている。夕方の便に搭乗する前に、ちょっと小腹を満たせる飲食が出来ると良いが、現状は平日は15時にはクローズしていて寂しいていて。近江市場がかなり期待外れ。近隣のショッピング施設の食料品売り場で買い物した。北鉄バスのフリー乗車券をアプリで購入したが通信状態により度々エラー表示となり焦った。外国の方が同様の状態になったようで、降りる際、バス運転手の対応が余りに事務的で後ろにいた私達夫婦が不快に感じたほどの酷い対応だった。せめて「降りて下さい」位英語で丁寧に笑顔で対応出来ないものですかね。。お土産品目や軽食提供が少ないが、地方空港だし仕方ないと思っている。空港から金沢市内へ速く移動でき、金沢市内だけでも十分に楽しめる,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0020,positive_staff_communication,Fukui,北潟湖 エリア,小洒落たお土産では無く、地元でしか買えないものが欲しかった。各方面からの道路案内標識が不親切。地元感が感じられない、他の道の駅と変わらない。せっかく、自然や地元の食が充実しているのに、素朴感をもっと出した方が良い。最近の道の駅はお土産で、地元野菜などの新鮮で安い商品が無い、何度も足を運ぶ所では無い,"['wayfinding_signage', 'staff_communication']",False,True,False,True,False,False,False,False,False,False,False,False
+gold_0021,positive_english_information_gap,Ishikawa,加賀,運行本数が多く無いが、快適に移動できた。新幹線の駅直結でこのような施設はありがたい。特になし。オシャレなお土産が売っていた。インバウンド観光客が多過ぎて、京都かと思った。,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0022,positive_booking_ticketing,Fukui,かつやま恐竜の森 エリア,恐竜バス電車券がとてもよかった。トイレも綺麗で、レストランもとてもよかった。映画もあり、見どころ満載で楽しかった。HPがめっちゃ分かりにくいのだけ何とかしてほしい。楽しそうな体験も、こっちに来てからようやく全貌が見えて、事前予約してこればよかったと後悔。,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0023,positive_accessibility_mobility,Ishikawa,加賀,段差が多いかな？。海鮮料理。海鮮料理が美味しかった,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0024,untagged_text,Ishikawa,加賀,小松駅から小松空港が近くて便利。とくに不満がらないから。新しいグッズをどんどん作ってほしい。動物の紹介などをする時間があるとよい。。特になし。動物に癒された。いしかわ動物園、魅力的な動物がいるから,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0025,positive_wayfinding_signage,Ishikawa,金沢,金沢駅でバスの案内表示が、非常に分かり安いと思います。。思った以上に、子供と一緒に楽しめました。見どころが多く、適度に椅子も配置されていて、ゆっくり過ごす事が出来ました。美味しいお店が多く、また来たいと思います。。映像やクイズなど、子ども連れでも楽しむ事が出来ました。。金沢駅から観光がとても便利に見て回ることができ、楽しく過ごす事が出来ました。,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0026,positive_waiting_crowding,Fukui,道の駅「越前おおの荒島の郷」 エリア,"犬連れてる人とそうでない人の外での食べるところが一緒で、犬嫌いの人は嫌そうな感じで避けてた。
+近ぅを通りだけで吠える犬もいるので不愉快だったので、スペース分けて欲しい。。お土産などのレジが混んでくるとどうしても売り場に伸びてくるのでレジの待ち列の対応をもう少ししてほしい",['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0027,positive_english_information_gap,Ishikawa,能登,シンプルながら飼育されている魚の種類や規模。近江町市場の価格がインバウンド価格になっているように感じる、区別化等で国内の観光客にフォーカスしてくれると個人的には嬉しい。他の観光地に比べて人が少ないのと、それに反して食事のおいしさやみるところの多さ、特に神社好きにも勧められるポイントが多いから満足度が高い,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0028,positive_waiting_crowding,Fukui,道の駅みくに ふれあいパーク三里浜 エリア,地場の農産物が並んでいたこと。レストランの職員の方々のチームワークがよい。,['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0029,untagged_text,Ishikawa,能登,たのしかった。特になし。快適。電車が快適だから薦めたいとかんじた,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0030,positive_booking_ticketing,Fukui,福井駅前 エリア,胡桃羽二重餅がすぐに売り切れてしまって買えませんでした。。。駅前に徒歩で行ける範囲で食事やお土産も充実していたので,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0031,positive_itinerary_fit_time_cost,Ishikawa,金沢,時間が足り無くてすべてを回りきれなかったのですが、昔ながらの造りが広がった風景が大好きです。。朝食目的で決めましたが、夜中に食べた夜泣きそばなどもとても満足致しました。ありがとうございました。また来たいです。。特になし。購入したお土産すべてお味のレベルが高くてまたリピートしたいと思ったものが多かったです。。海鮮やお茶系、お土産物など目につくものがみんなおいしかった。,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0032,untagged_text,Fukui,道の駅「禅の里」 エリア,ドライブの風景がきれい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0033,untagged_text,Fukui,かずら橋 エリア,施設も新しく、景観もきれいな景観で涼やかで気持ちがいい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0034,positive_booking_ticketing,Fukui,北潟湖 エリア,鬼面まんじゅうが売り切れていて残念でした。。羽二重もち、大野の芋きんつばなど、福井セットお土産がほしいです。。道の駅あわら　のスタッフさんの接客がすばらしいです。,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0035,positive_accessibility_mobility,Fukui,丸岡城 エリア,"ツアーバスだったので。お城の階段(中)、が上れなかった。
+年を取ったのでざんねんだったが、無理をするよりは。
+城の回りのからの景色も、素晴らしかったです。。手紙の博物館は、良かったです。。新鮮な魚介類と、日本酒が、楽しみです。。風邪が強く、雨も降っていてボロボロになりながらの観光だったが、回りの方々の思いやりの言葉がけに暖かい感じかして良かった。
+丸岡は、物ではなく者、人の心が売りだと思いました。
+ありがとうございます。",['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0036,untagged_text,Fukui,金ヶ崎 エリア,街歩き楽しい！。雪景色がいい！。日本酒が美味しい！。楽しい！！,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0037,positive_opening_hours_availability,Fukui,かつやま恐竜の森 エリア,営業時間の終わりがはやい,['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0038,untagged_text,Fukui,大本山 永平寺 エリア,車の駐車場が停める所が少ない,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0039,untagged_text,Fukui,武生駅 エリア,街並みがとても綺麗。人が親切で優しい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0040,untagged_text,Fukui,河野北前船主通りエリア,とても良い景色とのんびり走れる道路、一部崩れた為の修復工事があったが気分転換に素晴らしいところ。この後、温泉に入って帰ります。。良く整備されており、走り易い。もう少しだけ立ち寄れるところがわかりやすくあると有難たい。海鮮やお酒が豊富なので楽しみ。ただそばはアレルギーの為食べられない。。ファミリーマートで案外良い地酒や物産が手に入った,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0041,positive_food_amenities_gap,Fukui,スーベニアショップ ラプトル エリア,"会社へ持って行くようなお土産が少ない。お土産の展示方法、充実感がない。
+ただ、並べてるだけで、そのお土産の美味しさが伝わらない。。なんか地味なモノが多い。",['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0042,untagged_text,Fukui,道の駅「南えちぜん山海里」 エリア,インフォメーションがいい。インフォメーションのおねいさんが、とても優しく色々教えてくれた,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0043,untagged_text,Ishikawa,金沢,交通の便が非常によかった。トイレなど、必要なタイミングで都度ある状況。カニが良い値段したので、気持ちもう少し安いと嬉しいです。。お土産や食事のクオリティが良い。ご飯がおいしく、お皿なども素敵です,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0044,positive_transport_access,Fukui,一乗谷朝倉氏遺跡 エリア,本数が少ない。とてもきれいな設備でした,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0045,positive_english_information_gap,Fukui,紫式部公園 エリア,公園､資料館、駐車場が近く、利用しやすい。全体としてもまとまった印象。。ツアーを予定で周りをゆっくり歩けませんでした。もし車で出かけた時、近くの飲食店等の情報があると助かるかも。。蕎麦を食べに行きたい。。内容が良く考えられており、興味深かかった。映像等に英語の併記があったのも文化の情報を広く伝える意欲が感じられた。,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0046,positive_cleanliness_comfort,Fukui,名田庄 エリア,車も少なく景色も良いので、ドライブに最高!。蕎麦が美味しい。美味しい物と温泉がいっぱいあるから～大好き。いつも道の駅名田庄でトイレ休憩とお買い物するのが楽しみなので～,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0047,positive_opening_hours_availability,Fukui,福井駅前 エリア（宿泊施設）,お盆明けのお休みをとる飲食店がいくつかあった。お盆明けに観光することがなかったので、社会のことをしる良い勉強となった。,['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0048,positive_price_value,Ishikawa,金沢,車が清潔。清潔なため。価格が高い。海鮮物の価格が高い。価格が高い。食事が美味しい,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0049,positive_cleanliness_comfort,Ishikawa,金沢,プールが楽しかった。トイレが少なく順番待ちに時間を要した。ランチ美味しい。蟹美味しい。ランチ美味しかった。蟹が美味しい,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0050,positive_waiting_crowding,Fukui,スーベニアショップふらぷとる エリア,あまり待たずに移動できた。恐竜博物館の体験展示はとても面白かった。常設展はもう少し的を絞ってほしかった。周りに飲食店がないため、昼時のレストランの混雑が大きい。もう少し食事の選択肢がほしい,"['waiting_crowding', 'food_amenities_gap']",False,False,False,False,False,True,False,False,False,False,False,True
+gold_0051,positive_food_amenities_gap,Ishikawa,加賀,レストランが少ない。郷土料理のお店。特になし。お土産店が豊富,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0052,positive_staff_communication,Ishikawa,金沢,小刻みにきてくれるから待ち時間が少ない。休める場所もあり、パンフレットなどが多かった。特になし。新鮮な海鮮。スタッフの対応がよかった。まだ来たばかりなのでなし,"['staff_communication', 'waiting_crowding']",False,False,False,True,False,True,False,False,False,False,False,False
+gold_0053,positive_transport_access,Fukui,熊川宿 エリア,本数が少ない。食べ物が美味しかった,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0054,positive_booking_ticketing,Fukui,一乗谷朝倉氏遺跡 エリア,"設備や展示は良かった
+ただスタッフさんがやや慣れてなさそうで、券売順番待ちをしている中横入りも注意しない、事前予約提示が必要か案内もない、などの対応に不安を感じた",['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0055,untagged_text,Fukui,JR九頭竜湖駅 エリア,ワイモバイルゆーざlですが、圏外になるのがこまる。品揃えが少ない,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0056,positive_opening_hours_availability,Fukui,道の駅「三方五湖」  エリア,"三方五湖へのアクセスがタクシーのみだったので、福井タクシー券を利用しました。
+大変有り難かったです(^_^)。昼食を取ろうと思いましたが、駅周辺では見つけられず、やむなく欠食。
+ウナギが名物と情報誌でみたので残念でした。。歴史（一乗谷城など）　伝統工芸（漆器、和紙）食　私好みで満足しています。
+恐竜博物館には縁がなく今回は休館中。
+また　次回こそ！！。宿泊施設の応対　料理に満足しました。",['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0057,positive_itinerary_fit_time_cost,Fukui,東尋坊 エリア,"気ままに旅行を楽しめる。
+琵琶湖を右に見ながら車を走らせるのが好き。
+琵琶湖西縦貫道路ができてから、早く福井に行けるから。。何もない殺風景さ。バリアフリー。〔ツアーきゃくさんの1人が、歩きつらくされていて、遊覧船練り場になかなか辿り着けなかった〕。あじさい、あじさい、あじさい、、。
+どこに行っても、咲かせてらっしゃる。
+でも、もっとビジュアルよくアレンジされたら、と、思います。。東尋坊の遊覧船に、団体ツアー客のかたがっ、ご一緒できて、賑やかだった。","['itinerary_fit_time_cost', 'accessibility_mobility']",False,False,False,False,False,False,False,False,False,True,True,False
+gold_0058,untagged_text,Fukui,道の駅「越前」 エリア,景色も温泉も良かったです！。夕方になるとお店が閉店してほぼ真っ暗なこと。。最高の温泉が格安で利用させてもらえたこと。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0059,positive_food_amenities_gap,Fukui,北潟湖 エリア,加賀温泉に泊まったのですが、石川県からのアクセスがよかったです。。道の駅「蓮如の里あわら」の施設が新しく綺麗でした。。飲食店が少ない印象です。湖のアクティビティがあれば家族連れで楽しめそうです。。メガネが好きなので、鯖江に行ってみようかと思います。。商品のチョイスがよかったです。,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0060,positive_price_value,Ishikawa,加賀,総体的に全て満足。夕食、朝食とも豪華。金沢の飲食は値段が高い。夕食、温泉。ホテルの食事と露天風呂,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0061,positive_wayfinding_signage,Fukui,JR敦賀駅前 エリア,早くて快適。自転車旅が快適にできるように、サイクルステーションやマップや案内表示 ブルーラインなどを整備してほしいです。海岸沿いを走ってみたいです。,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0062,positive_price_value,Ishikawa,能登,移動には困らなかったから料金が高かった。海鮮。他県に比べ宿代が比較的安かった。,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0063,positive_food_amenities_gap,Fukui,JR敦賀駅前 エリア,夜は店が少なかった。料理、お酒とたいへん美味しかった。ソースカツ丼、おろし蕎麦など福井らしい食事ができた,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0064,untagged_text,Ishikawa,加賀,飛行機の便数が少ない。出張の余った時間などでも気軽に楽しめるモデルルートがあれば知りたい。温泉に入れなかったのが心残り。小さな空港だが金沢らしいお土産がたくさん売っていた。食べ物が美味しいし観光地も多い,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0065,positive_itinerary_fit_time_cost,Ishikawa,加賀,金沢市内から移動にそこまで時間がかからなかった。。施設はキレイで、料金も安い。お土産も充実していた。。強いて言うなら、料金体系。細かく体験まで含めて、1日All入場・体験チケットみたいなものがあると、細々と支払いをしなくて良いので助かる。子供が複数いるとなかなか入口に戻ったりが難しいので、、。お土産品も揃っていて、とても良かったです！。食は、お寿司と和菓子がダントツに美味しくて、なかなか他で食べられないレベル。お土産も、和菓子系がとにかく喜ばれる。パッケージも美しいものが多い。アクティビティについても、金沢市外にも色々な施設ができてきて、子連れ旅行で飽きなくなってきたように思います。。新幹線について色々体験できるだけでなく、こどもの遊び場があり、意外と子供達は博物館系はすぐ飽きるので、とても助かった。。宿の方や、施設の方など、話しかけてきてくれて、人が温かい。,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0066,untagged_text,Ishikawa,金沢,新幹線便利ですね。安かった。もっとバリエーションあってもいい。白山市をもっと活用して！札幌市はロープウェイを活用してる獅子吼高原があるじゃないか。北陸応援割りを使えたから。金沢駅　綺麗かっこいい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0067,positive_staff_communication,Ishikawa,加賀,特になし。店員の対応,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0068,positive_transport_access,Ishikawa,能登,本数が少ない。改修工事中で入れない建物があったので。それ以外はとても満足。。とてもよい水族館なのでたくさんの人に来てほしい。自家用車がないと行くのが大変。。これからも蓮ノ空女学院スクールアイドルクラブとコラボを続けて欲しい。また行きます。。改修工事中で入れない建物があったので。それ以外はとても満足。。のとじま水族館の食堂がおいしかったし、食堂のおばちゃんがやさしかった。石川県の食べ物はどれも美味しい。,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0069,positive_itinerary_fit_time_cost,Fukui,JR敦賀駅前 エリア,駐車場が狭い。駐車できるまでかなり時間がかかった。。駐車場がいつもいっぱい。。土産物、接客態度も素晴らしいが上手い店が偏っている。すずやや丸三は素晴らしいが他はいまいち。もっと名物店が欲しいところ。。せっかく新幹線が敦賀まで来たのだから観光名物をもっと作ってほしい。ふるさと納税に名物を貼り付けるのも面白いかも。今後の活躍に期待します。。美味しい濃い茶を駅前で飲んだ。専門店も珍しいが休憩場所も広くゆったり楽しめた。,"['cleanliness_comfort', 'itinerary_fit_time_cost', 'accessibility_mobility']",False,False,False,False,False,False,False,True,False,True,True,False
+gold_0070,positive_accessibility_mobility,Fukui,福井駅前 エリア（宿泊施設）,"ソースカツ丼など美味しいものを頂くことが出来た。。食事出来るところが少ない。
+寒いので鍋を頂けるところが少ない。。雪道なので、ある程度仕方ないと思いますが歩きにくかった。。特にはない。",['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0071,positive_price_value,Fukui,日本海さかな街 エリア,同じ物を置いている店ばかりで代わり映えがしない。色々なお店の水ようかんが一度に購入できたら嬉しい。値段が高い,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0072,untagged_text,Fukui,あわら温泉 エリア,足湯からのカメハメハ大農場カフェがとても良かったです。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0073,positive_food_amenities_gap,Ishikawa,加賀,20:0.以降の小松空港到着の際にレンタカー屋さんが営業していないのが不便。。レストランが少ないが、全体的に清潔。パーキングの管理も行き届いている。。レストランが少ない。5年前までは快適。。パーキングのキャパが大きく便利。お土産も迷うほど多い。温泉、グルメ、ドライブ、写真撮影、いずれもトップクラス。。航空祭を2日間開催してほしい。海外では2日〜3日開催している。これまで知らなかった石川県、小松空港周辺の良い所も航空祭キッカケで広まり、更に有名なイベントになると思います。航空祭は有料化とし、県と一体となって運営。ボランティアを募り交通整理、ゴミの対応など管理。。レストランが少ない。日本らしく綺麗な景色、美味しい和食。道路も綺麗。,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0074,untagged_text,Fukui,小浜 エリア（宿泊施設）,堤防釣り禁止になってしまったところ多いのでまた復活してほしい。。少し高く感じる。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0075,positive_english_information_gap,Ishikawa,金沢,海鮮丼が高い　インバウンド。シャワールーム狭かった。ベッドライトがない。,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0076,untagged_text,Fukui,めがねミュージアム エリア,見どころも多く、見学が良かった。買いたいもの、食べたいものが多くてよい。地域色が濃い,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0077,positive_staff_communication,Ishikawa,金沢,ホテル側の観光スポットを教えてくれた。清潔感がありスタッフの対応も良かった。良かった。特になし。アメニティの充実。美味しい食べ物,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0078,positive_transport_access,Fukui,JR美浜駅 エリア,電車の本数が少ない。ICOCAが使えない。,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0079,untagged_text,Ishikawa,金沢,毎年の定宿。気に入っている。年々賑わいが増加し、北陸新幹線開通前の金沢が懐かしい。。居心地良し。金沢百番街,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0080,positive_opening_hours_availability,Fukui,JR芦原温泉駅 エリア,"観光案内所が閉まるのが早すぎる。もう少し、観光客の対応の満足度を上げるべき。カイリューイベのスタンプ対応が、観光案内所が閉まっていたので対応出来ず
+芦原温泉駅着17:58。あわら湯のまちへダイレクト対応にして欲しい
+芦原温泉発あわら湯のまち着のバス発着時間が早すぎる。地酒しかないと思います。イベント対応がひどすぎる",['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0081,positive_accessibility_mobility,Fukui,明通寺 エリア,綺麗に整備されていたから。バリアフリーが進んでいなくて、階段が急で足が健常な私でも危険を感じた。,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0082,positive_booking_ticketing,Fukui,JA福井県ファーマーズマーケットきららの丘 エリア,午後から訪れたのでスイカやメロンは売り切れていたが､珍しい｢夏の天使｣の間引きスイカが販売されていた｡。このHAPPYNESSキャンペーンのチラシが「ぐるすた」の設置場所に置かれていて､分からず店員に訊ねると｢あっちです｣と指先で案内されただけだった｡。やはり｢おもてなし｣の面では福井県は足りないと思います｡北陸新幹線延伸で県外のお客様もみえるので､より丁寧な接客が必要だと思います｡,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0083,untagged_text,Fukui,金ヶ崎 エリア,"海産物が新鮮で魅力的です。私はもの作りが
+好きなので、低価格で簡単に参加できる物作り体験がいいです。お土産は福井ならではの限定品が魅力的です。",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0084,untagged_text,Fukui,越前和紙の里 エリア,和紙について分かりやすく丁寧に解説して下さり、とても勉強になりました。次回来た時には紙漉き体験を是非したいです。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0085,untagged_text,Fukui,一乗谷朝倉氏遺跡 エリア,キャンプやBBQが出来る豪華な施設,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0086,positive_staff_communication,Ishikawa,金沢,バスの運転手の方の態度が悪くて驚いた。。家族のニーズにマッチしたから。。期待していたものとは異なった。。あまりに綺麗で驚いたから。。街並み,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0087,untagged_text,Fukui,越前和紙の里 エリア,品揃えがよい。新幹線が早く全通してほしい。ほしい商品があったから,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0088,positive_food_amenities_gap,Fukui,小浜市 阿納 エリア,近隣にスーパーやコンビニがない,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0089,untagged_text,Fukui,永平寺町 エリア,お蕎麦が美味しかった。食べ歩きがあるといい。海鮮,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0090,untagged_text,Fukui,越前大野城・城下町 エリア,街並みが綺麗で歩きやすい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0091,untagged_text,Fukui,道の駅「恐竜渓谷かつやま」 エリア,お土産で買いたいものが少なかった。案内が目立たなかったので行き過ぎてしまった。恐竜関連のお土産バリエーションが豊富だと子供達含めて買い物が楽しめます。カフェ・マーレは写真映えするスポットだと思ったので若者が写真目的でも来たいと思えるようなスポット作りがあればなお良いと思います,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0092,untagged_text,Fukui,道の駅「パークイン丹生ヶ丘」 エリア,"泰澄の杜はよかった。越知山に行って、泰澄の杜でお風呂に入っただけなので特になし。泰澄の杜のソフトクリームが
+ソフトクリームではなくカップアイスだった",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0093,positive_accessibility_mobility,Ishikawa,金沢,お風呂が狭い。トイレが狭い。金沢駅周辺にお土産屋さんを増やてほしい。接客が丁寧。このえいちば,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0094,positive_price_value,Ishikawa,金沢,検索したよりタクシー料金が高かった。カフェが施設内にあるともっとゆっくり出来そう。伝統芸能の体験が土日に偏っていて平日プランが少ないことが残念です。実演説明がすごく判りやすく楽しかった。この施設(大野からくり記念館),['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0095,untagged_text,Fukui,越前そばの里 エリア,美味しそばを食べたから,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0096,positive_transport_access,Fukui,JR芦原温泉駅 エリア,"自家用車で訪れましたが、息子（高1）が鉄道好きなので福井駅から在来線を堪能していましたが、ハッピーラインの本数が少なすぎて困っておりました。。何年も前は、愛知に住む私達は、福井というと、勝山の恐竜か敦賀か、水晶浜かというイメージでしたが、福井県！！とても楽しむことができました。
+
+芦原温泉駅も新幹線が通ることで活気もあり、とても綺麗でした。
+
+またぜひ訪れたいと思います！！。子供が楽しめるアミューズメントがあり風呂桶の中に入ったように写真が撮れたり、桶で福井の名産などが現れるゲーム？！があったり、ポケフタ（少しわかりにくかったですが）を探したり、楽しかったです！",['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0097,positive_staff_communication,Ishikawa,加賀,部屋も広く清潔感がある。又、料理等も非常に満足している。。今のご時世だから喫煙者は肩身が狭いので仕方ないが施設内で喫煙出来たら嬉しい。。土産の種類が多くて良いと思う。特になし。スタッフの対応が良い。。所要時間も良い感じで観光施設では体験コーナーもあり良いと思う,"['staff_communication', 'accessibility_mobility']",False,False,False,True,False,False,False,False,False,False,True,False
+gold_0098,untagged_text,Ishikawa,加賀,上記と同じ。特になし。スタッフのおもてなしもホテルの環境も行き届きました。景色も良い,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0099,untagged_text,Fukui,一乗谷朝倉氏遺跡 エリア,詳しくお話を聞かせてもらえた。和紙のお店,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0100,positive_cleanliness_comfort,Fukui,東尋坊 エリア,"駐車場少なすぎます。●駐車場が少なく遠くに停めたためにたくさん歩いたし、休憩する場所があまりない
+●遊覧船に乗った際、乗り込んだ後にクラブツーリズムの団体を同乗させるため随分待たされた",['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0101,untagged_text,Ishikawa,金沢,景観。本が探しにくいところはある。はぶたいもち。落ち着いていて子どもスペースに感動。全体的な景観,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0102,positive_price_value,Ishikawa,金沢,ちょっと値段が高い。特になし。色んなお店があり楽しかった。観光地の豊富さ,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0103,positive_staff_communication,Ishikawa,金沢,施設が綺麗。使用なし。地酒飲み比べ。スタッフの対応が良かった。宿泊施設　立地が良く、値段がお値打ち,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0104,untagged_text,Ishikawa,金沢,バス停からホテルが近い。パジャマがない他は快適に過ごせた。パジャマがなかった。ゆっくり過ごせる良い施設だと思う。センスが良い。パジャマがなく困った。また行きたいと思っているから,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0105,positive_booking_ticketing,Fukui,大本山 永平寺 エリア,永平寺が良かったです。お寺や新緑がきれいで最高でした。。おみやげ屋さんや蕎麦屋さんがたくさんあり、みていて楽しかったです。おろし蕎麦とソースカツ丼美味しかったです。。ケンミンショーで紹介されていた、いか丼も食べてみたいですが、売り切れだったらがっかりするのであきらめました。永平寺近辺で食べれたらいいなと思いました。。蕎麦とソースカツ丼とアップルパイと御利益だんごを食べて大満足です。福井県大好きです。,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0106,untagged_text,Fukui,道の駅「越前おおの荒島の郷」 エリア,駐車場が併設されてるところが多い！。ガソリンスタンドが少ない,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0107,untagged_text,Fukui,小浜 エリア（宿泊施設）,"施設がきれいで清潔感が高いのも良かった。。特になし。ご飯が美味しく、盛り付けなども良かった。
+（ご飯目当てで訪れたので、これが最重要ポイントだった）",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0108,positive_waiting_crowding,Fukui,若狭フィッシャーマンズワーフ エリア,カフェを増やして欲しい！。地元の物が多かったけれど、初めて見る商品が並んでいて見ていて楽しかったです！,['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0109,untagged_text,Fukui,越前岬 エリア,水仙ランドの展示が貧弱です。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0110,positive_food_amenities_gap,Fukui,福井駅前 エリア,駅の改装中でお店が少ない,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0111,positive_transport_access,Ishikawa,金沢,部屋が清潔で綺麗。車まだ遠い。海鮮が美味しくて最高。大浴場とサウナがない。駅周辺が綺麗,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0112,positive_food_amenities_gap,Ishikawa,加賀,段差が多い。。大変満足。。和菓子を提供している店が少なく、上生菓子を食べたいと思っていたが、なかった点。宿でつまめる甘味の選択肢が少ない。。ご飯がとてもおいしく、温泉も全然湯冷めしなかった。施設内も楽しめるように、写経やオセロ等の暇つぶしのためのものが置いてあり、滞在中楽しめたから。。ご飯と温泉,"['accessibility_mobility', 'food_amenities_gap']",False,False,False,False,False,False,False,False,False,False,True,True
+gold_0113,positive_price_value,Fukui,フルーツライン エリア,聞いていた感じと違って商品が少なかった。。目玉商品がほしいです。。野菜の価格が高かった。スーパーの方が安いので買わなかった。,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0114,untagged_text,Ishikawa,加賀,タイミングよくバスに乗ることができたから。今で満足しているので、特にありません。。食べ物も美味しく、金沢市内ならコンパクトに観光できるから。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0115,positive_price_value,Fukui,福井駅前 エリア（宿泊施設）,"手軽に使える。やや値段高く感じる、築年数に対して。駅からやや距離がある。今あるものを生かして欲しい。
+ラーメン屋とか県内需要のものも必要だと思うが、古くからあるものを活かして欲しい。駅弁とな帰りの新幹線で楽しめるものをを充実して欲しい。施設の古さに対して、やや価格が高い",['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0116,positive_staff_communication,Ishikawa,金沢,スタッフの対応が良い。スタッフの対応が良い。価格が高い。価格が高い。全てにおいて価格が高い。食事が美味しい。食べ物が美味しい,"['staff_communication', 'price_value']",False,False,False,True,False,False,True,False,False,False,False,False
+gold_0117,untagged_text,Fukui,東尋坊 エリア,もう少し海の幸などを美味しく頂けるファストフード的なものが増えるといいなと思います！。B級グルメ的なものが増えるともっと気軽に楽しめるのでは。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0118,positive_itinerary_fit_time_cost,Ishikawa,金沢,ガイドさんに説明してもらえなかったのでよく内容がわからなかった。ガイドさんの時間が15時30分までと書いてあったのでその時間に間に合えばガイドしてもらえると思いました。。ガイドさんが15時30分で帰られる時に親切に少し説明してくれてありがたかったです。。兼六園の中にある成巽閣に入場しましたが、1000円は少し高いと思いました。先に320円払っているからもう少し安くして欲しかったです。一度行ったらもう行かなくていいと思ってしまいます。内容はとても素敵なので残念でした。。VRは良かったでしたが、時間が足りなくて施設が見られなかった。プラスもう一つの施設で500円というチケットはお得だと思いますが、最初の施設できちんと説明して欲しかったです。,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0119,positive_waiting_crowding,Fukui,あわら湯のまち エリア,とても大きな露天風呂でのんびりできた。湯けむり横丁が混んでいたので雨の中待とうと思ったが、屋根がないので諦めてしまった。公共交通機関が全て現金のみなのが不便だったのでICが来春導入されるのを期待している。ザ温泉街という感じではないが、観光マップがたくさん設置されていてわかりやすく、散策するのも楽しかった,"['transport_access', 'booking_ticketing', 'waiting_crowding']",True,False,False,False,True,True,False,False,False,False,False,False
+gold_0120,positive_itinerary_fit_time_cost,Fukui,あわら温泉 エリア,"各観光地へ行く移動が不便なのが残念。
+ただ交通機関＋徒歩だからこそ、ゆっくり景色を味わえるのは醍醐味だと感じました。。三国へは初めて立ち寄りましたが、趣き深い所で大変気に入りました。
+何十年かぶりに訪れたあわら温泉も、色々変わっていて楽しかったです。
+これからも、コロナにめげず頑張ってほしいです。。交通機関が少なく移動に時間がかかる点がもっとも不便でした。
+電動アシスト自転車などの設置台数が多いと尚良いと思います。",['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0121,untagged_text,Fukui,名勝 養浩館庭園 エリア,致し方ないところはあるのですが、福井城址が積雪で閉鎖されていたのが残念でした。閉鎖の案内が足元のみでしたので、手前で閉鎖されていることが判るとありがたかったです。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0122,untagged_text,Fukui,道の駅「越前」 エリア,地元の特産を活かしたメニュー,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0123,positive_itinerary_fit_time_cost,Ishikawa,金沢,乗り放題パスも利用でき、行きも帰りも行動しやすかったです。。とても広く、全体を見て回れるか不安でしたが、気づいたら一周していました。。新鮮な魚料理や郷土料理、和菓子などを、風景などの観光と合わせて楽しみたいです。。蔵書数も多く、また展示方法などが独特で興味をそそられる本に沢山出会えました。今回は時間が足りなかったので、次回行く際は1日過ごそうと思います。。金沢市内全体の観光をお勧めします。どこに行っても楽しく、食事も美味しい素晴らしい場所でした。,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0124,untagged_text,Fukui,北潟湖 エリア,時間に縛られずに行動できる。景色がきれいでした。ボートに乗る。カニ！。道の駅の食事が美味しかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0125,positive_price_value,Fukui,東尋坊 エリア,食事しようと思い、店に入ったら、お店のおばあさんがメニューを押し付けて説明する。こちらはゆっくりと考えたかったが根負けしてお婆さんの勧める高いメニューになってしまった。商品はカニは少ししか載っていないしご飯も少ししか入ってなくてお腹がふくれなかった。ただ、イカ焼きだけは美味しかった。。ソースかつ丼がおいしかった。わざわざ福井県のスーパーに寄り「ソースかつ丼のたれ」を買って帰りました。。食事処の値段が高すぎる,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0126,untagged_text,Fukui,道の駅「西山公園」 エリア,買い物が楽しいです。お土産売り場が充実している,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0127,positive_opening_hours_availability,Fukui,福井駅前 エリア,"特急が遅延。思ったより品揃えが少なかった
+一方で他にないものがあった。店が結構閉まっていたします。。おしゃれな店がある。初めてなのでパンフに載っていないところは心配な面も。
+看板で値段や内容がわかると安心。店の人が丁寧でなかった","['wayfinding_signage', 'opening_hours_availability']",False,True,False,False,False,False,False,False,True,False,False,False
+gold_0128,untagged_text,Ishikawa,金沢,タクシーの運転手さんが見どころを教えてくださった。楽しかった。子どもも楽しめるところ。お守りが可愛い,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0129,positive_itinerary_fit_time_cost,Fukui,JR敦賀駅前 エリア,サンダーバードはとても良いです。新幹線延伸後も、福井駅や芦原駅まで乗り入れてほしいです。。何もない、福井らしい。オルパーク2Fのスペースは何のため？。自動車運転マナーが悪いです。横断歩道周辺のマナーは、特にワーストワンであることを実感します。。買いたいお土産がない、とよく耳にします。なので、いつも無難に五月ヶ瀨を手に取ります。。何もない、福井らしい。。福井らしい、何もない。,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0130,untagged_text,Fukui,六呂師高原 エリア,アイスクリーム作り体験が楽しく、出来上がりのアイスクリームも美味しくて良かった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0131,positive_transport_access,Fukui,金ヶ崎 エリア,"駅すぐにレンタサイクルがあり、台数も充実していたため。きれいに整備されていたため。晴天だったのでレンタサイクルが非常に便利であったが雨天だと駅から遠くアクセスしにくいように思います
+いろいろな施設が揃っている分少し勿体無いように思いました。鯖浦線や旧北陸本線を取り上げた鉄道イベント等",['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0132,positive_english_information_gap,Ishikawa,能登,インバウンド頼みではない何か。,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0133,positive_opening_hours_availability,Fukui,道の駅「恐竜渓谷かつやま」 エリア,閉まってた。閉まってた。閉店早い。閉まってた,['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0134,positive_booking_ticketing,Ishikawa,金沢,何処も満席に近く混んでいたので。いろんなお店があり見応えがあった。遠い土地から来たのでお土産が。めづらしく楽しかった。。九州には、あまり積極的にアピールされてないように思います。ここでしか取れない食材おいしくいただけて満足しています。北陸3県の違いを大いに宣伝して欲しいです。。ランチが、リーズナブルで美味しかった。。街全体が情緒があり風情を感じる。,"['transport_access', 'booking_ticketing', 'waiting_crowding']",True,False,False,False,True,True,False,False,False,False,False,False
+gold_0135,untagged_text,Fukui,道の駅「恐竜渓谷かつやま」 エリア,品揃えが良い。外の販売も地場産で良かった。道の駅で魚のつかみ取りやっていて、みんなが楽しんでいるのが良かった。。地場のもの、特に魚は新鮮で美味しかった。。駐車場警備員がとても良い,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0136,untagged_text,Ishikawa,能登,ゆっくり出来た。輪島牛をもっと訴求して欲しい。食べ物が美味しかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0137,positive_price_value,Fukui,越前大野城・城下町 エリア,料金が高い,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0138,untagged_text,Fukui,福井駅前 エリア,"ハピラインで福井駅まできました。福井から芦原温泉へは新幹線。
+ハピラインになって各駅停車から快速もできたので早くて便利。。綺麗で美術品もよかった。",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0139,positive_cleanliness_comfort,Fukui,熊川宿 エリア,雰囲気がとても良かった。。トイレが少なかった。。食べ歩きしやすいものが増えるといいなと思う。。他の道の駅より同じものが安かった。,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0140,positive_waiting_crowding,Fukui,越前そばの里 エリア,"お土産もたくさんあり、美味しいお蕎麦も食べられた。お蕎麦を食べるのにすごく並んだ
+（これはしょうがない）。お蕎麦がとても美味しかった",['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0141,positive_wayfinding_signage,Fukui,JR芦原温泉駅 エリア,"朝のあわら湯町駅からの乗り継ぎ時間が（金沢方面）とても良い
+特急じゃない便
+鯖江だと特急だったりする。福井県はレンタカーないと無理かと思ってたが
+ぐるっとタクシーなど充実しており大丈夫だった
+
+2回目ならまたレンタカーが必要なところに行くと思う
+一乗谷町並みと一乗谷博物館と福井からのバスはセットで販売した方がいいかもしれないです。博物館やめようか迷ったけど両方行った方が絶対よかったから。あわらゆのまちえきのような規模かと思ったら、もっとおおきい規模で観光案内所もきれいで見やすくていい","['transport_access', 'wayfinding_signage']",True,True,False,False,False,False,False,False,False,False,False,False
+gold_0142,untagged_text,Fukui,レインボーライン エリア,ゴゴイチバスは行きたい所に停車駅が有り、目的地での時間を十分に取れました。。トイレがキレイ。。新田珈琲ゼリーパフェがとても美味しいかった。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0143,positive_opening_hours_availability,Ishikawa,金沢,交通機関の本数が多く、待ち時間が短かったため便利に利用できました。また、目的地までのアクセスがわかりやすく、車窓からの景色も楽しめたため、全体的に快適でした。。おいしかった,"['waiting_crowding', 'opening_hours_availability']",False,False,False,False,False,True,False,False,True,False,False,False
+gold_0144,untagged_text,Fukui,福井駅前 エリア,綺麗でスタッフさんの対応も親切。わかりやすい。新幹線が開通前に来て下見に来てよかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0145,positive_cleanliness_comfort,Fukui,福井駅前 エリア,"18きっぷで大阪から安い運賃できました。。広々として綺麗な駅なので、気持ちいいです。。海鮮丼やお寿司屋さんが駅近にあれぼいいと思いました。。駅から観光周遊バス等、車がなくてももっと観光できるようにして欲しいです。
+両親を連れてきたいので。。駅前広場に屋根があり、座る場所もあるので休憩できました。",['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0146,untagged_text,Fukui,越前大野城・城下町 エリア,無料の駐車場が欲しい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0147,positive_itinerary_fit_time_cost,Fukui,福井駅前 エリア,新幹線以外の安価なアクセス要望。パス、在来線、小浜線とか。つなぎが悪いと時間がかかる,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0148,positive_opening_hours_availability,Fukui,ふくい鮮いちば エリア,"福井駅から　さほど遠くなく　町並みが見えて
+楽しい。昼頃来たからか　ほぼ閉まってた。バスの便が少ない
+どこも同じかな
+仕方ないか。食事のお店が　多いといいな。どこも　美味しい。お店の方が　親切丁寧","['transport_access', 'opening_hours_availability']",True,False,False,False,False,False,False,False,True,False,False,False
+gold_0149,positive_cleanliness_comfort,Fukui,越前大野城・城下町 エリア,時間に縛られず自由に周遊できる。。休憩スペースも充分にあり、散策の一休みにちょうどよい。。一観光客目線でいうと七間通りは車両の通行が無い方が安心して散策できると感じた。。サウナがあるといい。お水が素晴らしいので、その水風呂に入りたい。。見どころいっぱいなのでもっと人が来てほしい。。城下町特有の街並みをゆっくり散策できる。古民家を改装したお店も多くあり、外と中で両方楽しめる。,"['cleanliness_comfort', 'opening_hours_availability']",False,False,False,False,False,False,False,True,True,False,False,False
+gold_0150,positive_opening_hours_availability,Fukui,ふくい鮮いちば エリア,"エルパなど駐車場が大きくてアクセスが容易でした。。また利用したいと思った。お休みの日が書いてなかったので、無休なのか知りたかったです。。道の駅などの充実とアウトドア施設がもっと増えると良いと思います。
+おススメの蕎麦屋一覧表などもあったら良いです。。海鮮丼がとっても美味しかった。
+火曜日の特別割引サービスデーがあり、お得だった。
+接客も良かった。トイレもきれいで良かった。",['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0151,positive_booking_ticketing,Fukui,あわら温泉 エリア,サイコロきっぷで来県。福井駅で途中下車し、芦原温泉駅に向かったが、電車が1時間に1本しかなく、ロスが大きかった。。宿泊施設の夜ご飯が非常に良かった。。JR芦原温泉駅から宿へのアクセスはあまり良くない。シャトルバスの用意はあるが宿ごとに個別でありかつ事前予約制であり、お客の行動時間には制約が生じる。むしろ、有料で良いのでエリア循環バスにし、時刻表通りに駅に来る方が時間に融通が効くと思います。,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0152,untagged_text,Fukui,大本山 永平寺 エリア,永平寺が素晴らしい。駐車場代が比較的安くてとめやすい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0153,positive_transport_access,Fukui,一乗谷朝倉氏遺跡 エリア,本数が少ない。設備も整っているし、何より興味深い。特別展もとても良かった,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0154,untagged_text,Fukui,道の駅「西山公園」 エリア,もう少し地場産業の野菜や果物があるといい。。動物と触れ合える施設があるといいと思います。。季節毎のおすすめ商品があるといいと思います。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0155,positive_cleanliness_comfort,Fukui,フルーツライン エリア,途中休憩など、自分のペースで行けるので。地産のものを食べたりお土産に買いたい,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0156,positive_food_amenities_gap,Fukui,道の駅「恐竜渓谷かつやま」 エリア,"残念ポイントしか残ってない。警備員が居たが駐車場の中での誘導がイマイチ
+居ても居なくても同じな感じでした。道の駅は好きで普段から、又宿泊先でも（4月下旬に四国に行きました）道の駅に立ち寄ってますが残念しか残ってないです。お土産も羽二重餅以外にクルミ大福しか頭に残ってない。去年は九頭竜の道の駅の恐竜が動いてるのを見れなかったが（かなり待ってみたが）今年は見れたのでそれだけでテンションが上がり娘らにも報告しました。そんな些細な事で良い旅と思ってしまいます。今回は予約取れず恐竜博物館は行けなかったので次回はそこに行く予定です。。お土産が少ない
+ソフトクリームを食べようと思ったが閉まってた
+コキヤも見たかったが何も植わってなかった
+残念が多すぎた","['opening_hours_availability', 'food_amenities_gap']",False,False,False,False,False,False,False,False,True,False,False,True
+gold_0157,positive_waiting_crowding,Ishikawa,金沢,駅近い。今回火曜日水曜日と訪問しました、休業日も多くあたり、醤油工場の見学出来るのかなと期待していましたが、飲食ばかりで、期待ハズレでした。朝食美味しい　大浴場が少し狭いので、脱衣所が、渋滞する,"['waiting_crowding', 'accessibility_mobility']",False,False,False,False,False,True,False,False,False,False,True,False
+gold_0158,positive_transport_access,Ishikawa,加賀,可もなく不可もなく。バスが少ない。金箔,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0159,untagged_text,Ishikawa,加賀,楽しめた。暖かい。加賀屋。楽しめた,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0160,untagged_text,Fukui,東尋坊 エリア,天気(雨)の問題。晴れて夕陽でも見れたなら印象はだいぶ違ったと思う。。平日の夕方5時、店がほとんどしまっていた事。。東尋坊自体の問題ではなく、平日の夕方で雨模様。そのため店がほとんどやっていなかった。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0161,positive_cleanliness_comfort,Fukui,一乗谷朝倉氏遺跡 エリア,駐車場が広く無料。駐車場が広く休憩所もあったので。。飲食店がもう少しあるといいなと思いました。。道の駅の規模が大きくなると、行ってみたい気持ちが増すと感じます。。売店の店員の方にこのキャンペーンのQRコードの場所を尋ねたら、親切に出してくれたので。,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0162,positive_wayfinding_signage,Fukui,レインボーライン エリア,三方五湖は圧巻でした。日傘は、インスタばえするだけでなく、暑さにも大変やくだちました。素晴らしいサービスだと感じました。。「三方五湖に来たよ」が分かる日付などが付いた看板があると観光客としては嬉しいです。。近江牛は高級なので、1000～2000円くらいで手軽に食べられるものが､あるといいです。しかし、北海道にはない魅力がたくさんあり､福井に来てよかったなと感じています。素敵な県ですね！スーパーなどのお店の閉店時間が早く驚きましたが､働き方改革として素晴らしいですね！幸福度ランキング1位の理由が分かったような気がします。また来たいと思いました！！。リフト乗り場の方に写真をお願いすると､快く引き受けてくださり､様々なポーズを提案してくれ楽しい気分で写真を撮ることができました。売店では､ソーダやモナカアイスを購入し､リフレッシュできました。梅酒を購入したので､飲むのが今から楽しみです！,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0163,positive_opening_hours_availability,Fukui,JR敦賀駅前 エリア,水曜日だったのもあって定休日のお店が多かった,['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0164,positive_staff_communication,Fukui,福井駅前 エリア（宿泊施設）,きれい、静か、スタッフの対応が良い。のんびりゆったり。人がすくないこと。富裕層向けの駅前の高層マンションはあの場所にはいらない。人が集まりイベントができる公園がいい。。地元の美味しい朝食,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0165,positive_opening_hours_availability,Fukui,JR美浜駅 エリア,"駐車場も十分にあるので。施設はきれい。海がきれいで海の幸も美味しいので　インフィニティ温泉に入れる施設があればうれしい。はまびより(道の駅)がお休みでした
+道の駅に休日があると思ってなかったので",['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0166,positive_waiting_crowding,Fukui,越前そばの里 エリア,"もともとお蕎麦は好きでしたが、福井でお蕎麦を食べてからは大好きに変わりました。
+またお蕎麦を食べに福井に行きます。。幼児を連れて食事に入りました。
+お客さんは長蛇の列でしたが、店員さんが優しくてまた訪れたいなと思いました。
+お土産屋さんの方も親切で、そばの里は良いお店ですね。",['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0167,untagged_text,Fukui,道の駅「パークイン丹生ヶ丘」 エリア,もう少し種類があるといい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0168,positive_accessibility_mobility,Fukui,道の駅「恐竜渓谷かつやま」 エリア,もう少し車椅子が通れる店にして欲しかったのと、トイレが通りずらい。恐竜をメインに,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0169,positive_english_information_gap,Fukui,道の駅「三方五湖」  エリア,"ソースカツ丼マップがあると嬉しい。。銘産品以外のおもちゃ等、幅広く品揃えがあり、また外国人向けのパンフレットがあったのが良かった。
+外国人の旅行者だけでなく、ここは観光地としてしっかりしている。と訪れる人にも誰かにオススメしやすくなる。
+ドライブ時間が長いので、千円以内で買えるおもちゃがあると、子連れには有難いです。
+チラシ、パンフレットは入り口付近に分かりやすく配置し、担当者は毎日チェックが必要だと思います。",['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0170,untagged_text,Ishikawa,金沢,便利。城自体はよかった。入口の案内が少ない。なし。特になし。チームラボががっかりだった。良いから,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0171,untagged_text,Fukui,日本海さかな街 エリア,食べ物が美味しく新鮮だから。閉店している店が増えた。。美味しい魚。魚が美味しい、新鮮,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0172,positive_cleanliness_comfort,Fukui,一乗谷朝倉氏遺跡 エリア,"福井駅から一乗谷までの電車やバスの便が救い。利用する人が少ないので仕方無い部分はありますが。エリア内の無料バスは利用しましたが良かったです。。休憩所のテレビでの説明は歴史の苦手の自分でも文章を見るより、分かりやすく良かった。。晴天の土曜日訪れましたが、程よく飲食、お土産屋、トイレ、休憩所が利用しやすくあり、良いと思います。。金沢の方が有名だと思いますが、どんどん情報発信しアピールして欲しい。
+福井市内のホテルは新設を含め、魅力ある宿泊施設が少なかった。施設件数も少ないような気がしました。","['cleanliness_comfort', 'food_amenities_gap']",False,False,False,False,False,False,False,True,False,False,False,True
+gold_0173,positive_english_information_gap,Ishikawa,加賀,清潔、静か。ガチャガチャが内容的に車好きの息子に好評でした。鮮魚や野菜を購入できる特産品屋さんが増えてほしい。車がとても大好きで、とくに古い車がすきなので。美味しいものもたくさんあって、インバウンド客も多いがマナーは悪くなくよかった,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0174,positive_wayfinding_signage,Ishikawa,金沢,次回はもっとたくさん体験（工芸）をしたいと思います。地図など資料がたくさんあるから。見処や体験がたくさんあるから,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0175,positive_wayfinding_signage,Fukui,あわら湯のまち エリア,"いこうよのキャンペーンはよかった
+車がないと
+周りの観光地まで行く交通手段がわかりにくいのでまとめてある地図かパンフレットがあればいいと思った。あわら湯のまち駅の周りが寂しい
+カフェがあると待ち時間が過ごしやすい","['transport_access', 'wayfinding_signage', 'waiting_crowding']",True,True,False,False,False,True,False,False,False,False,False,False
+gold_0176,untagged_text,Ishikawa,金沢,古い建物だが、よく手入れされており、清潔だったから。。朝食が美味しかった。。職場で配る方ができるお土産のお菓子。従業員がとても親切だったから。。今回宿泊した施設,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0177,untagged_text,Fukui,JR九頭竜湖駅 エリア,お餅が美味しかった。対向車がきており駐車しにくかった。カツ丼が食べたい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0178,untagged_text,Fukui,かずら橋 エリア,"道路が綺麗に舗装され、
+とても運転し易かった。
+温泉のお湯がとても良い。。熊が出るかと不安。美味しい
+お米、味噌、野菜",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0179,positive_itinerary_fit_time_cost,Fukui,道の駅「禅の里」 エリア,移動が楽。何もない。野菜などが少ない。何もない,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0180,positive_accessibility_mobility,Fukui,北陸新幹線 越前たけふ駅 エリア,"直売所内通路が狭い。お店などの案内などか多少わかりづらく思います。いいもの、みどころが沢山あるのにもったいない気持ちがします。。綺麗になっている
+道の駅ないの通路が狭い",['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0181,untagged_text,Ishikawa,加賀,このホテルはお土産屋さんなし、飲食も朝少しの間飲食スペースに替わる。特になし。立地条件がいいだけで朝食もパッとしない。那谷寺、景観がよかった今度は紅葉みたいです,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0182,positive_english_information_gap,Ishikawa,金沢,順路とかあれば嬉しい。特になし。日本なのに英語飛び交ってる,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0183,positive_cleanliness_comfort,Fukui,大本山 永平寺 エリア,ご当地のスイーツが食べれて、簡単に休憩できる施設があればいい,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0184,positive_price_value,Fukui,道の駅「越前おおの荒島の郷」 エリア,コロンビアの価格が高め（割引がない）,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0185,positive_accessibility_mobility,Fukui,大本山 永平寺 エリア,"不便というか、想像以上に施設が大きく、
+階段が多く、湿度が高く感じたので、疲労感を感じた。。グランピング施設。
+
+お土産については、若者向けで個包装のおしゃれなものが増えれば嬉しいです。",['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0186,positive_staff_communication,Ishikawa,金沢,スタッフの対応が丁寧だった。少し部屋の照明が暗い気がする。土産は置いていないようだった。駅の飲食店がどこも混雑していたが仕方ない気もする、兼六園でプロジェクトマッピングやアクティビティを増やしたらいいかもしれない、石川城は散策によいが見どころがいまいちわかりづらい（二の丸が工事中だったのもある）。ウェルカムドリンクがよかった、ヘアオイルも嬉しい。兼六園はきれいで、四季折々の景色が楽しめると思う,"['staff_communication', 'waiting_crowding']",False,False,False,True,False,True,False,False,False,False,False,False
+gold_0187,untagged_text,Ishikawa,金沢,きれい。海産物が美味しい。楽しかった。食事が美味しい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0188,positive_waiting_crowding,Fukui,かつやま恐竜の森 エリア,"恐竜博物館近辺の道路の渋滞が凄かった
+。。施設までの誘導路がわかりやすかった。。もう少し子供向けに特化した（リアルすぎないフィギュアなど）恐竜グッズがあればなと思いました。。近隣県であればひこにゃんのような、これぞ福井のキャラ！というようなゆるキャラがあって、そのタイアップ商品が増えてくれればなと思います。。必要か？と思う設問が少し多い。",['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0189,untagged_text,Fukui,紫式部公園 エリア,綺麗に整備されていて好印象。。紫ゆかりの館の映像が良くできていると思いました。床に映し出された映像が特に。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0190,untagged_text,Fukui,大本山 永平寺 エリア,なし。羽二重餅が美味しい。永平寺がとても素晴らしかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0191,untagged_text,Fukui,三国湊 エリア,丁寧に案内をしてもらい、とてもよかった。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0192,untagged_text,Ishikawa,金沢,近くまでバスで来れて本数も多く便利だが路線図が分かりにくい。。香箱かに。音声ガイドがあり、分かりやすかった。。美味しい料理,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0193,untagged_text,Fukui,レインボーライン エリア,スタッフの方の丁寧な対応。産直野菜や干物等　特産品があれば尚良かった。。ペットと一緒に山頂まで行けること,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0194,positive_waiting_crowding,Ishikawa,加賀,"可能であれば地元の飲食店がもう1,2店舗あるとより待ち時間が苦にならない。また、オフィススペースも拡充していて多様なお客さんが滞在できる空間と満足でした。。タッチレス決済があれば混んでる時は良かったかもしれないです。。金沢カレーの店舗や、おろしそばの店舗があると更に充実する気もしました。。駅前や空港近くに足湯施設があるとより楽しそうです。。金沢だけではなく北陸全体のお土産が揃っていたため充実した待ち時間を過ごせた。。ご飯、お菓子、お土産、全てが美味しかったです。暖冬のため雪が少し少なくて雪景色が見れずに期待外れだったこと以外、最高でした。",['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0195,positive_accessibility_mobility,Fukui,越前そばの里 エリア,正面入口にスロープがないため、車椅子やベビーカーの方が遠回りになってしまうことが不便だと感じます。,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0196,untagged_text,Ishikawa,能登,全て素晴らしい　また来ます。全て素晴らしい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0197,untagged_text,Fukui,名勝 養浩館庭園 エリア,庭が素晴らしい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0198,untagged_text,Ishikawa,金沢,石川県の伝統についてより深く知りたいと思いました。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0199,untagged_text,Fukui,大本山 永平寺 エリア,もっと何ができるのか宣伝して欲しい。福井には毎年一度は行きます、どうしても福井では海鮮か蕎麦の印象になってしまい少し残念です、他の食材も宣伝お願いします,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0200,untagged_text,Fukui,越前松島水族館 エリア,駐車場も無料で施設も大きすぎず、子どもにもちょうどよい感じでした。。大阪ではできない体験をしたいです。自然がおおいので自然体験したいです。。アットホームな感じでとても生き物に近く興奮しましたね。サメも近かったです。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0201,untagged_text,Fukui,うみんぴあ大飯 エリア,上記と同じ。テイクアウトのお店がもっと増えてくれたら嬉しいです。子供が遊べる施設もあり、大人が飲食できたり、買い物できる空間があるため,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0202,untagged_text,Fukui,芝政ワールド エリア,レストランの回転が悪かった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0203,untagged_text,Fukui,あわら温泉 エリア,足湯が気持ち良かった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0204,positive_opening_hours_availability,Fukui,北潟湖 エリア,"小さい子供がいても気を遣わず自分達のペースで動けるので助かります。
+距離感も疲れすぎないので楽しく行ける距離だと思います。。園児から中学生までいるのですが、みんながそれぞれ楽しめてとても満足しています。。お店が思っていたより早く閉まったので夕食の場所を搜すのに困りました。。営業時間を少し長くしてもらえると助かります。。今で満足です。。子供達が、喜ぶ物が多くてうれしかったです。",['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0205,positive_food_amenities_gap,Fukui,かずら橋 エリア,フォーシーズン　綺麗で広く　また来たい。エリアの割に提供される飲食物のお店が少ない感じ。今のまま地元産 自然派のままで行って欲しい,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0206,positive_wayfinding_signage,Fukui,越前松島水族館 エリア,でもめちゃくちゃ寂れたやる気のない東尋坊周辺のお店が気になった。なんかテコ入れした方がいいと思う。店の商品は良くても見せ方がイマイチだった。せっかく興味あってもなんか近寄りがたい。東尋坊で駐車場どこに停めるべきか迷った。。観光案内所みたいなのがもう少し欲しかったかな。温泉のアピールが少し下手？かも。。体験型水族館と東尋坊のタワーと周辺の店でイカが美味しかった,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0207,untagged_text,Fukui,越前そばの里 エリア,自然に溢れていて癒された,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0208,positive_wayfinding_signage,Fukui,あわら湯のまち エリア,街作りの熱心さや工夫が感じられる。観光案内の看板(あわら温泉マップが随所にあるとなお良い。。化石を売るといいのでは？子供たちが喜ぶと思う。,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0209,positive_price_value,Ishikawa,加賀,大変懐かしく、若い頃を思い出せるような気持ちになれる施設だった。スタッフの笑顔も良かった。車種エンブレムのキーホルダーなどが揃っていればいいなと思った。なかなか難しいと思いますが。。観光化された市場が少し残念。内容の割に価格が高価になりすぎていると感じた。自家用車があったので、離れた市場で食べられたのは良かった。。広さが程よく、古い車種が豊富。歴史を感じる街並みや新鮮な魚介類などが豊富。,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0210,positive_accessibility_mobility,Ishikawa,金沢,歴史を感じられてよかった。施設には関係ないかもしれませんが、施設の感想とは違いますが、施設の入り口以外には雪が多く歩きにくかった。金沢らしいおでんを食べられるところをもっと紹介してほしい。以前来てよかった印象がそのまま。雪景色の金沢はどこも素敵,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0211,positive_accessibility_mobility,Fukui,福井駅前 エリア,混んでいて歩きにくかった,"['waiting_crowding', 'accessibility_mobility']",False,False,False,False,False,True,False,False,False,False,True,False
+gold_0212,untagged_text,Ishikawa,加賀,空いている。海産物。駅が開発されて来て、飲食店なども増えて来ているところ。。食事のおいしさ,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0213,positive_wayfinding_signage,Fukui,越前大野城・城下町 エリア,"お城からの景色が良かったです
+御当地メニューの醤油カツ丼が美味しかったです。美味しい食事のお店をすぐ探せる、アプリやパンフレットがすぐ手に入ると、便利です
+探せなくて、地元の方に直に聞いて、美味しい食堂を教えてもらいました。パンフレットが絵地図で、綺麗だけど距離感が分からず、いくつもの地図やスマホで行き方を調べるのが大変でした。楽しい旅行をして、御当地の美味しい物がプレゼントされたら、尚嬉しいです",['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0214,untagged_text,Ishikawa,加賀,高価なものでなく、気軽に楽しめるもの,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0215,untagged_text,Ishikawa,加賀,便利。部屋がとてもリラックスできる。のどぐろ。スタッフが丁寧。芸術が素晴らしくてご飯が美味しい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0216,positive_wayfinding_signage,Fukui,明通寺 エリア,道案内看板が見やすかった。,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0217,untagged_text,Fukui,日本海さかな街 エリア,"やはり福井の魚は美味しい！。さば寿司が美味しかった。同じような店が多いがもう少し焼き鯖とかに以外にも食べれるようにして欲しい。フグもお手軽に食べるようにしてほしい！
+ふぐの唐揚けなど",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0218,positive_food_amenities_gap,Fukui,若狭高浜 エリア,"のんびり過ごせました。。宿泊場所周辺の飲食店が少なかったこと。。海、環境の綺麗さ
+ご飯の美味しさ
+子連れでの過ごしやすさ。料理が美味しく、接客の方も丁寧でした。",['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0219,untagged_text,Fukui,五湖の駅 エリア,ソフトクリームが美味しい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0220,untagged_text,Fukui,あわら湯のまち エリア,ホテルが良い。天気が悪い,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0221,positive_food_amenities_gap,Fukui,越前大野城・城下町 エリア,観光名所や店が少なく駐車場も見つけにくい。。城下町の町並みがまばら。。地元の名産をもっと観光PRしてほしい。,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0222,positive_transport_access,Fukui,かつやま恐竜の森 エリア,便利だから。楽しめたから。バスの本数が少ない。カイリューとのコラボ商品。カイリューグッズを増やしてください。可愛かったから,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0223,untagged_text,Fukui,花の駅 ゆりの里公園 エリア,たのしめてよかった。。孫達が楽しそうでこちらもうれしくなった。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0224,untagged_text,Fukui,日本海さかな街 エリア,楽しかったです。寿司屋がもう少しあると良いのでは。。美味しかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0225,positive_staff_communication,Fukui,スキージャム勝山 エリア,やはりスタッフの対応が良かったことに尽きます。。恐竜グッズを買いたい。ホテルでのスタッフ皆さんの対応がとても良かった。天候情報など、参考になった。そしてバイキングは堪能できた。,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0226,untagged_text,Fukui,氣比神宮 エリア,"毎年お参りに来ています
+今年も参拝出来て、よかった",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0227,positive_transport_access,Fukui,あわら湯のまち エリア,"時間や乗り継ぎなど調べなくても
+いろいろ連れていって貰えて楽でした",['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0228,positive_transport_access,Fukui,一乗谷朝倉氏遺跡 エリア,1日学べた。バスが少ない,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0229,positive_transport_access,Fukui,越前松島水族館 エリア,電車の本数が少なかったです。。車があった方が色々な観光地に行けると思いました。。お土産で手軽に買える値段の蟹があれば良いですね。。現地に中々足を運べれない知人に喜んでもらえる蟹セットお土産を買いたいですね。。子供が余り興味を示さなかったからです。,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0230,positive_accessibility_mobility,Fukui,大本山 永平寺 エリア,特急永平寺ライナーがYahoo！乗換案内に登録されていない。。永平寺さん、靴を脱いで参拝するとはつゆ知らず驚きましたが、建物の説明などホスピタリティに溢れていて大満足です。。永平寺の参拝につき、スリッパを履くと階段など歩きづらいのですが、履かなくても良かったのでしょうか？。来年は若狭に行きたいです！若桜は東京から行きづらかったものの、北陸新幹線が延伸したら敦賀で一度乗り換えるだけで行けるようになるので楽しみです！。飲食店のスタッフ不足でだいぶ待たされたのでそこだけ不満でしたが、おおむね満足です！,['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0231,untagged_text,Fukui,道の駅「越前おおの荒島の郷」 エリア,直産物が豊富、魚、遊びば有り。綺麗。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0232,positive_english_information_gap,Ishikawa,金沢,施設が綺麗で、整っている。在住の者ですが、一時ほどではないものの、近江町市場がインバウンド需要にシフトして、味も質も落ちた。地元の人が通う施設であって欲しい。。スタッフのみなさんが親切。。ストレスの発散に最適と感じました,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0233,untagged_text,Fukui,かつやま恐竜の森 エリア,自然が多いので、自然を生かしたアクティビティ,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0234,positive_accessibility_mobility,Fukui,越前海岸 エリア,"狭い道でバイクも多く、カーブでも追い越してくるので危なかった。いいお湯だったので。工事も多かった。若い人が集まる、清潔感のあるおしゃれなエリアがあってほしい。毎週、魚介類でもマルシェみたいなできないですか？
+もっと、おしゃれな感じで",['accessibility_mobility'],False,False,False,False,False,False,False,False,False,False,True,False
+gold_0235,untagged_text,Fukui,かつやま恐竜の森 エリア,順路がないので自由に見学時間を取れていい。大人向けの商品が少ない,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0236,positive_opening_hours_availability,Fukui,レインボーライン エリア,火曜日だったので定休日のお店が多かったのですが沢山美味しいお店があるのでとっても楽しめました！ドライブイン吉田のイカ丼最高でした！。レインボーの傘が置いてあったりソファーが沢山あったり、ミストがあったり無料Wi-Fiがあったりしてとても快適で楽しめました!。暑かったのでアイスクリームやサンデーや飲み物があったのはすごく良かったです！たぬきのケーキが秋だけの限定だったのですが年中あれば嬉しいです。夏はたぬきのアイスとかいかがでしょうか？。イカ丼がすごく美味しくて並んだ甲斐がありました！梅干しも美味しかったので買ってしまいました！。カフェなないろの店員さんの接客があまり良くなかったです。サンデーについてくる飾り？がクッキーに見えているのに、モナカだったのはびっくりしました。,"['waiting_crowding', 'opening_hours_availability']",False,False,False,False,False,True,False,False,True,False,False,False
+gold_0237,positive_booking_ticketing,Ishikawa,加賀,満足です。席の予約ができないのが少し不安でした。。シンプルだが、必要なものは揃っている印象。唯一空いていた飲食店（空カフェ）のメニューが売り切ればかりで選択肢がなかった。。海鮮は必ず食べたいと思います。お土産品は特に知りませんでしたが、種類もセンスも良かったので、次はもっと調べてから買いたいと思いました。。飛行機が遅延したが、飲食店の昼営業が終わっていて、選択肢がなかった。。桜の時期の金沢の観光はとても素晴らしかったです。美味しいものも多く、京都よりも混んでいないので、外国人にもおすすめだと思いました。,"['booking_ticketing', 'waiting_crowding']",False,False,False,False,True,True,False,False,False,False,False,False
+gold_0238,untagged_text,Fukui,メガネストリート エリア,連絡が良い。案内所が近く、きれいだから。ランチが気軽に出来れば良い。観光地のアクセスが良ければもっと来たい。観光案内所が、使いやすい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0239,positive_cleanliness_comfort,Fukui,あわら湯のまち エリア,情緒溢れる町並みがよかった。午後12時にあわら温泉湯のまち広場駐車場で、休憩中らしき営業車がたくさん停まっていて、本来観光客用の駐車場なのにどうかと思った。。湯巡権三のグッズをあわらまで行かなくても購入できるようにしてほしい。駐車場を充実させてほしい。湯巡権三のグッズが充実していてよかった,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0240,untagged_text,Fukui,越前そばの里 エリア,蕎麦がとても美味しかった。道が悪。店員さんが親切,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0241,positive_itinerary_fit_time_cost,Ishikawa,金沢,大阪からサンダーバードは時間がかかりました。。目的の飲食店が予約でいっぱいだったため、予約推奨などの案内があるとうれしい。。説明が丁寧でした。,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0242,untagged_text,Ishikawa,加賀,便利。特になし。体験が良かった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0243,positive_staff_communication,Ishikawa,金沢,バスの乗り方が分かり辛く、バスの運転手さんもすごく不親切で怒られたし、我々以外にも怒られている方を連日拝見した。。特になし,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0244,positive_english_information_gap,Ishikawa,金沢,宿から体験型アクティビティの予約が取れるとインバウンドの方も便利だと思う,"['english_information_gap', 'booking_ticketing']",False,False,True,False,True,False,False,False,False,False,False,False
+gold_0245,positive_wayfinding_signage,Fukui,JR芦原温泉駅 エリア,バスの料金が高い。東尋坊線はこの旅行で3回乗ったが、間違えて反対行きに2組乗っていて途中で降りていた。分かりやすくしたほうがよい。。観光案内所の場所の説明をJRの駅員に聞き、言われた通りに行くと迷った。。駅周辺に飲食店があるとよい。。福井駅から一乗谷遺跡に行く電車の本数が少なく驚いた。そのためバスを利用したが、もう少し便利だと行こうと思う人が増えるかなと思う。,"['transport_access', 'wayfinding_signage', 'price_value']",True,True,False,False,False,False,True,False,False,False,False,False
+gold_0246,untagged_text,Fukui,福井駅前 エリア,福井にしかない物が揃っていたから,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0247,positive_opening_hours_availability,Ishikawa,金沢,いきいき市場にもバス亭があったらより便利だと思った。バスが充実していたので、車がなくても不便なく十分に楽しめました。比較的早く閉店するお店が多い印象です。。どのお店や施設の方が親切で穏やかに応対して下さり、全てにおいて好印象です。また旅行で来たいです。。東京駅から2時半から3時間で気軽に来れる,['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0248,untagged_text,Fukui,越前大野城・城下町 エリア,小松空港から旅をスタート。北陸はドライブし易い。。大野城は、初めてですが、期待通り。。地元の名物を探したがあまり見当たらなかった。。何回目かの訪問なので、予想通りでした。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0249,positive_english_information_gap,Ishikawa,金沢,街並みが良い。。お店でお手洗いが使えない。。美味しい海鮮。インバウンド需要で少し価格が上がっている？。楽しいお店がたくさん。。お酒と食べ物が美味しい,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0250,untagged_text,Ishikawa,能登,途中でイルカがいるところを説明してくれた。能登島にあるのが嬉しい。皆さん親切。近江町市場の食べ歩き。たくさんの魚が見られる。食べ物が美味しい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0251,untagged_text,Fukui,JR美浜駅 エリア,何回か訪れましたが、相変わらず屋内が綺麗で居心地が良いです。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0252,positive_waiting_crowding,Fukui,道の駅「越前」 エリア,道が混雑していず海岸線の景色を楽しめた。カニを比較的小さい単位（足一本からなど）で食べられると嬉しい。。カニを比較的安価に購入できることがわかった。カニ売り場の売り子さんがきつくなく親切だった。,['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0253,positive_transport_access,Ishikawa,加賀,空港から駅までが遠い。地元の美味しいごはん。特になし,['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0254,positive_waiting_crowding,Fukui,JR敦賀駅前 エリア,"大阪からの新快速の遅延がすごかったが、いつものことらしい。。謎解きが充実していてとても楽しかった。
+銀河鉄道の夜の像が並んでいることは初めて知ったが、どれも見ていて楽しかった。",['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0255,positive_english_information_gap,Ishikawa,金沢,バスの乗り継ぎに不便を感じた。歴史博物館　大昔　金沢の美術館でみたような甲冑や刀の展示など見ることがなかった。特になし。京都よりインバウンドがすくなく落ち着いていた,"['transport_access', 'english_information_gap']",True,False,True,False,False,False,False,False,False,False,False,False
+gold_0256,positive_waiting_crowding,Fukui,道の駅「南えちぜん山海里」 エリア,"下調べが足りなくて行こうと思っていた所が営業していなかったり、閉店してたりと予定が狂った。自業自得なのでしようがないのですが&hellip;。夜ご飯は楽しみにしていただけにとても残念でした。。お土産等がコンパクトにまとまっていて見やすく、楽しめた。
+店内に飲食店がほしい。美味しそうだったが、店数が少なく且つ、並んでいて利用をやめたから。",['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0257,positive_food_amenities_gap,Fukui,福井駅前 エリア（宿泊施設）,グランクラスがとれたから。。落ち着かない。ソースカツ丼とおそばばかりで、おさけのつまみになるようなお店が少ない。推しも素晴らしいが、もう少し幅をひろげましょう。。特にない。。修学旅行生だらけだった。,['food_amenities_gap'],False,False,False,False,False,False,False,False,False,False,False,True
+gold_0258,positive_booking_ticketing,Fukui,道の駅「禅の里」 エリア,地元の有名なちょっとしたお菓子なども置いてあり、休憩にちょうどよかった。昼過ぎにはほとんどの食堂のものが売り切れていた。。有名な厚揚げや胡麻豆腐なども置いてあり、冷蔵物も充実していて、寄って良かったと思えました。,"['booking_ticketing', 'cleanliness_comfort']",False,False,False,False,True,False,False,True,False,False,False,False
+gold_0259,positive_itinerary_fit_time_cost,Fukui,スーベニアショップふらぷとる エリア,乗り心地は良かったが時間がかかった。忙しいだろうに小さい子ににこやかだった,['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0260,positive_staff_communication,Ishikawa,金沢,スタッフの対応が良かったです。。和菓子づくりが楽しかったですが、小学生の子供には解説のペースが早かったようです。。美味しい食事。和菓子作りと加賀八幡起き上り手描き体験がとても楽しかった。。食事が美味しい！,['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0261,positive_cleanliness_comfort,Fukui,神楽通り エリア,敦賀まつりで休憩場所があって良かった,['cleanliness_comfort'],False,False,False,False,False,False,False,True,False,False,False,False
+gold_0262,untagged_text,Fukui,小浜市まちの駅 エリア,街並みが整っており、無料駐車場もあったので、歩きやすかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0263,positive_price_value,Fukui,永平寺門前 エリア,"料金が高く感じました。。利用していない。。雪で滑りそうになりました。。閉まっている店が多いので、開けて欲しい。また
+、バスの便数が増えれば時間を気にせずお土産が選べるから、今回はお土産は諦めました。。まだ着いたばかりでわからない。","['price_value', 'opening_hours_availability', 'accessibility_mobility']",False,False,False,False,False,False,True,False,True,False,True,False
+gold_0264,positive_booking_ticketing,Fukui,JA福井県ファーマーズマーケットきららの丘 エリア,野菜や果物等が新鮮で安いです。。毎年販売されている焼き芋を目当てに度々御店へ向かいますが、売り切れていることが多いのでとても残念です。ＨＰ等で販売日や焼き上がり時刻などお知らせ願えば幸いです。福娘は本当に美味しいです。。魅力的なところがいっぱいありますね。全国旅行した経験からですが、駅前発の1日観光バスで名所やグルメ巡りがあるといいです。長崎や鹿児島で効率よく観光名所周ることができました。,['booking_ticketing'],False,False,False,False,True,False,False,False,False,False,False,False
+gold_0265,positive_transport_access,Fukui,大本山 永平寺 エリア,"値段が少しお高い。もう少しお店のバリエーションがりあれば面白いと思った。どこの店のものでも捨てていいゴミ箱がほしい。。ヨーロッパ軒永平寺店を作って欲しい！。勝山市内のバスが本数が少なくて、困った。
+大師山清大寺、平泉寺、恐竜博物館にいった。
+
+また、恐竜博物館のお土産屋さんが、5時閉館なのに4時50分には入れてもらえず、博物館限定のおみやげを買えなくて悲しかったので、5時までは入れて欲しかった。または、開館時間を6時くらいにして欲しいなと思いました。
+
+でも、福井県はとても良いところだなと思いました！！！
+また行きます！！。永平寺がきれいで感動した。
+近くのアップルパイ屋さんが美味しくて最高でした。",['transport_access'],True,False,False,False,False,False,False,False,False,False,False,False
+gold_0266,untagged_text,Fukui,JR敦賀駅前 エリア,母の故郷をゆっくり散策できたから。改札口が２箇所に増えて町に賑わいを感じた。敦賀駅を起点としたガイドツアーが増えるとよいと思います、。駅がきれいになって、観光案内がわかりやすかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0267,untagged_text,Ishikawa,能登,魚はとてもおいしい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0268,positive_wayfinding_signage,Ishikawa,金沢,レンタカーの価格はさほど高くなかった。駐車場がわかりにくい。和テイストのものがたくさんあり良い意味で迷った。。美味しいご飯と綺麗な景色。庭園がきれい子どもも歩いて楽しかったようです。小松空港まで行きやすい,['wayfinding_signage'],False,True,False,False,False,False,False,False,False,False,False,False
+gold_0269,untagged_text,Ishikawa,能登,海産物が美味しい。海産物が魅力的,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0270,untagged_text,Fukui,越前海岸 北部 エリア,バス停に着いてバスから降りたとき、映画のワンシーンのような風情を感じた。。温泉、料理、接客、景色、どれもとても素晴らしかった。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0271,untagged_text,Fukui,福井駅前 エリア,福井城址大名町の駅で福井駅行きが1.2番のどちらにくるかわかりにくい,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0272,positive_cleanliness_comfort,Ishikawa,加賀,"金沢駅からリムジンバスで便利で快適。混雑してないから、ゆっくり休憩出来る。。レストランは少ないが、おかげで小松うどんを知れてラッキーだった。今の良さを落とさないでほしい。小松うどんが美味しい、。金沢市は、名所が集まっているので
+とても周りやすい、歴史も素晴らしい、食べ物も最高に美味しいかった","['waiting_crowding', 'cleanliness_comfort']",False,False,False,False,False,True,False,True,False,False,False,False
+gold_0273,positive_food_amenities_gap,Fukui,ふくい鮮いちば エリア,店が少ない。通路が狭い,"['accessibility_mobility', 'food_amenities_gap']",False,False,False,False,False,False,False,False,False,False,True,True
+gold_0274,untagged_text,Fukui,かずら橋 エリア,池田町も町の駅や足羽川ダムの建設により観光地が増えそう。。特にありません。水羊羹は年中食べたい。。冠山トンネルの開通によりより便利になったので、何度も行きたくなった。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0275,untagged_text,Fukui,道の駅「三方五湖」  エリア,景色もよく立ち寄りやすい。湖、山、自然が豊かなので、それらをもっと都会の人々にアピールしたらいいと思う。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0276,positive_price_value,Fukui,日本海さかな街 エリア,一番はお茶の清水さんでお茶を買うこと。施設の中にある海鮮丼が高いし不味いとの口コミで買い物が済んだら他へ食べに行きました。少し店が減ってしまいましたね　ネット販売もあるし仕方ないですが以前白エビやフグとハタハタの唐揚げを購入していましたが無くなっていて残念でした　美味しかったのにな～。山に囲まれた岐阜県民なのでやはり新鮮な海の幸を求めています　設定価格が高めでもおまけを付けてくれたり2個購入でお得になったり店員さんとのやり取りが楽しいです。まあ、手頃な買い物ができた,['price_value'],False,False,False,False,False,False,True,False,False,False,False,False
+gold_0277,positive_waiting_crowding,Fukui,明通寺 エリア,丁寧に説明してくれる優しい人が多い,['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0278,positive_itinerary_fit_time_cost,Fukui,あわら湯のまち エリア,"徒歩で回るのは結構時間がかかる。あわら湯のまち駅近くの源の屋と言うお店で食事をしたのですが、席に座ったとたん変な匂いがしました。テーブルに敷いてあるクロスから雑菌の匂いが&hellip;せっかくの食事でしたが、残念な思いをしました。お店の方は気にならないのでしょうか？きちんと衛生的にクロスを替えてもらいたいです。
+もう、あのお店には行きたいとは思いませんでした。",['itinerary_fit_time_cost'],False,False,False,False,False,False,False,False,False,True,False,False
+gold_0279,untagged_text,Ishikawa,加賀,"市内観光は周遊バスを利用したがとてもよかった！。大人も子どもも楽しめる！。金沢の観光のしやすさにとても魅力を感じました。観光しやすい、なのにみるところがいっぱいあり時間がたりなかったです。また来ます！！。食べ物も美味しい！観光地がたくさんあるのに観光しやすい！！めちゃくちゃいい街です！今回行けなかったところにまた行きたいのでまた絶対に来ます！！。金沢の魅力がつまっていた！。兼六園　21世紀美術館 　金沢城
+あの距離感で観光地が凝縮されてる感じでとても楽しかったです！",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0280,positive_wayfinding_signage,Ishikawa,金沢,バスの本数があるのは良いのですが方向音痴の人には不親切なのかもしれません道案内など矢印を多めにつけてほしいです。閉まるのが早くてショップで買い物が出来なかった。閉店が早いと思う。私はひゃくまんさんの存在を初めて知り魅了されてしまいましたこちらではシマエナガですが大人向けの商品もあると良いかな〜と思いました次回は2泊以上したいなと思いました。天守閣に入れなかった。経験の為,"['transport_access', 'wayfinding_signage', 'staff_communication']",True,True,False,True,False,False,False,False,False,False,False,False
+gold_0281,positive_booking_ticketing,Fukui,道の駅「越前」 エリア,"バスがない。公共交通機関がない。タクシーが予約できない。。漁火気持ち良かった。別府からきましたが、すすめます。。越前かにの美味しさをみんなに、知ってほしい。
+九州から、交通費をかけて来ても価値があると、知ってほしい。
+美味しい日本酒も、広めたい。","['transport_access', 'booking_ticketing']",True,False,False,False,True,False,False,False,False,False,False,False
+gold_0282,untagged_text,Ishikawa,金沢,名古屋からですが、新幹線がとても綺麗で揺れも少なく、快適な旅です。。特にありません。風情を感じるとても素敵な場所でした。。街並みがとても綺麗でした。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0283,positive_english_information_gap,Fukui,丸岡城 エリア,道路が良かったため。現存天守として期待通りのものが見れたため。丸岡城全体の歴史についての解説が無かった。現存天守ならではを活かしたお土産、グルメ商品を開発していただくと購買意欲をそそられます。福井県は恐竜、温泉、歴史文化、食材、景勝地に恵まれていながらもなかなかそのアピールが上手ではないと感じます。近年昇龍道と称して愛知から富山まで抜けるルートがインバウンドでも定番になりつつあるので、他県と組んでアクセスと共に地域としてできる体験をPRすることで、福井を訪れる人は増加するのではないかと考えています。福井県の観光がもっと盛り上がることを期待しています！。丸岡城、坂井市ならではというものがあまり見受けることができなかったため,"['english_information_gap', 'accessibility_mobility']",False,False,True,False,False,False,False,False,False,False,True,False
+gold_0284,positive_food_amenities_gap,Fukui,あわら湯のまち エリア,駐車場がすぐいっぱいになって入れなかった。代替の駐車場の案内図も中にいかないと見られないので、並んだ挙げ句の迂回をしないといけなかった。。駐車場問題。。駐車場問題。。越前そばとソースカツ丼が両方楽しめる店が駅前にしかないので、クルマで訪れられる店が少なくて探すのに手間取った。。無料の足湯が充実していて良い。,"['waiting_crowding', 'food_amenities_gap']",False,False,False,False,False,True,False,False,False,False,False,True
+gold_0285,untagged_text,Fukui,越前海岸 北部 エリア,"カニが美味しかった。
+温泉も良かった。",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0286,untagged_text,Ishikawa,金沢,バスがすぐ来た。観光地価格のお店が増えている印象があってお店を選ぶのが大変だった。工事中で覆われている箇所があり全景が見えなかったのが残念。天気が良く散歩にもってこいだった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0287,untagged_text,Fukui,大本山 永平寺 エリア,永平寺のトイレが和式だったので、子供のトイレに困りました。。楽しく経験しながら今後の子供の知識になればいいです。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0288,untagged_text,Ishikawa,加賀,水が流れていて草木が綺麗だった。思っていたより山道だった。買わなかった。カニが季節外でなかったのが残念。鐘を見に行くには山をまた登らないと行けないので。法師温泉が楽しかった,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0289,positive_opening_hours_availability,Fukui,永平寺門前 エリア,休み店舗が多い。同上,['opening_hours_availability'],False,False,False,False,False,False,False,False,True,False,False,False
+gold_0290,untagged_text,Fukui,大本山 永平寺 エリア,永平寺の美しさが圧巻だったので。福井県のアンテナショップがあるとよいです。各観光地からの所要時間をわかりやすく明記してくれると助かります。門前町のお土産物屋の商魂のたくましさに引きました。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0291,untagged_text,Fukui,北陸新幹線 越前たけふ駅 エリア,"イートインの場所が多い
+空間が広い。お魚大好きなのでお魚・地魚の刺身レシピなんかも有ると良い・お米・勿論野菜やお肉も食べたい。近いので道の駅巡り、日帰り温泉を楽しみによく来ます。温泉マップあっても良いかな！。スタッフの笑顔が良い
+お魚が美味しい
+商品が見易い",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0292,positive_english_information_gap,Fukui,大本山 永平寺 エリア,外国語パンフレット,['english_information_gap'],False,False,True,False,False,False,False,False,False,False,False,False
+gold_0293,positive_waiting_crowding,Fukui,永平寺町 エリア,永平寺がよい。けんぞう蕎麦は、混んでいたが美味しかった。東尋坊は、店がそこそこ頑張ってやっていた。。けんぞう蕎麦は、良いが、予約優先が腹立つ。観光バス客、バイクツアー。。永平寺は自動車道からのアクセスがよい。一方、東尋坊は道路が良くない。タワーの呼び込みも一方的だし、タワー内が活気がない。東尋坊の商店街は元気です。購入はしませんでしたが。,['waiting_crowding'],False,False,False,False,False,True,False,False,False,False,False,False
+gold_0294,untagged_text,Fukui,越前そばの里 エリア,とても良かった。満足,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0295,untagged_text,Fukui,JR芦原温泉駅 エリア,ゆっくり温泉に入って美味しいものを沢山食べました。,[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0296,positive_itinerary_fit_time_cost,Fukui,スキージャム勝山 エリア,北陸新幹線で金沢まで来てしらさぎに乗り換え、さらに越前鉄道と乗り換えに時間がかかる。ゲレンデが広く、コースもバラエティにとんでいた。ホテルハーヴェストが良かった。東京からだとやはり遠い。ホテルハーヴェストの食事は美味しかったし、何よりキャッシュレス化が進んでいて良かった。越前おろしそばの美味しい店に行きたい。店によって味が違うらしいから何件か行きたい,"['transport_access', 'itinerary_fit_time_cost']",True,False,False,False,False,False,False,False,False,True,False,False
+gold_0297,positive_wayfinding_signage,Fukui,かつやま恐竜の森 エリア,どこに何があるのか分かりにくかった。上りエスカレーターが見当たらず移動が大変だった。説明や館内案内表示をもっと分かりやすくしてほしい,"['transport_access', 'wayfinding_signage']",True,True,False,False,False,False,False,False,False,False,False,False
+gold_0298,positive_staff_communication,Fukui,越前そばの里 エリア,"高速道路ICや国道に近い。上記に同じ。友人が喫煙者なのてすが　喫煙所がなく、不親切です。団体客の多い所だと思いますが　お客様が来て当たり前の精神が　以前より強く感じました。。福井県の方々は　基本的に優しい方が多いです。
+福井県への観光に期待する一番は美味しい物です。人間は美味しい物で満足出来れば　またリピートしたくなるのではないでしょうか?　福井の一番の売りは　美味しい海や山の幸。恐竜でもレッサーパンダでもありませんよ。。今回で４回目。４回とも同じメニューを選び食事をしましたが、今回期待外れでした。
+値段を上げない分　ご飯の量が極端に減らされており、おかずとのバランスが極めて悪く、おかずの味が濃く感じました。
+理解していただきたいのは、４回とも同じメニューを選ぶ位　お気に入りだったからです。
+ご飯の量を減らさず　価格を上げれば良いのですよ。",['staff_communication'],False,False,False,True,False,False,False,False,False,False,False,False
+gold_0299,untagged_text,Fukui,越前海岸 エリア,"食べ物が美味しかった。。カニがめちゃくちゃ美味しい。
+おろし蕎麦が美味しい。
+甘エビが甘くて美味しい。
+ソースカツ丼が美味しい。。食べ物が何でも美味しいけど、
+歩行中に横断歩道で手を挙げたら
+クラクションを鳴らさせて、停まってくれる車が無かった。
+車のマナーが悪く、怖かったです。",[],False,False,False,False,False,False,False,False,False,False,False,False
+gold_0300,untagged_text,Ishikawa,金沢,あっという間に到着した感覚がありました。。駅から近くて便利でした。。のどぐろ、白エビなどの新鮮な魚介。とても居心地の良いホテルでした。スタッフの方の対応も丁寧でした。。父に勧めたいです。食事が美味しくて、観光しやすいからです。,[],False,False,False,False,False,False,False,False,False,False,False,False
