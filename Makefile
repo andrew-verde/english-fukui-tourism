@@ -3,7 +3,8 @@ PYTHON = .venv/bin/python3
 .PHONY: help friction-all deep-review-all official-all fetch-fukui-data fetch-comparison-data fetch-google-maps-reviews fetch-metadata \
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
         build-ftas multilingual-reviews chinese-social stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve \
-        gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit
+        gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit \
+        hokuriku-did-event-study sem-ftas nudge-ranking
 
 help:
 	@echo ""
@@ -40,6 +41,11 @@ help:
 	@echo "Hokuriku merged survey / Shinkansen DiD:"
 	@echo "  make fetch-hokuriku-merged   Download merged tri-prefecture survey microdata (CC-BY)"
 	@echo "  make hokuriku-did-audit      Run DiD feasibility audit + parallel-trends plot"
+	@echo "  make hokuriku-did-event-study Thesis DiD: event study, robustness, clustered SEs"
+	@echo ""
+	@echo "SEM + nudge ranking (primary thesis analyses):"
+	@echo "  make sem-ftas                Two-stage SEM on deduplicated FTAS respondents"
+	@echo "  make nudge-ranking           Evidence-weighted nudge priority table"
 	@echo ""
 	@echo "Full pipeline:"
 	@echo "  make friction-all            Run fetch-comparison-data through summarize"
@@ -131,6 +137,15 @@ fetch-hokuriku-merged:
 
 hokuriku-did-audit:
 	$(PYTHON) scripts/hokuriku_did_audit.py
+
+hokuriku-did-event-study:
+	$(PYTHON) scripts/hokuriku_did_event_study.py
+
+sem-ftas:
+	$(PYTHON) scripts/sem_ftas.py
+
+nudge-ranking:
+	$(PYTHON) scripts/rank_nudge_priorities.py
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 

@@ -2,13 +2,18 @@
 
 Research pipeline for a master's thesis on tourism friction in Fukui Prefecture after the 2024 Hokuriku Shinkansen extension.
 
-The project combines two evidence layers:
+**Thesis arc (see [docs/results_overview.md](docs/results_overview.md) for the current numbers):**
 
-- English-language Google Maps reviews for Fukui, Kanazawa, and Toyama, used for exploratory content analysis and review-level checks.
+1. **Impact** — difference-in-differences / event study around the March 2024 Shinkansen extension (Fukui treated, Ishikawa control; merged tri-prefecture survey microdata, CC-BY).
+2. **Mechanism** — two-stage SEM on deduplicated official FTAS respondents: friction → satisfaction → visit intention.
+3. **Intervention** — evidence-weighted nudge priority ranking (SEM path × prevalence), delivered through the `experiments/nudge-pilot/` artifact.
+
+Supporting evidence layers, all exploratory:
+
+- English-language Google Maps reviews for Fukui, Kanazawa, and Toyama (collected through mid-2026; see `output/statistical_summary.md` for the audit date).
 - Chinese-language Xiaohongshu and Douyin recommendation text, prepared as a parallel social-media layer once colleague CSV exports are populated.
-- Official FTAS / Code for Fukui survey data, used as the main statistically powered comparison layer.
 
-The analysis is observational. It identifies recurring friction themes and possible low-cost nudge opportunities, but it does not estimate causal effects.
+The Likert pilot survey was retired as a data-collection path (ADR 0002); all quantitative claims rest on official open data. Design decisions live in `docs/adr/`, canonical terminology in `CONTEXT.md`.
 
 ---
 
@@ -32,6 +37,9 @@ Side     build_gold_set.py                 Blind gold-set kit for friction-tagge
 Side     evaluate_gold_set.py              Inter-rater kappa + tagger precision/recall/F1
 Side     fetch_hokuriku_merged.py          Merged tri-prefecture survey microdata (CC-BY)
 Side     hokuriku_did_audit.py             Shinkansen-extension DiD feasibility audit
+Core     hokuriku_did_event_study.py       Thesis DiD: event study + robustness battery
+Core     sem_ftas.py                       Two-stage SEM (CFA, Stage 1, Stage 2)
+Core     rank_nudge_priorities.py          Evidence-weighted nudge priority ranking
 ```
 
 Steps 2–9 require no API calls once checkpoints exist.

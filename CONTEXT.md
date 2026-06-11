@@ -25,8 +25,9 @@ population for conditional (Stage 2) analysis of *which* friction type matters.
 `config/nudge_mapping.yaml`. A nudge targets a friction; it does not target
 satisfaction directly.
 
-**Nudge pilot** — The browser experiment in `experiments/nudge-pilot/`. A small-N
-system demonstration of nudge delivery and measurement, not a powered hypothesis test.
+**Nudge pilot** — The browser app in `experiments/nudge-pilot/`. A built artifact
+demonstrating nudge delivery; retired as a data-collection instrument (ADR 0002).
+No pilot data is collected or analyzed.
 
 **Shinkansen shock** — The March 2024 Hokuriku Shinkansen extension to Fukui, treated
 as an exogenous transport-friction-reduction event for quasi-experimental analysis.

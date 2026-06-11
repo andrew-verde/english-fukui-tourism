@@ -56,6 +56,17 @@ def load_coder(path: Path, codes: list) -> pd.DataFrame:
     return df.set_index("gold_id")
 
 
+def wilson_ci(successes: int, total: int, z: float = 1.96) -> tuple:
+    """Wilson score interval — sane for the small per-code counts here."""
+    if total == 0:
+        return (float("nan"), float("nan"))
+    p = successes / total
+    denom = 1 + z**2 / total
+    centre = (p + z**2 / (2 * total)) / denom
+    half = z * np.sqrt(p * (1 - p) / total + z**2 / (4 * total**2)) / denom
+    return (max(0.0, centre - half), min(1.0, centre + half))
+
+
 def prf(machine: pd.Series, gold: pd.Series) -> tuple:
     tp = int(((machine == 1) & (gold == 1)).sum())
     fp = int(((machine == 1) & (gold == 0)).sum())
@@ -136,10 +147,15 @@ def main() -> int:
     for code in codes:
         machine = key.loc[gold.index, code]
         tp, fp, fn, p, r, f1 = prf(machine, gold[code])
+        p_ci = wilson_ci(tp, tp + fp)
+        r_ci = wilson_ci(tp, tp + fn)
         eval_rows.append({
             "code": code, "gold_positives": int(gold[code].sum()),
             "tp": tp, "fp": fp, "fn": fn,
-            "precision": p, "recall": r, "f1": f1,
+            "precision": p, "precision_ci_low": p_ci[0], "precision_ci_high": p_ci[1],
+            "recall": r, "recall_ci_low": r_ci[0], "recall_ci_high": r_ci[1],
+            "f1": f1,
+            "indicative_only": bool((tp + fp) < 20 or (tp + fn) < 20),
         })
     machine_any = key.loc[gold.index, codes].max(axis=1)
     gold_any = gold.max(axis=1)
@@ -157,6 +173,8 @@ def main() -> int:
         "",
         "Note: recall is estimated within the sampled strata (per-code positives +",
         "untagged probe), not corpus-wide; see thesis methods for prevalence weighting.",
+        "Codes flagged indicative_only have <20 evaluable instances — report their",
+        "Wilson CIs rather than point estimates.",
     ]
     (gold_dir / "gold_set_report.md").write_text("\n".join(report), encoding="utf-8")
     logger.info(f"Wrote evaluation outputs to {gold_dir}")
