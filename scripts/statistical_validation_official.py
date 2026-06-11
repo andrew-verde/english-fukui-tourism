@@ -53,8 +53,47 @@ class TestResult:
 def _dedup_respondents(df: pd.DataFrame, scope_cols: list[str] | None = None) -> tuple[pd.DataFrame, dict]:
     """Keep one response per respondent (earliest by response_datetime).
 
-    Repeat survey submissions by the same member ID violate the independence
-    assumption of every test below. Rows without a respondent_id are kept as-is.
+    Why deduplication is necessary
+    ------------------------------
+    FTAS (Fukui Tourism Activation Survey) members receive an incentive for
+    participation — a bag of rice — which encourages the *same* member to
+    submit the survey repeatedly across visits (or even within one visit
+    window). In the raw export this manifests as 95,422 response rows but
+    only 50,285 unique 会員ID ("member ID", renamed to ``respondent_id``
+    during normalization). Roughly half the rows are therefore repeat
+    submissions by already-counted people.
+
+    Every inferential procedure downstream (chi-square, Mann-Whitney U,
+    Benjamini-Hochberg-adjusted family tests) assumes independent
+    observations. Treating repeat submissions as independent respondents
+    would (a) silently inflate effective sample size and thus deflate
+    p-values, and (b) over-weight the most enthusiastic repeat responders,
+    who are plausibly systematically different from one-time responders.
+
+    Dedup rule
+    ----------
+    We retain the *first* response per respondent, "first" meaning earliest
+    by 回答日時 ("response date-time", renamed ``response_datetime``). The
+    earliest response is preferred over, e.g., the latest or a random draw
+    because it is the response least contaminated by survey-learning /
+    incentive-gaming behavior, and the rule is deterministic and easy to
+    audit. The stable sort below guarantees reproducible tie-breaking when
+    timestamps are equal or unparseable.
+
+    The ``scope_cols`` parameter
+    ----------------------------
+    Member IDs are issued *per survey system*, not globally: a Fukui FTAS
+    会員ID and an Ishikawa survey ID live in separate namespaces and may
+    collide numerically without referring to the same person. When this
+    function is applied to the combined Fukui+Ishikawa table, callers must
+    pass ``scope_cols=["survey_prefecture"]`` so that deduplication happens
+    *within* each survey system; otherwise a coincidental Fukui/Ishikawa ID
+    collision would wrongly drop a legitimate respondent.
+
+    Rows without a respondent_id are kept as-is (we cannot prove they are
+    duplicates, so we do not drop them). The returned audit dict records
+    row counts before/after so the exact number of dropped repeat
+    responses is traceable in the published JSON output.
     """
     if "respondent_id" not in df.columns:
         return df, {"n_rows": int(len(df)), "n_dropped_repeat_responses": 0,
@@ -90,11 +129,39 @@ def _load_combined() -> pd.DataFrame | None:
 
 
 def _has_text(df: pd.DataFrame) -> pd.Series:
+    """Boolean mask: respondent wrote *any* free text (the "text-writer" set).
+
+    This mask defines the denominator for every friction-rate comparison in
+    this module, and the choice is methodologically load-bearing:
+
+    Friction tags (``any_friction`` and the per-code columns) are derived
+    exclusively from free-text fields. A respondent who wrote no text
+    *cannot* be tagged, regardless of whether they experienced friction.
+    Crucially, the two survey instruments differ in how aggressively they
+    elicit text: Fukui's FTAS yields a non-empty ``friction_source_text``
+    for only ~42% of respondents, whereas Ishikawa's instrument (different
+    survey delivery / question framing) yields ~100%.
+
+    If friction rates were computed over ALL respondents, the comparison
+    would conflate instrument format with actual friction — and in this
+    project's data it actually *reversed the direction* of the headline
+    Fukui-vs-Ishikawa comparison. Conditioning on text-writers makes the
+    denominators comparable across instruments.
+
+    Selection caveat (must accompany any reported rate): the propensity to
+    write free text correlates with dissatisfaction, so conditioned rates
+    describe friction *among those who report*, not population prevalence.
+    """
     return df["friction_source_text"].fillna("").astype(str).str.strip().ne("")
 
 
 def _safe_p(p: float) -> float:
-    # Avoid storing a literal 0.0 from floating-point underflow.
+    # Avoid storing a literal 0.0 from floating-point underflow. At n ≈ 50k,
+    # extreme test statistics can underflow to exactly 0.0; clamping to the
+    # smallest positive float preserves provenance, because a stored 0.0 in
+    # the results JSON would be indistinguishable from a coding error
+    # (e.g., a field accidentally initialized to zero), whereas ~2.2e-308
+    # is unambiguously "smaller than float64 can represent".
     return float(max(p, np.finfo(float).tiny))
 
 
@@ -121,6 +188,9 @@ def _chi_square_binary(df: pd.DataFrame, row_col: str, col: str, label: str) -> 
     ct = pd.crosstab(d[row_col], d[col])
     if ct.shape[1] < 2:
         return TestResult(label, int(len(d)), {"error": "Only one outcome level present.", "contingency_table": ct.to_dict()})
+    # Note: scipy.stats.chi2_contingency applies Yates' continuity
+    # correction automatically for 2x2 tables (correction=True is the
+    # default); larger tables receive the standard Pearson statistic.
     chi2, p, dof, expected = stats.chi2_contingency(ct.to_numpy())
     return TestResult(
         label,
@@ -166,7 +236,36 @@ def input_data_audit(df: pd.DataFrame, codes: list[str]) -> TestResult:
 
 
 def _mannwhitney_outcome(yes: np.ndarray, no: np.ndarray, label_yes: str, label_no: str) -> dict:
+    """Two-sided Mann-Whitney U comparison with rank-biserial effect size.
+
+    Test choice
+    -----------
+    The outcomes compared here are *ordinal*, not interval: 5-point Likert
+    satisfaction (満足度, 1=とても不満 … 5=とても満足) and the 0-10 NPS
+    recommendation item. A t-test would assume the distance between scale
+    points is meaningful; Mann-Whitney only assumes ordering, which is the
+    correct level of measurement for these items.
+
+    Effect size, not significance, is the finding
+    ---------------------------------------------
+    With n ≈ 50k respondents, essentially *every* nonzero difference is
+    statistically significant — p-values carry almost no information about
+    practical importance. We therefore report the rank-biserial correlation
+    r = 2U/(n1*n2) - 1, the natural effect size for Mann-Whitney (it equals
+    the difference between P(yes > no) and P(no > yes)). Interpretation of
+    results should lead with |r| magnitudes, not p.
+
+    Why both means and medians are reported
+    ---------------------------------------
+    Medians are the canonical ordinal summary, but on coarse 5-point scales
+    they frequently *tie* (e.g., both groups have median 4) even when the
+    full distributions clearly differ — the test operates on ranks of the
+    whole distribution, not the medians. Means are reported alongside as a
+    more granular (if technically interval-assuming) descriptive aid.
+    """
     u, p = stats.mannwhitneyu(yes, no, alternative="two-sided")
+    # Rank-biserial r = 2U/(n1*n2) - 1; bounded in [-1, 1], sign gives
+    # direction (positive => "yes" group stochastically larger).
     rank_biserial = float(2.0 * u / (len(yes) * len(no)) - 1.0)
     mean_diff = float(np.mean(yes) - np.mean(no))
     if abs(rank_biserial) < 1e-12:
@@ -190,12 +289,27 @@ def _mannwhitney_outcome(yes: np.ndarray, no: np.ndarray, label_yes: str, label_
 
 
 def friction_vs_satisfaction(df: pd.DataFrame) -> TestResult:
-    """Friction exposure vs satisfaction outcomes.
+    """Friction exposure vs satisfaction outcomes — two-exposure design.
 
-    Primary exposure is reported_inconvenience (asked of every respondent, so
-    free of free-text selection bias). The tagged any_friction exposure is
-    reported as a secondary analysis conditioned on respondents who wrote free
-    text, because untagged non-writers are not evidence of "no friction".
+    Two complementary exposure definitions are analyzed, mirroring the
+    Stage 1 / Stage 2 logic documented in ADR 0001:
+
+    1. PRIMARY — ``reported_inconvenience``: the explicit survey item 不便さ
+       ("inconvenience"), answered 感じた ("felt it") / 感じなかった ("did
+       not feel it"). Because this closed-form question is asked of EVERY
+       respondent, the exposure is free of free-text selection bias and is
+       the only exposure that can be interpreted at full-sample level.
+
+    2. SECONDARY — tagged ``any_friction``: keyword-derived friction tags
+       from free text. Tags only exist where text exists, so this analysis
+       is deliberately conditioned on text-writers (see ``_has_text``).
+       An untagged non-writer is NOT evidence of "no friction" — it is
+       missing data; coding non-writers as friction-free would bias the
+       no-friction group toward people who simply skipped the text boxes.
+
+    Concordant results across the two exposures (one selection-bias-free
+    but coarse, one detailed but conditioned) is the triangulation that
+    supports the substantive claim; either alone is weaker.
     """
     outcome_cols = ["overall_satisfaction_score", "transport_satisfaction_score", "nps"]
     analyses = {}
@@ -260,6 +374,17 @@ def shinkansen_survey_shift(df: pd.DataFrame) -> TestResult:
 
 
 def reservation_event_context() -> TestResult:
+    """Pre/post Shinkansen reservation volumes — DESCRIPTIVE CONTEXT ONLY.
+
+    Seasonality caveat (also embedded in the output JSON): with the
+    Hokuriku Shinkansen extension opening 2024-03-16, a symmetric 180-day
+    window puts the *pre* period in autumn/winter and the *post* period in
+    spring/summer. Any pre/post difference therefore confounds the rail
+    opening with ordinary tourism seasonality, and no causal reading is
+    licensed. This test is retained for descriptive context and provenance;
+    it is superseded by the Hokuriku difference-in-differences analysis,
+    which uses a comparison prefecture to net out seasonal trends.
+    """
     if not RESERVATION_SUM_CSV.exists():
         return TestResult("official_reservation_event_context", 0, {"error": f"Missing {RESERVATION_SUM_CSV}"})
     d = pd.read_csv(RESERVATION_SUM_CSV)
@@ -303,6 +428,17 @@ def reservation_event_context() -> TestResult:
 
 
 def top_area_friction_tests(df: pd.DataFrame, codes: list[str], top_n: int = 12) -> TestResult:
+    """Area-by-friction-code chi-square tests with BH correction.
+
+    Multiple-comparison policy: the Benjamini-Hochberg adjustment is applied
+    WITHIN the family of friction-code tests run here (one test per code),
+    not globally across every test in this script. Per BH's false-discovery-
+    rate logic, a "family" is a coherent hypothesis group — here, "which
+    friction codes vary by response area" — and pooling unrelated hypothesis
+    groups into one global family would dilute power without conceptual
+    justification. The same per-family convention is used for the transport-
+    mode family in official_prefecture_comparison.
+    """
     if "response_area" not in df.columns:
         return TestResult("official_top_area_friction_tests", 0, {"error": "Missing response_area."})
     top_areas = df["response_area"].value_counts().head(top_n).index.tolist()
@@ -331,6 +467,14 @@ def top_area_friction_tests(df: pd.DataFrame, codes: list[str], top_n: int = 12)
 
 
 def _benjamini_hochberg(p_values: list[float]) -> list[float]:
+    """Benjamini-Hochberg FDR-adjusted p-values for one hypothesis family.
+
+    Callers pass exactly one family at a time (friction-code family,
+    transport-mode family, ...) — see the family-definition rationale in
+    top_area_friction_tests. The step-up procedure below computes
+    p_adj(i) = min over j >= rank(i) of (p(j) * m / rank(j)), capped at 1,
+    via a reverse pass that carries the running minimum.
+    """
     m = len(p_values)
     if m == 0:
         return []
@@ -381,9 +525,14 @@ def official_prefecture_comparison(df: pd.DataFrame, codes: list[str]) -> TestRe
         return TestResult("official_prefecture_comparison", 0, {"error": "No Fukui/Ishikawa rows."})
 
     # Friction tags only exist where free text was written, and text-response
-    # rates differ drastically by instrument (Fukui ~42% vs Ishikawa ~100%).
-    # Friction comparisons therefore condition on text-writers; comparing over
-    # all respondents would measure questionnaire format, not friction.
+    # rates differ drastically by instrument (Fukui ~42% vs Ishikawa ~100%,
+    # a consequence of different survey delivery formats, not of respondent
+    # behavior). Friction comparisons therefore condition on text-writers;
+    # comparing over all respondents would measure questionnaire format, not
+    # friction — in earlier runs it reversed the direction of the headline
+    # Fukui-vs-Ishikawa friction comparison. Remaining caveat: text-writing
+    # correlates with dissatisfaction, so these are rates among reporters,
+    # not population prevalence (see _has_text docstring).
     text_writers = d[_has_text(d)]
     text_rates = {
         g: float(_has_text(d[d["survey_prefecture"] == g]).mean()) for g in groups
@@ -416,6 +565,11 @@ def official_prefecture_comparison(df: pd.DataFrame, codes: list[str]) -> TestRe
         record["outcome"] = outcome
         outcome_tests.append(record)
 
+    # Transport-mode usage is a separate hypothesis family from friction
+    # codes, so it receives its own Benjamini-Hochberg pass below (families
+    # are defined by hypothesis group, not globally — see
+    # top_area_friction_tests). Unlike the friction tests, these checkbox
+    # items are answered by all respondents, so the full sample is used.
     transport_tests = []
     transport_p = []
     for mode in [
@@ -518,6 +672,10 @@ def main() -> int:
     combined_df = _load_combined()
     combined_dedup_audit = None
     if combined_df is not None:
+        # Scope dedup by survey_prefecture: member IDs are issued per survey
+        # system (Fukui FTAS vs Ishikawa), not globally, so an ID may recur
+        # across prefectures without being the same person. See
+        # _dedup_respondents docstring.
         combined_df, combined_dedup_audit = _dedup_respondents(
             combined_df, scope_cols=["survey_prefecture"]
         )

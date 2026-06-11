@@ -11,9 +11,40 @@ proposal: combines, per friction code,
   intervention candidate — config/nudge_mapping.yaml
 
 priority_score = (-min(path, 0)) * prevalence * |satisfaction->intention path|
-i.e., expected SD-units of visit-intention damage attributable to the code
-per friction reporter — the quantity a nudge targeting that code can recover
-at most.
+
+INTERPRETATION OF THE SCORE (academic traceability)
+===================================================
+The score is the expected SD-units of VISIT-INTENTION damage transmitted by a
+friction code per friction reporter — equivalently, the CEILING on what a
+perfectly effective nudge targeting that code could recover. A real nudge
+removes at most the friction it targets, so it can never recover more
+intention than the friction was destroying; the score is that upper bound,
+not a forecast of nudge effectiveness.
+
+Why each factor is in the product:
+
+* (-min(path, 0)) — the Stage 2 standardized path from the code dummy to the
+  SATISFACTION latent, sign-flipped so "more damage" = larger score.
+  Positive or zero paths are clipped to 0: if a code does not lower
+  satisfaction, there is NOTHING for a nudge to recover, so it cannot earn
+  priority no matter how prevalent it is. (Clipping rather than abs() is
+  deliberate — a positive path must not masquerade as recoverable damage.)
+
+* prevalence — the share of friction reporters tagged with the code. This is
+  the aggregation step: a rare but individually damaging friction matters
+  less in aggregate than a common, moderately damaging one, because policy
+  acts on the population, not on a single respondent. Multiplying by
+  prevalence converts per-tagged-respondent damage into expected damage per
+  friction reporter.
+
+* |satisfaction -> intention path| — the Stage 1 mediation multiplier. The
+  damage estimated in Stage 2 lands on SATISFACTION; what the thesis (and
+  the DMO) ultimately cares about is VISIT INTENTION. Under the mediation
+  model the satisfaction damage reaches intention only through the
+  satisfaction → intention path, so the product translates satisfaction
+  SD-units into intention SD-units. It is a common multiplier across codes
+  (it does not change the RANKING, only the units), but it is kept so the
+  score is stated in the decision-relevant quantity.
 
 Reads:  output/sem/sem_stage1_results.csv, sem_stage2_results.csv
         config/nudge_mapping.yaml
@@ -52,11 +83,18 @@ def main() -> int:
     stage2 = pd.read_csv(STAGE2_CSV)
     mapping = yaml.safe_load(NUDGE_MAPPING.read_text())["nudge_mappings"]
 
+    # Mediation multiplier: the Stage 1 standardized SATISFACTION → INTENTION
+    # path. Friction damage estimated in Stage 2 lands on satisfaction; this
+    # multiplier translates it into the decision-relevant unit (visit
+    # intention). It is common to all codes, so it scales — never reorders —
+    # the ranking.
     sat_to_intent = float(
         stage1[(stage1["op"] == "~") & (stage1["lval"] == "INTENTION")
                & (stage1["rval"] == "SATISFACTION")]["Est. Std"].iloc[0]
     )
 
+    # Stage 2 structural rows: one standardized path per friction-code dummy
+    # (≥30 tagged reporters; estimated among friction reporters with free text).
     paths = stage2[(stage2["op"] == "~") & (stage2["lval"] == "SATISFACTION")].copy()
     paths["path_std"] = paths["Est. Std"].astype(float)
     paths["p_value"] = pd.to_numeric(paths["p-value"], errors="coerce")
@@ -84,12 +122,21 @@ def main() -> int:
     if prevalence_csv.exists():
         prevalence = pd.read_csv(prevalence_csv)
         ranking = ranking.merge(prevalence, on="friction_code", how="left")
+        # priority_score = (-min(path, 0)) x prevalence x |sat→intent path|.
+        #   clip(upper=0) then negate: positive/zero satisfaction paths
+        #   contribute exactly 0 — no damage, nothing for a nudge to recover.
+        #   prevalence converts per-tagged damage into expected damage per
+        #   friction reporter (rare-but-nasty < common-and-moderate in
+        #   aggregate). |sat_to_intent| restates the result in visit-intention
+        #   SD units via the Stage 1 mediation path. See module docstring.
         ranking["priority_score"] = (
             (-ranking["sem_path_to_satisfaction_std"].clip(upper=0))
             * ranking["prevalence_among_reporters"].fillna(0)
             * abs(sat_to_intent)
         )
     else:
+        # Degraded mode: without prevalence the score is damage-only, i.e. a
+        # per-tagged-respondent ranking rather than an aggregate one.
         logger.warning("Prevalence table missing; ranking by path coefficient only.")
         ranking["priority_score"] = -ranking["sem_path_to_satisfaction_std"].clip(upper=0)
 
