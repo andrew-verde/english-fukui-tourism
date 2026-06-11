@@ -3,14 +3,64 @@
 hokuriku_did_event_study.py — Thesis-grade DiD for the March 2024 Hokuriku
 Shinkansen extension (Fukui treated, Ishikawa control).
 
+IDENTIFICATION (academic traceability; shared with hokuriku_did_audit.py)
+=========================================================================
+The 2024-03-16 Kanazawa–Tsuruga Shinkansen opening is treated as an exogenous
+transport-friction-reduction shock: its timing was fixed years in advance by
+national rail-construction schedules, independent of contemporaneous tourist
+sentiment. Fukui (first-ever direct Shinkansen access) is treated; Ishikawa
+(served since the 2015 extension, so the 2024 opening changed little about
+access to it) is the control; Toyama is excluded because it enters the merged
+data only in 2025 and therefore has no pre-treatment period. Outcomes are
+restricted to the four items verified to be identically worded in both survey
+instruments (交通の満足度 transport satisfaction; 満足度（商品・サービス）
+product/service satisfaction, which doubles as a placebo-style outcome since
+no mechanism connects transport friction to it; おすすめ度 0–10 NPS; 再訪意向
+revisit intention mapped to 1–5 with residents excluded).
+
 Upgrades over hokuriku_did_audit.py (which remains as the quick feasibility check):
-  1. Cluster-robust SEs (prefecture x month) instead of HC1.
-  2. Composition controls: gender, harmonized age band, local-resident flag.
-  3. Robustness battery:
-       - drop Jan-Mar 2024 (Noto earthquake aftermath + opening transition)
-       - drop Noto-area Ishikawa response sites (earthquake-affected control units)
-  4. Event-study specification: treated x month coefficients (reference month =
-     2024-02, the last full pre-treatment month) with 95% CIs and a plot.
+
+  1. Cluster-robust SEs at PREFECTURE × MONTH instead of HC1. The treatment
+     varies at the prefecture×month level (everyone in Fukui after March 2024
+     is "treated" together), so respondent-level SEs would pretend to have
+     far more independent variation than exists. With roughly 67–73
+     prefecture×month cells the cluster count is adequate for the asymptotics
+     the cluster-robust estimator relies on.
+
+  2. Composition controls: gender (性別), harmonized age band (年代), and a
+     local-resident flag (居住都道府県 equal to the surveyed prefecture).
+     Rationale: the Shinkansen changes WHO visits — more first-timers, more
+     distant origins — and that composition shift is partly the treatment
+     effect ITSELF, not purely a confound. So neither the controlled nor the
+     uncontrolled spec is "the" right one; both are estimated and reported,
+     and the thesis discusses the contrast. Age harmonization is non-trivial
+     because the instruments differ: Fukui stores decade bands ("50代"),
+     Ishikawa stores birth years → converted to decades as of 2024.
+
+  3. Robustness battery for the single largest threat to parallel trends —
+     the 2024-01-01 Noto earthquake, which struck the CONTROL prefecture
+     during the pre-period (and overlapped the opening transition):
+       - drop Jan–Mar 2024 entirely (earthquake aftermath + transition);
+       - drop Noto-area response sites identified by facility-name regex.
+     Direction-of-bias logic: the earthquake depresses control-side outcomes,
+     which mechanically INFLATES the DiD. If dropping earthquake-affected
+     data shrank the estimates, the headline effect would be suspect. In
+     fact the estimates GROW when earthquake-affected data is dropped, which
+     argues the residual bias runs AGAINST the headline finding — the
+     earthquake-contaminated estimates are conservative.
+
+  4. Event-study specification: treated × month coefficients with 95% CIs and
+     a plot. Reference month = 2024-02, the last FULL pre-treatment month
+     (March 2024 itself straddles the 03-16 opening, so it cannot serve as a
+     clean reference). Pre-period coefficients near zero are the visual /
+     statistical parallel-trends check that the 2x2 cannot provide.
+
+Caveat carried throughout: the public merged file anonymizes 会員ID (member
+ID) to a constant 0, so repeat responders cannot be deduplicated here. The
+local FTAS extract shows ~47% of Fukui rows are repeat responses, so rows are
+not independent and SEs are anti-conservative; mitigation in the thesis is
+the prefecture×month clustering plus a dedup sensitivity rerun on the Fukui
+arm using local member IDs.
 
 Reads:  output/hokuriku_merged/raw/merged_survey_<year>.csv
 Writes: output/hokuriku_merged/did_thesis_estimates.csv
@@ -42,7 +92,12 @@ logger = setup_logger(__name__)
 ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "output" / "hokuriku_merged" / "raw"
 OUT_DIR = ROOT / "output" / "hokuriku_merged"
+# 2024-03-16: Hokuriku Shinkansen Kanazawa–Tsuruga extension opening — the
+# exogenous transport-friction shock that defines treated vs control time.
 TREATMENT_DATE = pd.Timestamp("2024-03-16")
+# Event-study reference (omitted) month. 2024-02 is the last FULL
+# pre-treatment month: March 2024 contains both pre- and post-opening days
+# (the opening was mid-month), so it cannot serve as a clean baseline.
 REFERENCE_MONTH = "2024-02"  # last full pre-treatment month
 
 PREF_COL = "対象県（富山/石川/福井）"

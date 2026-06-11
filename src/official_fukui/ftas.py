@@ -10,6 +10,18 @@ import pandas as pd
 import yaml
 
 
+# 5-point satisfaction (満足度) Likert mapping, ordered 1 (worst) → 5 (best):
+#   とても不満   = "very dissatisfied"        -> 1
+#   不満         = "dissatisfied"             -> 2
+#   どちらでもない = "neither/neutral"          -> 3
+#   普通         = "ordinary/so-so"           -> 3
+#   満足         = "satisfied"                -> 4
+#   とても満足   = "very satisfied"           -> 5
+# Both 普通 and どちらでもない map to the same midpoint 3 because different
+# survey vintages used different wording for the neutral category; treating
+# them as distinct levels would split one conceptual category in two.
+# Any label not listed here maps to NaN via pandas .map(), which downstream
+# analyses treat as missing (correct: an unknown label is not a score).
 SATISFACTION_MAP = {
     "とても不満": 1,
     "不満": 2,
@@ -19,6 +31,31 @@ SATISFACTION_MAP = {
     "とても満足": 5,
 }
 
+# Future-visit-intention (今後の来訪意向) mapping.
+#
+# The CURRENT FTAS instrument uses a 行きたい ("want to go") intention scale,
+# NOT an agree/disagree scale:
+#   行きたくない               = "do not want to go"                 -> 1
+#   あまり行きたいと思わない    = "do not particularly want to go"    -> 2
+#   どちらともいえない          = "can't say either way"              -> 3
+#   機会があれば行きたい        = "would go if the chance arises"     -> 4
+#   また行きたい（1年以内）     = "want to go again (within 1 year)"  -> 5
+# The data contains BOTH the half-width digit form （1年以内） and the
+# full-width form （１年以内）, so both spellings are mapped explicitly.
+#
+# 福井県在住 ("resident of Fukui Prefecture") is DELIBERATELY absent from
+# this map and therefore yields NaN: a "revisit intention" score is not a
+# meaningful construct for someone who lives in the destination, so locals
+# are excluded from the intent outcome rather than forced onto the scale.
+#
+# Motivating incident — do not "simplify" this map: an earlier version of
+# this mapping contained ONLY the legacy agree-scale labels (そう思う etc.).
+# Because pandas .map() silently returns NaN for unmapped labels, that
+# version produced a future_visit_intent_score column that was 100% empty —
+# with no error or warning anywhere — and the gap was only caught during a
+# downstream completeness audit. The legacy agree-scale labels are retained
+# below (they do not collide with the intention-scale labels) so that older
+# survey vintages still map correctly.
 VISIT_INTENT_MAP = {
     # Actual FTAS response labels (行きたい scale). Residents (福井県在住) are
     # deliberately unmapped -> NaN: "revisit" is not meaningful for locals.
@@ -223,7 +260,19 @@ def combine_text_fields(row: pd.Series, fields: Iterable[str]) -> str:
 
 
 def normalize_flag(value: object) -> bool:
-    """Return True for FTAS checkbox-like selected values."""
+    """Return True for FTAS checkbox-like selected values.
+
+    Intended ONLY for genuine checkbox/multi-select columns (purposes, info
+    sources, transport modes), where any non-empty marker means "selected".
+
+    WARNING — not suitable for categorical yes/no items: this function once
+    was (incorrectly) applied to the 不便さ ("inconvenience") column, where
+    the answers are the explicit strings 感じた ("felt it") / 感じなかった
+    ("did not feel it"). Since 感じなかった is a non-empty string, it was
+    coded True, yielding a ~99.99% "inconvenienced" rate versus the true
+    ~13.6%. See the dedicated reported_inconvenience derivation in
+    normalize_ftas_survey for the correct handling.
+    """
     if pd.isna(value):
         return False
     if isinstance(value, (int, float)):
@@ -267,15 +316,46 @@ def normalize_ftas_survey(df: pd.DataFrame) -> pd.DataFrame:
     if "future_visit_intent" in out.columns:
         out["future_visit_intent_score"] = out["future_visit_intent"].map(VISIT_INTENT_MAP)
     if "inconvenience" in out.columns:
-        # Explicit 感じた/感じなかった (or あり/なし) item, not a checkbox:
-        # normalize_flag (any non-empty string → True) would wrongly code
-        # 感じなかった as True.
+        # reported_inconvenience derivation — read carefully before editing.
+        #
+        # 不便さ ("inconvenience") is an EXPLICIT categorical item answered
+        # 感じた ("felt it") / 感じなかった ("did not feel it"), with some
+        # vintages using あり/なし ("present/absent") instead. It is NOT a
+        # checkbox column. An earlier pipeline ran it through normalize_flag
+        # (any non-empty string -> True), which coded the NEGATIVE answer
+        # 感じなかった as True and produced a 99.99% positive rate against a
+        # true rate of ~13.6%. This derivation exists to fix that incident.
+        #
+        # Logic:
+        #   * isin({"あり", "有り"}) catches both kanji spellings of the
+        #     "present" answer used in the あり/なし phrasing.
+        #   * contains("感じた") & ~contains("感じなかった") handles the
+        #     感じた/感じなかった phrasing. Substring subtlety: the string
+        #     感じなかった does NOT actually contain the substring 感じた
+        #     (the negative inserts な between 感じ and た), so the first
+        #     clause alone would already exclude it — but the explicit
+        #     negative guard is kept as defense-in-depth against future
+        #     label variants (e.g. anything embedding the positive form),
+        #     and to make the intent unmistakable to readers.
+        # Anything else (empty, unexpected label) is False, i.e. the
+        # respondent is not counted as having reported inconvenience.
         inconvenience = out["inconvenience"].astype(str).str.strip()
         out["reported_inconvenience"] = inconvenience.isin({"あり", "有り"}) | (
             inconvenience.str.contains("感じた", na=False)
             & ~inconvenience.str.contains("感じなかった", na=False)
         )
 
+    # friction_source_text: concatenation of all six FTAS free-text fields.
+    # A respondent may voice the same complaint in any of these boxes —
+    # e.g. a bus-frequency complaint can appear in the transport
+    # satisfaction reason (福井県内での交通手段の満足度の理由), the
+    # inconvenience detail (不便さの内容), or the "what Fukui needs" box
+    # (福井県に求めるもの). Combining them ensures a complaint counts toward
+    # friction tagging regardless of which box it was written in. Each
+    # individual field has only a ~10-22% response rate, so the union is
+    # what brings the overall text-writer rate to ~42% of respondents.
+    # Fields are joined with 。 (Japanese full stop) by combine_text_fields
+    # so substring keyword matches cannot span field boundaries.
     text_fields = [
         "transport_satisfaction_reason",
         "overall_satisfaction_reason",
@@ -336,6 +416,11 @@ def normalize_ishikawa_survey(df: pd.DataFrame) -> pd.DataFrame:
             "石川県在住": pd.NA,
         })
     if "inconvenience" in out.columns:
+        # Ishikawa's 不便（施設） item uses the 感じた/感じなかった phrasing.
+        # contains("感じた") alone is sufficient here because 感じなかった
+        # does not contain the substring 感じた (な intervenes between 感じ
+        # and た) — see the Fukui derivation in normalize_ftas_survey for
+        # the fuller discussion and the defense-in-depth variant.
         out["reported_inconvenience"] = out["inconvenience"].astype(str).str.contains("感じた", na=False)
 
     transport_to = out.get("transport_to_prefecture_all", pd.Series(index=out.index, dtype=object))
@@ -389,7 +474,18 @@ def prepare_combined_official_surveys(fukui: pd.DataFrame, ishikawa: pd.DataFram
 
 
 def tag_japanese_text(text: str, codebook: dict) -> list[str]:
-    """Return Japanese friction code names found by substring keyword matching."""
+    """Return Japanese friction code names found by substring keyword matching.
+
+    Why SUBSTRING matching rather than word-boundary/regex-token matching:
+    Japanese text has no word delimiters (no spaces between words), so the
+    notion of a "word boundary" used in English keyword matching does not
+    exist; substring containment is the standard baseline approach.
+    Codebook keywords are deliberately written as STEMS so a single keyword
+    covers the inflectional paradigm — e.g. the stem バスが少な ("buses are
+    few/infrequent") matches バスが少ない (plain), バスが少なく (adverbial/
+    continuative), and バスが少なかった (past). A code is assigned at most
+    once per text (break after first matching keyword).
+    """
     text = _clean_text(text)
     if not text:
         return []
@@ -403,7 +499,15 @@ def tag_japanese_text(text: str, codebook: dict) -> list[str]:
 
 
 def tag_ftas_dataframe(df: pd.DataFrame, text_col: str, codebook: dict) -> pd.DataFrame:
-    """Add one boolean column per Japanese friction code plus friction_codes."""
+    """Add one boolean column per Japanese friction code plus friction_codes.
+
+    Uses the same substring-stem matching rationale as tag_japanese_text
+    (Japanese has no word delimiters; keywords are inflection-covering
+    stems). Note for downstream analysis: a False tag for a respondent with
+    EMPTY text means "no text to tag", not "no friction" — friction-rate
+    comparisons must condition on text-writers (see the statistical
+    validation script's _has_text helper).
+    """
     out = df.copy()
     codes = list(codebook.keys())
     for code in codes:

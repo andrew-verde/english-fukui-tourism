@@ -2,6 +2,60 @@
 """
 evaluate_gold_set.py — Score the keyword friction tagger against the human gold set.
 
+ROLE IN THE VALIDATION PIPELINE
+-------------------------------
+This is the second half of the gold-standard validation built by
+`scripts/build_gold_set.py`. Once both coders have completed their blind
+sheets, this script (1) quantifies how reliable the human labels themselves
+are (inter-rater reliability, Cohen's kappa), (2) constructs the gold labels
+from coder consensus, and (3) scores the keyword tagger's machine labels
+against that gold standard (per-code precision / recall / F1 with Wilson
+confidence intervals). The resulting numbers bound the validity of every
+downstream friction analysis (SEM Stage 2, prefecture comparisons, nudge
+ranking) and are reported in the thesis methods chapter.
+
+STATISTICAL CHOICES (rationale)
+-------------------------------
+Cohen's kappa (κ), not raw % agreement:
+  κ is chance-corrected agreement. With rare codes, two coders who both label
+  almost every row 0 will show very high *raw* percent agreement purely by
+  chance — the statistic is inflated by the skewed marginal prevalence. κ
+  subtracts the agreement expected under independent labeling with each
+  coder's observed marginals. κ is computed PER CODE (not pooled) precisely
+  because marginal prevalence differs wildly across codes; a pooled statistic
+  would be dominated by the common codes and hide unreliable rare ones.
+
+Gold = consensus rows only:
+  A row enters the gold set only where both coders agree on every friction
+  code. Disagreeing rows are exported to disagreements.csv for explicit human
+  adjudication rather than being resolved by majority vote — with exactly two
+  coders there IS no majority, so any automatic tie-break would silently
+  privilege one coder. Excluding disagreements keeps the gold labels honest
+  at the cost of a slightly smaller n.
+
+Wilson score interval, not Wald:
+  The textbook Wald interval (p ± z·sqrt(p(1-p)/n)) collapses to zero width
+  when p is exactly 0 or 1 and is badly mis-calibrated at small n — which is
+  *exactly* the regime here (per-code evaluable counts of roughly 15–25, with
+  precision often near 1). The Wilson score interval remains well-behaved in
+  that regime and never escapes [0, 1].
+
+indicative_only flag:
+  Any code with fewer than 20 evaluable instances (for either the precision
+  or the recall denominator) is flagged. The flag instructs the thesis text
+  to cite the Wilson CI for that code rather than the point estimate, which
+  at such small n is too unstable to stand alone.
+
+Precision / recall / F1, not accuracy:
+  The label matrix is extremely class-imbalanced — most rows do NOT carry
+  most codes — so accuracy is dominated by trivially correct negatives and
+  would look excellent even for a useless tagger. Per-code precision (of
+  machine positives, fraction the humans confirm), recall (of human
+  positives, fraction the machine found), and their harmonic mean F1 are the
+  informative quantities. NOTE: recall here is within the sampled strata,
+  not corpus-wide (see build_gold_set.py and thesis methods on prevalence
+  weighting).
+
 Reads (from output/gold_set/):
   gold_set_key.csv              — machine tags per gold_id
   gold_set_coder_A.csv          — completed coder sheet (1 = code applies)
@@ -38,7 +92,23 @@ CODEBOOK_PATH = ROOT / "config" / "official_japanese_friction_codebook.yaml"
 
 
 def cohens_kappa(a: pd.Series, b: pd.Series) -> float:
-    """Cohen's kappa for two binary label vectors."""
+    """Cohen's kappa (κ) for two binary label vectors.
+
+    κ = (p_o − p_e) / (1 − p_e), where
+      p_o = observed agreement (fraction of rows the coders label identically)
+      p_e = agreement expected by CHANCE given each coder's marginal positive
+            rate: P(both say 1) + P(both say 0) under independence.
+
+    Why chance correction matters here: friction codes are rare, so two coders
+    answering 0 almost everywhere agree at a very high raw rate by chance
+    alone. Raw percent agreement is therefore inflated for rare codes; κ
+    removes that inflation. This is also why κ is computed per code — the
+    marginal prevalence (and hence p_e) differs wildly between codes.
+
+    Degenerate case: if both coders are unanimous (p_e == 1), κ is undefined
+    (0/0); NaN is returned and should be read as "no variation to assess",
+    not as zero reliability.
+    """
     po = float((a == b).mean())
     pa, pb = float(a.mean()), float(b.mean())
     pe = pa * pb + (1 - pa) * (1 - pb)
@@ -48,6 +118,14 @@ def cohens_kappa(a: pd.Series, b: pd.Series) -> float:
 
 
 def load_coder(path: Path, codes: list) -> pd.DataFrame:
+    """Load a completed coder sheet, coercing labels to clean binary {0, 1}.
+
+    Coders fill sheets by hand, so cells may be blank, '1', 1, or stray text;
+    pd.to_numeric(..., errors='coerce') maps anything non-numeric to NaN,
+    which is then treated as 0 ("code does not apply"), and clip(0, 1)
+    flattens accidental values like 2 down to 1. Indexed by gold_id so coder
+    sheets align with the key file regardless of row order.
+    """
     df = pd.read_csv(path)
     for col in codes + ["no_friction"]:
         df[col] = (
@@ -57,7 +135,19 @@ def load_coder(path: Path, codes: list) -> pd.DataFrame:
 
 
 def wilson_ci(successes: int, total: int, z: float = 1.96) -> tuple:
-    """Wilson score interval — sane for the small per-code counts here."""
+    """Wilson score interval for a binomial proportion — sane for the small
+    per-code counts here.
+
+    Chosen over the textbook Wald interval (p ± z·sqrt(p(1−p)/n)) because Wald
+    degenerates exactly in this study's regime: per-code evaluable counts are
+    tiny (~15–25) and observed proportions sit near 0 or 1 (e.g. precision of
+    14/15), where Wald collapses to zero width or spills outside [0, 1]. The
+    Wilson interval inverts the score test instead, stays inside [0, 1] by
+    construction (the min/max below only guards floating-point edge cases),
+    and retains close-to-nominal coverage at small n. z = 1.96 gives the
+    conventional 95% interval. Returns (NaN, NaN) when there are no evaluable
+    instances at all.
+    """
     if total == 0:
         return (float("nan"), float("nan"))
     p = successes / total
@@ -68,6 +158,27 @@ def wilson_ci(successes: int, total: int, z: float = 1.96) -> tuple:
 
 
 def prf(machine: pd.Series, gold: pd.Series) -> tuple:
+    """Per-code confusion counts and precision / recall / F1 vs the gold labels.
+
+    Definitions (treating the human gold label as ground truth):
+      tp — machine tagged the code AND humans agree (true positive)
+      fp — machine tagged the code but humans disagree (false positive)
+      fn — humans saw the friction but the machine missed it (false negative)
+      precision = tp / (tp + fp): of the machine's positives, the human-
+                  confirmed fraction. Low precision means downstream friction
+                  counts are inflated by spurious tags.
+      recall    = tp / (tp + fn): of human-identified positives, the fraction
+                  the machine found. Low recall means friction is silently
+                  undercounted. (Within sampled strata only — see module
+                  docstring re: prevalence weighting for corpus-wide recall.)
+      f1        = harmonic mean of the two, a single balance figure.
+
+    Accuracy is deliberately NOT reported: with extreme class imbalance (most
+    rows lack most codes), true negatives dominate and accuracy would look
+    near-perfect for even a useless tagger. NaN is returned for any ratio
+    whose denominator is zero (no evaluable instances) rather than faking 0
+    or 1.
+    """
     tp = int(((machine == 1) & (gold == 1)).sum())
     fp = int(((machine == 1) & (gold == 0)).sum())
     fn = int(((machine == 0) & (gold == 1)).sum())
@@ -118,6 +229,11 @@ def main() -> int:
         irr = pd.DataFrame(irr_rows)
         irr.to_csv(gold_dir / "inter_rater_reliability.csv", index=False)
 
+        # A row counts as a disagreement if the coders differ on ANY friction
+        # code. These rows are exported side-by-side (A_<code> / B_<code>) for
+        # explicit human adjudication. They are NOT resolved by majority vote:
+        # with exactly two coders there is no majority, and any automatic
+        # tie-break (e.g. "trust coder A") would silently bias the gold set.
         mismatch_mask = (coder_a.loc[ids, codes] != coder_b.loc[ids, codes]).any(axis=1)
         disagreements = pd.DataFrame({
             "gold_id": ids[mismatch_mask],
@@ -128,7 +244,12 @@ def main() -> int:
             disagreements[f"B_{code}"] = coder_b.loc[ids[mismatch_mask], code].values
         disagreements.to_csv(gold_dir / "disagreements.csv", index=False)
 
-        # Gold = consensus rows only.
+        # Gold = consensus rows only. Where both coders agree on every code,
+        # either coder's labels ARE the gold labels (coder_a is used purely
+        # for convenience — by construction the values are identical).
+        # Disagreeing rows stay out of the gold set until adjudicated and the
+        # evaluation is re-run, keeping the ground truth strictly
+        # human-validated.
         consensus_ids = ids[~mismatch_mask]
         gold = coder_a.loc[consensus_ids, codes]
         report += [
@@ -143,6 +264,11 @@ def main() -> int:
         gold = coder_a[codes]
         report += [f"Single coder, {len(gold)} rows (no kappa available).", ""]
 
+    # --- Score the keyword tagger against the gold labels, per code ----------
+    # Wilson CIs accompany every precision/recall point estimate because the
+    # per-code denominators are small (~15-25); the indicative_only flag
+    # (either denominator < 20) tells the thesis text to cite the CI rather
+    # than the point estimate for that code.
     eval_rows = []
     for code in codes:
         machine = key.loc[gold.index, code]
@@ -157,6 +283,10 @@ def main() -> int:
             "f1": f1,
             "indicative_only": bool((tp + fp) < 20 or (tp + fn) < 20),
         })
+    # ANY_FRICTION row: did the tagger detect *some* friction when the humans
+    # did, regardless of which code? This coarser binary backs analyses that
+    # only use the presence/absence of friction (e.g. friction-rate
+    # comparisons) and is more robust than any single code at small n.
     machine_any = key.loc[gold.index, codes].max(axis=1)
     gold_any = gold.max(axis=1)
     tp, fp, fn, p, r, f1 = prf(machine_any, gold_any)
