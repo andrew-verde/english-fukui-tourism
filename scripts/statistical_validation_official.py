@@ -122,9 +122,13 @@ def _load_tagged() -> pd.DataFrame:
     return pd.read_csv(TAGGED_CSV, low_memory=False)
 
 
-def _load_combined() -> pd.DataFrame | None:
+def _load_combined() -> pd.DataFrame:
     if not COMBINED_TAGGED_CSV.exists():
-        return None
+        raise FileNotFoundError(
+            f"Missing input: {COMBINED_TAGGED_CSV}. "
+            "Run build_ftas_survey_dataset.py after fetch_code4fukui_data.py so "
+            "Fukui vs Ishikawa comparison sections are not silently omitted."
+        )
     return pd.read_csv(COMBINED_TAGGED_CSV, low_memory=False)
 
 
@@ -670,15 +674,13 @@ def official_fukui_vs_ishikawa_kanazawa_area_comparison(df: pd.DataFrame, codes:
 def main() -> int:
     df, dedup_audit = _dedup_respondents(_load_tagged())
     combined_df = _load_combined()
-    combined_dedup_audit = None
-    if combined_df is not None:
-        # Scope dedup by survey_prefecture: member IDs are issued per survey
-        # system (Fukui FTAS vs Ishikawa), not globally, so an ID may recur
-        # across prefectures without being the same person. See
-        # _dedup_respondents docstring.
-        combined_df, combined_dedup_audit = _dedup_respondents(
-            combined_df, scope_cols=["survey_prefecture"]
-        )
+    # Scope dedup by survey_prefecture: member IDs are issued per survey
+    # system (Fukui FTAS vs Ishikawa), not globally, so an ID may recur
+    # across prefectures without being the same person. See
+    # _dedup_respondents docstring.
+    combined_df, combined_dedup_audit = _dedup_respondents(
+        combined_df, scope_cols=["survey_prefecture"]
+    )
     codebook = load_japanese_codebook(CODEBOOK_PATH)
     codes = list(codebook.keys())
 
@@ -689,11 +691,10 @@ def main() -> int:
         reservation_event_context(),
         top_area_friction_tests(df, codes),
     ]
-    if combined_df is not None:
-        results.extend([
-            official_prefecture_comparison(combined_df, codes),
-            official_fukui_vs_ishikawa_kanazawa_area_comparison(combined_df, codes),
-        ])
+    results.extend([
+        official_prefecture_comparison(combined_df, codes),
+        official_fukui_vs_ishikawa_kanazawa_area_comparison(combined_df, codes),
+    ])
     payload = {
         "method_notes": {
             "unit_of_analysis": (

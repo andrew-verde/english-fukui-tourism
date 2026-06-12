@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -22,6 +23,23 @@ def _write_checkpoint(path: Path, reviews: list[dict]) -> None:
         ),
         encoding="utf-8",
     )
+
+
+def test_multilingual_builder_missing_checkpoint_fails_before_outputs(tmp_path):
+    output_dir = tmp_path / "out"
+    missing = tmp_path / "missing_checkpoint.json"
+    metadata = tmp_path / "poi_metadata.json"
+    metadata.write_text("{}", encoding="utf-8")
+
+    with pytest.raises(FileNotFoundError, match="Missing Google review checkpoint"):
+        build_multilingual_outputs(
+            cutoff="2024-06-01",
+            output_dir=output_dir,
+            checkpoint_map={"Fukui": missing},
+            metadata_file=metadata,
+        )
+
+    assert not output_dir.exists()
 
 
 def test_multilingual_builder_groups_languages_and_tags_japanese(tmp_path):
