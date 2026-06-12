@@ -178,6 +178,19 @@ def main() -> int:
     panel.to_csv(PANEL_PATH, index=False)
     logger.info("panel written: %s (%d rows)", PANEL_PATH, len(panel))
 
+    # Standing reminder: warn on every build while any preliminary vintage
+    # remains. JTA publishes confirmed values ~mid following year; when the
+    # 2025 確定値 file appears on the MLIT page, update its entry in
+    # config/national_data_sources.yaml and SOURCES above, refetch, rebuild.
+    prelim_years = sorted(panel.loc[panel.vintage == "preliminary", "year"].unique())
+    if prelim_years:
+        logger.warning(
+            "preliminary vintage still in panel for %s — check "
+            "https://www.mlit.go.jp/kankocho/tokei_hakusyo/shukuhakutokei.html "
+            "for confirmed values (確定値), then update config + SOURCES and rebuild",
+            prelim_years,
+        )
+
     # Headline sanity check for the source ledger: Fukui March, pre vs post
     # opening (2024-03-16). March 2024 is half-treated — the event-study
     # script, not this builder, decides how to handle the partial month.
