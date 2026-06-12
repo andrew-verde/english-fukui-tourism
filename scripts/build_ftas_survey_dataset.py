@@ -134,22 +134,25 @@ def main() -> int:
     tagged.to_csv(TAGGED_CSV, index=False)
     logger.info(f"Wrote tagged survey: {TAGGED_CSV} ({len(tagged)} rows)")
 
-    if ISHIKAWA_RAW.exists():
-        logger.info(f"Loading Ishikawa survey: {ISHIKAWA_RAW}")
-        ishikawa_raw = pd.read_csv(ISHIKAWA_RAW, dtype=str, low_memory=False, nrows=args.sample or None)
-        ishikawa_normalized = normalize_ishikawa_survey(ishikawa_raw)
-        ishikawa_normalized.to_csv(ISHIKAWA_NORMALIZED_CSV, index=False)
-        logger.info(f"Wrote normalized Ishikawa survey: {ISHIKAWA_NORMALIZED_CSV} ({len(ishikawa_normalized)} rows)")
+    if not ISHIKAWA_RAW.exists():
+        raise FileNotFoundError(
+            f"Missing Ishikawa comparison input: {ISHIKAWA_RAW}. "
+            "Run scripts/fetch_code4fukui_data.py first."
+        )
 
-        ishikawa_tagged = tag_ftas_dataframe(ishikawa_normalized, "friction_source_text", codebook)
-        ishikawa_tagged.to_csv(ISHIKAWA_TAGGED_CSV, index=False)
-        logger.info(f"Wrote tagged Ishikawa survey: {ISHIKAWA_TAGGED_CSV} ({len(ishikawa_tagged)} rows)")
+    logger.info(f"Loading Ishikawa survey: {ISHIKAWA_RAW}")
+    ishikawa_raw = pd.read_csv(ISHIKAWA_RAW, dtype=str, low_memory=False, nrows=args.sample or None)
+    ishikawa_normalized = normalize_ishikawa_survey(ishikawa_raw)
+    ishikawa_normalized.to_csv(ISHIKAWA_NORMALIZED_CSV, index=False)
+    logger.info(f"Wrote normalized Ishikawa survey: {ISHIKAWA_NORMALIZED_CSV} ({len(ishikawa_normalized)} rows)")
 
-        combined = prepare_combined_official_surveys(tagged, ishikawa_tagged)
-        combined.to_csv(COMBINED_TAGGED_CSV, index=False)
-        logger.info(f"Wrote combined official survey: {COMBINED_TAGGED_CSV} ({len(combined)} rows)")
-    else:
-        logger.warning(f"Ishikawa input not found; skipping combined official survey: {ISHIKAWA_RAW}")
+    ishikawa_tagged = tag_ftas_dataframe(ishikawa_normalized, "friction_source_text", codebook)
+    ishikawa_tagged.to_csv(ISHIKAWA_TAGGED_CSV, index=False)
+    logger.info(f"Wrote tagged Ishikawa survey: {ISHIKAWA_TAGGED_CSV} ({len(ishikawa_tagged)} rows)")
+
+    combined = prepare_combined_official_surveys(tagged, ishikawa_tagged)
+    combined.to_csv(COMBINED_TAGGED_CSV, index=False)
+    logger.info(f"Wrote combined official survey: {COMBINED_TAGGED_CSV} ({len(combined)} rows)")
 
     codes = list(codebook.keys())
     _friction_by_group(tagged, "response_area", codes).to_csv(OUTPUT_DIR / "ftas_friction_by_area.csv", index=False)
