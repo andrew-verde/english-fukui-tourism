@@ -32,7 +32,8 @@ Step 6   audit_review_sample_readiness.py Sample adequacy / expected-count audit
 Step 7   generate_presentation_figures.py Presentation figure files
 Step 8   statistical_validation.py        Review-level SR statistical checks
 Step 9   synthesis_pipeline.py            Statistical summary + test explanations
-Side     build_chinese_social_media_dataset.py Chinese Xiaohongshu/Douyin scaffold
+Side     build_chinese_social_media_dataset.py Chinese Xiaohongshu/Douyin layer (cross-language side project)
+Side     build_cross_language_trends.py    EN/JP/CN monthly trend tables (cross-language side project)
 Side     build_gold_set.py                 Blind gold-set kit for friction-tagger evaluation
 Side     evaluate_gold_set.py              Inter-rater kappa + tagger precision/recall/F1
 Side     fetch_national_direct.py          JTA accommodation Excels + JR West press PDFs
@@ -223,31 +224,65 @@ Interpret the non-English/non-Japanese segment as a review-language proxy, not c
 
 Comparison across cities is observational. Observed differences in code rates indicate that certain friction themes appear more frequently in one city's reviews than another's; they do not imply that one city causes more friction, or that any intervention would produce a measurable outcome. All findings should be presented as candidate signals for further investigation.
 
-### Chinese Social-Media Recommendation Text
+### Chinese Social-Media Recommendation Text (cross-language side project)
 
-To prepare Xiaohongshu and Douyin CSV exports from `/Users/andrewgreen/Repositories/tourism-data` for comparison with the Google-review layers:
+> **Side project.** This layer and the cross-language trends layer below form a
+> separate analysis comparing tourism trends between English-language reviewers,
+> Japanese-language reviewers, and Chinese social-media commenters. They are not
+> part of the tourist-friction thesis pipeline, no thesis target depends on
+> them, and their outputs are never thesis evidence. Design record:
+> `docs/side_project_cross_language_trends.md`.
+
+To ingest Xiaohongshu and Douyin scrapes from the companion tourism-data checkout
+(`TOURISM_DATA_DIR`, default `/home/andrewgreen/Repositories/external/tourism-data`):
 
 ```bash
 make chinese-social
 ```
 
-This target reads local CSV exports only and writes outputs to `output/chinese_social_media_analysis/`. The expected source schemas are the companion project's Xiaohongshu columns (`note_id,title,note_url,author,author_url`) and Douyin columns (`video_id,title,video_url,author`). Empty schema-only CSVs are accepted, so the framework can exist before the colleague data is populated.
+The ingestion contract is the companion project's **raw scrape files** under
+`data/raw/social/` — Xiaohongshu columns (`note_id,title,note_url,author,author_url`)
+and Douyin columns (`video_id,title,video_url,author`). Theme classifications
+(`theme`, `fan_score`, `travel_score`) from the companion project's
+`data/processed/*.csv` are left-joined on note id as annotations; unmatched rows
+get `theme=unclassified`. Post dates are parsed out of the Xiaohongshu author cell
+with a `post_date_precision` flag (`exact` / `year_inferred` / `relative_inferred`),
+anchored to the scrape file's git commit date (override:
+`CN_SCRAPE_REFERENCE_DATE`). Empty schema-only CSVs are accepted, so the layer
+keeps working as the colleague adds data.
 
-Treat this as Chinese-language social-media recommendation text, not as reviewer nationality. The unit of analysis is one Xiaohongshu note row or Douyin video row, currently title/text-level. It is analogous to Google reviews only in its role as traveler-facing recommendation media; source behavior, text length, and platform ranking are different.
+Treat this as Chinese-language social-media recommendation text, not as reviewer nationality. The unit of analysis is one Xiaohongshu note row or Douyin video row, currently title/text-level. It is analogous to Google reviews only in its role as traveler-facing recommendation media; source behavior, text length, and platform ranking are different. Because the text is title-level, friction tag rates understate friction relative to full-text reviews; theme mix, volume over time, and sentiment are the headline outputs, friction comparison is directional only.
 
-Key outputs:
+Key outputs (`output/chinese_social_media_analysis/`):
 
 | File | Description |
 |------|-------------|
-| `chinese_social_posts.csv` | Generated locally; normalized row-level title/text data (gitignored because it can contain author handles and source URLs) |
+| `chinese_social_posts.csv` | Generated locally; normalized row-level title/text data with post dates and themes (gitignored because it can contain author handles and source URLs) |
 | `tagged_chinese_social_posts.csv` | Generated locally; row-level Chinese friction tags (gitignored) |
+| `chinese_theme_by_city_platform.csv` | Aggregate theme mix (fan / travel / ordinary / unclassified) with sentiment means |
 | `chinese_friction_by_city_platform.csv` | Aggregate city × platform × friction-code rates |
+| `chinese_friction_by_city_platform_theme.csv` | Friction rates additionally segmented by theme |
 | `chinese_sentiment_by_city_platform.csv` | Aggregate keyword-polarity sentiment scaffold |
 | `chinese_city_platform_friction_tests.csv` | Fisher exact comparisons across Chinese cities/platforms when populated |
-| `chinese_vs_review_language_friction_comparison.csv` | Descriptive comparison against cached English/Japanese Google-review friction rates when available |
+| `chinese_vs_review_language_friction_comparison.csv` | Descriptive comparison against cached English/Japanese Google-review friction rates, reported for `all_posts` and `excluding_fan` subsets |
 | `chinese_social_readiness.md` | Human-readable readiness and caveat report |
 
 Chinese friction tags use `config/chinese_social_friction_codebook.yaml`, mirrored to the English/Japanese friction-code labels. Matching is substring-based and should be manually validated once real rows exist. Sentiment fields use a transparent Chinese keyword-polarity scaffold (`sentiment_score`, `sentiment_norm`, `emotional_intensity_score`) rather than VADER; do not treat them as a validated Chinese sentiment model.
+
+### Cross-Language Monthly Trends (cross-language side project)
+
+```bash
+make cross-language-trends
+```
+
+Builds `output/cross_language_trends/monthly_trends.csv` — monthly volume per
+city × group (`english`, `japanese`, `chinese_social`) with group-appropriate
+sentiment columns (`rating_mean` for Google reviews, `sentiment_norm_mean` for
+Chinese posts; the scales are deliberately never merged) — plus
+`chinese_theme_mix_monthly.csv` and a readiness report. Requires the row-level
+outputs of `make multilingual-reviews` and `make chinese-social`; missing inputs
+are a hard error naming the command to run (no demo mode). Descriptive only; no
+significance testing on these small monthly series.
 
 ### Assumptions
 

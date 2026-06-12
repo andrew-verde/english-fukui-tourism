@@ -1,0 +1,37 @@
+{
+  "input_dir": "/home/andrewgreen/Repositories/external/tourism-data",
+  "input_files": [
+    "/home/andrewgreen/Repositories/external/tourism-data/data/raw/social/fukui_xhs_reviews.csv"
+  ],
+  "input_files_discovered": 1,
+  "rows_before_dedup": 106,
+  "duplicates_removed": 1,
+  "rows_retained": 105,
+  "source_platform_counts": {
+    "xiaohongshu": 105
+  },
+  "city_counts": {
+    "Fukui": 105
+  },
+  "theme_counts": {
+    "ordinary": 65,
+    "fan": 22,
+    "travel": 18
+  },
+  "post_date_precision_counts": {
+    "exact": 75,
+    "year_inferred": 26,
+    "relative_inferred": 4
+  },
+  "outputs": {
+    "chinese_social_posts": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_social_posts.csv",
+    "tagged_chinese_social_posts": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/tagged_chinese_social_posts.csv",
+    "chinese_friction_by_city_platform": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_friction_by_city_platform.csv",
+    "chinese_friction_by_city_platform_theme": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_friction_by_city_platform_theme.csv",
+    "chinese_theme_by_city_platform": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_theme_by_city_platform.csv",
+    "chinese_sentiment_by_city_platform": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_sentiment_by_city_platform.csv",
+    "chinese_city_platform_friction_tests": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_city_platform_friction_tests.csv",
+    "chinese_vs_review_language_friction_comparison": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_vs_review_language_friction_comparison.csv",
+    "chinese_social_readiness": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/chinese_social_readiness.md"
+  }
+}
