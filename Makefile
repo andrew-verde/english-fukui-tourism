@@ -2,7 +2,7 @@ PYTHON = .venv/bin/python3
 
 .PHONY: help friction-all deep-review-all official-all fetch-fukui-data fetch-comparison-data fetch-google-maps-reviews fetch-metadata \
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
-        build-ftas multilingual-reviews chinese-social stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve \
+        build-ftas multilingual-reviews chinese-social cross-language-trends stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve \
         gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit data-manifest \
         fetch-estat fetch-estat-list fetch-national-direct accommodation-panel \
         hokuriku-did-event-study sem-ftas nudge-ranking
@@ -28,7 +28,10 @@ help:
 	@echo "  make stats                   Run SR statistical validation"
 	@echo "  make synth                   Generate output/statistical_summary.md"
 	@echo "  make multilingual-reviews    Build cached Japanese/other-language review comparison suite"
-	@echo "  make chinese-social          Build Chinese Xiaohongshu/Douyin analysis scaffold"
+	@echo ""
+	@echo "Cross-language trends side project (separate from thesis pipeline):"
+	@echo "  make chinese-social          Build Chinese Xiaohongshu/Douyin layer from tourism-data scrapes"
+	@echo "  make cross-language-trends   Build EN/JP/CN monthly volume + sentiment trend tables"
 	@echo "  make fetch-official-fukui    Fetch Code for Fukui official CSVs"
 	@echo "  make build-ftas              Normalize + tag FTAS survey data"
 	@echo "  make stats-official          Run official FTAS statistical validation"
@@ -122,8 +125,13 @@ sample-readiness:
 multilingual-reviews:
 	$(PYTHON) scripts/build_multilingual_review_dataset.py
 
+# ── Cross-language trends side project (not part of any thesis chain) ────────
+
 chinese-social:
 	$(PYTHON) scripts/build_chinese_social_media_dataset.py
+
+cross-language-trends:
+	$(PYTHON) scripts/build_cross_language_trends.py
 
 data-manifest:
 	$(PYTHON) scripts/generate_data_manifest.py
