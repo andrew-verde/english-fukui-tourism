@@ -120,6 +120,34 @@ Run:
 make fetch-hokuriku-merged
 ```
 
+### Pinned Hokuriku vintage (committed DiD numbers)
+
+This upstream is also a **living dataset** — the current-year file
+(`merged_survey_2026.csv`) grows as responses arrive. The committed DiD
+artifacts (`did_thesis_estimates.csv`, event-study outputs) and the committed
+`output/hokuriku_merged/source_manifest.json` pin the **2026-06-11 fetch**
+(per-file SHA-256 in the manifest). A fresh `make fetch-hokuriku-merged` pulls
+the current upstream and will drift (checked 2026-06-13: +29–75 rows, estimate
+movement in the 3rd decimal, headline numbers unchanged at reported precision).
+
+To recover the pinned vintage on any machine, download from the upstream git
+history and verify against the committed manifest (verified 2026-06-13 —
+reproduces committed DiD estimates to ~1e-13):
+
+```bash
+# Upstream commit matching the 2026-06-11 manifest:
+curl -sL https://raw.githubusercontent.com/hokuriku-inbound-kanko/opendata/72c29d7818e31971d4c3525a2c673131f1d85e73/output_merge/merged_survey_2026.csv \
+  -o output/hokuriku_merged/raw/merged_survey_2026.csv
+sha256sum output/hokuriku_merged/raw/merged_survey_2026.csv
+# must equal the sha256 in output/hokuriku_merged/source_manifest.json (2cc19c71e789…)
+```
+
+The 2023–2025 files are closed years and have not drifted (current upstream
+hashes still match the manifest), so only the current-year file needs the
+pinned download. The same rule applies as for FTAS: never overwrite committed
+DiD artifacts from a newer-vintage fetch unless the ledger and README are
+updated in the same commit.
+
 Then run DiD outputs:
 
 ```bash
