@@ -1,15 +1,43 @@
 # Documentation Index
 
-This repository is scoped to the current master's thesis pipeline:
-English-language Google Maps reviews for Fukui, Kanazawa, and Toyama, plus a separate official FTAS / Code for Fukui survey analysis layer.
+Thesis: tourism friction in Fukui Prefecture around the 2024 Hokuriku
+Shinkansen extension. Primary analyses are the Shinkansen
+difference-in-differences and the FTAS two-stage SEM (ADR 0001); the
+English-language Google review layer is exploratory supporting evidence.
 
-Primary documentation lives in:
+Start here, in order:
 
-- `../README.md` — setup, pipeline order, current assumptions, and output inventory.
-- `code4fukui_data_integration_plan.md` — official Code for Fukui datasets and a thesis-safe integration path.
-- `../output/official_fukui/statistical_summary_official.md` — generated FTAS official-data summary after `make official-all`.
-- `../output/official_fukui/thesis_readiness_assessment.md` — generated defense-readiness assessment for the expanded dataset.
-- `../output/statistical_summary.md` — current cite-ready statistical results.
-- `../output/statistical_test_explanations.md` — why each statistical test was chosen, what it determines, and what the result means.
+- [`results_overview.md`](results_overview.md) — one-page map of the
+  quantitative arc (impact → mechanism → intervention) with headline numbers
+  and the make target that regenerates each.
+- [`source_ledger.md`](source_ledger.md) — every reported number traced to
+  command, script, input, and artifact, with verified / simulated-demo /
+  estimated / hypothesis status labels.
+- [`methods_appendix.md`](methods_appendix.md) — per-analysis statistical
+  traceability: research question → test choice → assumptions →
+  configuration → caveats. §I covers provenance guards and AI-assistance
+  disclosure.
+- [`adr/`](adr/) — design decisions: 0001 (FTAS SEM + Shinkansen DiD as
+  primary contribution), 0002 (retire the Likert pilot path).
 
-Older Reddit/American-tourist setup notes were removed because they described code and data sources that are no longer present in the active thesis pipeline.
+Generated summaries (rebuild via Makefile, do not hand-edit):
+
+- `../output/hokuriku_merged/did_event_study_report.md` — DiD event study and
+  robustness battery (`make hokuriku-did-event-study`).
+- `../output/sem/` — SEM stage 1/2 results and nudge priority ranking
+  (`make sem-ftas`, `make nudge-ranking`).
+- `../output/official_fukui/statistical_summary_official.md` — FTAS
+  official-data summary (`make synth-official`).
+- `../output/statistical_summary.md` — exploratory English-review results
+  (`make synth`).
+- `../output/data_manifest.md` — row counts, schemas, hashes for key datasets
+  (`make data-manifest`).
+
+Historical:
+
+- [`code4fukui_data_integration_plan.md`](code4fukui_data_integration_plan.md)
+  — superseded 2026-06; kept as a record of the May 2026 planning state. See
+  its status header for what was executed, superseded, or dropped.
+
+Canonical terminology lives in `../CONTEXT.md`; setup and pipeline order in
+the top-level `../README.md`.
