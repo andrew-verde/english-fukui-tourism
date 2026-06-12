@@ -11,9 +11,11 @@ import sys
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+import scripts.statistical_validation_official as official_stats
 from scripts.statistical_validation_official import _dedup_respondents, _has_text
 from src.official_fukui.ftas import normalize_ftas_survey
 
@@ -81,3 +83,11 @@ def test_dedup_scoped_by_prefecture_keeps_cross_prefecture_ids():
 def test_has_text_excludes_blank_and_nan():
     df = pd.DataFrame({"friction_source_text": ["バスが少ない", "", "  ", None]})
     assert _has_text(df).tolist() == [True, False, False, False]
+
+
+def test_missing_combined_official_survey_is_not_silent(monkeypatch, tmp_path):
+    missing = tmp_path / "official_surveys_tagged_combined.csv"
+    monkeypatch.setattr(official_stats, "COMBINED_TAGGED_CSV", missing)
+
+    with pytest.raises(FileNotFoundError, match="Fukui vs Ishikawa"):
+        official_stats._load_combined()

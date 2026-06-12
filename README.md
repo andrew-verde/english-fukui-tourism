@@ -150,6 +150,10 @@ The main method trail is:
 
 Raw checkpoints, row-level review/comment files, reviewer names, full review text, manual validation samples, and presentation-generation workspaces under `outputs/` are gitignored. They can be regenerated locally from the scripts when credentials and cached sources are available.
 
+See [`docs/data_reproducibility.md`](docs/data_reproducibility.md) for the
+source-of-truth policy and recreate commands for raw official data, Google
+review checkpoints, Hokuriku merged microdata, and national-stat raw files.
+
 ---
 
 ## Focused Friction Analysis Workflow

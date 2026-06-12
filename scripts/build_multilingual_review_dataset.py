@@ -484,6 +484,14 @@ def build_multilingual_outputs(
     metadata_file: Path = METADATA_FILE,
 ) -> dict:
     checkpoint_map = checkpoint_map or CITY_CHECKPOINT_MAP
+    missing = [str(path) for path in checkpoint_map.values() if not path.exists()]
+    if missing:
+        raise FileNotFoundError(
+            "Missing Google review checkpoint input(s): "
+            + ", ".join(missing)
+            + ". Recreate them with make fetch-fukui-data, make fetch-comparison-data, "
+            "or make fetch-google-maps-reviews before rebuilding multilingual outputs."
+        )
     output_dir.mkdir(parents=True, exist_ok=True)
 
     metadata = _load_json(metadata_file)
