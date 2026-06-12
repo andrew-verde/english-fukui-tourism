@@ -37,6 +37,7 @@ TRACKED = [
     "output/multilingual_review_analysis/*.csv",
     "output/chinese_social_media_analysis/*.csv",
     "output/gold_set/*.csv",
+    "output/national_stats/*.csv",
 ]
 
 

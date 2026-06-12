@@ -1,0 +1,89 @@
+# National-level supplementary data sources (JNTO / JTA / MLIT / JR West).
+#
+# Two access modes, handled by two scripts:
+#   estat:  datasets pulled via the e-Stat REST API (scripts/fetch_estat_data.py)
+#           — requires ESTAT_APP_ID env var (free registration at e-stat.go.jp)
+#   direct: files downloaded as-is (scripts/fetch_national_direct.py)
+#           — JR West press-release PDFs, 国土数値情報 archives, etc.
+#
+# Provenance: both scripts write raw copies plus a sha256 source manifest under
+# output/national_stats/, mirroring the official_fukui pipeline.
+
+estat:
+  # JTA 宿泊旅行統計調査 — kept for table discovery/audit only. The e-Stat API
+  # DB tables for this survey are FROZEN at 2014–2016 (verified 2026-06-12:
+  # getStatsList returns 32 tables, all time axes end 2016; publication moved
+  # to Excel files in 2019). Current monthly data is pulled as Excel from the
+  # MLIT page via the direct: section below.
+  accommodation_survey:
+    stats_code: "00601020"
+    description: "JTA Overnight Travel Statistics Survey (宿泊旅行統計調査) — API frozen at 2016"
+    area_codes: ["18000", "17000", "16000", "21000"]  # Fukui, Ishikawa, Toyama, Gifu
+    notes: >
+      Do not use the API tables for the DiD — coverage ends 2016. Use the
+      jta_accommodation_* direct downloads instead.
+
+  # Dropped as marginal (see docs/national_data_integration_plan.md):
+  #   00601030 inbound consumption survey — quarterly, too coarse for DiD
+  #   00600350 MLIT rail transport — operator-level aggregate, cannot isolate Hokuriku line
+
+direct:
+  # JTA 宿泊旅行統計調査 annual Excel releases (monthly tables inside, all 47
+  # prefectures, Japanese/foreign split). Link labels verified on
+  # https://www.mlit.go.jp/kankocho/tokei_hakusyo/shukuhakutokei.html 2026-06-12.
+  # 確定値 = confirmed values; 2025 is 年間速報値 (annual preliminary) until
+  # its confirmed release — flag vintage when building the panel.
+  jta_accommodation_2018_confirmed:
+    url: "https://www.mlit.go.jp/kankocho/content/001295984.xlsx"
+    filename: "jta_accommodation_2018_confirmed.xlsx"
+    description: "宿泊旅行統計調査 2018 Jan–Dec confirmed values — pre-COVID parallel-trends baseline"
+  jta_accommodation_2019_confirmed:
+    url: "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001350484.xlsx"
+    filename: "jta_accommodation_2019_confirmed.xlsx"
+    description: "宿泊旅行統計調査 2019 Jan–Dec confirmed values — pre-COVID parallel-trends baseline"
+  jta_accommodation_2020_confirmed:
+    url: "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001411547.xlsx"
+    filename: "jta_accommodation_2020_confirmed.xlsx"
+    description: "宿泊旅行統計調査 2020 Jan–Dec confirmed values — COVID regime"
+  jta_accommodation_2021_confirmed:
+    url: "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001488438.xlsx"
+    filename: "jta_accommodation_2021_confirmed.xlsx"
+    description: "宿泊旅行統計調査 2021 Jan–Dec confirmed values — COVID regime"
+  jta_accommodation_2022_confirmed:
+    url: "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001616676.xlsx"
+    filename: "jta_accommodation_2022_confirmed.xlsx"
+    description: "宿泊旅行統計調査 2022 Jan–Dec confirmed values (年の確定値)"
+  jta_accommodation_2023_confirmed:
+    url: "https://www.mlit.go.jp/kankocho/content/001750679.xlsx"
+    filename: "jta_accommodation_2023_confirmed.xlsx"
+    description: "宿泊旅行統計調査 2023 Jan–Dec confirmed values (年の確定値)"
+  jta_accommodation_2024_confirmed:
+    url: "https://www.mlit.go.jp/kankocho/content/001905499.xlsx"
+    filename: "jta_accommodation_2024_confirmed.xlsx"
+    description: "宿泊旅行統計調査 2024 Jan–Dec confirmed values — Shinkansen opening year"
+  jta_accommodation_2025_preliminary:
+    url: "https://www.mlit.go.jp/kankocho/content/001984048.xlsx"
+    filename: "jta_accommodation_2025_preliminary.xlsx"
+    description: "宿泊旅行統計調査 2025 Jan–Dec annual preliminary (年間の速報値)"
+  jta_accommodation_timeseries:
+    url: "https://www.mlit.go.jp/kankocho/content/002002831.xlsx"
+    filename: "jta_accommodation_timeseries.xlsx"
+    description: "宿泊旅行統計調査 推移表 — long-run monthly time-series summary"
+
+  # JR West press releases with post-opening Hokuriku Shinkansen ridership.
+  jr_west_hokuriku_first_year:
+    url: "https://www.westjr.co.jp/press/article/items/250317_00_press_hokurikushinkansen_goriyoujyoukyou.pdf"
+    filename: "jrwest_hokuriku_ridership_2024-03_2025-03.pdf"
+    description: "Hokuriku Shinkansen Kanazawa–Tsuruga boardings, first 12 months post-opening"
+  jr_west_transport_density_fy2024:
+    url: "https://www.westjr.co.jp/press/article/items/250806_00_press_yusoumitsudo_1.pdf"
+    filename: "jrwest_transport_density_fy2024.pdf"
+    description: "FY2024 section-level average transport density (区間別平均通過人員)"
+  # 国土数値情報 S12 — station-level annual boardings, FY2011–FY2022 only.
+  # Pre-extension baseline; FY2024 release not expected before ~2027.
+  # Archive URL is versioned — resolve current link from the datalist page
+  # before enabling; left commented to avoid silent 404 in CI.
+  # ksj_s12_station_ridership:
+  #   url: "<resolve from https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-S12-2022.html>"
+  #   filename: "ksj_s12_station_ridership_fy2022.zip"
+  #   description: "Station-level annual boardings (駅別乗降客数), pre-extension baseline"
