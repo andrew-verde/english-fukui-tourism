@@ -144,12 +144,13 @@ output/multilingual_review_analysis/japanese_reviews_tagged.csv
 output/multilingual_review_analysis/non_english_non_japanese_reviews.csv
 output/chinese_social_media_analysis/chinese_social_posts.csv
 output/chinese_social_media_analysis/tagged_chinese_social_posts.csv
+# Fukui FTAS raw/derived files are recreated (pinned vintage in LFS history,
+# see docs/data_reproducibility.md); Ishikawa + combined files are LFS-tracked
+# at the pinned vintage, so they are explicitly re-included below.
 output/official_fukui/raw/*.csv
+!output/official_fukui/raw/ishikawa_survey_*.csv
 output/official_fukui/ftas_survey_normalized.csv
 output/official_fukui/ftas_tagged_survey.csv
-output/official_fukui/ishikawa_survey_normalized.csv
-output/official_fukui/ishikawa_tagged_survey.csv
-output/official_fukui/official_surveys_tagged_combined.csv
 output/official_fukui/japanese_friction_validation_sample.csv
 outputs/
 experiments/nudge-pilot/exports/

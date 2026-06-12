@@ -42,8 +42,20 @@ numbers drift).
 **You do not need the pinned dataset to read or cite the published analysis** —
 the committed artifacts in Git are the citable results on every machine.
 The pinned data is needed only to *re-run* the official-data analyses and
-match the committed numbers exactly. To recover it on any clone (requires
-`git-lfs`; the objects live in this repo's LFS history at commit `c828346`):
+match the committed numbers exactly.
+
+What a fresh clone gets automatically (`git lfs pull`):
+
+- Ishikawa raw + derived CSVs and `official_surveys_tagged_combined.csv` are
+  LFS-tracked **at the pinned vintage** (verified against the manifest hashes),
+  so `make stats-official` reproduces the committed results out of the box
+  (reproduction check 2026-06-13: identical up to last-decimal float noise).
+
+What needs one extra step — the Fukui-side pinned files
+(`raw/ftas_survey_all.csv`, `ftas_survey_normalized.csv`,
+`ftas_tagged_survey.csv`) are not in the current tree; recover them from this
+repo's LFS history at commit `c828346` (needed for `make sem-ftas`,
+`make build-ftas`, and any FTAS-only rerun):
 
 ```bash
 git lfs fetch origin c828346
@@ -53,11 +65,8 @@ for f in raw/ftas_survey_all ftas_survey_normalized ftas_tagged_survey; do
 done
 ```
 
-The Ishikawa raw files of that vintage were never stored in this repo; they are
-pinned by SHA-256 + URL in the historical manifest above. Recover a matching
-copy from the code4fukui/ishikawa-kanko-survey git history (verify the hash),
-then `make build-ftas` deterministically rebuilds
-`official_surveys_tagged_combined.csv` from the pinned raws.
+Verify `sha256sum output/official_fukui/raw/ftas_survey_all.csv` against the
+historical manifest before trusting a rerun.
 
 **Rule:** never overwrite the committed official-analysis artifacts from a
 fresh (newer-vintage) fetch unless the README data snapshot and the source
