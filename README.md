@@ -134,8 +134,8 @@ Current generated outputs use `REVIEW_DATE_CUTOFF=2024-06-01`.
 
 - English review dataset: 915 rows after language/date filtering and city-text deduplication.
 - Sentence-level mentions: 3,130 rows.
-- Official FTAS dataset: 95,422 Fukui respondent rows.
-- Combined official comparison dataset: 121,064 Fukui + Ishikawa respondent rows.
+- Official FTAS dataset: 95,422 Fukui respondent rows (pinned 2026-05-28 upstream vintage; see `docs/data_reproducibility.md` — fresh fetches pull a newer, larger vintage).
+- Combined official comparison dataset: 121,064 Fukui + Ishikawa respondent rows (same pinned vintage).
 - JTA accommodation panel: 4,512 prefecture-month rows (2018–2025, 47 prefectures; 2025 vintage preliminary).
 
 Reviewer nationality is not inferred from Google review data. Source labels should stay at the level the data supports: English-language reviews, Japanese-language reviews, or official Japanese tourist survey respondents.
