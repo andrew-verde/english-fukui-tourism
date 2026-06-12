@@ -98,8 +98,18 @@ parallel-trends discussion. Fukui March total stays: 322,200 (2018) →
    decide handling of the half-treated March 2024 cell).
 2. Extract first-year ridership figures from the JR West PDF into the source
    ledger as a descriptive first-stage row.
-3. When JTA publishes 2025 confirmed values, re-run `make fetch-national-direct`
-   (new URL on the MLIT page) + `make accommodation-panel` to flip the vintage.
+3. **Standing reminder — 2025 confirmed values.** The 2025 rows are annual
+   preliminary (年間の速報値, fetched 2026-06-12). JTA publishes confirmed
+   values (年の確定値) around mid-year; the 2024 confirmed file appeared by
+   June 2025, so expect the 2025 file mid-to-late 2026. When it appears on
+   https://www.mlit.go.jp/kankocho/tokei_hakusyo/shukuhakutokei.html:
+   replace the `jta_accommodation_2025_preliminary` entry in
+   `config/national_data_sources.yaml` with the confirmed-file URL, update
+   `SOURCES` in `scripts/build_accommodation_panel.py`, then re-run
+   `make fetch-national-direct` + `make accommodation-panel`. The builder
+   logs a warning on every run until no preliminary vintage remains, and the
+   source-ledger row must flip from preliminary in the same commit
+   (ledger rule 2). Any 2025 number cited before then must say "preliminary".
 4. Optional: draft the JR West formal data-request letter with advisor.
 
 Source-ledger rule applies: no number from these sources appears in any
