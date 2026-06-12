@@ -32,6 +32,7 @@ hand-editing dates here.
 | n=915 English reviews; SR-01/02/05 results | Exploratory inbound-perception signal | verified (exploratory) | `make stats` + `make synth` | `scripts/statistical_validation.py`, `synthesis_pipeline.py` | `output/checkpoints/google_*.json` | `output/statistical_summary.md` |
 | Gold-set κ / precision / recall | Tagger validity | hypothesis (awaiting coders) | `make gold-set-eval` | `scripts/evaluate_gold_set.py` | `output/gold_set/` coder sheets | pending |
 | Chinese social media figures | Xiaohongshu/Douyin scaffold | simulated/demo (schema-first, currently 0 rows) | `make chinese-social` | `scripts/build_chinese_social_media_dataset.py` | companion-project CSV exports (none loaded yet) | `output/chinese_social_media_analysis/` — do not cite as findings until real exports loaded |
+| JTA panel 4,512 rows; Fukui March stays 322,200 (2018) → 340,140 (2024) | Behavioral overnight-stay panel staged as companion DiD outcome; descriptive only until the event study runs on it | verified (descriptive) | `make fetch-national-direct` + `make accommodation-panel` | `scripts/build_accommodation_panel.py` | `output/national_stats/raw/jta_accommodation_*.xlsx` (JTA 宿泊旅行統計調査, MLIT) | `output/national_stats/accommodation_panel.csv`, `accommodation_panel_summary.md` — 2025 rows preliminary vintage; foreign series covers 10+ employee facilities only |
 
 ## Rules
 

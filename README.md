@@ -4,7 +4,7 @@ Research pipeline for a master's thesis on tourism friction in Fukui Prefecture 
 
 **Thesis arc (see [docs/results_overview.md](docs/results_overview.md) for the current numbers):**
 
-1. **Impact** — difference-in-differences / event study around the March 2024 Shinkansen extension (Fukui treated, Ishikawa control; merged tri-prefecture survey microdata, CC-BY).
+1. **Impact** — difference-in-differences / event study around the March 2024 Shinkansen extension (Fukui treated, Ishikawa control; merged tri-prefecture survey microdata, CC-BY). A behavioral companion outcome — monthly prefecture-level overnight stays from the JTA 宿泊旅行統計調査, 2018–2025 — is staged in `output/national_stats/accommodation_panel.csv` to run the same event-study spec on realized stays rather than survey sentiment (see [docs/national_data_integration_plan.md](docs/national_data_integration_plan.md)).
 2. **Mechanism** — two-stage SEM on deduplicated official FTAS respondents: friction → satisfaction → visit intention.
 3. **Intervention** — evidence-weighted nudge priority ranking (SEM path × prevalence), delivered through the `experiments/nudge-pilot/` artifact.
 
@@ -35,6 +35,9 @@ Step 9   synthesis_pipeline.py            Statistical summary + test explanation
 Side     build_chinese_social_media_dataset.py Chinese Xiaohongshu/Douyin scaffold
 Side     build_gold_set.py                 Blind gold-set kit for friction-tagger evaluation
 Side     evaluate_gold_set.py              Inter-rater kappa + tagger precision/recall/F1
+Side     fetch_national_direct.py          JTA accommodation Excels + JR West press PDFs
+Side     build_accommodation_panel.py      Prefecture × month overnight-stay panel (behavioral DiD outcome)
+Side     fetch_estat_data.py               e-Stat API discovery/audit (API frozen at 2016 for 00601020)
 Side     fetch_hokuriku_merged.py          Merged tri-prefecture survey microdata (CC-BY)
 Side     hokuriku_did_audit.py             Shinkansen-extension DiD feasibility audit
 Core     hokuriku_did_event_study.py       Thesis DiD: event study + robustness battery
@@ -111,6 +114,10 @@ make gold-set-eval             # after coders fill the sheets: kappa + precision
 make fetch-hokuriku-merged     # → output/hokuriku_merged/raw/ (gitignored, ~94 MB)
 make hokuriku-did-audit        # → did_feasibility_report.md + parallel_trends.png
 
+# National supplementary data (JTA overnight stays, behavioral DiD outcome):
+make fetch-national-direct     # → output/national_stats/raw/ (gitignored, refetchable)
+make accommodation-panel       # → output/national_stats/accommodation_panel.csv
+
 # Tests
 make test
 ```
@@ -128,6 +135,7 @@ Current generated outputs use `REVIEW_DATE_CUTOFF=2024-06-01`.
 - Sentence-level mentions: 3,130 rows.
 - Official FTAS dataset: 95,422 Fukui respondent rows.
 - Combined official comparison dataset: 121,064 Fukui + Ishikawa respondent rows.
+- JTA accommodation panel: 4,512 prefecture-month rows (2018–2025, 47 prefectures; 2025 vintage preliminary).
 
 Reviewer nationality is not inferred from Google review data. Source labels should stay at the level the data supports: English-language reviews, Japanese-language reviews, or official Japanese tourist survey respondents.
 

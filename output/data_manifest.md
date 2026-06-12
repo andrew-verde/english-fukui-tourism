@@ -1,6 +1,6 @@
 # Data Manifest — aggregate validation artifacts
 
-Generated 2026-06-12T00:41:57.769350+00:00 by `scripts/generate_data_manifest.py` (`make data-manifest`). Row-level data stays local; this records row counts, schemas, and hashes so results can be audited without the rows.
+Generated 2026-06-12T08:33:44.629201+00:00 by `scripts/generate_data_manifest.py` (`make data-manifest`). Row-level data stays local; this records row counts, schemas, and hashes so results can be audited without the rows.
 
 | File | Rows | Cols | Bytes | sha256 (12) | Modified |
 |---|---|---|---|---|---|
@@ -51,3 +51,4 @@ Generated 2026-06-12T00:41:57.769350+00:00 by `scripts/generate_data_manifest.py
 | output/gold_set/gold_set_coder_A.csv | 300 | 16 | 89718 | a3282a482962 | 2026-06-11 |
 | output/gold_set/gold_set_coder_B.csv | 300 | 16 | 89718 | a3282a482962 | 2026-06-11 |
 | output/gold_set/gold_set_key.csv | 300 | 18 | 128914 | b673b2be8680 | 2026-06-11 |
+| output/national_stats/accommodation_panel.csv | 4512 | 7 | 214979 | 09d60caa50a0 | 2026-06-12 |

@@ -19,6 +19,10 @@ Start here, in order:
   disclosure.
 - [`adr/`](adr/) — design decisions: 0001 (FTAS SEM + Shinkansen DiD as
   primary contribution), 0002 (retire the Likert pilot path).
+- [`national_data_integration_plan.md`](national_data_integration_plan.md) —
+  national supplementary data (JTA 宿泊旅行統計調査 accommodation panel as
+  behavioral DiD outcome, JR West ridership as first-stage evidence): what was
+  evaluated, what was dropped, pipeline status, and remaining steps.
 
 Generated summaries (rebuild via Makefile, do not hand-edit):
 

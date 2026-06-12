@@ -1,0 +1,11 @@
+{
+  "fetched_at_utc": "2026-06-12T08:12:37.859261+00:00",
+  "config": "/Users/andrewgreen/Repositories/america-fukui-tourism/config/national_data_sources.yaml",
+  "datasets": {
+    "accommodation_survey": {
+      "stats_code": "00601020",
+      "table_count": 32,
+      "tables": {}
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "fetched_at_utc": "2026-06-12T08:25:43.409465+00:00",
+  "config": "/Users/andrewgreen/Repositories/america-fukui-tourism/config/national_data_sources.yaml",
+  "sources": {
+    "jta_accommodation_2018_confirmed": {
+      "url": "https://www.mlit.go.jp/kankocho/content/001295984.xlsx",
+      "filename": "jta_accommodation_2018_confirmed.xlsx",
+      "description": "宿泊旅行統計調査 2018 Jan–Dec confirmed values — pre-COVID parallel-trends baseline",
+      "bytes": 2808021,
+      "sha256": "6cc34cd9c32adc4b731932e3450ff649016a5837495ae7b945e7cd492a4b9bd0"
+    },
+    "jta_accommodation_2019_confirmed": {
+      "url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001350484.xlsx",
+      "filename": "jta_accommodation_2019_confirmed.xlsx",
+      "description": "宿泊旅行統計調査 2019 Jan–Dec confirmed values — pre-COVID parallel-trends baseline",
+      "bytes": 2808059,
+      "sha256": "8df490e6576dead2503bd07451eeeee8bc9527473e1bd37263fbf60d3b01bfb3"
+    },
+    "jta_accommodation_2020_confirmed": {
+      "url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001411547.xlsx",
+      "filename": "jta_accommodation_2020_confirmed.xlsx",
+      "description": "宿泊旅行統計調査 2020 Jan–Dec confirmed values — COVID regime",
+      "bytes": 2669033,
+      "sha256": "5765a5eb2a31dee2514a4d966163536d407774704125cb9accd5553acec7ca4a"
+    },
+    "jta_accommodation_2021_confirmed": {
+      "url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001488438.xlsx",
+      "filename": "jta_accommodation_2021_confirmed.xlsx",
+      "description": "宿泊旅行統計調査 2021 Jan–Dec confirmed values — COVID regime",
+      "bytes": 2626821,
+      "sha256": "253bcd5a277b37de89aa80da5c9dadd1d31caa3e18783c44d3ed8106a333ea3d"
+    },
+    "jta_accommodation_2022_confirmed": {
+      "url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001616676.xlsx",
+      "filename": "jta_accommodation_2022_confirmed.xlsx",
+      "description": "宿泊旅行統計調査 2022 Jan–Dec confirmed values (年の確定値)",
+      "bytes": 2654270,
+      "sha256": "189f9d7596baa9470f530208e665eda829748acd88024bab51ead77687f78503"
+    },
+    "jta_accommodation_2023_confirmed": {
+      "url": "https://www.mlit.go.jp/kankocho/content/001750679.xlsx",
+      "filename": "jta_accommodation_2023_confirmed.xlsx",
+      "description": "宿泊旅行統計調査 2023 Jan–Dec confirmed values (年の確定値)",
+      "bytes": 2720634,
+      "sha256": "a41a62a7e9c82dae287cca708c3f1bac20800f7e0d17e679a32fa889d8011455"
+    },
+    "jta_accommodation_2024_confirmed": {
+      "url": "https://www.mlit.go.jp/kankocho/content/001905499.xlsx",
+      "filename": "jta_accommodation_2024_confirmed.xlsx",
+      "description": "宿泊旅行統計調査 2024 Jan–Dec confirmed values — Shinkansen opening year",
+      "bytes": 2527345,
+      "sha256": "2e1adf538381144c4c7428a8ec8dd76c8460d2067a85a043d234ea69eece10fe"
+    },
+    "jta_accommodation_2025_preliminary": {
+      "url": "https://www.mlit.go.jp/kankocho/content/001984048.xlsx",
+      "filename": "jta_accommodation_2025_preliminary.xlsx",
+      "description": "宿泊旅行統計調査 2025 Jan–Dec annual preliminary (年間の速報値)",
+      "bytes": 2514450,
+      "sha256": "5f3cd89b1c90d913aa9e00abbb0658bac45099438b29375deef6220a9aeb871c"
+    },
+    "jta_accommodation_timeseries": {
+      "url": "https://www.mlit.go.jp/kankocho/content/002002831.xlsx",
+      "filename": "jta_accommodation_timeseries.xlsx",
+      "description": "宿泊旅行統計調査 推移表 — long-run monthly time-series summary",
+      "bytes": 1319629,
+      "sha256": "c866c06362cbe88ac5241280857427337b9ace71ce6ac42f69394f124fc644bb"
+    },
+    "jr_west_hokuriku_first_year": {
+      "url": "https://www.westjr.co.jp/press/article/items/250317_00_press_hokurikushinkansen_goriyoujyoukyou.pdf",
+      "filename": "jrwest_hokuriku_ridership_2024-03_2025-03.pdf",
+      "description": "Hokuriku Shinkansen Kanazawa–Tsuruga boardings, first 12 months post-opening",
+      "bytes": 489645,
+      "sha256": "9b07535886f89c7512a7b15bf42afc196e3d37bd44d48e54bb8debbd80a11cc5"
+    },
+    "jr_west_transport_density_fy2024": {
+      "url": "https://www.westjr.co.jp/press/article/items/250806_00_press_yusoumitsudo_1.pdf",
+      "filename": "jrwest_transport_density_fy2024.pdf",
+      "description": "FY2024 section-level average transport density (区間別平均通過人員)",
+      "bytes": 843928,
+      "sha256": "f6b889b0048ce11aa79142b4ca07fc86bed765f1e1cf191164c0644287e0f593"
+    }
+  }
+}

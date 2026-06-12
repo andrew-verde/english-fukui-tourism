@@ -4,6 +4,7 @@ PYTHON = .venv/bin/python3
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
         build-ftas multilingual-reviews chinese-social stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve \
         gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit data-manifest \
+        fetch-estat fetch-estat-list fetch-national-direct accommodation-panel \
         hokuriku-did-event-study sem-ftas nudge-ranking
 
 help:
@@ -43,6 +44,12 @@ help:
 	@echo "  make fetch-hokuriku-merged   Download merged tri-prefecture survey microdata (CC-BY)"
 	@echo "  make hokuriku-did-audit      Run DiD feasibility audit + parallel-trends plot"
 	@echo "  make hokuriku-did-event-study Thesis DiD: event study, robustness, clustered SEs"
+	@echo ""
+	@echo "National supplementary data (JNTO/JTA/MLIT/JR West):"
+	@echo "  make fetch-estat             Pull e-Stat datasets (needs ESTAT_APP_ID env var)"
+	@echo "  make fetch-estat-list        Discovery only: list available e-Stat tables"
+	@echo "  make fetch-national-direct   Download JTA accommodation Excels + JR West press PDFs"
+	@echo "  make accommodation-panel     Build prefecture-month overnight-stay panel CSV"
 	@echo ""
 	@echo "SEM + nudge ranking (primary thesis analyses):"
 	@echo "  make sem-ftas                Two-stage SEM on deduplicated FTAS respondents"
@@ -138,6 +145,18 @@ gold-set-eval:
 
 fetch-hokuriku-merged:
 	$(PYTHON) scripts/fetch_hokuriku_merged.py
+
+fetch-estat:
+	$(PYTHON) scripts/fetch_estat_data.py
+
+fetch-estat-list:
+	$(PYTHON) scripts/fetch_estat_data.py --list-only
+
+fetch-national-direct:
+	$(PYTHON) scripts/fetch_national_direct.py
+
+accommodation-panel:
+	$(PYTHON) scripts/build_accommodation_panel.py
 
 hokuriku-did-audit:
 	$(PYTHON) scripts/hokuriku_did_audit.py

@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-12T00:41:57.769350+00:00",
-  "n_files": 47,
+  "generated": "2026-06-12T08:33:44.629201+00:00",
+  "n_files": 48,
   "files": [
     {
       "path": "output/checkpoints/google_fukui.json",
@@ -1433,6 +1433,22 @@
         "itinerary_fit_time_cost",
         "accessibility_mobility",
         "food_amenities_gap"
+      ]
+    },
+    {
+      "path": "output/national_stats/accommodation_panel.csv",
+      "bytes": 214979,
+      "modified": "2026-06-12T08:25:48.185180+00:00",
+      "sha256": "09d60caa50a055652fdaac66bec47c6d30c85c336f8bc4aec8d91d5060624304",
+      "rows": 4512,
+      "columns": [
+        "pref_code",
+        "pref_name",
+        "year",
+        "month",
+        "total_stays",
+        "foreign_stays_10plus",
+        "vintage"
       ]
     }
   ]
