@@ -150,3 +150,28 @@ corpus recall requires prevalence weighting.
    merged file (§D).
 5. Self-selection into free text bounds all Stage 2 / cross-prefecture friction
    statements to the reporter population (§C).
+
+## I. Provenance and reporting integrity
+
+**AI-assisted prose vs code-derived findings.** Every quantitative claim in
+this thesis is code-derived: it regenerates from a Makefile target and is
+traced in `docs/source_ledger.md` (number → command → script → input →
+artifact). Prose — framing, literature connections, interpretation — was
+drafted with AI assistance and reviewed by the author; it never originates
+numbers. The dividing rule: if a sentence contains a number, the number must
+have a ledger row; if it cannot, it is labeled **estimated** or **hypothesis**
+per the ledger's status vocabulary (verified / simulated-demo / estimated /
+hypothesis).
+
+**Guards.** `tests/test_report_provenance.py` fails CI when a document in
+`docs/` claims significance without naming a reproduction path, and when the
+source ledger drops a primary analysis. `make data-manifest` records row
+counts, schemas, and hashes for every key dataset (`output/data_manifest.*`)
+so results audit without sharing row-level data. Scrape checkpoints are
+backup-protected: `scripts/checkpoint_guard.py` refuses empty or sharply
+smaller overwrites (override requires `FUKUI_ALLOW_SHRINK=1`).
+
+**Demo-data quarantine.** Anything generated from scaffold/placeholder data
+(currently the Chinese social media layer) is marked **simulated/demo** in the
+ledger and may not be cited as an empirical finding in advisor-facing
+documents.

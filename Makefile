@@ -3,7 +3,7 @@ PYTHON = .venv/bin/python3
 .PHONY: help friction-all deep-review-all official-all fetch-fukui-data fetch-comparison-data fetch-google-maps-reviews fetch-metadata \
         fetch-official-fukui build-dataset build-mentions tag-codes summarize \
         build-ftas multilingual-reviews chinese-social stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve \
-        gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit \
+        gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit data-manifest \
         hokuriku-did-event-study sem-ftas nudge-ranking
 
 help:
@@ -33,6 +33,7 @@ help:
 	@echo "  make stats-official          Run official FTAS statistical validation"
 	@echo "  make synth-official          Generate official-data statistical summary"
 	@echo "  make validate-japanese-tags  Generate manual validation sample for Japanese friction tags"
+	@echo "  make data-manifest           Generate row-count/schema/hash manifest for key datasets"
 	@echo ""
 	@echo "Gold-set tagger evaluation:"
 	@echo "  make gold-set                Build blind coder sheets + key in output/gold_set/"
@@ -116,6 +117,9 @@ multilingual-reviews:
 
 chinese-social:
 	$(PYTHON) scripts/build_chinese_social_media_dataset.py
+
+data-manifest:
+	$(PYTHON) scripts/generate_data_manifest.py
 
 stats-official:
 	$(PYTHON) scripts/statistical_validation_official.py
