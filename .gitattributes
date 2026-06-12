@@ -1,3 +1,0 @@
-output/official_fukui/ftas_survey_normalized.csv filter=lfs diff=lfs merge=lfs -text
-output/official_fukui/ftas_tagged_survey.csv filter=lfs diff=lfs merge=lfs -text
-output/official_fukui/raw/ftas_survey_all.csv filter=lfs diff=lfs merge=lfs -text
