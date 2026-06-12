@@ -29,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from dotenv import load_dotenv
 load_dotenv()
 
+from scripts.checkpoint_guard import guarded_save_json
 from scripts.fetch_comparison_city_data import KANAZAWA_POIS, TOYAMA_POIS
 from scripts.pull import FUKUI_POIS
 from src.scrapers.outscraper_reviews import (
@@ -71,9 +72,9 @@ def _load(path: Path, default):
 
 
 def _save(path: Path, data):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False, default=str)
+    # Backup + shrink refusal: a partial API run must not clobber a good
+    # checkpoint (see scripts/checkpoint_guard.py for the policy).
+    guarded_save_json(path, data, ensure_ascii=False, default=str)
 
 
 def _checkpoint_reviews(poi_entry) -> list:

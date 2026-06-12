@@ -35,6 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from dotenv import load_dotenv
 load_dotenv()
 
+from scripts.checkpoint_guard import guarded_save_json
 from src.scrapers.google_maps_scraper import GoogleMapsScraper
 from src.utils.logger import setup_logger
 
@@ -131,9 +132,9 @@ def _load(path: Path, default):
 
 
 def _save(path: Path, data):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2, default=str)
+    # Backup + shrink refusal: a partial API run must not clobber a good
+    # checkpoint (see scripts/checkpoint_guard.py for the policy).
+    guarded_save_json(path, data, default=str)
 
 
 def fetch_city(city_key: str, force: bool = False) -> int:
