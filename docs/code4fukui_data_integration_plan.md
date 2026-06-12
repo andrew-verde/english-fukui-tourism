@@ -1,5 +1,19 @@
 # Code for Fukui Data Integration Plan
 
+> **Status: superseded (2026-06-12).** Kept as a historical record of the
+> 2026-05-28 planning state. The implementation path (items 1–5) and Section A
+> were executed and now live in the `official-all` pipeline. Section C's
+> interrupted-time-series design was superseded by the stronger Shinkansen
+> difference-in-differences event study (`make hokuriku-did-event-study`,
+> see `docs/results_overview.md` §1), enabled by merged tri-prefecture
+> microdata unavailable when this was written. Sections B and D were dropped
+> when the English-review layer was descoped to side-project status (June
+> 2026 restructure): both are ecological and underpowered at n=81 Fukui
+> reviews. The plan's framing of FTAS as "triangulation/context" is inverted
+> relative to the current thesis, where FTAS SEM + DiD are the primary
+> analyses. The "Thesis-Safe Interpretation" constraints remain in force via
+> `CONTEXT.md` and `docs/methods_appendix.md`.
+
 This note identifies Code for Fukui datasets that can extend the English-language Google review analysis. The goal is to add official context without changing the current thesis constraints: reviewers are English-language reviewers, not assumed to be American or North American; review-level tests remain one review per row; friction summaries remain sentence-level.
 
 ## Best Sources
