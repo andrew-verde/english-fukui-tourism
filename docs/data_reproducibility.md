@@ -19,6 +19,50 @@ make fetch-official-fukui
 make build-ftas
 ```
 
+### Pinned FTAS vintage (committed thesis numbers)
+
+The Code4Fukui repositories are **living datasets** — new survey responses are
+appended continuously. All committed official-analysis artifacts
+(`statistical_results_official.json`, `output/sem/`, the README data snapshot,
+and the source-ledger rows) are pinned to the **2026-05-28 fetch vintage**:
+95,422 Fukui respondent rows, 50,285 unique members after dedup, 121,064
+combined Fukui + Ishikawa rows. The per-file SHA-256 hashes of that vintage are
+recorded in the historical source manifest:
+
+```bash
+git show e1f8e31:output/official_fukui/source_manifest.json
+```
+
+A fresh `make fetch-official-fukui` downloads the **current** upstream vintage
+and will NOT reproduce the committed artifacts byte-for-byte (checked
+2026-06-13: 96,291 Fukui rows; per-code comparison showed no rate change above
+10% and no BH-corrected significance flips, so conclusions hold — but the
+numbers drift).
+
+**You do not need the pinned dataset to read or cite the published analysis** —
+the committed artifacts in Git are the citable results on every machine.
+The pinned data is needed only to *re-run* the official-data analyses and
+match the committed numbers exactly. To recover it on any clone (requires
+`git-lfs`; the objects live in this repo's LFS history at commit `c828346`):
+
+```bash
+git lfs fetch origin c828346
+for f in raw/ftas_survey_all ftas_survey_normalized ftas_tagged_survey; do
+  git cat-file -p c828346:output/official_fukui/$f.csv \
+    | git lfs smudge > output/official_fukui/$f.csv
+done
+```
+
+The Ishikawa raw files of that vintage were never stored in this repo; they are
+pinned by SHA-256 + URL in the historical manifest above. Recover a matching
+copy from the code4fukui/ishikawa-kanko-survey git history (verify the hash),
+then `make build-ftas` deterministically rebuilds
+`official_surveys_tagged_combined.csv` from the pinned raws.
+
+**Rule:** never overwrite the committed official-analysis artifacts from a
+fresh (newer-vintage) fetch unless the README data snapshot and the source
+ledger are updated to the new vintage in the same commit.
+
 `make build-ftas` regenerates:
 
 - `output/official_fukui/ftas_survey_normalized.csv`

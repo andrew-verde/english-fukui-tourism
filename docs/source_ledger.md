@@ -13,6 +13,12 @@ Generation dates and dataset hashes live in `output/data_manifest.json`
 (`make data-manifest`) — regenerate it after any pipeline run rather than
 hand-editing dates here.
 
+**FTAS vintage pin:** every FTAS-derived row below (dedup counts, inconvenience
+rate, SEM, nudge ranking, prefecture comparisons) reflects the pinned
+2026-05-28 upstream fetch (95,422 Fukui rows). Upstream Code4Fukui data is
+living; recreation and drift rules are in
+`docs/data_reproducibility.md` → "Pinned FTAS vintage".
+
 ## Primary thesis analyses
 
 | Number | Claim | Status | Command | Script | Input | Output artifact |
