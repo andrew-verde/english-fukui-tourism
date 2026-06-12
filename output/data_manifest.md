@@ -1,6 +1,6 @@
 # Data Manifest — aggregate validation artifacts
 
-Generated 2026-06-12T15:11:13.326741+00:00 by `scripts/generate_data_manifest.py` (`make data-manifest`). Row-level data stays local; this records row counts, schemas, and hashes so results can be audited without the rows.
+Generated 2026-06-12T15:47:45.299947+00:00 by `scripts/generate_data_manifest.py` (`make data-manifest`). Row-level data stays local; this records row counts, schemas, and hashes so results can be audited without the rows.
 
 | File | Rows | Cols | Bytes | sha256 (12) | Modified |
 |---|---|---|---|---|---|
@@ -10,7 +10,10 @@ Generated 2026-06-12T15:11:13.326741+00:00 by `scripts/generate_data_manifest.py
 | output/official_fukui/ftas_friction_by_transport_mode.csv | 132 | 5 | 8297 | 4f2e5f8ea405 | 2026-06-12 |
 | output/official_fukui/ftas_survey_normalized.csv | 95422 | 104 | 158993552 | b24de45662b5 | 2026-06-12 |
 | output/official_fukui/ftas_tagged_survey.csv | 95422 | 118 | 166896995 | f1b357f2431a | 2026-06-12 |
+| output/official_fukui/ishikawa_survey_normalized.csv | 25642 | 63 | 27133829 | f5b8be0af30c | 2026-06-12 |
+| output/official_fukui/ishikawa_tagged_survey.csv | 25642 | 77 | 29281546 | 638e14d9ceaa | 2026-06-12 |
 | output/official_fukui/official_prefecture_friction_comparison.csv | 12 | 10 | 1861 | 749e1f7cd343 | 2026-06-12 |
+| output/official_fukui/official_surveys_tagged_combined.csv | 121064 | 127 | 201878042 | 39fe4877d5e4 | 2026-06-12 |
 | output/hokuriku_merged/did_estimates.csv | 4 | 10 | 810 | 4475c044777e | 2026-06-12 |
 | output/hokuriku_merged/did_event_study_coefficients.csv | 136 | 6 | 13944 | c40d6b077694 | 2026-06-12 |
 | output/hokuriku_merged/did_monthly_means.csv | 73 | 7 | 6934 | 5d7759d67c85 | 2026-06-12 |
