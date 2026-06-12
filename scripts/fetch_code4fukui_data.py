@@ -73,6 +73,7 @@ def main() -> int:
             status = "downloaded"
 
         manifest["sources"][key] = {
+            "upstream_repo": attrs.get("upstream_repo", ""),
             "url": url,
             "description": attrs.get("description", ""),
             "path": str(out_path.relative_to(ROOT)),
