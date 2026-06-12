@@ -340,9 +340,28 @@ Statistical outputs in `output/`:
 
 Official Code for Fukui / FTAS outputs in `output/official_fukui/`:
 
+Raw official survey CSVs are not vendored in this repository. The source of
+truth is the public Code for Fukui repositories and their GitHub Pages CSV
+endpoints:
+
+- <https://github.com/code4fukui/fukui-kanko-survey>
+- <https://github.com/code4fukui/fukui-kanko-reservation>
+- <https://github.com/code4fukui/ishikawa-kanko-survey>
+
+To recreate the official-data analysis from a fresh clone:
+
+```bash
+make fetch-official-fukui build-ftas stats-official synth-official
+```
+
+The fetch step reads `config/official_fukui_sources.yaml`, writes local raw
+copies under `output/official_fukui/raw/`, and records source URLs, upstream
+repositories, byte counts, and SHA-256 hashes in
+`output/official_fukui/source_manifest.json`.
+
 | File | Description |
 |------|-------------|
-| `raw/*.csv` | Downloaded public Code for Fukui CSVs |
+| `raw/*.csv` | Local fetched copies of public Code for Fukui CSVs (gitignored; recreate with `make fetch-official-fukui`) |
 | `source_manifest.json` | Source URLs, fetch timestamp, byte counts, and SHA-256 hashes |
 | `ftas_survey_normalized.csv` | Generated locally; normalized respondent-level FTAS survey dataset (gitignored row-level data) |
 | `ftas_tagged_survey.csv` | Generated locally; FTAS rows tagged with Japanese friction codes mapped to the English codebook (gitignored row-level data) |
