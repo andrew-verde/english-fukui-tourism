@@ -130,7 +130,6 @@ data/processed/*.json
 output/*.png
 output/*.pdf
 output/*.html
-output/checkpoints/
 output/friction_analysis/reviews_unified.csv
 output/friction_analysis/mentions_dataset.csv
 output/friction_analysis/tagged_reviews.csv

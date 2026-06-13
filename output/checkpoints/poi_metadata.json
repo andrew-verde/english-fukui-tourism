@@ -1,0 +1,850 @@
+{
+  "ChIJzYo4YsSX-F8R6Sl4_CeuUyw": {
+    "name": "Daihonzan Eiheiji",
+    "types": [
+      "buddhist_temple",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJedhrVPOa-F8R4bRGdkr_0VU": {
+    "name": "Fukui Prefectural Dinosaur Museum",
+    "types": [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJ8w9fldvl-F8RxirqCy78VTs": {
+    "name": "T\u014djinb\u014d",
+    "types": [
+      "scenic_spot",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJq58H-fG--F8R9Kkg78bb82M": {
+    "name": "Fukui Castle Ruins",
+    "types": [
+      "historical_landmark",
+      "tourist_attraction",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJe6rxXfqb-F8RTntGomrpyqM": {
+    "name": "Katsuyama Castle Museum",
+    "types": [
+      "tourist_attraction",
+      "observation_deck",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJeXrpXVzr-F8RyAOcr44yWRM": {
+    "name": "Maruoka Castle",
+    "types": [
+      "castle",
+      "tourist_attraction",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJURrLAcCb-F8R7ve1owwGkFQ": {
+    "name": "Echizen Daibutsu",
+    "types": [
+      "buddhist_temple",
+      "tourist_attraction",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJ6bzBzd_6AWARLbfcyIwSzXc": {
+    "name": "Kehi-jingu Shrine",
+    "types": [
+      "shinto_shrine",
+      "tourist_attraction",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJbwogDLK_-F8RXM2xGQqH-2o": {
+    "name": "Fukui Prefectural Museum of Cultural History",
+    "types": [
+      "history_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJs9voyKmk-F8RhYo0Lt2Qj3A": {
+    "name": "Ichij\u014ddani Asakura-shi iseki-ato Ruins",
+    "types": [
+      "historical_landmark",
+      "tourist_attraction",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJy-L52va--F8R5MckLwfxx5Q": {
+    "name": "Y\u014dk\u014dkan Garden",
+    "types": [
+      "garden",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJeWyQ4nSc-F8RqsEstra2QXw": {
+    "name": "Heisenji Hakusan Shrine",
+    "types": [
+      "shinto_shrine",
+      "tourist_attraction",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJ159CBHmf-F8RGt75KkRKKAk": {
+    "name": "Echizen Ono Castle",
+    "types": [
+      "castle",
+      "tourist_attraction",
+      "museum",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJyRr6CB77AWARVIREzBtLfVU": {
+    "name": "Tsuruga Red Brick Warehouse",
+    "types": [
+      "tourist_attraction",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJtQ_j9GHQAWARZPAuYfmDytk": {
+    "name": "Miketsukuni Wakasa Obama Food Culture Museum",
+    "types": [
+      "museum",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJ5c94-6zXAWAR5ZrkkS2KW0g": {
+    "name": "Sotomo Arch",
+    "types": [
+      "scenic_spot",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJO1db2kTp-F8RTKHBtCySaCQ": {
+    "name": "Mikuniminato Market",
+    "types": [
+      "market",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "food_dining"
+  },
+  "ChIJcVpMcTbk-F8R7WqKe882_BU": {
+    "name": "O Island",
+    "types": [
+      "island",
+      "natural_feature",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJd3z-VFWy-F8RXtU_oQ0TzjI": {
+    "name": "Echizen Pottery Village",
+    "types": [
+      "art_gallery",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJ1XGJrSyp-F8ReW1vYGvz7Kg": {
+    "name": "Echizen Washi Village",
+    "types": [
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJU-BHNSiw-F8RqNCAmMgkjnk": {
+    "name": "Nishiyama Park",
+    "types": [
+      "park",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJj1CFKfG--F8R8vgl-a2AM58": {
+    "name": "Fukui City History Museum",
+    "types": [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJAY1tXQ6_-F8RepRYxjSXPVM": {
+    "name": "Asuwa-gawa river sakura namiki",
+    "types": [
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "other"
+  },
+  "ChIJGQMTWaq_-F8RnQQCzMmkvTI": {
+    "name": "Fukui Fine Arts Museum",
+    "types": [
+      "art_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJyzRhvchM_18RsCNHUyjs-OA": {
+    "name": "Echizen Crab Museum",
+    "types": [
+      "museum",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJ06rM1WCp-F8RmSESUdRM5bA": {
+    "name": "Takefu Knife Village",
+    "types": [
+      "hardware_store",
+      "building_materials_store",
+      "furniture_store",
+      "home_improvement_store",
+      "home_goods_store",
+      "store",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "market_shopping"
+  },
+  "ChIJTdM5_QTFAWARmbAvQdbkIpY": {
+    "name": "Jinguji Temple",
+    "types": [
+      "buddhist_temple",
+      "tourist_attraction",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJ-eVDPFPv-F8RIMNwFy2TsIk": {
+    "name": "Sakai City Museum",
+    "types": [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJBVmy-YMz-F8R5PID8D17Cpc": {
+    "name": "Kenroku-en",
+    "types": [
+      "garden",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJsfC6oXQz-F8RdA1qXiF6jLs": {
+    "name": "Higashi Chaya District",
+    "types": [
+      "tourist_attraction",
+      "historical_landmark",
+      "cultural_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJlUfxPYIz-F8RSh7ml54YJ6g": {
+    "name": "Kanazawa Castle Park",
+    "types": [
+      "park",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJAbhT24Az-F8RwWhli9sBKlE": {
+    "name": "Kanazawa 21st Century Museum of Contemporary Art",
+    "types": [
+      "art_museum",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJhycOJtYz-F8RO54LaTG6_p0": {
+    "name": "Nagamachi Samurai District",
+    "types": [
+      "historical_landmark",
+      "tourist_attraction",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJuYLrXHs0-F8RGY1Ld3voBB4": {
+    "name": "Myouryuji (Ninja Temple)",
+    "types": [
+      "buddhist_temple",
+      "tourist_attraction",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJ0xPT93Az-F8RpTSlbHwo9L8": {
+    "name": "Omicho Market",
+    "types": [
+      "market",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "market_shopping"
+  },
+  "ChIJwQG-F3kz-F8RAfWyK1svniU": {
+    "name": "Oyama Shrine",
+    "types": [
+      "shinto_shrine",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJD5ZW73w0-F8RZelpmCV1f3A": {
+    "name": "Nishi Chaya District",
+    "types": [
+      "tourist_attraction",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJgS4NHYEz-F8RPmCial-GITs": {
+    "name": "Kanazawa Noh Museum",
+    "types": [
+      "art_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJR-yGmXMz-F8Rf07-P4u1PUM": {
+    "name": "Kazuemachi Chaya District",
+    "types": [
+      "tourist_attraction",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJBRk3CXg0-F8RYaKpk9GoiiE": {
+    "name": "D.T. Suzuki Museum",
+    "types": [
+      "museum",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJtUWqNuH5-F8ROI9TCmuHhl8": {
+    "name": "Kutaniyaki Art Museum",
+    "types": [
+      "art_museum",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJDeyz4IYz-F8R8VbGywT27Js": {
+    "name": "Ishikawa Prefectural Museum of Art",
+    "types": [
+      "art_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJ1xT_pYcz-F8RgqRrR4Z1LiA": {
+    "name": "Kaga Honda Museum",
+    "types": [
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJQ1TRt4cz-F8RxkcdIAmz2QU": {
+    "name": "Ishikawa Prefectural Museum of History",
+    "types": [
+      "history_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJF_AqPH4z-F8Rmtm1IKiShVQ": {
+    "name": "Nomura-ke Samurai Heritage Residence",
+    "types": [
+      "tourist_attraction",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJPQy5s3gz-F8RjGATOrCygR0": {
+    "name": "Gyokusen-inmaru Garden",
+    "types": [
+      "garden",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJm2u_NXMz-F8RJaruTAOl7jA": {
+    "name": "Kanazawa Yasue Gold Leaf Museum",
+    "types": [
+      "museum",
+      "tourist_attraction",
+      "art_museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJSeKdpoEz-F8RPG8oe2XfO64": {
+    "name": "Shiinoki Cultural Complex",
+    "types": [
+      "convention_center",
+      "event_venue",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ],
+    "poi_category": "other"
+  },
+  "ChIJ9Y4V-XMz-F8R56RKhcUjh3A": {
+    "name": "Kanazawa Phonograph Museum",
+    "types": [
+      "museum",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJtVQVn4Yz-F8RaJkTOYa7jEM": {
+    "name": "Seison-kaku",
+    "types": [
+      "historical_landmark",
+      "tourist_attraction",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJ7YLXnaLM-V8RzkOi9ORu4rU": {
+    "name": "Kanazawa Umimirai Library",
+    "types": [
+      "library",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ],
+    "poi_category": "other"
+  },
+  "ChIJYwWDHWoz-F8RfWIvAKx4jrk": {
+    "name": "Tsuzumi-mon Gate",
+    "types": [
+      "tourist_attraction",
+      "cultural_landmark",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJOwZINv4z-F8RXjTJOcSwxmQ": {
+    "name": "Asano River",
+    "types": [
+      "river",
+      "natural_feature",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJaXDAWoYz-F8RYQkN3fXamOc": {
+    "name": "Ishikawa Prefectural Noh Theater",
+    "types": [
+      "performing_arts_theater",
+      "event_venue",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "other"
+  },
+  "ChIJkaCpC8s1-F8R09iaW2yVLjo": {
+    "name": "Sai River walk - \u7280\u5ddd\u6563\u6b69",
+    "types": [
+      "park",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJL6IaPf3N-V8RKImZSxfqtec": {
+    "name": "Kanazawa Port Cruise Terminal",
+    "types": [
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "other"
+  },
+  "ChIJE0W4wG2R918R1fUdNadDRiQ": {
+    "name": "Toyama Castle",
+    "types": [
+      "castle",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJSU90xaaC918RX-cV13mPXwc": {
+    "name": "Toyama Glass Art Museum",
+    "types": [
+      "art_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJ2Uw_FA2a918RlHujq3H1RqM": {
+    "name": "Toyama Prefectural Museum of Art and Design",
+    "types": [
+      "art_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJMS4fl9rn918Rqf0clj2pZT8": {
+    "name": "Tateyama Kurobe Alpine Route - Transportation Division",
+    "types": [
+      "transportation_service",
+      "japanese_restaurant",
+      "hotel",
+      "lodging",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ],
+    "poi_category": "food_dining"
+  },
+  "ChIJJ5Pek-mC918Rtp9Gnp1DLw8": {
+    "name": "Zuiryu-ji",
+    "types": [
+      "buddhist_temple",
+      "tourist_attraction",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJ_dcc5NCD918RL3-PTE1M4No": {
+    "name": "Takaoka Great Buddha",
+    "types": [
+      "buddhist_temple",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJ0_Ew806d918RE66t3rTcOAc": {
+    "name": "Yamachosuji Historical Preservation District",
+    "types": [
+      "historical_landmark",
+      "tourist_attraction",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJB7x2Jpru918RXnjJFJb9E94": {
+    "name": "Kurobe Dam",
+    "types": [
+      "scenic_spot",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJ_4GLZEpy918R5OfEIJB61pA": {
+    "name": "Himi Fishing Port",
+    "types": [
+      "service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "other"
+  },
+  "ChIJN2-6f2-H918RkD-lf7ITWto": {
+    "name": "Tonami Tulip Park",
+    "types": [
+      "city_park",
+      "tourist_attraction",
+      "playground",
+      "park",
+      "farm",
+      "wholesaler",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJqYOBlcbt918RAKFDWjyt4cE": {
+    "name": "Tateyama Museum of Toyama (Exhibition Hall)",
+    "types": [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJMa0Onwya918R8_ZU2ohNK6I": {
+    "name": "Kansui Park",
+    "types": [
+      "park",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJ3-o6DtHwGGARL03njNlo6R0": {
+    "name": "Nihon Minka-en (Japan Open-Air Folk House Museum)",
+    "types": [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJ7-U1upqQ918RDqqFUKtm5F8": {
+    "name": "Takaoka City Museum of Art",
+    "types": [
+      "art_museum",
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJIUuL8oiQ918RRDSj4lSch5U": {
+    "name": "Toyama City Local History Museum (Toyama Castle)",
+    "types": [
+      "tourist_attraction",
+      "museum",
+      "historical_landmark",
+      "historical_place",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJW3Vr1ssk-F8R9h-kR8Y4WBY": {
+    "name": "Johana Hikiyama Kaikan",
+    "types": [
+      "museum",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "castle_historic"
+  },
+  "ChIJyW2OotyL918RPVVYzn9nT-I": {
+    "name": "Etch\u016b-Yatsuo Station",
+    "types": [
+      "train_station",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "other"
+  },
+  "ChIJT_33UVuQ918RERtDJD7kiGA": {
+    "name": "Toyama Science Museum",
+    "types": [
+      "tourist_attraction",
+      "museum",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  },
+  "ChIJV7DW5LSC918REkTibGgC9jU": {
+    "name": "Imizu Shrine",
+    "types": [
+      "shinto_shrine",
+      "tourist_attraction",
+      "place_of_worship",
+      "association_or_organization",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "temple_shrine"
+  },
+  "ChIJyXeQxdCP918RGy9yp1tYC-g": {
+    "name": "Botanic Gardens of Toyama",
+    "types": [
+      "tourist_attraction",
+      "botanical_garden",
+      "farm",
+      "wholesaler",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJ4yrNS-id918R_wPnq3LCJHY": {
+    "name": "Shinminato Kittokito Fisherman's Wharf",
+    "types": [
+      "market",
+      "food",
+      "store",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "food_dining"
+  },
+  "ChIJ17fJOWea918RkwzbZoHIDrY": {
+    "name": "Kurehayama Park Observatory",
+    "types": [
+      "observation_deck",
+      "tourist_attraction",
+      "hiking_area",
+      "sports_activity_location",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "nature_scenic"
+  },
+  "ChIJC6m5drqC918RsFud7Vw-RtU": {
+    "name": "Takaoka Mikurumayama Museum",
+    "types": [
+      "museum",
+      "tourist_attraction",
+      "point_of_interest",
+      "establishment"
+    ],
+    "poi_category": "museum_cultural"
+  }
+}
