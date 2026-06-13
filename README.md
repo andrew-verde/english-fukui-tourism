@@ -54,10 +54,22 @@ Steps 2–9 require no API calls once checkpoints exist.
 
 ```bash
 python -m venv .venv
-.venv/bin/pip install -r requirements.txt
+.venv/bin/pip install -r requirements.lock.txt   # pinned, reproducible (see note below)
 
-cp .env.example .env   # add your GOOGLE_API_KEY
+# Materialize secrets from 1Password (both machines have the `op` CLI).
+# .env.refs holds op:// references only — no secrets — and is committed.
+op signin
+op inject -i .env.refs -o .env
 ```
+
+`requirements.txt` lists loose minimum versions for fresh installs;
+`requirements.lock.txt` is the fully pinned set the committed results were
+produced with — use it to reproduce, regenerate it with
+`.venv/bin/pip freeze --exclude-editable > requirements.lock.txt` after an
+intentional upgrade.
+
+If you do not use 1Password, fall back to `cp .env.example .env` and fill in
+keys by hand.
 
 **Required for legacy Google Places collection and metadata:**
 
@@ -73,6 +85,29 @@ OUTSCRAPER_API_KEY=...          # Outscraper Google Maps Reviews API key
 GOOGLE_MAPS_DEEP_REVIEW_LIMIT=100
 GOOGLE_MAPS_DEEP_QUERY_MODE=place-id-or-search
 ```
+
+---
+
+## Working across two machines (MacBook + Fedora)
+
+This repo is developed on a MacBook and a Fedora box (`ssh fedora`). To keep
+them from diverging:
+
+- **Single source of truth is `origin/main`.** Large data files travel through
+  Git LFS, secrets through `.env.refs` + `op inject` — so a clean `git pull` on
+  either machine reproduces the full working state. Nothing important lives only
+  on one disk.
+- **Pull before you start, push when you stop.** Both machines are configured
+  with `git config pull.rebase true`, so `git pull` replays your local commits
+  on top of the remote instead of creating merge bubbles.
+- **One commit, one machine.** Don't leave uncommitted work on the machine
+  you're walking away from — it's invisible to the other one. Commit a WIP or
+  `git stash` and note it.
+- **`.venv/` is per-machine and not synced.** Recreate it from
+  `requirements.lock.txt`; never copy a venv between Linux and macOS.
+- **Generated `output/` artifacts:** the committed checkpoints are LFS-tracked;
+  everything refetchable is gitignored and rebuilt with the `make fetch-*`
+  targets, so don't `scp` data dirs around — pull and regenerate instead.
 
 ---
 
