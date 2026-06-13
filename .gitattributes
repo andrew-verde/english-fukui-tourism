@@ -5,3 +5,7 @@ output/official_fukui/raw/ishikawa_survey_kanazawa.csv filter=lfs diff=lfs merge
 output/official_fukui/raw/ishikawa_survey_kaga.csv filter=lfs diff=lfs merge=lfs -text
 output/official_fukui/raw/ishikawa_survey_noto.csv filter=lfs diff=lfs merge=lfs -text
 output/official_fukui/ishikawa_survey_normalized.csv filter=lfs diff=lfs merge=lfs -text
+output/official_fukui/raw/ftas_survey_all.csv filter=lfs diff=lfs merge=lfs -text
+output/official_fukui/ftas_survey_normalized.csv filter=lfs diff=lfs merge=lfs -text
+output/official_fukui/ftas_tagged_survey.csv filter=lfs diff=lfs merge=lfs -text
+output/hokuriku_merged/raw/merged_survey_*.csv filter=lfs diff=lfs merge=lfs -text

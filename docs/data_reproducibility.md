@@ -39,34 +39,18 @@ and will NOT reproduce the committed artifacts byte-for-byte (checked
 10% and no BH-corrected significance flips, so conclusions hold — but the
 numbers drift).
 
-**You do not need the pinned dataset to read or cite the published analysis** —
-the committed artifacts in Git are the citable results on every machine.
-The pinned data is needed only to *re-run* the official-data analyses and
-match the committed numbers exactly.
-
-What a fresh clone gets automatically (`git lfs pull`):
-
-- Ishikawa raw + derived CSVs and `official_surveys_tagged_combined.csv` are
-  LFS-tracked **at the pinned vintage** (verified against the manifest hashes),
-  so `make stats-official` reproduces the committed results out of the box
-  (reproduction check 2026-06-13: identical up to last-decimal float noise).
-
-What needs one extra step — the Fukui-side pinned files
-(`raw/ftas_survey_all.csv`, `ftas_survey_normalized.csv`,
-`ftas_tagged_survey.csv`) are not in the current tree; recover them from this
-repo's LFS history at commit `c828346` (needed for `make sem-ftas`,
-`make build-ftas`, and any FTAS-only rerun):
+**The full pinned dataset is LFS-tracked in the current tree** — Fukui raw +
+derived files, Ishikawa raw + derived files, and
+`official_surveys_tagged_combined.csv`, every one hash-verified against the
+committed source manifest. On any machine:
 
 ```bash
-git lfs fetch origin c828346
-for f in raw/ftas_survey_all ftas_survey_normalized ftas_tagged_survey; do
-  git cat-file -p c828346:output/official_fukui/$f.csv \
-    | git lfs smudge > output/official_fukui/$f.csv
-done
+git clone … && git lfs pull
 ```
 
-Verify `sha256sum output/official_fukui/raw/ftas_survey_all.csv` against the
-historical manifest before trusting a rerun.
+and `make stats-official`, `make sem-ftas`, and `make build-ftas` reproduce the
+committed results with no fetch step (reproduction checks 2026-06-13:
+identical up to last-decimal float noise).
 
 **Rule:** never overwrite the committed official-analysis artifacts from a
 fresh (newer-vintage) fetch unless the README data snapshot and the source
@@ -130,23 +114,18 @@ artifacts (`did_thesis_estimates.csv`, event-study outputs) and the committed
 the current upstream and will drift (checked 2026-06-13: +29–75 rows, estimate
 movement in the 3rd decimal, headline numbers unchanged at reported precision).
 
-To recover the pinned vintage on any machine, download from the upstream git
-history and verify against the committed manifest (verified 2026-06-13 —
-reproduces committed DiD estimates to ~1e-13):
+**The pinned raw files are LFS-tracked in the current tree**
+(`output/hokuriku_merged/raw/merged_survey_*.csv`, hash-verified against the
+committed manifest; DiD reproduction check 2026-06-13: committed estimates
+match to ~1e-13). `git lfs pull` is all a fresh machine needs — only run
+`make fetch-hokuriku-merged` when you *intend* to move to a newer vintage.
 
-```bash
-# Upstream commit matching the 2026-06-11 manifest:
-curl -sL https://raw.githubusercontent.com/hokuriku-inbound-kanko/opendata/72c29d7818e31971d4c3525a2c673131f1d85e73/output_merge/merged_survey_2026.csv \
-  -o output/hokuriku_merged/raw/merged_survey_2026.csv
-sha256sum output/hokuriku_merged/raw/merged_survey_2026.csv
-# must equal the sha256 in output/hokuriku_merged/source_manifest.json (2cc19c71e789…)
-```
-
-The 2023–2025 files are closed years and have not drifted (current upstream
-hashes still match the manifest), so only the current-year file needs the
-pinned download. The same rule applies as for FTAS: never overwrite committed
-DiD artifacts from a newer-vintage fetch unless the ledger and README are
-updated in the same commit.
+Fallback if the LFS copy is ever lost: the pinned current-year file also lives
+in upstream git history at commit `72c29d7818e31971d4c3525a2c673131f1d85e73`
+(`https://raw.githubusercontent.com/hokuriku-inbound-kanko/opendata/<commit>/output_merge/merged_survey_2026.csv`);
+verify sha256 against the committed manifest. The same rule applies as for
+FTAS: never overwrite committed DiD artifacts from a newer-vintage fetch unless
+the ledger and README are updated in the same commit.
 
 Then run DiD outputs:
 
