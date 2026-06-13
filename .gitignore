@@ -144,13 +144,12 @@ output/multilingual_review_analysis/japanese_reviews_tagged.csv
 output/multilingual_review_analysis/non_english_non_japanese_reviews.csv
 output/chinese_social_media_analysis/chinese_social_posts.csv
 output/chinese_social_media_analysis/tagged_chinese_social_posts.csv
-# Fukui FTAS raw/derived files are recreated (pinned vintage in LFS history,
-# see docs/data_reproducibility.md); Ishikawa + combined files are LFS-tracked
-# at the pinned vintage, so they are explicitly re-included below.
+# Official survey datasets are LFS-tracked at the pinned vintage for thesis
+# traceability (see docs/data_reproducibility.md). Only refetchable lookup
+# CSVs from the fetch script stay ignored.
 output/official_fukui/raw/*.csv
 !output/official_fukui/raw/ishikawa_survey_*.csv
-output/official_fukui/ftas_survey_normalized.csv
-output/official_fukui/ftas_tagged_survey.csv
+!output/official_fukui/raw/ftas_survey_all.csv
 output/official_fukui/japanese_friction_validation_sample.csv
 outputs/
 experiments/nudge-pilot/exports/
@@ -184,8 +183,10 @@ AGENTS.md
 credentials.json
 config/credentials.json
 
-# Hokuriku merged microdata raw downloads (refetch via scripts/fetch_hokuriku_merged.py)
-output/hokuriku_merged/raw/
+# Hokuriku merged microdata raw files are LFS-tracked at the pinned vintage
+# (see docs/data_reproducibility.md); only non-survey droppings stay ignored.
+output/hokuriku_merged/raw/*
+!output/hokuriku_merged/raw/merged_survey_*.csv
 
 # National-stats raw downloads (refetch via scripts/fetch_national_direct.py / fetch_estat_data.py)
 output/national_stats/raw/
