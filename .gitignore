@@ -130,17 +130,11 @@ data/processed/*.json
 output/*.png
 output/*.pdf
 output/*.html
-output/friction_analysis/reviews_unified.csv
-output/friction_analysis/mentions_dataset.csv
-output/friction_analysis/tagged_reviews.csv
-output/friction_analysis/tagged_mentions.csv
-output/friction_analysis/top_excerpts_by_code.csv
-output/friction_analysis/near_miss_sentences.csv
+# Google review row-level CSVs and checkpoints are tracked (pseudonymized
+# reviewer handles); stale ignore entries removed when they were committed.
 output/friction_analysis/presentation_figures/
-output/multilingual_review_analysis/reviews_multilingual.csv
-output/multilingual_review_analysis/tagged_reviews_multilingual.csv
-output/multilingual_review_analysis/japanese_reviews_tagged.csv
-output/multilingual_review_analysis/non_english_non_japanese_reviews.csv
+# Chinese social row-level data stays local: it carries real author handles
+# and source URLs from the companion tourism-data scrape.
 output/chinese_social_media_analysis/chinese_social_posts.csv
 output/chinese_social_media_analysis/tagged_chinese_social_posts.csv
 # Official survey datasets are LFS-tracked at the pinned vintage for thesis
