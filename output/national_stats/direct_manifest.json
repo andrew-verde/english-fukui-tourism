@@ -1,6 +1,6 @@
 {
   "fetched_at_utc": "2026-06-12T08:25:43.409465+00:00",
-  "config": "/Users/andrewgreen/Repositories/america-fukui-tourism/config/national_data_sources.yaml",
+  "config": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/config/national_data_sources.yaml",
   "sources": {
     "jta_accommodation_2018_confirmed": {
       "url": "https://www.mlit.go.jp/kankocho/content/001295984.xlsx",

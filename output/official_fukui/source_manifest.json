@@ -1,6 +1,6 @@
 {
   "fetched_at_utc": "2026-06-12T15:11:39.644131+00:00",
-  "config": "/Users/andrewgreen/Repositories/andrew-verde/english-fukui-tourism/config/official_fukui_sources.yaml",
+  "config": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/config/official_fukui_sources.yaml",
   "sources": {
     "ftas_survey_all": {
       "upstream_repo": "https://github.com/code4fukui/fukui-kanko-survey",

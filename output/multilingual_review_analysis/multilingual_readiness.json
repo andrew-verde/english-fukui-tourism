@@ -50,16 +50,16 @@
     "so": 1
   },
   "outputs": {
-    "reviews_multilingual": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/reviews_multilingual.csv",
-    "tagged_reviews_multilingual": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/tagged_reviews_multilingual.csv",
-    "language_summary_by_city": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/language_summary_by_city.csv",
-    "rating_summary_by_city_language_group": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/rating_summary_by_city_language_group.csv",
-    "japanese_reviews_tagged": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/japanese_reviews_tagged.csv",
-    "japanese_friction_by_city": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/japanese_friction_by_city.csv",
-    "japanese_english_friction_comparison": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/japanese_english_friction_comparison.csv",
-    "japanese_review_friction_analysis": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/japanese_review_friction_analysis.md",
-    "non_english_non_japanese_reviews": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/non_english_non_japanese_reviews.csv",
-    "other_foreign_language_summary_by_city": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/other_foreign_language_summary_by_city.csv",
-    "friction_by_city_language_group": "/Users/andrewgreen/Repositories/america-fukui-tourism/output/multilingual_review_analysis/friction_by_city_language_group.csv"
+    "reviews_multilingual": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/reviews_multilingual.csv",
+    "tagged_reviews_multilingual": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/tagged_reviews_multilingual.csv",
+    "language_summary_by_city": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/language_summary_by_city.csv",
+    "rating_summary_by_city_language_group": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/rating_summary_by_city_language_group.csv",
+    "japanese_reviews_tagged": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/japanese_reviews_tagged.csv",
+    "japanese_friction_by_city": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/japanese_friction_by_city.csv",
+    "japanese_english_friction_comparison": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/japanese_english_friction_comparison.csv",
+    "japanese_review_friction_analysis": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/japanese_review_friction_analysis.md",
+    "non_english_non_japanese_reviews": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/non_english_non_japanese_reviews.csv",
+    "other_foreign_language_summary_by_city": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/other_foreign_language_summary_by_city.csv",
+    "friction_by_city_language_group": "/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/multilingual_review_analysis/friction_by_city_language_group.csv"
   }
 }

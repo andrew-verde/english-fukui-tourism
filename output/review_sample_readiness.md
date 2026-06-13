@@ -1,6 +1,6 @@
 # Review Sample Readiness
 
-Input: `/Users/andrewgreen/Repositories/america-fukui-tourism/output/friction_analysis/reviews_unified.csv`
+Input: `/home/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/friction_analysis/reviews_unified.csv`
 Total reviews: **915**
 
 ## City Counts
