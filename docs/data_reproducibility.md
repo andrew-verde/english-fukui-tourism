@@ -70,26 +70,28 @@ Fukui-vs-Ishikawa comparison sections would be silently omitted.
 
 ## Google Review Checkpoints
 
-Local checkpoint JSON files live under `output/checkpoints/` and are gitignored
-because they contain row-level review payloads and collection cache data.
+The checkpoint JSONs (`output/checkpoints/google_{fukui,kanazawa,toyama}.json`,
+`poi_metadata.json`, collection manifest) are **tracked in Git** with
+pseudonymized reviewer handles (`Reviewer_XXXXXX`, author URLs stripped). They
+are the irreplaceable collection cache: a fresh API pull costs money and
+returns a *different* review sample, so these files are the pinned source of
+the entire review layer.
 
-Recreate them with API-backed collection:
+Reproduction checks (2026-06-13): `make build-dataset` and
+`make multilingual-reviews` regenerate the committed row-level CSVs from these
+checkpoints exactly — the only diff is the `collection_date` column, which the
+builders stamp with the run date. Treat `collection_date` churn in regenerated
+CSVs as noise; do not commit it without reason.
+
+Fresh API collection (only to *extend* the dataset, never to reproduce it):
 
 ```bash
 make fetch-fukui-data
 make fetch-comparison-data
 make fetch-metadata
-```
-
-For the deeper Outscraper collection path, set `OUTSCRAPER_API_KEY` and run:
-
-```bash
+# deeper Outscraper path: set OUTSCRAPER_API_KEY, then
 make fetch-google-maps-reviews
 ```
-
-The downstream CSV analysis snapshots are tracked in Git, so the current
-published analysis can be read without the checkpoints. Rebuilding those CSVs
-from scratch requires the checkpoint cache or a fresh API collection.
 
 ## Hokuriku Merged Survey Microdata
 

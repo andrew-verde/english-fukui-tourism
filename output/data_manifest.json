@@ -1,7 +1,52 @@
 {
-  "generated": "2026-06-12T15:47:45.299947+00:00",
-  "n_files": 50,
+  "generated": "2026-06-13T01:46:13.434528+00:00",
+  "n_files": 55,
   "files": [
+    {
+      "path": "output/checkpoints/google_fukui.json",
+      "bytes": 2631403,
+      "modified": "2026-06-13T01:40:15.051682+00:00",
+      "sha256": "e8a42e3f54feea68826b1adab1bf9104e9db2feafa69c7c9f475a541da180318",
+      "rows": 30,
+      "columns": null,
+      "note": "top-level keys counted as rows"
+    },
+    {
+      "path": "output/checkpoints/google_kanazawa.json",
+      "bytes": 2535608,
+      "modified": "2026-06-13T01:40:15.054682+00:00",
+      "sha256": "528ca3d20b09b72a36f976f5aa79926fc964eeff942a7929bd23bf4443aa72e2",
+      "rows": 30,
+      "columns": null,
+      "note": "top-level keys counted as rows"
+    },
+    {
+      "path": "output/checkpoints/google_maps_review_collection_manifest.json",
+      "bytes": 1317,
+      "modified": "2026-06-13T01:40:15.054682+00:00",
+      "sha256": "5e4842c8255311e35fdca3957dac4adbc69a9757e57d1ade56de2c2bb1b52ab1",
+      "rows": 6,
+      "columns": null,
+      "note": "top-level keys counted as rows"
+    },
+    {
+      "path": "output/checkpoints/google_toyama.json",
+      "bytes": 1982014,
+      "modified": "2026-06-13T01:40:15.057682+00:00",
+      "sha256": "161063f176cac36e3c88f03d155f8016268b52ded331e2b980c8c5e728c73a89",
+      "rows": 30,
+      "columns": null,
+      "note": "top-level keys counted as rows"
+    },
+    {
+      "path": "output/checkpoints/poi_metadata.json",
+      "bytes": 19999,
+      "modified": "2026-06-13T01:40:15.057682+00:00",
+      "sha256": "47602025b522a085035eae070ce4c77947f7ba5299c7f323e11b94fc8475edcd",
+      "rows": 79,
+      "columns": null,
+      "note": "top-level keys counted as rows"
+    },
     {
       "path": "output/official_fukui/english_vs_japanese_friction_comparison.csv",
       "bytes": 927,
@@ -635,7 +680,7 @@
     {
       "path": "output/hokuriku_merged/did_event_study_coefficients.csv",
       "bytes": 13944,
-      "modified": "2026-06-12T09:28:24.952451+00:00",
+      "modified": "2026-06-12T15:52:11.782315+00:00",
       "sha256": "c40d6b077694e6bb6ed1784c1ce2deeb69a212becccfdcd54265de3e92728f72",
       "rows": 136,
       "columns": [
@@ -666,7 +711,7 @@
     {
       "path": "output/hokuriku_merged/did_thesis_estimates.csv",
       "bytes": 2956,
-      "modified": "2026-06-12T09:28:24.952451+00:00",
+      "modified": "2026-06-12T15:52:11.782315+00:00",
       "sha256": "913f7779ccbb8d81212937c340fc20e972a7029d188a935b1187eb5daddfa830",
       "rows": 20,
       "columns": [
@@ -821,7 +866,7 @@
     {
       "path": "output/friction_analysis/reviews_unified.csv",
       "bytes": 461524,
-      "modified": "2026-06-12T15:03:42.423444+00:00",
+      "modified": "2026-06-13T01:44:52.079142+00:00",
       "sha256": "61aa14ac4a778041c2454b0d7b80c28201c193b3894695585bc23c2c9aabc012",
       "rows": 915,
       "columns": [
@@ -948,7 +993,7 @@
     {
       "path": "output/multilingual_review_analysis/friction_by_city_language_group.csv",
       "bytes": 5115,
-      "modified": "2026-06-12T09:28:24.952667+00:00",
+      "modified": "2026-06-13T01:43:44.121274+00:00",
       "sha256": "98a145c7ba11e0205ee263066ed817039c40586f406acb36cff54ae22c6ec180",
       "rows": 72,
       "columns": [
@@ -964,7 +1009,7 @@
     {
       "path": "output/multilingual_review_analysis/japanese_english_friction_comparison.csv",
       "bytes": 9056,
-      "modified": "2026-06-12T09:28:24.953671+00:00",
+      "modified": "2026-06-13T01:44:18.002208+00:00",
       "sha256": "a24de5aead1a9cf36791c149211e32f2b4ef9c65ae47b2f5fcf13d9283bb9bd4",
       "rows": 36,
       "columns": [
@@ -991,7 +1036,7 @@
     {
       "path": "output/multilingual_review_analysis/japanese_friction_by_city.csv",
       "bytes": 2642,
-      "modified": "2026-06-12T09:28:24.953671+00:00",
+      "modified": "2026-06-13T01:43:44.109162+00:00",
       "sha256": "6d75ee56d4dfa3eacffa3d64413fa7554977b7e2e9b30ff7b120ed7f8cee5254",
       "rows": 36,
       "columns": [
@@ -1007,7 +1052,7 @@
     {
       "path": "output/multilingual_review_analysis/japanese_reviews_tagged.csv",
       "bytes": 2808681,
-      "modified": "2026-06-12T15:03:42.433444+00:00",
+      "modified": "2026-06-13T01:44:18.010209+00:00",
       "sha256": "0709afebe6c5cc548e935ef32820a00cfbada9f46442ba82262dcb62998f3101",
       "rows": 4037,
       "columns": [
@@ -1055,7 +1100,7 @@
     {
       "path": "output/multilingual_review_analysis/language_summary_by_city.csv",
       "bytes": 146,
-      "modified": "2026-06-12T09:28:24.953671+00:00",
+      "modified": "2026-06-13T01:43:44.077275+00:00",
       "sha256": "4ea455d8cb61237fb6b35cde1c36b5a6c20b05d0194d583c20af725eca37f80b",
       "rows": 3,
       "columns": [
@@ -1069,7 +1114,7 @@
     {
       "path": "output/multilingual_review_analysis/non_english_non_japanese_reviews.csv",
       "bytes": 539680,
-      "modified": "2026-06-12T15:03:42.434444+00:00",
+      "modified": "2026-06-13T01:44:18.011209+00:00",
       "sha256": "d0459c9428e3c4453d892431e7ec53739cd54b48979878ce95361bb7be01bb3f",
       "rows": 1040,
       "columns": [
@@ -1095,7 +1140,7 @@
     {
       "path": "output/multilingual_review_analysis/other_foreign_language_summary_by_city.csv",
       "bytes": 316,
-      "modified": "2026-06-12T09:28:24.953671+00:00",
+      "modified": "2026-06-13T01:43:44.117336+00:00",
       "sha256": "8003c21c3418e9f47b3dbfd8d0d850a8a30eae4d8be4c2aca2ad8572600d5023",
       "rows": 3,
       "columns": [
@@ -1134,7 +1179,7 @@
     {
       "path": "output/multilingual_review_analysis/rating_summary_by_city_language_group.csv",
       "bytes": 886,
-      "modified": "2026-06-12T09:28:24.953671+00:00",
+      "modified": "2026-06-13T01:44:18.011209+00:00",
       "sha256": "b3f93e72c721fa2e164c3fd1e31ff3862fc33e7e7aadfbff850da470d8c93763",
       "rows": 12,
       "columns": [
@@ -1149,7 +1194,7 @@
     {
       "path": "output/multilingual_review_analysis/reviews_multilingual.csv",
       "bytes": 3366331,
-      "modified": "2026-06-12T15:03:42.440444+00:00",
+      "modified": "2026-06-13T01:44:18.018209+00:00",
       "sha256": "6bc06f34848954674506f6fefb84ffd9689b4cc9b2c90780fd5c8fc45eafaa56",
       "rows": 6036,
       "columns": [
@@ -1175,7 +1220,7 @@
     {
       "path": "output/multilingual_review_analysis/tagged_reviews_multilingual.csv",
       "bytes": 4122603,
-      "modified": "2026-06-12T15:03:42.447444+00:00",
+      "modified": "2026-06-13T01:44:18.025208+00:00",
       "sha256": "cca5c56d5a59ef0b582cf9eaea7c817cbc87aac6c2066658a3517affd1a6bcea",
       "rows": 6036,
       "columns": [
