@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fukui Friction Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SEM scenario framework</p>
+          <h1>Fukui friction nudge simulator</h1>
+        </div>
+        <div class="status-pill" id="dataStatus">Loading data</div>
+      </header>
+
+      <section class="notice" aria-label="claim boundary">
+        <strong>Boundary:</strong>
+        <span id="claimBoundary">
+          Scenario values are sensitivity calculations, not causal impact or revenue forecasts.
+        </span>
+      </section>
+
+      <section class="workspace">
+        <aside class="control-panel" aria-label="scenario controls">
+          <label class="field">
+            <span>Friction category</span>
+            <select id="frictionSelect"></select>
+          </label>
+
+          <div class="slider-field">
+            <div class="slider-label">
+              <label for="effectiveness">Assumed nudge effectiveness</label>
+              <output id="effectivenessValue">25%</output>
+            </div>
+            <input id="effectiveness" type="range" min="0" max="100" value="25" step="5">
+          </div>
+
+          <div class="slider-field">
+            <div class="slider-label">
+              <label for="reach">Reach among exposed visitors</label>
+              <output id="reachValue">50%</output>
+            </div>
+            <input id="reach" type="range" min="0" max="100" value="50" step="5">
+          </div>
+
+          <fieldset class="toggles">
+            <legend>Display</legend>
+            <label><input id="showAllCodes" type="checkbox" checked> Show all friction codes</label>
+            <label><input id="includeNonSignificant" type="checkbox" checked> Keep weak/noisy SEM paths visible</label>
+          </fieldset>
+        </aside>
+
+        <section class="results-panel" aria-label="scenario result">
+          <div class="metric-row">
+            <article class="metric">
+              <span>Estimated intention shift</span>
+              <strong id="intentionShift">0.0000</strong>
+              <small>standardized latent units</small>
+            </article>
+            <article class="metric">
+              <span>Recoverable ceiling</span>
+              <strong id="ceilingValue">0.0000</strong>
+              <small>before effectiveness and reach assumptions</small>
+            </article>
+            <article class="metric">
+              <span>Reporter prevalence</span>
+              <strong id="prevalenceValue">0.0%</strong>
+              <small>among friction reporters with text</small>
+            </article>
+          </div>
+
+          <div class="detail-grid">
+            <article class="detail">
+              <h2 id="frictionTitle">Friction category</h2>
+              <dl>
+                <div><dt>Journey stage</dt><dd id="journeyStage">-</dd></div>
+                <div><dt>Nudge type</dt><dd id="nudgeType">-</dd></div>
+                <div><dt>SEM path</dt><dd id="semPath">-</dd></div>
+                <div><dt>Tagged reporters</dt><dd id="reporterCount">-</dd></div>
+              </dl>
+            </article>
+
+            <article class="detail">
+              <h2>Candidate intervention</h2>
+              <p id="interventionText"></p>
+            </article>
+          </div>
+
+          <section class="rank-section" aria-label="ranked scenarios">
+            <div class="section-heading">
+              <h2>Scenario ranking</h2>
+              <span id="formulaLabel"></span>
+            </div>
+            <div class="rank-list" id="rankList"></div>
+          </section>
+        </section>
+      </section>
+
+      <section class="source-section" aria-label="public source context">
+        <div class="section-heading">
+          <h2>Public context sources</h2>
+          <span>Kept separate from SEM scenario math</span>
+        </div>
+        <div class="source-list" id="sourceList"></div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

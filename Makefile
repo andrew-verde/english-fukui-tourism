@@ -4,7 +4,8 @@ PYTHON = .venv/bin/python3
 	synth-official chinese-social fetch-hokuriku-merged hokuriku-did-audit \
 	hokuriku-did-event-study fetch-estat fetch-estat-list fetch-national-direct \
 	accommodation-panel sem-ftas nudge-ranking result-charts data-manifest \
-	reproduce-submission test nudge-pilot-serve
+	reproduce-submission test nudge-pilot-serve friction-simulator-data \
+	friction-simulator-serve
 
 help:
 	@echo "Fukui official-data tourism analysis"
@@ -12,6 +13,8 @@ help:
 	@echo "  make official-all              Build and analyze official FTAS data"
 	@echo "  make sem-ftas                  Run two-stage FTAS SEM"
 	@echo "  make nudge-ranking             Build evidence-weighted nudge ranking"
+	@echo "  make friction-simulator-data   Build static data for SEM scenario simulator"
+	@echo "  make friction-simulator-serve  Serve friction simulator on localhost:8766"
 	@echo "  make hokuriku-did-event-study  Run thesis DiD/event study"
 	@echo "  make accommodation-panel      Build JTA overnight-stay panel"
 	@echo "  make result-charts             Generate official-data charts"
@@ -70,8 +73,16 @@ result-charts:
 data-manifest:
 	$(PYTHON) scripts/generate_data_manifest.py
 
+friction-simulator-data:
+	$(PYTHON) scripts/build_friction_simulator_data.py
+
+# ── Tests ─────────────────────────────────────────────────────────────────────
+
 test:
 	$(PYTHON) -m pytest tests/ -v
 
 nudge-pilot-serve:
 	python3 -m http.server 8765 --directory experiments/nudge-pilot
+
+friction-simulator-serve:
+	python3 -m http.server 8766 --directory experiments/friction-simulator

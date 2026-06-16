@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-06-16",
+  "title": "Fukui friction nudge scenario simulator",
+  "status": "framework_seeded_from_current_sem_outputs",
+  "interpretation": {
+    "primary_unit": "standardized latent visit-intention units",
+    "claim_boundary": "Scenario values are sensitivity calculations from SEM paths and assumed nudge effectiveness. They are not causal impact, visitor-volume, revenue, or opportunity-gap forecasts.",
+    "default_effectiveness": 0.25,
+    "default_reach": 0.5,
+    "formula": "estimated_intention_shift = max(-friction_code_path_to_satisfaction, 0) * prevalence_among_reporters * satisfaction_to_intention_path * assumed_effectiveness * assumed_reach"
+  },
+  "sem": {
+    "stage1": {
+      "friction_to_satisfaction_std": -0.206472896011,
+      "satisfaction_to_intention_std": 0.801159473722,
+      "direct_friction_to_intention_std": -0.064310162775
+    },
+    "friction_codes": [
+      {
+        "code": "transport_access",
+        "label": "Transport / Access",
+        "journey_stage": "pre-arrival / en-route",
+        "nudge_type": "Information provision",
+        "example_intervention": "Publish a consolidated English-language transit guide at Fukui Station and on the DMO website covering bus, train, and rental options to key POIs; note infrequent service and recommend combining destinations on the same route.",
+        "sem_path_to_satisfaction_std": -0.123696288933,
+        "p_value": 1.557e-08,
+        "n_reporters_tagged": 511,
+        "prevalence_among_reporters": 0.204155013983,
+        "priority_score": 0.02023185452,
+        "recoverable_intention_ceiling": 0.02023185452
+      },
+      {
+        "code": "opening_hours_availability",
+        "label": "Opening Hours / Availability",
+        "journey_stage": "pre-visit",
+        "nudge_type": "Information provision",
+        "example_intervention": "Standardise and keep up-to-date: Google Maps hours, official website, and physical entrance signage; flag seasonal closures at least 4 weeks in advance on all channels; add a 'check before you visit' note on DMO listings for POIs with variable hours.",
+        "sem_path_to_satisfaction_std": -0.107022053184,
+        "p_value": 8.61245e-07,
+        "n_reporters_tagged": 104,
+        "prevalence_among_reporters": 0.041550139832,
+        "priority_score": 0.003562580946,
+        "recoverable_intention_ceiling": 0.003562580946
+      },
+      {
+        "code": "cleanliness_comfort",
+        "label": "Cleanliness / Comfort",
+        "journey_stage": "on-site",
+        "nudge_type": "Facilities management",
+        "example_intervention": "Introduce a visible scheduled maintenance log at restrooms and high-footfall areas; add seating and shade at key viewing points where practicable.",
+        "sem_path_to_satisfaction_std": -0.048904127098,
+        "p_value": 0.024054669994,
+        "n_reporters_tagged": 84,
+        "prevalence_among_reporters": 0.033559728326,
+        "priority_score": 0.001314870315,
+        "recoverable_intention_ceiling": 0.001314870315
+      },
+      {
+        "code": "food_amenities_gap",
+        "label": "Food / Amenities Gap",
+        "journey_stage": "on-site",
+        "nudge_type": "Information provision",
+        "example_intervention": "Post a nearby dining guide (English, with opening hours) at the attraction entrance; for remote sites, add a 'bring food and water' advisory to pre-visit materials; flag the nearest convenience store on the site map.",
+        "sem_path_to_satisfaction_std": -0.039484080869,
+        "p_value": 0.068675094866,
+        "n_reporters_tagged": 104,
+        "prevalence_among_reporters": 0.041550139832,
+        "priority_score": 0.001314357462,
+        "recoverable_intention_ceiling": 0.001314357462
+      },
+      {
+        "code": "itinerary_fit_time_cost",
+        "label": "Itinerary Fit / Time & Cost",
+        "journey_stage": "pre-visit / planning",
+        "nudge_type": "Planning support",
+        "example_intervention": "Publish DMO-curated half-day and full-day itinerary templates that pair lower-traffic or remote attractions with anchor destinations on the same transport corridor; include realistic travel time estimates.",
+        "sem_path_to_satisfaction_std": -0.063510245539,
+        "p_value": 0.003431209775,
+        "n_reporters_tagged": 60,
+        "prevalence_among_reporters": 0.023971234519,
+        "priority_score": 0.001219700397,
+        "recoverable_intention_ceiling": 0.001219700397
+      },
+      {
+        "code": "wayfinding_signage",
+        "label": "Wayfinding / Signage",
+        "journey_stage": "on-site / arrival",
+        "nudge_type": "Environmental design",
+        "example_intervention": "Install English-language directional signage at key route decision points (station exits, car parks, trailheads); supplement with QR codes linking to a mobile-friendly map of the site.",
+        "sem_path_to_satisfaction_std": -0.010874411243,
+        "p_value": 0.615806538764,
+        "n_reporters_tagged": 71,
+        "prevalence_among_reporters": 0.028365960847,
+        "priority_score": 0.000247128154,
+        "recoverable_intention_ceiling": 0.000247128154
+      },
+      {
+        "code": "waiting_crowding",
+        "label": "Waiting / Crowding",
+        "journey_stage": "on-site",
+        "nudge_type": "Demand management",
+        "example_intervention": "Add visit timing guidance to the attraction website and Google Maps listing (e.g. 'quietest before 10am on weekdays'); consider a simple real-time or estimated crowd-level indicator at the entrance.",
+        "sem_path_to_satisfaction_std": -0.002379079891,
+        "p_value": 0.912530602724,
+        "n_reporters_tagged": 193,
+        "prevalence_among_reporters": 0.077107471035,
+        "priority_score": 0.000146968566,
+        "recoverable_intention_ceiling": 0.000146968566
+      },
+      {
+        "code": "accessibility_mobility",
+        "label": "Accessibility / Mobility",
+        "journey_stage": "pre-visit / on-site",
+        "nudge_type": "Environmental design",
+        "example_intervention": "Map and publish step-free and wheelchair-accessible routes for each attraction; indicate surface type, gradient, and lift/ramp availability on the website and at the entrance.",
+        "sem_path_to_satisfaction_std": 0.018257998322,
+        "p_value": 0.400907314381,
+        "n_reporters_tagged": 172,
+        "prevalence_among_reporters": 0.068717538953,
+        "priority_score": -0.0,
+        "recoverable_intention_ceiling": 0.0
+      }
+    ]
+  },
+  "public_sources": [
+    {
+      "name": "FTAS respondent-level tourism survey data",
+      "repo": "https://github.com/code4fukui/fukui-kanko-survey",
+      "url": "https://code4fukui.github.io/fukui-kanko-survey/all.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Daily FTAS survey response counts",
+      "repo": "https://github.com/code4fukui/fukui-kanko-survey",
+      "url": "https://code4fukui.github.io/fukui-kanko-survey/all-cnt.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "FTAS tourism area master with municipality and coordinates",
+      "repo": "https://github.com/code4fukui/fukui-kanko-survey",
+      "url": "https://code4fukui.github.io/fukui-kanko-survey/area.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Daily Fukui tourism reservation totals",
+      "repo": "https://github.com/code4fukui/fukui-kanko-reservation",
+      "url": "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_sum.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Daily Fukui tourism reservation totals by origin prefecture",
+      "repo": "https://github.com/code4fukui/fukui-kanko-reservation",
+      "url": "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_prefecture_sum.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Ishikawa respondent-level tourism survey data",
+      "repo": "https://github.com/code4fukui/ishikawa-kanko-survey",
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/all.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Ishikawa tourism survey raw Kanazawa-area rows",
+      "repo": "https://github.com/code4fukui/ishikawa-kanko-survey",
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/kanazawa.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Ishikawa tourism survey raw Kaga-area rows",
+      "repo": "https://github.com/code4fukui/ishikawa-kanko-survey",
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/kaga.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Ishikawa tourism survey raw Noto-area rows",
+      "repo": "https://github.com/code4fukui/ishikawa-kanko-survey",
+      "url": "https://code4fukui.github.io/ishikawa-kanko-survey/noto.csv",
+      "role": "Public context source; use for segmentation, baselines, or cited descriptive context."
+    },
+    {
+      "name": "Hokuriku Tourism AI Governance Framework",
+      "repo": "https://github.com/amilkh/hokuriku-tourism-ai-governance",
+      "url": "https://github.com/amilkh/hokuriku-tourism-ai-governance",
+      "role": "Cited contextual source for weather, route-intent, people-flow, and governance framing; not used here to estimate opportunity-gap closure."
+    }
+  ],
+  "refresh": {
+    "command": "make friction-simulator-data",
+    "upstream_commands": [
+      "make sem-ftas",
+      "make nudge-ranking"
+    ]
+  }
+}
