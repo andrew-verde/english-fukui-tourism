@@ -13,6 +13,9 @@ Start here, in order:
 - [`source_ledger.md`](source_ledger.md) — every reported number traced to
   command, script, input, and artifact, with verified / simulated-demo /
   estimated / hypothesis status labels.
+- [`reproducibility_checklist.md`](reproducibility_checklist.md) —
+  journal-review-oriented setup, dependency, code-availability, and
+  no-network reproduction checklist.
 - [`methods_appendix.md`](methods_appendix.md) — per-analysis statistical
   traceability: research question → test choice → assumptions →
   configuration → caveats. §I covers provenance guards and AI-assistance

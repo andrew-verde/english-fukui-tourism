@@ -68,6 +68,16 @@ produced with — use it to reproduce, regenerate it with
 `.venv/bin/pip freeze --exclude-editable > requirements.lock.txt` after an
 intentional upgrade.
 
+For academic code-review packaging, see
+[`docs/reproducibility_checklist.md`](docs/reproducibility_checklist.md). It
+records the verified Python version, dependency health check, no-network
+reproduction path, reviewer checklist, data-access restrictions, and suggested
+Code Availability statement. The one-command reviewer path is:
+
+```bash
+make reproduce-submission
+```
+
 If you do not use 1Password, fall back to `cp .env.example .env` and fill in
 keys by hand.
 

@@ -5,7 +5,7 @@ PYTHON = .venv/bin/python3
         build-ftas multilingual-reviews chinese-social cross-language-trends stats-official synth-official validate-japanese-tags presentation-figures stats synth sample-readiness test nudge-pilot-serve \
         gold-set gold-set-eval fetch-hokuriku-merged hokuriku-did-audit data-manifest \
         fetch-estat fetch-estat-list fetch-national-direct accommodation-panel \
-        hokuriku-did-event-study sem-ftas nudge-ranking
+        hokuriku-did-event-study sem-ftas nudge-ranking reproduce-submission
 
 help:
 	@echo ""
@@ -63,6 +63,7 @@ help:
 	@echo "                               (assumes google_fukui.json already exists)"
 	@echo "  make deep-review-all         Run deeper Google Maps review collection + full review analysis"
 	@echo "  make official-all            Run Code for Fukui official-data pipeline"
+	@echo "  make reproduce-submission    Run no-network reviewer reproduction path"
 	@echo ""
 	@echo "Tests:"
 	@echo "  make test                    Run pytest"
@@ -75,6 +76,8 @@ friction-all: fetch-comparison-data fetch-metadata build-dataset build-mentions 
 deep-review-all: fetch-google-maps-reviews build-dataset build-mentions tag-codes summarize sample-readiness stats synth
 
 official-all: fetch-official-fukui build-ftas stats-official synth-official
+
+reproduce-submission: test build-dataset build-mentions tag-codes summarize sample-readiness stats synth build-ftas stats-official synth-official sem-ftas nudge-ranking hokuriku-did-event-study data-manifest
 
 # ── Data collection ───────────────────────────────────────────────────────────
 
