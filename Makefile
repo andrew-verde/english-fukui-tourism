@@ -5,7 +5,7 @@ PYTHON = .venv/bin/python3
 	hokuriku-did-event-study fetch-estat fetch-estat-list fetch-national-direct \
 	accommodation-panel sem-ftas nudge-ranking result-charts data-manifest \
 	reproduce-submission test nudge-pilot-serve friction-simulator-data \
-	friction-simulator-serve
+	friction-simulator-serve claim-registry publication-check
 
 help:
 	@echo "Fukui official-data tourism analysis"
@@ -15,6 +15,8 @@ help:
 	@echo "  make nudge-ranking             Build evidence-weighted nudge ranking"
 	@echo "  make friction-simulator-data   Build static data for SEM scenario simulator"
 	@echo "  make friction-simulator-serve  Serve friction simulator on localhost:8766"
+	@echo "  make claim-registry            Build paper-facing claim registry"
+	@echo "  make publication-check         Check publication readiness"
 	@echo "  make hokuriku-did-event-study  Run thesis DiD/event study"
 	@echo "  make accommodation-panel      Build JTA overnight-stay panel"
 	@echo "  make result-charts             Generate official-data charts"
@@ -36,6 +38,12 @@ stats-official:
 
 synth-official:
 	$(PYTHON) scripts/synthesis_official_pipeline.py
+
+claim-registry:
+	$(PYTHON) scripts/build_claim_registry.py
+
+publication-check:
+	$(PYTHON) scripts/check_publication_readiness.py
 
 chinese-social:
 	$(PYTHON) scripts/build_chinese_social_media_dataset.py

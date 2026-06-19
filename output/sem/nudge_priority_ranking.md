@@ -5,6 +5,8 @@ visit-intention damage it transmits (path x prevalence x satisfaction->intention
 path of 0.801), i.e. the ceiling a nudge targeting it can recover.
 Non-negative satisfaction paths score 0 (no damage to recover).
 
+**Validation caveat:** Japanese friction tags are keyword-derived and still await native-speaker gold-set review. Treat tag-dependent FTAS/Ishikawa code rankings, SEM Stage 2 paths, and nudge priorities as provisional until `make gold-set-eval` produces precision/recall evidence.
+
 | # | Friction | SEM path (std) | p | Prevalence* | Priority | Nudge type |
 |---|----------|----------------|---|-------------|----------|------------|
 | 1 | Transport / Access | -0.124 | 1.56e-08 | 20.4% | 0.0202 | Information provision |

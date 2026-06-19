@@ -62,6 +62,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from src.provenance.gold_set import get_gold_set_status
 from src.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
@@ -76,6 +77,7 @@ OUT_MD = SEM_DIR / "nudge_priority_ranking.md"
 
 
 def main() -> int:
+    gold_status = get_gold_set_status()
     for path in (STAGE1_CSV, STAGE2_CSV):
         if not path.exists():
             raise FileNotFoundError(f"Missing {path}. Run scripts/sem_ftas.py first.")
@@ -151,6 +153,10 @@ def main() -> int:
         "visit-intention damage it transmits (path x prevalence x satisfaction->intention",
         f"path of {sat_to_intent:.3f}), i.e. the ceiling a nudge targeting it can recover.",
         "Non-negative satisfaction paths score 0 (no damage to recover).",
+        "",
+        f"**Validation caveat:** {gold_status.caveat}"
+        if not gold_status.complete
+        else "Gold-set keyword-tagger evaluation is complete; report precision/recall with this ranking.",
         "",
         "| # | Friction | SEM path (std) | p | Prevalence* | Priority | Nudge type |",
         "|---|----------|----------------|---|-------------|----------|------------|",

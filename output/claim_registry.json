@@ -1,0 +1,403 @@
+{
+  "generated_at": "2026-06-19T14:57:38.354391+00:00",
+  "git_head": "a3160b06844a73cd4c63a3bf93417cd3543f7f30",
+  "git_dirty": true,
+  "publication_ready": false,
+  "gold_set_status": {
+    "complete": false,
+    "reason": "gold-set coder sheets exist, but tagger_evaluation.csv is missing",
+    "evaluation_csv": "output/gold_set/tagger_evaluation.csv",
+    "report_md": "output/gold_set/gold_set_report.md",
+    "caveat": "Japanese friction tags are keyword-derived and still await native-speaker gold-set review. Treat tag-dependent FTAS/Ishikawa code rankings, SEM Stage 2 paths, and nudge priorities as provisional until `make gold-set-eval` produces precision/recall evidence."
+  },
+  "claims": [
+    {
+      "claim_id": "official_ftas_dedup_sample",
+      "title": "FTAS inference uses first response per respondent",
+      "status": "verified",
+      "evidence_layer": "Official survey layer",
+      "unit_of_analysis": "one survey respondent",
+      "population": "Japanese survey respondents in Fukui FTAS",
+      "scope": "Fukui FTAS rows after member-ID deduplication",
+      "denominator": "deduplicated respondent rows",
+      "method": "deterministic audit",
+      "estimate": {
+        "raw_rows": 95422,
+        "deduplicated_rows": 50285,
+        "dropped_repeat_responses": 45137
+      },
+      "source_artifacts": [
+        {
+          "path": "output/official_fukui/statistical_results_official.json",
+          "sha256": "d99709f1c27afa62a0df7b3f0945f108070c1a9a3774dc0322b1fd77ee000c56",
+          "rows": null,
+          "columns": null
+        },
+        {
+          "path": "scripts/statistical_validation_official.py",
+          "sha256": "dd5fd462662969a360b14e6fe4df7cec19239a87be61a34a9be935109ce00a19",
+          "rows": null,
+          "columns": null
+        }
+      ],
+      "reproduction_command": "make stats-official",
+      "caveats": [
+        "Rows without respondent_id cannot be proven duplicates and are kept."
+      ],
+      "statistics": {
+        "audit_valid": true
+      },
+      "interpretation": "Repeat submissions are not treated as independent respondents."
+    },
+    {
+      "claim_id": "reported_inconvenience_satisfaction_intention",
+      "title": "Reported inconvenience is associated with lower satisfaction and NPS",
+      "status": "verified",
+      "evidence_layer": "Official survey layer",
+      "unit_of_analysis": "one survey respondent",
+      "population": "Japanese survey respondents in Fukui FTAS",
+      "scope": "Full deduplicated FTAS sample",
+      "denominator": "all respondents with nonmissing outcome values",
+      "method": "Mann-Whitney U tests by reported_inconvenience",
+      "estimate": {
+        "overall_satisfaction_mean_difference": -0.32010344505255617,
+        "transport_satisfaction_mean_difference": -0.38599595278501075,
+        "nps_mean_difference": -0.824741805902578
+      },
+      "source_artifacts": [
+        {
+          "path": "output/official_fukui/statistical_results_official.json",
+          "sha256": "d99709f1c27afa62a0df7b3f0945f108070c1a9a3774dc0322b1fd77ee000c56",
+          "rows": null,
+          "columns": null
+        },
+        {
+          "path": "scripts/statistical_validation_official.py",
+          "sha256": "dd5fd462662969a360b14e6fe4df7cec19239a87be61a34a9be935109ce00a19",
+          "rows": null,
+          "columns": null
+        }
+      ],
+      "reproduction_command": "make stats-official",
+      "caveats": [
+        "Reported inconvenience is observational, not randomized."
+      ],
+      "statistics": {
+        "overall_satisfaction_p": 6.294895418261204e-225,
+        "transport_satisfaction_p": 3.8108444271087725e-116,
+        "nps_p": 7.179787886105623e-200,
+        "overall_satisfaction_rank_biserial_r": -0.20571827969385326,
+        "nps_rank_biserial_r": -0.21029100078215324
+      },
+      "interpretation": "Closed-form inconvenience exposure is the primary friction measure free of free-text selection bias."
+    },
+    {
+      "claim_id": "official_fukui_ishikawa_text_writer_friction",
+      "title": "Fukui/Ishikawa friction-code comparisons use text-writer denominator",
+      "status": "provisional_pending_gold_set",
+      "evidence_layer": "Official survey layer",
+      "unit_of_analysis": "one survey respondent with free text",
+      "population": "Japanese survey respondents in Fukui FTAS and Ishikawa official survey",
+      "scope": "Fukui vs Ishikawa official survey comparison",
+      "denominator": "respondents with non-empty friction_source_text",
+      "method": "2x2 chi-square tests with BH correction across friction codes",
+      "estimate": {
+        "fukui_any_friction_rate": 0.20651390112971718,
+        "ishikawa_any_friction_rate": 0.1286104605776737
+      },
+      "source_artifacts": [
+        {
+          "path": "output/official_fukui/statistical_results_official.json",
+          "sha256": "d99709f1c27afa62a0df7b3f0945f108070c1a9a3774dc0322b1fd77ee000c56",
+          "rows": null,
+          "columns": null
+        },
+        {
+          "path": "scripts/statistical_validation_official.py",
+          "sha256": "dd5fd462662969a360b14e6fe4df7cec19239a87be61a34a9be935109ce00a19",
+          "rows": null,
+          "columns": null
+        }
+      ],
+      "reproduction_command": "make stats-official",
+      "caveats": [
+        "Text-response rates differ by instrument; all-respondent friction rates are not comparable.",
+        "Japanese friction tags are keyword-derived and still await native-speaker gold-set review. Treat tag-dependent FTAS/Ishikawa code rankings, SEM Stage 2 paths, and nudge priorities as provisional until `make gold-set-eval` produces precision/recall evidence."
+      ],
+      "statistics": {
+        "p_value": 8.09640447152276e-122,
+        "cramers_v": 0.10435925728668596
+      },
+      "interpretation": "Prefecture comparison is harmonized official-survey evidence, not identical-instrument evidence."
+    },
+    {
+      "claim_id": "ftas_sem_friction_satisfaction_intention",
+      "title": "FTAS SEM supports friction -> satisfaction -> intention mechanism",
+      "status": "verified",
+      "evidence_layer": "Official survey layer",
+      "unit_of_analysis": "one deduplicated survey respondent",
+      "population": "Japanese survey respondents in Fukui FTAS",
+      "scope": "Stage 1 SEM on reported_inconvenience and satisfaction/intention indicators",
+      "denominator": "deduplicated respondents with complete SEM indicators",
+      "method": "structural equation model",
+      "estimate": {
+        "friction_to_satisfaction_std": -0.20647289601088042,
+        "satisfaction_to_intention_std": 0.8011594737222497,
+        "friction_to_intention_direct_std": -0.06431016277473973,
+        "indirect_effect_std": -0.16541771670598576,
+        "mediated_share_abs": 0.7200593897436143
+      },
+      "source_artifacts": [
+        {
+          "path": "output/sem/sem_stage1_results.csv",
+          "sha256": "6c148581b40d337dd6d935076e0b1cf066596792abe6dd63506d82f87e04b639",
+          "rows": 15,
+          "columns": [
+            "lval",
+            "op",
+            "rval",
+            "Estimate",
+            "Est. Std",
+            "Std. Err",
+            "p-value"
+          ]
+        },
+        {
+          "path": "output/sem/sem_fit_indices.csv",
+          "sha256": "8fce9a1196b6d9bf14d42c1c0a90d207dd24c13a4e44411623ee1784a281fa79",
+          "rows": 3,
+          "columns": [
+            "model",
+            "chi2",
+            "df",
+            "CFI",
+            "TLI",
+            "RMSEA",
+            "n"
+          ]
+        },
+        {
+          "path": "scripts/sem_ftas.py",
+          "sha256": "5e51223c702a54f0e92e145f55d3ebb458ad843e93fad694838002030aa4799f",
+          "rows": null,
+          "columns": null
+        }
+      ],
+      "reproduction_command": "make sem-ftas",
+      "caveats": [
+        "SEM is observational; causal interpretation depends on modeling assumptions."
+      ],
+      "statistics": {
+        "friction_to_satisfaction_p": 0.0,
+        "satisfaction_to_intention_p": 0.0,
+        "friction_direct_p": 4.2086334417490434e-12
+      },
+      "interpretation": "Mechanism claim rests on official open data, not recruited pilot data."
+    },
+    {
+      "claim_id": "nudge_priority_transport_access",
+      "title": "Transport/access is the top evidence-weighted nudge priority",
+      "status": "provisional_pending_gold_set",
+      "evidence_layer": "Official survey layer",
+      "unit_of_analysis": "one friction reporter with free text",
+      "population": "Japanese survey respondents in Fukui FTAS with reported inconvenience and free text",
+      "scope": "SEM Stage 2 friction-code ranking",
+      "denominator": "friction reporters with free text",
+      "method": "priority_score = negative satisfaction path x prevalence x Stage 1 satisfaction->intention path",
+      "estimate": {
+        "top_friction_code": "transport_access",
+        "priority_score": 0.020231854519656697,
+        "sem_path_to_satisfaction_std": -0.1236962889331206,
+        "prevalence_among_reporters": 0.2041550139832201
+      },
+      "source_artifacts": [
+        {
+          "path": "output/sem/nudge_priority_ranking.csv",
+          "sha256": "4b50d9cee4d72929041390cc0b4fdaa18c2ae346ce4ab11206c613c5ae62e30f",
+          "rows": 8,
+          "columns": [
+            "rank",
+            "friction_code",
+            "friction_label",
+            "sem_path_to_satisfaction_std",
+            "p_value",
+            "journey_stage",
+            "nudge_type",
+            "example_intervention",
+            "n_reporters_tagged",
+            "prevalence_among_reporters",
+            "priority_score"
+          ]
+        },
+        {
+          "path": "output/sem/sem_stage2_results.csv",
+          "sha256": "ad96211e4af4c68d0634219b113ec7a92609baa88e6111c0edee5fab4bbf1eb6",
+          "rows": 15,
+          "columns": [
+            "lval",
+            "op",
+            "rval",
+            "Estimate",
+            "Est. Std",
+            "Std. Err",
+            "p-value"
+          ]
+        },
+        {
+          "path": "output/sem/sem_stage2_prevalence.csv",
+          "sha256": "f0aa892a715935bc679268fa29250b9f0a84f5905fd145f24528a696ba26cc78",
+          "rows": 8,
+          "columns": [
+            "friction_code",
+            "n_reporters_tagged",
+            "prevalence_among_reporters"
+          ]
+        },
+        {
+          "path": "scripts/rank_nudge_priorities.py",
+          "sha256": "66b55e2be297747e206c1ad42083ccf6e37c9ad6904e8b62831a55835caf4d63",
+          "rows": null,
+          "columns": null
+        }
+      ],
+      "reproduction_command": "make sem-ftas nudge-ranking",
+      "caveats": [
+        "Japanese friction tags are keyword-derived and still await native-speaker gold-set review. Treat tag-dependent FTAS/Ishikawa code rankings, SEM Stage 2 paths, and nudge priorities as provisional until `make gold-set-eval` produces precision/recall evidence."
+      ],
+      "statistics": {
+        "p_value": 1.5570346123539025e-08
+      },
+      "interpretation": "Ranking is a scenario ceiling for intervention design, not a measured nudge-effectiveness estimate."
+    },
+    {
+      "claim_id": "hokuriku_did_nps",
+      "title": "Shinkansen shock raised Fukui NPS relative to control prefectures",
+      "status": "verified",
+      "evidence_layer": "Official survey layer",
+      "unit_of_analysis": "one survey respondent",
+      "population": "Merged Hokuriku official survey respondents",
+      "scope": "Fukui treated; Ishikawa/Toyama controls around 2024-03-16 Shinkansen shock",
+      "denominator": "survey respondents with outcome in DiD model",
+      "method": "difference-in-differences/event-study with clustered standard errors",
+      "estimate": {
+        "baseline_estimate": 0.5508142931385146,
+        "composition_controls_estimate": 0.5562394451461691,
+        "ci_low": 0.4515305994913368,
+        "ci_high": 0.6500979867856924
+      },
+      "source_artifacts": [
+        {
+          "path": "output/hokuriku_merged/did_thesis_estimates.csv",
+          "sha256": "913f7779ccbb8d81212937c340fc20e972a7029d188a935b1187eb5daddfa830",
+          "rows": 20,
+          "columns": [
+            "spec",
+            "outcome",
+            "estimate",
+            "se_cluster",
+            "p_value",
+            "ci_low",
+            "ci_high",
+            "n",
+            "n_clusters"
+          ]
+        },
+        {
+          "path": "output/hokuriku_merged/did_event_study_coefficients.csv",
+          "sha256": "c40d6b077694e6bb6ed1784c1ce2deeb69a212becccfdcd54265de3e92728f72",
+          "rows": 136,
+          "columns": [
+            "outcome",
+            "month",
+            "estimate",
+            "ci_low",
+            "ci_high",
+            "p_value"
+          ]
+        },
+        {
+          "path": "scripts/hokuriku_did_event_study.py",
+          "sha256": "ad33f059a8be7142074266ff7f059821b864cb5c3b647eae215b82c06f93845a",
+          "rows": null,
+          "columns": null
+        }
+      ],
+      "reproduction_command": "make hokuriku-did-event-study",
+      "caveats": [
+        "Parallel-trends and shock-exogeneity assumptions must be argued in text."
+      ],
+      "statistics": {
+        "baseline_p_value": 1.5391666757034096e-27,
+        "composition_controls_p_value": 1.3058175801669813e-32,
+        "n": 103806,
+        "n_clusters": 73
+      },
+      "interpretation": "Causal friction-impact claim uses official survey comparison prefectures, not Google reviews."
+    },
+    {
+      "claim_id": "hokuriku_did_transport_satisfaction",
+      "title": "Shinkansen shock raised Fukui transport satisfaction relative to controls",
+      "status": "verified",
+      "evidence_layer": "Official survey layer",
+      "unit_of_analysis": "one survey respondent",
+      "population": "Merged Hokuriku official survey respondents",
+      "scope": "Fukui treated; Ishikawa/Toyama controls around 2024-03-16 Shinkansen shock",
+      "denominator": "survey respondents with outcome in DiD model",
+      "method": "difference-in-differences/event-study with clustered standard errors",
+      "estimate": {
+        "baseline_estimate": 0.05467610357673236,
+        "composition_controls_estimate": 0.06165786400624686,
+        "ci_low": 0.0071035664361346895,
+        "ci_high": 0.10224864071733003
+      },
+      "source_artifacts": [
+        {
+          "path": "output/hokuriku_merged/did_thesis_estimates.csv",
+          "sha256": "913f7779ccbb8d81212937c340fc20e972a7029d188a935b1187eb5daddfa830",
+          "rows": 20,
+          "columns": [
+            "spec",
+            "outcome",
+            "estimate",
+            "se_cluster",
+            "p_value",
+            "ci_low",
+            "ci_high",
+            "n",
+            "n_clusters"
+          ]
+        },
+        {
+          "path": "output/hokuriku_merged/did_event_study_coefficients.csv",
+          "sha256": "c40d6b077694e6bb6ed1784c1ce2deeb69a212becccfdcd54265de3e92728f72",
+          "rows": 136,
+          "columns": [
+            "outcome",
+            "month",
+            "estimate",
+            "ci_low",
+            "ci_high",
+            "p_value"
+          ]
+        },
+        {
+          "path": "scripts/hokuriku_did_event_study.py",
+          "sha256": "ad33f059a8be7142074266ff7f059821b864cb5c3b647eae215b82c06f93845a",
+          "rows": null,
+          "columns": null
+        }
+      ],
+      "reproduction_command": "make hokuriku-did-event-study",
+      "caveats": [
+        "Parallel-trends and shock-exogeneity assumptions must be argued in text."
+      ],
+      "statistics": {
+        "baseline_p_value": 0.024282661050884394,
+        "composition_controls_p_value": 0.012277932942590714,
+        "n": 51347,
+        "n_clusters": 73
+      },
+      "interpretation": "Causal friction-impact claim uses official survey comparison prefectures, not Google reviews."
+    }
+  ]
+}
