@@ -1,7 +1,7 @@
 municipality,friction_code,count,n_respondents,pct_of_respondents
 あわら市,transport_access,258,8949,2.88
 あわら市,wayfinding_signage,49,8949,0.55
-あわら市,english_information_gap,8,8949,0.09
+あわら市,language_information_gap,8,8949,0.09
 あわら市,staff_communication,21,8949,0.23
 あわら市,booking_ticketing,20,8949,0.22
 あわら市,waiting_crowding,129,8949,1.44
@@ -13,7 +13,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 あわら市,food_amenities_gap,100,8949,1.12
 おおい町,transport_access,29,2581,1.12
 おおい町,wayfinding_signage,10,2581,0.39
-おおい町,english_information_gap,0,2581,0.0
+おおい町,language_information_gap,0,2581,0.0
 おおい町,staff_communication,3,2581,0.12
 おおい町,booking_ticketing,8,2581,0.31
 おおい町,waiting_crowding,25,2581,0.97
@@ -25,7 +25,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 おおい町,food_amenities_gap,17,2581,0.66
 勝山市,transport_access,158,8343,1.89
 勝山市,wayfinding_signage,45,8343,0.54
-勝山市,english_information_gap,5,8343,0.06
+勝山市,language_information_gap,5,8343,0.06
 勝山市,staff_communication,12,8343,0.14
 勝山市,booking_ticketing,38,8343,0.46
 勝山市,waiting_crowding,244,8343,2.92
@@ -37,7 +37,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 勝山市,food_amenities_gap,40,8343,0.48
 南越前町,transport_access,27,3236,0.83
 南越前町,wayfinding_signage,10,3236,0.31
-南越前町,english_information_gap,0,3236,0.0
+南越前町,language_information_gap,0,3236,0.0
 南越前町,staff_communication,2,3236,0.06
 南越前町,booking_ticketing,5,3236,0.15
 南越前町,waiting_crowding,37,3236,1.14
@@ -49,7 +49,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 南越前町,food_amenities_gap,7,3236,0.22
 坂井市,transport_access,199,8068,2.47
 坂井市,wayfinding_signage,50,8068,0.62
-坂井市,english_information_gap,5,8068,0.06
+坂井市,language_information_gap,5,8068,0.06
 坂井市,staff_communication,11,8068,0.14
 坂井市,booking_ticketing,16,8068,0.2
 坂井市,waiting_crowding,138,8068,1.71
@@ -61,7 +61,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 坂井市,food_amenities_gap,36,8068,0.45
 大野市,transport_access,113,6256,1.81
 大野市,wayfinding_signage,62,6256,0.99
-大野市,english_information_gap,1,6256,0.02
+大野市,language_information_gap,1,6256,0.02
 大野市,staff_communication,4,6256,0.06
 大野市,booking_ticketing,26,6256,0.42
 大野市,waiting_crowding,103,6256,1.65
@@ -73,7 +73,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 大野市,food_amenities_gap,49,6256,0.78
 小浜市,transport_access,143,6451,2.22
 小浜市,wayfinding_signage,37,6451,0.57
-小浜市,english_information_gap,4,6451,0.06
+小浜市,language_information_gap,4,6451,0.06
 小浜市,staff_communication,12,6451,0.19
 小浜市,booking_ticketing,19,6451,0.29
 小浜市,waiting_crowding,81,6451,1.26
@@ -85,7 +85,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 小浜市,food_amenities_gap,50,6451,0.78
 敦賀市,transport_access,190,5582,3.4
 敦賀市,wayfinding_signage,56,5582,1.0
-敦賀市,english_information_gap,2,5582,0.04
+敦賀市,language_information_gap,2,5582,0.04
 敦賀市,staff_communication,9,5582,0.16
 敦賀市,booking_ticketing,12,5582,0.21
 敦賀市,waiting_crowding,83,5582,1.49
@@ -97,7 +97,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 敦賀市,food_amenities_gap,72,5582,1.29
 永平寺町,transport_access,159,7044,2.26
 永平寺町,wayfinding_signage,38,7044,0.54
-永平寺町,english_information_gap,14,7044,0.2
+永平寺町,language_information_gap,14,7044,0.2
 永平寺町,staff_communication,5,7044,0.07
 永平寺町,booking_ticketing,23,7044,0.33
 永平寺町,waiting_crowding,103,7044,1.46
@@ -109,7 +109,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 永平寺町,food_amenities_gap,28,7044,0.4
 池田町,transport_access,17,2460,0.69
 池田町,wayfinding_signage,28,2460,1.14
-池田町,english_information_gap,1,2460,0.04
+池田町,language_information_gap,1,2460,0.04
 池田町,staff_communication,3,2460,0.12
 池田町,booking_ticketing,14,2460,0.57
 池田町,waiting_crowding,38,2460,1.54
@@ -121,7 +121,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 池田町,food_amenities_gap,14,2460,0.57
 福井市,transport_access,383,10569,3.62
 福井市,wayfinding_signage,103,10569,0.97
-福井市,english_information_gap,7,10569,0.07
+福井市,language_information_gap,7,10569,0.07
 福井市,staff_communication,13,10569,0.12
 福井市,booking_ticketing,29,10569,0.27
 福井市,waiting_crowding,186,10569,1.76
@@ -133,7 +133,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 福井市,food_amenities_gap,113,10569,1.07
 美浜町,transport_access,51,4106,1.24
 美浜町,wayfinding_signage,16,4106,0.39
-美浜町,english_information_gap,3,4106,0.07
+美浜町,language_information_gap,3,4106,0.07
 美浜町,staff_communication,6,4106,0.15
 美浜町,booking_ticketing,14,4106,0.34
 美浜町,waiting_crowding,83,4106,2.02
@@ -145,7 +145,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 美浜町,food_amenities_gap,14,4106,0.34
 若狭町,transport_access,50,3451,1.45
 若狭町,wayfinding_signage,28,3451,0.81
-若狭町,english_information_gap,3,3451,0.09
+若狭町,language_information_gap,3,3451,0.09
 若狭町,staff_communication,3,3451,0.09
 若狭町,booking_ticketing,8,3451,0.23
 若狭町,waiting_crowding,64,3451,1.85
@@ -157,7 +157,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 若狭町,food_amenities_gap,32,3451,0.93
 越前市,transport_access,104,8955,1.16
 越前市,wayfinding_signage,46,8955,0.51
-越前市,english_information_gap,1,8955,0.01
+越前市,language_information_gap,1,8955,0.01
 越前市,staff_communication,14,8955,0.16
 越前市,booking_ticketing,28,8955,0.31
 越前市,waiting_crowding,291,8955,3.25
@@ -169,7 +169,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 越前市,food_amenities_gap,27,8955,0.3
 越前町,transport_access,102,5855,1.74
 越前町,wayfinding_signage,24,5855,0.41
-越前町,english_information_gap,3,5855,0.05
+越前町,language_information_gap,3,5855,0.05
 越前町,staff_communication,10,5855,0.17
 越前町,booking_ticketing,10,5855,0.17
 越前町,waiting_crowding,88,5855,1.5
@@ -181,7 +181,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 越前町,food_amenities_gap,30,5855,0.51
 高浜町,transport_access,20,1101,1.82
 高浜町,wayfinding_signage,4,1101,0.36
-高浜町,english_information_gap,1,1101,0.09
+高浜町,language_information_gap,1,1101,0.09
 高浜町,staff_communication,2,1101,0.18
 高浜町,booking_ticketing,3,1101,0.27
 高浜町,waiting_crowding,14,1101,1.27
@@ -193,7 +193,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 高浜町,food_amenities_gap,8,1101,0.73
 鯖江市,transport_access,34,2080,1.63
 鯖江市,wayfinding_signage,14,2080,0.67
-鯖江市,english_information_gap,0,2080,0.0
+鯖江市,language_information_gap,0,2080,0.0
 鯖江市,staff_communication,3,2080,0.14
 鯖江市,booking_ticketing,4,2080,0.19
 鯖江市,waiting_crowding,27,2080,1.3
@@ -205,7 +205,7 @@ municipality,friction_code,count,n_respondents,pct_of_respondents
 鯖江市,food_amenities_gap,6,2080,0.29
 ,transport_access,5,335,1.49
 ,wayfinding_signage,4,335,1.19
-,english_information_gap,0,335,0.0
+,language_information_gap,0,335,0.0
 ,staff_communication,0,335,0.0
 ,booking_ticketing,0,335,0.0
 ,waiting_crowding,4,335,1.19

@@ -1,4 +1,4 @@
 city,source_platform,theme,count,pct_posts,sentiment_norm_mean
-Fukui,xiaohongshu,fan,22,20.952,0.522727
-Fukui,xiaohongshu,ordinary,65,61.905,0.538462
-Fukui,xiaohongshu,travel,18,17.143,0.555556
+Fukui,xiaohongshu,fan,43,14.007,0.55814
+Fukui,xiaohongshu,ordinary,168,54.723,0.547619
+Fukui,xiaohongshu,travel,96,31.27,0.598958

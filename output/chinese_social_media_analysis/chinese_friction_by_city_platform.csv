@@ -1,13 +1,13 @@
 city,source_platform,friction_code,friction_label,count,denominator_posts,pct_posts
-Fukui,xiaohongshu,transport_access,Transport / Access,1,105,0.952
-Fukui,xiaohongshu,wayfinding_signage,Wayfinding / Signage,1,105,0.952
-Fukui,xiaohongshu,english_information_gap,English Information Gap,0,105,0.0
-Fukui,xiaohongshu,staff_communication,Staff Communication,0,105,0.0
-Fukui,xiaohongshu,booking_ticketing,Booking / Ticketing,0,105,0.0
-Fukui,xiaohongshu,waiting_crowding,Waiting / Crowding,0,105,0.0
-Fukui,xiaohongshu,price_value,Price / Value,0,105,0.0
-Fukui,xiaohongshu,cleanliness_comfort,Cleanliness / Comfort,0,105,0.0
-Fukui,xiaohongshu,opening_hours_availability,Opening Hours / Availability,0,105,0.0
-Fukui,xiaohongshu,itinerary_fit_time_cost,Itinerary Fit / Time & Cost,2,105,1.905
-Fukui,xiaohongshu,accessibility_mobility,Accessibility / Mobility,0,105,0.0
-Fukui,xiaohongshu,food_amenities_gap,Food / Amenities Gap,0,105,0.0
+Fukui,xiaohongshu,transport_access,Transport / Access,4,307,1.303
+Fukui,xiaohongshu,wayfinding_signage,Wayfinding / Signage,1,307,0.326
+Fukui,xiaohongshu,language_information_gap,Language Information Gap,0,307,0.0
+Fukui,xiaohongshu,staff_communication,Staff Communication,0,307,0.0
+Fukui,xiaohongshu,booking_ticketing,Booking / Ticketing,1,307,0.326
+Fukui,xiaohongshu,waiting_crowding,Waiting / Crowding,0,307,0.0
+Fukui,xiaohongshu,price_value,Price / Value,0,307,0.0
+Fukui,xiaohongshu,cleanliness_comfort,Cleanliness / Comfort,0,307,0.0
+Fukui,xiaohongshu,opening_hours_availability,Opening Hours / Availability,1,307,0.326
+Fukui,xiaohongshu,itinerary_fit_time_cost,Itinerary Fit / Time & Cost,14,307,4.56
+Fukui,xiaohongshu,accessibility_mobility,Accessibility / Mobility,0,307,0.0
+Fukui,xiaohongshu,food_amenities_gap,Food / Amenities Gap,0,307,0.0

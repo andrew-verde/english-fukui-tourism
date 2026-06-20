@@ -2,13 +2,13 @@
 
 This exploratory layer analyzes Chinese-language Xiaohongshu and Douyin recommendation text. It is not a nationality inference.
 
-- Input directory: `/home/andrewgreen/Repositories/external/tourism-data`
+- Input directory: `/Users/andrewgreen/Repositories/andrew-verde/america-fukui-tourism/output/chinese_social_media_analysis/upstream_tourism_data_snapshot`
 - Input files discovered: 1
-- Rows before deduplication: 106
+- Rows before deduplication: 308
 - Duplicate city/platform/text rows removed: 1
-- Rows retained: 105
-- Theme mix: {'ordinary': 65, 'fan': 22, 'travel': 18}
-- Post-date precision mix: {'exact': 75, 'year_inferred': 26, 'relative_inferred': 4}
+- Rows retained: 307
+- Theme mix: {'ordinary': 168, 'travel': 96, 'fan': 43}
+- Post-date precision mix: {'exact': 213, 'year_inferred': 80, 'relative_inferred': 14}
 
 ## Caveats
 
