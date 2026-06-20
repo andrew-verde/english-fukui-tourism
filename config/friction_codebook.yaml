@@ -82,8 +82,8 @@ friction_codes:
       - difficult to navigate
       - hard to navigate
 
-  english_information_gap:
-    label: "English Information Gap"
+  language_information_gap:
+    label: "Language Information Gap"
     type: friction
     keywords:
       - no english

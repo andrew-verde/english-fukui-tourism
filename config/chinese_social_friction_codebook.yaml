@@ -43,8 +43,8 @@ friction_codes:
       - 入口难找
       - 不好找
 
-  english_information_gap:
-    label: "English Information Gap"
+  language_information_gap:
+    label: "Language Information Gap"
     type: friction
     keywords:
       - 英语

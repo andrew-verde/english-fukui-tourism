@@ -53,7 +53,7 @@ SCORE_COLORS = {
 LABEL_OVERRIDES = {
     "transport_access": "Transport / Access",
     "wayfinding_signage": "Wayfinding / Signage",
-    "english_information_gap": "English Info Gap",
+    "language_information_gap": "Language Info Gap",
     "staff_communication": "Staff Communication",
     "booking_ticketing": "Booking / Ticketing",
     "waiting_crowding": "Waiting / Crowding",
@@ -378,7 +378,10 @@ def main() -> None:
     ]
     print("Wrote charts:")
     for path in paths:
-        print(path.relative_to(ROOT))
+        try:
+            print(path.relative_to(ROOT))
+        except ValueError:
+            print(path)
 
 
 if __name__ == "__main__":

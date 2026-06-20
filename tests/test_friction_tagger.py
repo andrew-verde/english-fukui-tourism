@@ -95,10 +95,10 @@ def test_tagger_transport_match(codebook):
 
 
 def test_tagger_english_gap_match(codebook):
-    """Text mentioning no English signs should match english_information_gap."""
+    """Text mentioning no English signs should match language_information_gap."""
     text = "There are no English signs anywhere, everything is only in Japanese."
     codes = tag_text(text, codebook)
-    assert "english_information_gap" in codes
+    assert "language_information_gap" in codes
 
 
 def test_tagger_multi_code(codebook):

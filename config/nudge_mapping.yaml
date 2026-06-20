@@ -28,8 +28,8 @@ nudge_mappings:
     possible_nudge_type: "Environmental design"
     example_intervention: "Install English-language directional signage at key route decision points (station exits, car parks, trailheads); supplement with QR codes linking to a mobile-friendly map of the site."
 
-  english_information_gap:
-    friction_label: "English Information Gap"
+  language_information_gap:
+    friction_label: "Language Information Gap"
     likely_journey_stage: "pre-visit / on-site"
     possible_nudge_type: "Information provision"
     example_intervention: "Add bilingual (EN/JA) information panels at entry points and key exhibits; make a downloadable English PDF guide available via QR code at the entrance; ensure Google Maps listing includes an English description."
