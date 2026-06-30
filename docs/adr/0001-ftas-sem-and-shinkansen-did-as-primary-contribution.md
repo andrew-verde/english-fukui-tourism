@@ -11,7 +11,7 @@ lab's preferred remedy is SEM evaluation of nudge effectiveness. The original pl
 collected new Likert data via the nudge-pilot survey, but a defensible SEM needs
 N≈150–200+ recruited respondents and recruitment funding is uncertain.
 
-Meanwhile the project already holds official survey microdata: Fukui FTAS (n≈95,422)
+Meanwhile the project already holds official survey microdata: Fukui FTAS (n≈97,866)
 with 5-point satisfaction items, future-visit intent, NPS, a universal
 reported-inconvenience item, and free-text fields taggable by the friction codebook —
 plus the merged tri-prefecture Hokuriku dataset (n≈54,695, Apr 2023–Feb 2026, CC-BY)

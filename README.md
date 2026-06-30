@@ -37,6 +37,8 @@ ESTAT_APP_ID=...  # only needed for e-Stat API discovery/fetching
 
 Raw official datasets pinned for thesis reproduction are tracked with Git LFS.
 Refetchable national-stat downloads remain ignored.
+Code4Fukui inputs are locked by upstream commit and SHA256 in
+`config/official_fukui_sources.yaml`; refreshes are explicit, reviewed changes.
 
 ## Main commands
 

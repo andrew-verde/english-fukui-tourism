@@ -1,51 +1,70 @@
 # Official Code for Fukui data sources used by the parallel FTAS analysis.
 #
-# These are public CSVs exposed through GitHub Pages. The fetch script writes
-# raw copies and a source manifest under output/official_fukui/.
+# Every source is pinned to a Git commit and content checksum. Updating data is
+# an explicit research decision: change commit + checksum together, fetch with
+# --force, rebuild outputs, and review estimate changes.
 
 sources:
   ftas_survey_all:
     upstream_repo: "https://github.com/code4fukui/fukui-kanko-survey"
-    url: "https://code4fukui.github.io/fukui-kanko-survey/all.csv"
+    commit: "5857c311acc5782eb44d85f06d95e6a2e6af4509"
+    source_path: "all.csv"
+    sha256: "440a88f2c4e37b9319a3c555716da9e24c33bd518db4dd21c761b00cd6f9b02b"
     filename: "ftas_survey_all.csv"
     description: "FTAS respondent-level tourism survey data"
   ftas_survey_counts:
     upstream_repo: "https://github.com/code4fukui/fukui-kanko-survey"
-    url: "https://code4fukui.github.io/fukui-kanko-survey/all-cnt.csv"
+    commit: "5857c311acc5782eb44d85f06d95e6a2e6af4509"
+    source_path: "all-cnt.csv"
+    sha256: "82eecbf369e76e985751be48aecb1ef0a6e2e799d7105653944d93a1cf5a0028"
     filename: "ftas_survey_counts.csv"
     description: "Daily FTAS survey response counts"
   ftas_area_master:
     upstream_repo: "https://github.com/code4fukui/fukui-kanko-survey"
-    url: "https://code4fukui.github.io/fukui-kanko-survey/area.csv"
+    commit: "5857c311acc5782eb44d85f06d95e6a2e6af4509"
+    source_path: "area.csv"
+    sha256: "4905bae83db0a2d2a1aaa21ec3b0de93261dded395db77693a8bbc47e2ecb254"
     filename: "ftas_area_master.csv"
     description: "FTAS tourism area master with municipality and coordinates"
   fukui_reservation_sum:
     upstream_repo: "https://github.com/code4fukui/fukui-kanko-reservation"
-    url: "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_sum.csv"
+    commit: "25d342639b8d720a4f9a960c0eeee03c6c65f85b"
+    source_path: "latest_rsv_sum.csv"
+    sha256: "397b4e9d79859e3c4f165adae81fa5c8e761b0bba73fb0cb8c5cb32279aaaf85"
     filename: "fukui_reservation_sum.csv"
     description: "Daily Fukui tourism reservation totals"
   fukui_reservation_prefecture_sum:
     upstream_repo: "https://github.com/code4fukui/fukui-kanko-reservation"
-    url: "https://code4fukui.github.io/fukui-kanko-reservation/latest_rsv_prefecture_sum.csv"
+    commit: "25d342639b8d720a4f9a960c0eeee03c6c65f85b"
+    source_path: "latest_rsv_prefecture_sum.csv"
+    sha256: "a248b024ab91d49e93be4fbd516c85edac5c03d12f28fe72bcc0614b6eb0545d"
     filename: "fukui_reservation_prefecture_sum.csv"
     description: "Daily Fukui tourism reservation totals by origin prefecture"
   ishikawa_survey_all:
     upstream_repo: "https://github.com/code4fukui/ishikawa-kanko-survey"
-    url: "https://code4fukui.github.io/ishikawa-kanko-survey/all.csv"
+    commit: "a02e12abd32b9ab6f9a558fe3d7b36afff9623ec"
+    source_path: "all.csv"
+    sha256: "5786e7f2915fc3a22c8c4a13423f9db8928ede2d570fa52407afe1a877c5d912"
     filename: "ishikawa_survey_all.csv"
     description: "Ishikawa respondent-level tourism survey data"
   ishikawa_survey_kanazawa:
     upstream_repo: "https://github.com/code4fukui/ishikawa-kanko-survey"
-    url: "https://code4fukui.github.io/ishikawa-kanko-survey/kanazawa.csv"
+    commit: "a02e12abd32b9ab6f9a558fe3d7b36afff9623ec"
+    source_path: "kanazawa.csv"
+    sha256: "b34e4d8762180cf870899240f9b69bb92002e8b5b19d8cf67e4d7b37e91c6e92"
     filename: "ishikawa_survey_kanazawa.csv"
     description: "Ishikawa tourism survey raw Kanazawa-area rows"
   ishikawa_survey_kaga:
     upstream_repo: "https://github.com/code4fukui/ishikawa-kanko-survey"
-    url: "https://code4fukui.github.io/ishikawa-kanko-survey/kaga.csv"
+    commit: "a02e12abd32b9ab6f9a558fe3d7b36afff9623ec"
+    source_path: "kaga.csv"
+    sha256: "3c86213c4a5ee24d894bbfe6f763a6852af6ed2b452aba004ea6550523059ffd"
     filename: "ishikawa_survey_kaga.csv"
     description: "Ishikawa tourism survey raw Kaga-area rows"
   ishikawa_survey_noto:
     upstream_repo: "https://github.com/code4fukui/ishikawa-kanko-survey"
-    url: "https://code4fukui.github.io/ishikawa-kanko-survey/noto.csv"
+    commit: "a02e12abd32b9ab6f9a558fe3d7b36afff9623ec"
+    source_path: "noto.csv"
+    sha256: "f5b6ae5a561d8e58d439fa2a1e4dd426219078d63158a8f2decc7dd4160692a5"
     filename: "ishikawa_survey_noto.csv"
     description: "Ishikawa tourism survey raw Noto-area rows"

@@ -15,8 +15,8 @@ hand-editing dates here.
 
 **FTAS vintage pin:** every FTAS-derived row below (dedup counts, inconvenience
 rate, SEM, nudge ranking, prefecture comparisons) reflects the pinned
-2026-05-28 upstream fetch (95,422 Fukui rows). Upstream Code4Fukui data is
-living; recreation and drift rules are in
+2026-06-30 upstream commits (97,866 Fukui rows). Upstream Code4Fukui data is
+living; exact commits, checksums, recreation, and drift rules are in
 `docs/data_reproducibility.md` → "Pinned FTAS vintage".
 
 ## Primary thesis analyses
@@ -27,9 +27,9 @@ living; recreation and drift rules are in
 | DiD transport satisfaction +0.05 | Transport satisfaction rose post-extension | verified | `make hokuriku-did-event-study` | `scripts/hokuriku_did_event_study.py` | same | same |
 | DiD revisit intention +0.04 | Fragile — not headlined | verified (fragile) | `make hokuriku-did-event-study` | `scripts/hokuriku_did_event_study.py` | same | same |
 | SEM β = −0.21 / 0.80 / −0.06; ~72% mediation | Friction → satisfaction → intention transmission | verified | `make sem-ftas` | `scripts/sem_ftas.py` | `output/official_fukui/ftas_tagged_survey.csv` (deduplicated respondents) | `output/sem/` |
-| Nudge priorities 0.0202 / 0.0036 / 0.0013 | Transport/access dominates ~6× | verified | `make nudge-ranking` | `scripts/rank_nudge_priorities.py` | SEM stage-2 paths + prevalence | `output/sem/nudge_priority_ranking.md` |
-| 95,422 rows ↔ 50,285 unique members | FTAS dedup justification | verified | `make stats-official` | `scripts/statistical_validation_official.py` | `output/official_fukui/ftas_survey_normalized.csv` | `output/official_fukui/` |
-| reported_inconvenience rate 13.6% | True felt-inconvenience rate after recode | verified | `make stats-official` | `scripts/statistical_validation_official.py` | same | same |
+| Nudge priorities 0.0200 / 0.0034 / 0.0017 | Transport/access dominates ~6× | verified | `make nudge-ranking` | `scripts/rank_nudge_priorities.py` | SEM stage-2 paths + prevalence | `output/sem/nudge_priority_ranking.md` |
+| 97,866 rows ↔ 51,399 unique members | FTAS dedup justification | verified | `make stats-official` | `scripts/statistical_validation_official.py` | `output/official_fukui/ftas_survey_normalized.csv` | `output/official_fukui/` |
+| reported_inconvenience rate 15.4% | True felt-inconvenience rate after recode | verified | `make stats-official` | `scripts/statistical_validation_official.py` | same | same |
 
 ## Supporting data
 

@@ -50,9 +50,9 @@ magnitudes against the ±0.1–0.4 mixed-sign pre-wobble.
 
 | # | Friction | SEM path | Prevalence | Priority |
 |---|----------|----------|------------|----------|
-| 1 | Transport / Access | −0.124 | 20.4% | 0.0202 |
-| 2 | Opening Hours / Availability | −0.107 | 4.2% | 0.0036 |
-| 3 | Cleanliness / Comfort | −0.049 | 3.4% | 0.0013 |
+| 1 | Transport / Access | −0.123 | 20.3% | 0.0200 |
+| 2 | Opening Hours / Availability | −0.105 | 4.1% | 0.0034 |
+| 3 | Food / Amenities Gap | −0.049 | 4.2% | 0.0017 |
 
 Transport/access dominates by ~6× — coherent with the DiD: the one historical
 friction-reduction shock we can observe (Shinkansen) was a transport
