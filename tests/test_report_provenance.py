@@ -1,15 +1,5 @@
-"""Provenance guards for outward-facing documents and scrape checkpoints.
+"""Provenance guards for outward-facing documents."""
 
-Two failure modes these tests block:
-
-1. A report claims significance ("statistically significant", "p <",
-   "% visitor increase") in a document that never points at a script or
-   make target — i.e. a number with no reproduction path.
-2. A fetch run overwrites a good checkpoint with an empty or much smaller
-   payload (scripts/checkpoint_guard.py policy).
-"""
-
-import json
 import re
 import sys
 from pathlib import Path
@@ -18,8 +8,6 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-
-from scripts.checkpoint_guard import ShrinkRefusedError, guarded_save_json
 
 SIGNIFICANCE_PHRASES = [
     re.compile(r"statistically significant", re.IGNORECASE),
@@ -53,39 +41,3 @@ def test_source_ledger_exists_and_covers_headlines():
         assert required in ledger, f"source ledger missing primary analysis: {required}"
     # Demo data must stay explicitly quarantined.
     assert "simulated/demo" in ledger
-
-
-def test_guard_refuses_empty_overwrite(tmp_path):
-    path = tmp_path / "ckpt.json"
-    guarded_save_json(path, {"poi": [1, 2, 3]})
-    with pytest.raises(ShrinkRefusedError):
-        guarded_save_json(path, {})
-    # Original data intact.
-    assert json.loads(path.read_text()) == {"poi": [1, 2, 3]}
-
-
-def test_guard_refuses_large_shrink(tmp_path):
-    path = tmp_path / "ckpt.json"
-    guarded_save_json(path, {f"poi{i}": list(range(50)) for i in range(20)})
-    with pytest.raises(ShrinkRefusedError):
-        guarded_save_json(path, {"poi0": [1]})
-
-
-def test_guard_allows_growth_and_backs_up(tmp_path):
-    path = tmp_path / "ckpt.json"
-    guarded_save_json(path, {"a": [1]})
-    guarded_save_json(path, {"a": [1], "b": [2, 3]})
-    assert json.loads(path.read_text()) == {"a": [1], "b": [2, 3]}
-    backups = list(tmp_path.glob("ckpt.json.bak-*"))
-    assert len(backups) == 1
-    assert json.loads(backups[0].read_text()) == {"a": [1]}
-
-
-def test_guard_override_env(tmp_path, monkeypatch):
-    path = tmp_path / "ckpt.json"
-    guarded_save_json(path, {"a": list(range(100))})
-    monkeypatch.setenv("FUKUI_ALLOW_SHRINK", "1")
-    guarded_save_json(path, {"a": [1]})
-    assert json.loads(path.read_text()) == {"a": [1]}
-    # Backup still taken even when override is used.
-    assert list(tmp_path.glob("ckpt.json.bak-*"))

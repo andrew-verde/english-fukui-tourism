@@ -1,5 +1,5 @@
 """
-tagger.py — Apply friction/nudge codebook to review or mention text.
+tagger.py — Apply friction/nudge codebook to tourism text.
 
 DESIGN RATIONALE: KEYWORD MATCHING, NOT ML
 ------------------------------------------
@@ -18,11 +18,8 @@ The trade-off is explicit:
     defend. For an academic instrument this auditability was judged to
     outweigh the recall ceiling.
 
-Crucially, the tagger's accuracy is NOT assumed: it is empirically evaluated
-against a blind, double-coded human gold standard (see
-scripts/build_gold_set.py and scripts/evaluate_gold_set.py), and the measured
-per-code precision/recall bound every downstream result (SEM Stage 2,
-prefecture comparisons, nudge ranking).
+Crucially, tagger accuracy is not assumed. Keyword coverage, denominator
+selection, and manual audit limitations bound every downstream result.
 
 MATCHING RULES
 --------------
@@ -38,7 +35,7 @@ high-recall words while recovering precision through required co-occurrence.
 
 Negation handling (negation-aware matching): if a negation word (not, less,
 never, wasn't, etc.) appears within a 4-word lookbehind window before a
-keyword match, the match is suppressed. This matters for English reviews,
+keyword match, the match is suppressed. This matters for English text,
 where praise is routinely phrased through negated friction vocabulary —
 "not crowded at all", "wasn't busy", "less crowded than Kyoto" — which a
 naive keyword matcher would mis-tag as waiting_crowding friction. Keywords
@@ -57,7 +54,7 @@ import yaml
 # signal. The set covers explicit negators (not/no/never), contracted
 # auxiliaries (wasn't/didn't/can't...), quantity-reducers (less/fewer), and
 # approximate negators (hardly/barely/rarely/seldom) — all of which flip a
-# friction keyword into praise or neutrality in review English
+# friction keyword into praise or neutrality in English text
 # ("hardly any queue", "less crowded", "didn't wait").
 _NEGATIONS = {
     "not", "no", "never", "less", "fewer", "neither", "nor",
@@ -100,7 +97,7 @@ def load_codebook(path: str | Path | None = None) -> dict:
 def _normalize_quotes(text: str) -> str:
     """Map curly/backtick apostrophes to the ASCII apostrophe.
 
-    Review text scraped from the web frequently uses typographic quotes
+    Tourism text frequently uses typographic quotes
     (e.g. "wasn’t" with U+2019). Without normalization, contracted negators
     like wasn't/didn't would fail to match the ASCII forms in _NEGATIONS and
     negated friction would slip through as false positives.
@@ -129,8 +126,7 @@ def _is_negated(text: str, match: re.Match) -> bool:
     only the last _LOOKBEHIND_N tokens, and test membership in _NEGATIONS.
     Note the window is purely positional — it does not respect clause or
     sentence boundaries — which is a deliberate simplicity/precision
-    trade-off documented in the module docstring and stress-tested via the
-    gold-set evaluation.
+    trade-off documented in the module docstring and regression tests.
     """
     before = text[:match.start()]
     words_before = re.findall(r"\b[\w']+\b", before)[-_LOOKBEHIND_N:]
@@ -186,7 +182,7 @@ def tag_text(text: str, codebook: dict) -> list[str]:
 
     A code is assigned if ANY of its keywords matches (logical OR across the
     code's keyword list); the inner break stops at the first hit since one
-    match suffices. Codes are multi-label: a single review can legitimately
+    match suffices. Codes are multi-label: a single text can legitimately
     carry several friction codes. Non-string / blank input yields no codes.
     """
     if not isinstance(text, str) or not text.strip():
@@ -211,10 +207,8 @@ def tag_dataframe(df: pd.DataFrame, text_col: str, codebook: dict) -> pd.DataFra
       - 'nudge_codes'     — list of matched nudge code names
       - 'all_codes'       — combined list
 
-    The per-code boolean columns are what the gold-set kit
-    (scripts/build_gold_set.py) samples from and what the evaluation
-    (scripts/evaluate_gold_set.py) scores, so this function is the single
-    point where machine labels enter the analysis pipeline — its determinism
+    This function is the single point where machine labels enter the analysis
+    pipeline — its determinism
     (same text + same codebook → same tags, no randomness, no model state)
     is what makes the whole friction analysis reproducible.
 

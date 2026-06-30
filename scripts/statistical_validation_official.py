@@ -709,7 +709,7 @@ def main() -> int:
                 "(Fukui ~42% vs Ishikawa ~100%), so all-respondent rates are not comparable"
             ),
             "official_data_source": "Code for Fukui FTAS CSVs and Ishikawa official tourism survey CSVs",
-            "google_review_results_not_mixed": True,
+            "official_data_only": True,
             "shinkansen_event_date": str(SHINKANSEN_DATE.date()),
         },
         "results": [asdict(r) for r in results],

@@ -30,7 +30,7 @@ The Likert pilot survey path is retired entirely:
 
 - The thesis's quantitative claims rest entirely on official open data
   (FTAS, merged Hokuriku, JTA) — fully reproducible, no funding dependency,
-  no human-subjects collection beyond the gold-set coding by lab members.
+  no human-subjects collection.
 - Causal evidence about *nudge effectiveness* (as opposed to friction impact)
   is out of scope; the thesis claims mechanism (SEM), impact of a friction
   shock (DiD), and an evidence-ranked intervention design (bridge + artifact).

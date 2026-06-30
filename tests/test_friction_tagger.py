@@ -1,6 +1,5 @@
 """
-Tests for the focused friction analysis modules.
-  - test_unified_schema: reviews_unified.csv has required columns and correct cities
+Tests for the shared friction analysis modules.
   - test_mention_splitter: sentence splitting handles abbreviations correctly
   - test_tagger_codes: tag_text matches expected codes and rejects neutral text
 """
@@ -8,38 +7,9 @@ Tests for the focused friction analysis modules.
 import sys
 from pathlib import Path
 
-import pandas as pd
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
-
-# ── test_unified_schema ───────────────────────────────────────────────────────
-
-REQUIRED_COLUMNS = [
-    "city", "poi_id", "poi_name", "poi_category", "place_id",
-    "review_id", "review_date", "review_rating", "review_text",
-    "review_language", "review_author", "collection_date",
-    "source_platform", "review_order_within_poi",
-    "vader_compound", "sentiment_norm", "emotional_intensity_score",
-    "primary_theme",
-]
-
-REVIEWS_CSV = Path(__file__).resolve().parent.parent / "output" / "friction_analysis" / "reviews_unified.csv"
-
-
-def test_unified_schema():
-    """reviews_unified.csv must have all required columns. If file absent, skip gracefully."""
-    if not REVIEWS_CSV.exists():
-        pytest.skip("reviews_unified.csv not present — run build_analysis_dataset.py first")
-
-    df = pd.read_csv(REVIEWS_CSV)
-    missing = [c for c in REQUIRED_COLUMNS if c not in df.columns]
-    assert not missing, f"Missing columns: {missing}"
-
-    cities = set(df["city"].unique())
-    expected = {"Fukui", "Kanazawa", "Toyama"}
-    assert cities == expected, f"City mismatch. Got: {cities}"
 
 
 # ── test_mention_splitter ─────────────────────────────────────────────────────

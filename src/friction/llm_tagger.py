@@ -3,26 +3,21 @@ llm_tagger.py — OpenAI-backed friction/nudge tagger and sentiment scorer.
 
 ROLE IN THE RESEARCH DESIGN (ADR 0001, decision 4)
 --------------------------------------------------
-The keyword tagger (src/friction/tagger.py) remains the PRIMARY instrument:
-it is deterministic, auditable, and bounded by gold-set precision/recall.
-This module is the OPTIONAL POST-HOC COMPARATOR: an LLM applied to the same
-codebook so its per-code precision/recall can be scored against the same
-human gold standard (scripts/evaluate_gold_set.py) and reported as a case
-study. No headline result may depend on LLM tags alone.
+The keyword tagger (src/friction/tagger.py) remains the primary instrument:
+it is deterministic and auditable. This module is an optional comparator
+using the same codebook. No headline result may depend on LLM tags alone.
 
 This supersedes the retired ad-hoc OpenAI analysis (src/analysis/ai_insights.py,
-removed at commit 7c1557d), which used a pre-codebook Type A/B/C taxonomy that
-is no longer comparable to the gold set. The LLM now emits the SAME code names
+removed at commit 7c1557d), which used a pre-codebook Type A/B/C taxonomy.
+The LLM now emits the same code names
 as config/friction_codebook.yaml, so both taggers produce identical DataFrame
 contracts (one bool column per code + friction_codes / nudge_codes / all_codes)
 and are interchangeable inputs to the evaluation pipeline.
 
 SENTIMENT
 ---------
-The LLM also returns a sentiment score in [-1, 1] (column: llm_sentiment),
-kept on the same scale as VADER compound so the two can be correlated as a
-convergent-validity check. It is a companion measure only; the analysis
-pipeline's sentiment_norm remains VADER-based (build_analysis_dataset.py).
+The LLM also returns a companion sentiment score in [-1, 1]
+(`llm_sentiment`).
 
 RELIABILITY HANDLING
 --------------------
@@ -53,7 +48,7 @@ DEFAULT_MODEL = "gpt-4o-mini"
 
 _SYSTEM_PROMPT = (
     "You are a research assistant applying a fixed qualitative codebook to "
-    "tourism review text for Fukui Prefecture, Japan. You return only valid "
+    "tourism text for Fukui Prefecture, Japan. You return only valid "
     "JSON, no prose, no markdown."
 )
 
@@ -61,7 +56,7 @@ _ERROR_RESULT = {"codes": [], "sentiment": float("nan"), "error": True}
 
 
 def build_prompt(text: str, codebook: dict) -> str:
-    """Render the tagging prompt for one review/mention.
+    """Render the tagging prompt for one text record.
 
     The full codebook (code name, human label, type) is embedded verbatim so
     the LLM's label space is exactly the keyword tagger's label space — the
@@ -74,7 +69,7 @@ def build_prompt(text: str, codebook: dict) -> str:
         f'- "{code}" ({attrs["type"]}): {attrs["label"]}'
         for code, attrs in codebook.items()
     )
-    return f"""Apply this codebook to the review text below.
+    return f"""Apply this codebook to the tourism text below.
 
 Codebook (use these exact code names, nothing else):
 {code_lines}
@@ -88,7 +83,7 @@ Rules:
 Return a JSON object with exactly these fields:
 {{"codes": [<code names>], "sentiment": <number>}}
 
-Review text: {json.dumps(text)}"""
+Tourism text: {json.dumps(text)}"""
 
 
 def parse_response(content: str, codebook: dict) -> dict:

@@ -1,58 +1,53 @@
-# CONTEXT
+# Domain Context
 
-Glossary of canonical terms for the Fukui tourism friction thesis. Terms here are
-binding: code, documents, and discussion should use these words with these meanings.
+## Thesis question
 
-## Core terms
-
-**Friction** — Any obstacle a tourist encounters while planning or executing a visit
-(transport access, wayfinding, opening hours, booking, etc.). Enumerated by the
-12-code friction codebook. Distinct from *dissatisfaction* (an attitude); friction is
-the experienced obstacle, dissatisfaction is a possible consequence.
-
-**Friction tag** — A boolean assignment of one of the 12 friction codes to a unit of
-text by the keyword tagger. A tag is a *measurement* of friction, not friction itself;
-its validity is bounded by the tagger's evaluated precision/recall.
-
-**Reported inconvenience** — The FTAS binary item (感じた / 感じなかった) asked of all
-respondents. The only friction measure free of free-text selection bias; the canonical
-friction-exposure variable for full-sample inference.
-
-**Friction reporter** — A respondent with `reported_inconvenience = true`. The
-population for conditional (Stage 2) analysis of *which* friction type matters.
-
-**Nudge** — A low-cost informational intervention mapped from a friction code via
-`config/nudge_mapping.yaml`. A nudge targets a friction; it does not target
-satisfaction directly.
-
-**Nudge pilot** — The browser app in `experiments/nudge-pilot/`. A built artifact
-demonstrating nudge delivery; retired as a data-collection instrument (ADR 0002).
-No pilot data is collected or analyzed.
-
-**Shinkansen shock** — The March 2024 Hokuriku Shinkansen extension to Fukui, treated
-as an exogenous transport-friction-reduction event for quasi-experimental analysis.
+How did the March 2024 Hokuriku Shinkansen extension affect tourism outcomes
+in Fukui, which frictions shape satisfaction and revisit intent, and which
+interventions should be prioritized?
 
 ## Evidence layers
 
-**Observational layer (English reviews)** — 915 English-language Google Maps reviews
-(Fukui / Kanazawa / Toyama). Exploratory, inbound-visitor signal. Unit: one review
-(inference) or one sentence (description only). Side-project scope; minimal
-statistical claims.
+**Official FTAS layer** — Fukui Tourism Area Survey respondent microdata.
+Primary mechanism evidence and SEM input.
 
-**Official survey layer (FTAS / merged Hokuriku)** — Respondent-level official survey
-microdata: Fukui FTAS (n≈95k) and the merged tri-prefecture Hokuriku dataset
-(n≈55k, Apr 2023–Feb 2026, CC-BY 4.0). Primary inference layer. Unit: one survey
-respondent. Respondents are domestic Japanese tourists; not inbound.
+**Official comparison layer** — Ishikawa tourism survey data normalized to
+shared respondent-level friction indicators.
 
-**Aggregate layer** — JTA lodging statistics (monthly guest-nights incl. foreign
-guest-nights, by area) and Google Business Profile metrics (daily, municipality
-level). Objective behavioral outcomes; join key is municipality × time, never
-facility.
+**Hokuriku impact layer** — merged Fukui/Ishikawa/Toyama official survey
+microdata used for DiD and event-study analysis.
 
-## Population terms
+**Accommodation layer** — JTA prefecture-month overnight stays used as
+behavioral context.
 
-**Japanese survey respondents** — FTAS/Hokuriku respondents. Never "Japanese
-tourists" generally; never inferred nationality.
+**Chinese social-media side layer** — exploratory recommendation-text
+analysis. Never thesis inferential evidence.
 
-**English-language reviewers** — Authors of English Google Maps reviews. Never
-"foreign tourists"; language is not nationality.
+## Canonical terms
+
+**Friction** — obstacle reported in official free text or structured response.
+
+**Friction tag** — reproducible keyword-based measurement from `src/friction`.
+Tag validity is bounded by codebook coverage and manual audit; tag is not
+ground truth.
+
+**Respondent** — deduplicated survey participant. Repeat-response handling must
+remain explicit.
+
+**Response row** — raw survey submission before respondent deduplication.
+
+**Treatment** — Fukui after March 2024 in Shinkansen impact models.
+
+**Control** — comparison observations specified by each DiD model; never imply
+untreated status beyond model definition.
+
+**Nudge priority** — intervention score combining SEM path evidence with
+official-survey friction prevalence.
+
+## Guardrails
+
+- Keep official datasets separate until an analysis defines a valid join.
+- Preserve respondent-level denominators.
+- Report effect sizes and uncertainty, not significance alone.
+- Do not infer nationality from language.
+- Keep exploratory side-project outputs outside thesis causal claims.

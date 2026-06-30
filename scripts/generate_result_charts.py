@@ -28,12 +28,8 @@ import seaborn as sns
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = ROOT / "output"
 CHART_DIR = OUTPUT_DIR / "result_charts"
-MULTILINGUAL_DIR = OUTPUT_DIR / "multilingual_review_analysis"
 OFFICIAL_DIR = OUTPUT_DIR / "official_fukui"
 
-LANGUAGE_SUMMARY_CSV = MULTILINGUAL_DIR / "language_summary_by_city.csv"
-REVIEW_COMPARISON_CSV = MULTILINGUAL_DIR / "japanese_english_friction_comparison.csv"
-JAPANESE_FRICTION_BY_CITY_CSV = MULTILINGUAL_DIR / "japanese_friction_by_city.csv"
 OFFICIAL_PREF_CSV = OFFICIAL_DIR / "official_prefecture_friction_comparison.csv"
 OFFICIAL_AREA_CSV = OFFICIAL_DIR / "ftas_friction_by_area.csv"
 OFFICIAL_STATS_JSON = OFFICIAL_DIR / "statistical_results_official.json"
@@ -140,157 +136,6 @@ def bilingual_area_label(area: str) -> str:
 
 def add_source_note(fig: plt.Figure, note: str) -> None:
     return None
-
-
-def plot_review_language_fukui() -> Path:
-    df = pd.read_csv(REVIEW_COMPARISON_CSV)
-    fukui = df[df["city"] == "Fukui"].copy()
-    fukui = fukui.sort_values("japanese_minus_english_pp", key=lambda s: s.abs(), ascending=False).head(8)
-    fukui = fukui.sort_values("japanese_pct_reviews")
-
-    labels = [wrap_label(label, 21) for label in fukui["friction_label_with_ja"]]
-    y = np.arange(len(fukui))
-
-    fig, ax = plt.subplots(figsize=(10.8, 6.2))
-    h = 0.36
-    ax.barh(y - h / 2, fukui["english_pct_reviews"], height=h, color=BLUE, label="English-language reviews")
-    ax.barh(y + h / 2, fukui["japanese_pct_reviews"], height=h, color=GREEN, label="Japanese-language reviews")
-
-    for yi, row in enumerate(fukui.itertuples()):
-        ax.text(row.english_pct_reviews + 0.12, yi - h / 2, f"{row.english_pct_reviews:.1f}%", va="center", fontsize=9)
-        ax.text(row.japanese_pct_reviews + 0.12, yi + h / 2, f"{row.japanese_pct_reviews:.1f}%", va="center", fontsize=9)
-        if bool(row.significant_bh_0_05):
-            x = max(row.english_pct_reviews, row.japanese_pct_reviews) + 1.0
-            ax.text(x, yi, "q<.05", va="center", fontsize=9, color=RED, fontweight="bold")
-
-    ax.set_yticks(y, labels)
-    ax.set_xlabel("Reviews with friction code (%)")
-    ax.set_title("Fukui review-language friction rates")
-    ax.legend(loc="lower right", frameon=False)
-    ax.grid(axis="x", color=GRID, linewidth=0.8, alpha=0.7)
-    ax.set_xlim(0, max(fukui["english_pct_reviews"].max(), fukui["japanese_pct_reviews"].max()) + 2.2)
-    add_source_note(fig, "Source: output/multilingual_review_analysis/japanese_english_friction_comparison.csv")
-    return save(fig, "review_language_fukui_friction_rates.png")
-
-
-def plot_review_language_counts_by_city() -> Path:
-    df = pd.read_csv(LANGUAGE_SUMMARY_CSV)
-    df = df.rename(
-        columns={
-            "other_non_english_non_japanese": "other",
-            "undetected_or_too_short": "undetected",
-        }
-    )
-    cities = ["Fukui", "Kanazawa", "Toyama"]
-    df = df.set_index("city").loc[cities]
-    categories = [
-        ("english", "English", BLUE),
-        ("japanese", "Japanese", GREEN),
-        ("other", "Other detected", GOLD),
-        ("undetected", "Undetected/short", MUTED),
-    ]
-
-    fig, ax = plt.subplots(figsize=(10.4, 5.8))
-    y = np.arange(len(df))
-    left = np.zeros(len(df))
-    for col, label, color in categories:
-        vals = df[col].to_numpy()
-        ax.barh(y, vals, left=left, color=color, label=label, height=0.58)
-        for yi, val, start in zip(y, vals, left):
-            if val >= 80:
-                ax.text(start + val / 2, yi, f"{int(val):,}", ha="center", va="center", fontsize=10, color="white" if color in [BLUE, GREEN] else INK, fontweight="bold")
-        left += vals
-
-    totals = df[[c[0] for c in categories]].sum(axis=1)
-    for yi, total in zip(y, totals):
-        ax.text(total + 55, yi, f"total {int(total):,}", va="center", fontsize=10, color=MUTED)
-
-    ax.set_yticks(y, df.index)
-    ax.set_xlabel("Cached Google reviews after cutoff/dedup")
-    ax.set_title("Google review sample by detected language group")
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, frameon=False)
-    ax.grid(axis="x", color=GRID, linewidth=0.8, alpha=0.7)
-    ax.set_xlim(0, totals.max() + 320)
-    ax.invert_yaxis()
-    add_source_note(fig, "Source: output/multilingual_review_analysis/language_summary_by_city.csv; language is review text language, not reviewer nationality")
-    return save(fig, "review_language_counts_by_city.png")
-
-
-def plot_review_language_difference() -> Path:
-    df = pd.read_csv(REVIEW_COMPARISON_CSV)
-    sig = df[df["significant_bh_0_05"] == True].copy()  # noqa: E712
-    sig = sig.reindex(sig["japanese_minus_english_pp"].abs().sort_values(ascending=False).index).head(12)
-    sig = sig.sort_values("japanese_minus_english_pp")
-
-    labels = [wrap_label(f"{row.city}: {row.friction_label_with_ja}", 26) for row in sig.itertuples()]
-    y = np.arange(len(sig))
-    colors = np.where(sig["japanese_minus_english_pp"] >= 0, GREEN, BLUE)
-
-    fig, ax = plt.subplots(figsize=(10.8, 6.6))
-    ax.axvline(0, color=INK, linewidth=1)
-    ax.scatter(sig["japanese_minus_english_pp"], y, s=85, color=colors, zorder=3)
-
-    for yi, row in enumerate(sig.itertuples()):
-        dx = 0.25 if row.japanese_minus_english_pp >= 0 else -0.25
-        ha = "left" if row.japanese_minus_english_pp >= 0 else "right"
-        ax.text(row.japanese_minus_english_pp + dx, yi, f"{row.japanese_minus_english_pp:+.1f} pp", va="center", ha=ha, fontsize=9)
-
-    ax.set_yticks(y, labels)
-    ax.set_xlabel("Japanese minus English review rate (percentage points)")
-    ax.set_title("Largest significant review-language friction differences")
-    ax.grid(axis="x", color=GRID, linewidth=0.8, alpha=0.7)
-    ax.text(0.02, 0.96, "Higher in English", transform=ax.transAxes, color=BLUE, fontweight="bold")
-    ax.text(0.78, 0.96, "Higher in Japanese", transform=ax.transAxes, color=GREEN, fontweight="bold")
-    add_source_note(fig, "Source: output/multilingual_review_analysis/japanese_english_friction_comparison.csv; Fisher exact p-values with BH correction")
-    return save(fig, "review_language_significant_difference_dotplot.png")
-
-
-def plot_japanese_friction_profile_by_area() -> Path:
-    df = pd.read_csv(JAPANESE_FRICTION_BY_CITY_CSV)
-    df["label"] = df["code"].map(LABEL_OVERRIDES).fillna(df["label"])
-    cities = ["Fukui", "Kanazawa", "Toyama"]
-    city_labels = {
-        "Fukui": "Fukui",
-        "Kanazawa": "Ishikawa\n(Kanazawa)",
-        "Toyama": "Toyama",
-    }
-
-    pivot = df.pivot(index="label", columns="city", values="pct_reviews").reindex(columns=cities).fillna(0)
-    top_labels = pivot.max(axis=1).sort_values(ascending=False).head(7).index
-    pivot = pivot.loc[top_labels]
-    pivot = pivot.sort_values("Fukui", ascending=False)
-
-    display = pivot.rename(columns=city_labels)
-    annot = display.map(lambda v: f"{v:.1f}%" if v > 0 else "")
-
-    fig, ax = plt.subplots(figsize=(7.2, 4.8))
-    cmap = sns.blend_palette(["#F7F3EA", "#E4C36A", "#D77A46", "#B8423A"], as_cmap=True)
-    sns.heatmap(
-        display,
-        ax=ax,
-        cmap=cmap,
-        vmin=0,
-        vmax=max(9.0, float(display.max().max())),
-        linewidths=1.2,
-        linecolor="white",
-        cbar=False,
-        annot=annot,
-        fmt="",
-        annot_kws={"fontsize": 11, "fontweight": "bold", "color": INK},
-    )
-
-    ax.set_title("Japanese review friction profile", loc="left", fontsize=13, fontweight="bold", pad=10)
-    ax.set_xlabel("")
-    ax.set_ylabel("")
-    ax.set_xticklabels(ax.get_xticklabels(), rotation=0, ha="center", fontsize=11, fontweight="bold")
-    ax.set_yticklabels([wrap_label(t.get_text(), 22) for t in ax.get_yticklabels()], rotation=0, fontsize=10)
-    ax.tick_params(length=0)
-
-    # Add subtle row guide labels for quick reading at slide scale.
-    for spine in ax.spines.values():
-        spine.set_visible(False)
-    fig.subplots_adjust(left=0.31, right=0.98, top=0.88, bottom=0.08)
-    return save(fig, "review_japanese_friction_profile_by_area.png")
 
 
 def plot_official_prefecture_rates() -> Path:
@@ -519,19 +364,12 @@ def plot_official_top_area_heatmap() -> Path:
 def main() -> None:
     setup_style()
     ensure_inputs([
-        LANGUAGE_SUMMARY_CSV,
-        REVIEW_COMPARISON_CSV,
-        JAPANESE_FRICTION_BY_CITY_CSV,
         OFFICIAL_PREF_CSV,
         OFFICIAL_AREA_CSV,
         OFFICIAL_STATS_JSON,
         OFFICIAL_FTAS_TAGGED_CSV,
     ])
     paths = [
-        plot_review_language_counts_by_city(),
-        plot_review_language_fukui(),
-        plot_review_language_difference(),
-        plot_japanese_friction_profile_by_area(),
         plot_official_satisfaction_by_friction(),
         plot_official_any_friction_benchmark(),
         plot_official_prefecture_rates(),

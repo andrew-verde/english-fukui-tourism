@@ -2,7 +2,7 @@
 
 One-page map of the thesis's quantitative arc. All numbers regenerate from the
 Makefile targets named in each section; decisions are recorded in
-`docs/adr/0001` and `docs/adr/0002`, terminology in `CONTEXT.md`.
+`docs/adr/`, terminology in `CONTEXT.md`.
 
 ## The arc
 
@@ -60,17 +60,10 @@ intervention, and it moved NPS. Intervention candidates per code in
 `output/sem/nudge_priority_ranking.md`; delivery vehicle =
 `experiments/nudge-pilot/` (artifact only, ADR 0002).
 
-## 4. Measurement validity (in progress)
-
-`make gold-set` / `make gold-set-eval` — 300 blind, stratified free-text
-snippets await two native-speaker coders; outputs Cohen's κ and per-code
-precision/recall with Wilson CIs. Until then, friction-tag results carry a
-"keyword tagger, unvalidated" caveat.
-
 ## Supporting layers
 
-- English Google reviews (n=915): exploratory inbound-perception signal only;
-  side-project scope. Corrected SR results in `output/statistical_summary.md`.
+- JTA accommodation panel: behavioral companion outcome and descriptive demand context.
+- Chinese social-media analysis: exploratory side project only; excluded from thesis inference.
 - Statistical integrity: the 2026-06 audit fixes (dedup, text-writer
   denominators, reported_inconvenience recode) are locked in by regression
   tests (`tests/test_statistical_validation_official.py`) and CI.

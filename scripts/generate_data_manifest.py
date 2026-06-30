@@ -30,15 +30,11 @@ OUT_MD = ROOT / "output" / "data_manifest.md"
 
 # Key artifacts in the analytical chain. Globs allowed.
 TRACKED = [
-    "output/checkpoints/*.json",
     "output/official_fukui/*.csv",
     "output/hokuriku_merged/*.csv",
-    "output/friction_analysis/*.csv",
-    "output/multilingual_review_analysis/*.csv",
     "output/chinese_social_media_analysis/*.csv",
-    "output/cross_language_trends/*.csv",
-    "output/gold_set/*.csv",
     "output/national_stats/*.csv",
+    "output/sem/*.csv",
 ]
 
 

@@ -31,20 +31,16 @@ living; recreation and drift rules are in
 | 95,422 rows ↔ 50,285 unique members | FTAS dedup justification | verified | `make stats-official` | `scripts/statistical_validation_official.py` | `output/official_fukui/ftas_survey_normalized.csv` | `output/official_fukui/` |
 | reported_inconvenience rate 13.6% | True felt-inconvenience rate after recode | verified | `make stats-official` | `scripts/statistical_validation_official.py` | same | same |
 
-## Supporting layers
+## Supporting data
 
 | Number | Claim | Status | Command | Script | Input | Output artifact |
 |---|---|---|---|---|---|---|
-| n=915 English reviews; SR-01/02/05 results | Exploratory inbound-perception signal | verified (exploratory) | `make stats` + `make synth` | `scripts/statistical_validation.py`, `synthesis_pipeline.py` | `output/checkpoints/google_*.json` | `output/statistical_summary.md` |
-| Gold-set κ / precision / recall | Tagger validity | hypothesis (awaiting coders) | `make gold-set-eval` | `scripts/evaluate_gold_set.py` | `output/gold_set/` coder sheets | pending |
 | CN social layer: 105 XHS notes (Fukui), theme mix 65 ordinary / 22 fan / 18 travel | Chinese-language Xiaohongshu recommendation text, side-project only | verified (descriptive, side-project — never thesis evidence) | `make chinese-social` | `scripts/build_chinese_social_media_dataset.py` | `tourism-data/data/raw/social/fukui_xhs_reviews.csv` (colleague scrape, commit 6a38bee, 2026-06-12) + `data/processed/fukui_xhs_analysis.csv` (theme annotations) | `output/chinese_social_media_analysis/` — title-level text; friction tags directional only |
-| Cross-language monthly trends: 919 EN / 4,037 JP / 105 CN dated rows, 2024-06 → 2026-06 | EN/JP/CN monthly volume + within-group sentiment, side-project only | verified (descriptive, side-project — never thesis evidence) | `make cross-language-trends` | `scripts/build_cross_language_trends.py` | `output/multilingual_review_analysis/reviews_multilingual.csv` + `output/chinese_social_media_analysis/tagged_chinese_social_posts.csv` | `output/cross_language_trends/` — sentiment scales group-specific, never merged |
 | JTA panel 4,512 rows; Fukui March stays 322,200 (2018) → 340,140 (2024) | Behavioral overnight-stay panel staged as companion DiD outcome; descriptive only until the event study runs on it | verified (descriptive) | `make fetch-national-direct` + `make accommodation-panel` | `scripts/build_accommodation_panel.py` | `output/national_stats/raw/jta_accommodation_*.xlsx` (JTA 宿泊旅行統計調査, MLIT) | `output/national_stats/accommodation_panel.csv`, `accommodation_panel_summary.md` — 2025 rows preliminary vintage; foreign series covers 10+ employee facilities only |
 
 ## Rules
 
 1. New number in a report → add a row first.
-2. Status changes (e.g. gold set scored) → update the row in the same commit
-   as the regenerated artifact.
+2. Status changes → update the row in the same commit as the regenerated artifact.
 3. `simulated/demo` rows must never appear in advisor-facing documents as
    empirical results; cite them only as pipeline demonstrations.
