@@ -1,7 +1,7 @@
 # Japanese FTAS friction codebook.
 #
-# Codes intentionally mirror config/friction_codebook.yaml so official Japanese
-# survey friction can be compared with English Google-review friction.
+# Codes intentionally mirror config/friction_codebook.yaml so shared labels
+# remain consistent across official survey outputs.
 # Keyword matching is substring-based, not word-boundary-based.
 
 friction_codes:

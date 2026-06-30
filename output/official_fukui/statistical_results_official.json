@@ -15,7 +15,7 @@
     },
     "friction_rate_denominator": "friction-tag comparisons condition on respondents with non-empty friction_source_text; text-response rates differ by instrument (Fukui ~42% vs Ishikawa ~100%), so all-respondent rates are not comparable",
     "official_data_source": "Code for Fukui FTAS CSVs and Ishikawa official tourism survey CSVs",
-    "google_review_results_not_mixed": true,
+    "official_data_only": true,
     "shinkansen_event_date": "2024-03-16"
   },
   "results": [

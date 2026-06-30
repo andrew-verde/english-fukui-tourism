@@ -1,5 +1,5 @@
 """
-mention_splitter.py — Split review text into sentence-level mentions.
+mention_splitter.py — Split tourism text into sentence-level mentions.
 
 Uses nltk.sent_tokenize which handles common abbreviations (Mr., Dr., St., etc.)
 so they do not produce false sentence boundaries.
@@ -30,10 +30,11 @@ def split_to_mentions(
     min_chars: int | None = None,
 ) -> list[dict]:
     """
-    Split a single review into sentence-level mention dicts.
+    Split one text record into sentence-level mention dicts.
 
     Returns a list of dicts with fields:
-        mention_id, review_id, city, poi_name, poi_category,
+        mention_id, review_id, city, poi_name, poi_category. `review_id` is
+        retained as a compatibility field for existing callers.
         sentence_text, sentence_index
     """
     if not isinstance(text, str) or not text.strip():

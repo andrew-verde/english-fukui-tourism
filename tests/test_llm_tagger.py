@@ -3,10 +3,9 @@ Tests for the OpenAI-backed LLM friction tagger (src/friction/llm_tagger.py).
 
 All tests run OFFLINE: the OpenAI client is replaced by a stub, so the suite
 exercises prompt construction, response parsing, failure handling, and the
-DataFrame contract — never the API itself. This is deliberate: CI must not
-depend on network, billing, or model nondeterminism, and the scientific
-claims about LLM tagging quality come from the gold-set evaluation
-(scripts/evaluate_gold_set.py), not from unit tests.
+DataFrame contract — never the API itself. CI must not depend on network,
+billing, or model nondeterminism. Unit tests establish behavior, not
+scientific tagging validity.
 """
 
 import json
@@ -73,7 +72,7 @@ def test_prompt_excludes_keyword_lists():
     assert "no public transport" not in prompt
 
 
-def test_prompt_embeds_review_text_json_escaped():
+def test_prompt_embeds_tourism_text_json_escaped():
     prompt = build_prompt('tricky "quoted" text', CODEBOOK)
     assert json.dumps('tricky "quoted" text') in prompt
 

@@ -6,7 +6,7 @@
 # Edit this file freely — it is the only source of truth for code tagging.
 #
 # Design principle: precision over recall.
-# False positives (positive reviews tagged as friction) are more damaging
+# False positives (positive text tagged as friction) are more damaging
 # than missed friction mentions in a small-sample exploratory analysis.
 #
 # Types:

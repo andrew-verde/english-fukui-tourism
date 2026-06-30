@@ -33,20 +33,16 @@ spanning the March 2024 Shinkansen extension on both sides.
    method per lab convention; DiD validates the mechanism's real-world impact.
 3. **The nudge pilot is demoted to a small-N system demonstration** (artifact +
    feasibility), not a powered test. It can be upgraded if funding materializes.
-4. **The friction taggers are evaluated against a hand-labeled gold set** (~300–400
-   stratified snippets, per-code precision/recall/F1, inter-rater κ where possible).
-   The keyword tagger remains the primary instrument; an LLM tagger comparison is an
-   optional post-hoc case study only.
+4. **Friction tags remain transparent measured indicators.** Codebooks,
+   matching behavior, and denominator rules are versioned and regression-tested.
 
 ## Consequences
 
 - Removes recruitment funding as a critical-path dependency.
-- Restricts primary inference to domestic Japanese respondents; inbound claims stay
-  exploratory (English-review layer) and must be labeled as such.
+- Restricts primary inference to official Japanese survey respondents.
 - Adds work: Hokuriku merge ingestion, schema-comparability checks for DiD (2023 rows
-  have empty later-added columns), gold-set labeling, JTA back-series extension.
-- The skipped SR-04 event test is superseded by the DiD, which uses absolute survey
-  timestamps instead of unreliable review timestamps.
+  have empty later-added columns), JTA back-series extension.
+- DiD uses absolute official-survey timestamps.
 
 ## Alternatives considered
 
@@ -54,5 +50,5 @@ spanning the March 2024 Shinkansen extension on both sides.
   (5 conditions, lab-convenience N) would be statistically indefensible.
 - **Collapsing to 2–3 pilot conditions with paid panel:** viable but still
   funding-dependent; retained as an optional upgrade path.
-- **LLM tagging as primary instrument:** rejected; no institutional policy, and the
-  conservative keyword+gold-set route is more defensible.
+- **LLM tagging as primary instrument:** rejected; no institutional policy and
+  lower auditability than versioned keyword rules.

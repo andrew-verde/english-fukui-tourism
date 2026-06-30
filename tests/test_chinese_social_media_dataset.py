@@ -25,7 +25,6 @@ def test_chinese_social_builder_handles_schema_only_csv(tmp_path):
         input_dir=tmp_path,
         output_dir=tmp_path / "out",
         input_files=[xhs],
-        review_friction_path=tmp_path / "missing_review_friction.csv",
     )
 
     assert report["input_files_discovered"] == 1
@@ -34,7 +33,7 @@ def test_chinese_social_builder_handles_schema_only_csv(tmp_path):
     assert (tmp_path / "out" / "chinese_social_readiness.md").exists()
 
 
-def test_normalize_social_csv_maps_xhs_schema_to_review_like_rows(tmp_path):
+def test_normalize_social_csv_maps_xhs_schema_to_common_rows(tmp_path):
     xhs = tmp_path / "fukui_xhs_reviews.csv"
     xhs.write_text(
         "note_id,title,note_url,author,author_url\n"
@@ -52,7 +51,7 @@ def test_normalize_social_csv_maps_xhs_schema_to_review_like_rows(tmp_path):
     assert 0 <= df.loc[0, "sentiment_norm"] <= 1
 
 
-def test_chinese_social_builder_tags_and_compares_populated_rows(tmp_path):
+def test_chinese_social_builder_tags_populated_rows(tmp_path):
     xhs = tmp_path / "fukui_xhs_reviews.csv"
     xhs.write_text(
         "note_id,title,note_url,author,author_url\n"
@@ -66,18 +65,10 @@ def test_chinese_social_builder_tags_and_compares_populated_rows(tmp_path):
         "v1,金泽交通便利 但门票贵,https://dy.example/v1,c\n",
         encoding="utf-8",
     )
-    review_friction = tmp_path / "friction_by_city_language_group.csv"
-    review_friction.write_text(
-        "city,language_group,code,label,count,denominator_reviews,pct_reviews\n"
-        "Fukui,english,transport_access,Transport / Access,1,10,10.0\n",
-        encoding="utf-8",
-    )
-
     report = build_chinese_social_outputs(
         input_dir=tmp_path,
         output_dir=tmp_path / "out",
         input_files=[xhs, douyin],
-        review_friction_path=review_friction,
     )
 
     assert report["rows_retained"] == 3
@@ -96,9 +87,6 @@ def test_chinese_social_builder_tags_and_compares_populated_rows(tmp_path):
     assert row["count"] == 1
     assert row["denominator_posts"] == 2
 
-    comparison = pd.read_csv(tmp_path / "out" / "chinese_vs_review_language_friction_comparison.csv")
-    assert comparison.loc[0, "comparison_group"] == "google_english"
-    assert set(comparison["chinese_subset"]) == {"all_posts", "excluding_fan"}
 
 
 def test_parse_author_and_date_handles_xhs_display_forms():
@@ -148,7 +136,6 @@ def test_theme_annotations_join_from_processed_csv(tmp_path):
     report = build_chinese_social_outputs(
         input_dir=tmp_path,
         output_dir=tmp_path / "out",
-        review_friction_path=tmp_path / "missing.csv",
     )
     assert report["rows_retained"] == 2
     assert report["theme_counts"] == {"travel": 1, "fan": 1}
@@ -175,6 +162,5 @@ def test_unmatched_rows_fall_back_to_unclassified_theme(tmp_path):
     report = build_chinese_social_outputs(
         input_dir=tmp_path,
         output_dir=tmp_path / "out",
-        review_friction_path=tmp_path / "missing.csv",
     )
     assert report["theme_counts"] == {"unclassified": 1}

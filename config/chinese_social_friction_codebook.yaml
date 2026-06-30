@@ -1,9 +1,8 @@
 # Chinese social-media friction codebook.
 #
-# Codes intentionally mirror config/friction_codebook.yaml so Xiaohongshu and
-# Douyin title/text rows can be compared descriptively with Google-review
-# English/Japanese friction outputs. Matching is substring-based and should be
-# manually validated after real Chinese rows are populated.
+# Codes intentionally mirror config/friction_codebook.yaml. Matching is
+# substring-based and should be manually validated after real Chinese rows are
+# populated.
 
 friction_codes:
 

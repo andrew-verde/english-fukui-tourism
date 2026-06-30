@@ -4,8 +4,8 @@ Build Chinese social-media tourism text analysis outputs.
 
 The input layer is schema-first and empty-data-safe. It normalizes Xiaohongshu
 and Douyin CSV exports from the companion tourism-data project into a
-review-like row schema, then applies Chinese friction keywords and transparent
-lexicon sentiment fields for comparison with the Google-review layers.
+common row schema, then applies Chinese friction keywords and transparent
+lexicon sentiment fields for standalone exploratory analysis.
 """
 
 from __future__ import annotations
@@ -40,7 +40,6 @@ DEFAULT_INPUT_DIR = Path(
 )
 OUTPUT_DIR = ROOT / "output" / "chinese_social_media_analysis"
 CODEBOOK_PATH = ROOT / "config" / "chinese_social_friction_codebook.yaml"
-MULTILINGUAL_FRICTION_PATH = ROOT / "output" / "multilingual_review_analysis" / "friction_by_city_language_group.csv"
 
 SOURCE_COLUMNS = [
     "city",
@@ -459,58 +458,11 @@ def _within_chinese_tests(tagged: pd.DataFrame, codebook: dict) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def _review_language_comparison(
-    friction_summary: pd.DataFrame, review_path: Path, chinese_subset: str = "all_posts"
-) -> pd.DataFrame:
-    columns = [
-        "city", "friction_code", "friction_label", "comparison_group", "chinese_subset",
-        "chinese_count", "chinese_n", "chinese_pct_posts",
-        "review_count", "review_n", "review_pct_reviews",
-        "review_minus_chinese_pp",
-    ]
-    if friction_summary.empty or not review_path.exists():
-        return pd.DataFrame(columns=columns)
-    reviews = pd.read_csv(review_path)
-    if reviews.empty:
-        return pd.DataFrame(columns=columns)
-    rows = []
-    chinese = friction_summary.groupby(["city", "friction_code", "friction_label"], dropna=False).agg(
-        chinese_count=("count", "sum"),
-        chinese_n=("denominator_posts", "sum"),
-    ).reset_index()
-    chinese["chinese_pct_posts"] = chinese.apply(
-        lambda row: round(100 * row["chinese_count"] / row["chinese_n"], 3) if row["chinese_n"] else 0.0,
-        axis=1,
-    )
-    for _, row in chinese.iterrows():
-        comparable = reviews[
-            (reviews["city"] == row["city"])
-            & (reviews["code"] == row["friction_code"])
-            & (reviews["language_group"].isin(["english", "japanese"]))
-        ]
-        for _, review_row in comparable.iterrows():
-            rows.append({
-                "city": row["city"],
-                "friction_code": row["friction_code"],
-                "friction_label": row["friction_label"],
-                "comparison_group": f"google_{review_row['language_group']}",
-                "chinese_subset": chinese_subset,
-                "chinese_count": int(row["chinese_count"]),
-                "chinese_n": int(row["chinese_n"]),
-                "chinese_pct_posts": float(row["chinese_pct_posts"]),
-                "review_count": int(review_row["count"]),
-                "review_n": int(review_row["denominator_reviews"]),
-                "review_pct_reviews": float(review_row["pct_reviews"]),
-                "review_minus_chinese_pp": round(float(review_row["pct_reviews"]) - float(row["chinese_pct_posts"]), 3),
-            })
-    return pd.DataFrame(rows, columns=columns)
-
-
 def _write_readiness(report: dict, path: Path) -> None:
     lines = [
         "# Chinese Social Media Analysis Readiness",
         "",
-        "This layer treats Xiaohongshu notes and Douyin videos as Chinese-language recommendation text, analogous to the role Google reviews play for English-language review analysis. It is not a nationality inference.",
+        "This exploratory layer analyzes Chinese-language Xiaohongshu and Douyin recommendation text. It is not a nationality inference.",
         "",
         f"- Input directory: `{report['input_dir']}`",
         f"- Input files discovered: {report['input_files_discovered']}",
@@ -523,12 +475,11 @@ def _write_readiness(report: dict, path: Path) -> None:
         "## Caveats",
         "",
         "- Unit of analysis is one social-media search result row, currently title/text-level, not a full travel itinerary or confirmed visit.",
-        "- Chinese friction tags are substring keyword matches on titles; title-level rates understate friction relative to full-text review rates and are directional only.",
+        "- Chinese friction tags are substring keyword matches on titles and are directional only.",
         "- Sentiment fields use a transparent keyword polarity scaffold, not VADER and not a validated Chinese sentiment model.",
-        "- Compare Chinese social-media rates with Google review-language rates descriptively because source platform behavior and text length differ.",
         "- Theme labels (fan / travel / ordinary) come from the companion tourism-data processed CSVs, joined on note id; rows without a label are `unclassified`.",
         "- `post_date` is parsed from the Xiaohongshu author cell; `post_date_precision` marks exact vs year-inferred vs relative-inferred values (inference anchored to the scrape commit date).",
-        "- Side-project layer: these outputs feed the cross-language trends comparison only and are not thesis evidence.",
+        "- Side-project layer: these outputs are not thesis evidence.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
@@ -538,7 +489,6 @@ def build_chinese_social_outputs(
     input_dir: Path = DEFAULT_INPUT_DIR,
     output_dir: Path = OUTPUT_DIR,
     input_files: list[Path] | None = None,
-    review_friction_path: Path = MULTILINGUAL_FRICTION_PATH,
 ) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     input_files = input_files if input_files is not None else discover_input_files(input_dir)
@@ -575,7 +525,6 @@ def build_chinese_social_outputs(
     theme_summary_path = output_dir / "chinese_theme_by_city_platform.csv"
     sentiment_summary_path = output_dir / "chinese_sentiment_by_city_platform.csv"
     within_tests_path = output_dir / "chinese_city_platform_friction_tests.csv"
-    review_comparison_path = output_dir / "chinese_vs_review_language_friction_comparison.csv"
     report_json_path = output_dir / "chinese_social_readiness.json"
     report_md_path = output_dir / "chinese_social_readiness.md"
 
@@ -588,18 +537,6 @@ def build_chinese_social_outputs(
     sentiment_summary = _sentiment_summary(df)
     within_tests = _within_chinese_tests(tagged, codebook) if not tagged.empty else pd.DataFrame()
 
-    # Fan-pilgrimage notes are a distinct travel motivation, so the EN/JP
-    # review comparison is reported both for all posts and excluding them.
-    excluding_fan = tagged[tagged["theme"] != "fan"] if not tagged.empty else tagged
-    friction_excluding_fan = _friction_summary(excluding_fan, codebook) if not excluding_fan.empty else pd.DataFrame(columns=friction_columns)
-    review_comparison = pd.concat(
-        [
-            _review_language_comparison(friction_summary, review_friction_path, "all_posts"),
-            _review_language_comparison(friction_excluding_fan, review_friction_path, "excluding_fan"),
-        ],
-        ignore_index=True,
-    )
-
     df.to_csv(normalized_path, index=False)
     tagged.to_csv(tagged_path, index=False)
     friction_summary.to_csv(friction_summary_path, index=False)
@@ -607,7 +544,6 @@ def build_chinese_social_outputs(
     theme_summary.to_csv(theme_summary_path, index=False)
     sentiment_summary.to_csv(sentiment_summary_path, index=False)
     within_tests.to_csv(within_tests_path, index=False)
-    review_comparison.to_csv(review_comparison_path, index=False)
 
     report = {
         "input_dir": str(input_dir),
@@ -628,7 +564,6 @@ def build_chinese_social_outputs(
             "chinese_theme_by_city_platform": str(theme_summary_path),
             "chinese_sentiment_by_city_platform": str(sentiment_summary_path),
             "chinese_city_platform_friction_tests": str(within_tests_path),
-            "chinese_vs_review_language_friction_comparison": str(review_comparison_path),
             "chinese_social_readiness": str(report_md_path),
         },
     }
@@ -642,7 +577,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input-dir", type=Path, default=DEFAULT_INPUT_DIR)
     parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
     parser.add_argument("--input-file", type=Path, action="append", default=None, help="Specific CSV file to include; can be repeated.")
-    parser.add_argument("--review-friction-path", type=Path, default=MULTILINGUAL_FRICTION_PATH)
     return parser.parse_args()
 
 
@@ -652,7 +586,6 @@ def main() -> int:
         input_dir=args.input_dir,
         output_dir=args.output_dir,
         input_files=args.input_file,
-        review_friction_path=args.review_friction_path,
     )
     logger.info("Rows retained: %s", report["rows_retained"])
     logger.info("Output written: %s", args.output_dir)
