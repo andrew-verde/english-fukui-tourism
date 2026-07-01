@@ -36,6 +36,10 @@ in tests; ordinary regeneration leaves that copy untouched after verification.
 If the upstream panel or method changes, the synthesis oracles must be
 re-derived in the same commit rather than merely updating the checksum.
 
+Figure rendering is a separate downstream target, `synthesis-figures`, implemented by
+`scripts/plot_synthesis_figures.py`. The figures are a pure function of the synthesis
+CSVs, with no network access or RNG, and are written to `output/synthesis/figures/`.
+
 ## Consequences
 
 Transport/last-mile access is the single dominant intervention target across
