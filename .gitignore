@@ -122,28 +122,16 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Raw + re-fetchable data — reconstructed via fetch scripts, never committed
+output/*
+!output/.gitkeep
+data/raw/
+*.xlsx
+*.xls
+
 # Data files
-data/raw/*.csv
-data/raw/*.json
 data/processed/*.csv
 data/processed/*.json
-output/*.png
-output/*.pdf
-output/*.html
-# Google review row-level CSVs and checkpoints are tracked (pseudonymized
-# reviewer handles); stale ignore entries removed when they were committed.
-output/friction_analysis/presentation_figures/
-# Chinese social row-level data stays local: it carries real author handles
-# and source URLs from the companion tourism-data scrape.
-output/chinese_social_media_analysis/chinese_social_posts.csv
-output/chinese_social_media_analysis/tagged_chinese_social_posts.csv
-# Official survey datasets are LFS-tracked at the pinned vintage for thesis
-# traceability (see docs/data_reproducibility.md). Only refetchable lookup
-# CSVs from the fetch script stay ignored.
-output/official_fukui/raw/*.csv
-!output/official_fukui/raw/ishikawa_survey_*.csv
-!output/official_fukui/raw/ftas_survey_all.csv
-output/official_fukui/japanese_friction_validation_sample.csv
 outputs/
 experiments/nudge-pilot/exports/
 
@@ -175,14 +163,3 @@ AGENTS.md
 *.secret
 credentials.json
 config/credentials.json
-
-# Hokuriku merged microdata raw files are LFS-tracked at the pinned vintage
-# (see docs/data_reproducibility.md); only non-survey droppings stay ignored.
-output/hokuriku_merged/raw/*
-!output/hokuriku_merged/raw/merged_survey_*.csv
-
-# National-stats raw downloads (refetch via scripts/fetch_national_direct.py / fetch_estat_data.py)
-output/national_stats/raw/
-output/national_stats/estat/raw/
-output/national_stats/ff_data/raw/
-output/national_stats/japan_kanko_stat/raw/
