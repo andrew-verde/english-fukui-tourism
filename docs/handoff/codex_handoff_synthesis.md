@@ -45,6 +45,14 @@ task; out of scope here.)
 `data/causal/fukui_municipalities_scm.csv`, so fresh clones receive the pinned
 cross-arm input.
 
+**RESOLVED (producer added):** `scripts/build_causal_arm_summary.py`, exposed as
+`make synth-causal-arm`, now regenerates Feed A from the commit-pinned upstream
+panel deterministically up to BLAS-level float noise (observed around `1e-12`).
+The producer verifies numeric columns with `atol=1e-6`, `rtol=0`, plus exact
+agreement on categorical fields and all regime-boundary decisions. The
+committed CSV remains the byte-stable pinned copy, checked by exact SHA-256 in
+tests; ordinary regeneration verifies it without rewriting it.
+
 ---
 
 ## 1. New script — `scripts/synthesis_friction_causal.py`

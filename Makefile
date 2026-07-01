@@ -4,7 +4,7 @@ PYTHON = .venv/bin/python3
 	synth-official chinese-social fetch-hokuriku-merged hokuriku-did-audit \
 	hokuriku-did-event-study fetch-estat fetch-estat-list fetch-national-direct \
 	fetch-ff-data fetch-japan-kanko-stat accommodation-panel ff-data-panel japan-kanko-panel synthetic-control \
-	vision-descriptive sem-ftas nudge-ranking synthesis result-charts data-manifest \
+	vision-descriptive sem-ftas nudge-ranking synth-causal-arm synthesis result-charts data-manifest \
 	reproduce-submission test nudge-pilot-serve
 
 help:
@@ -28,7 +28,7 @@ official-all: build-ftas stats-official synth-official
 
 fetch: fetch-official-fukui fetch-japan-kanko-stat
 
-reproduce-submission: test build-ftas stats-official synth-official sem-ftas nudge-ranking synthesis hokuriku-did-event-study data-manifest
+reproduce-submission: test synth-causal-arm build-ftas stats-official synth-official sem-ftas nudge-ranking synthesis hokuriku-did-event-study data-manifest
 
 fetch-official-fukui:
 	$(PYTHON) scripts/fetch_code4fukui_data.py
@@ -89,6 +89,9 @@ sem-ftas:
 
 nudge-ranking:
 	$(PYTHON) scripts/rank_nudge_priorities.py
+
+synth-causal-arm:
+	$(PYTHON) scripts/build_causal_arm_summary.py
 
 synthesis:
 	$(PYTHON) scripts/synthesis_friction_causal.py
