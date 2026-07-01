@@ -2,7 +2,7 @@ import math
 
 import pytest
 
-from scripts.build_reservation_panels import load_panel, panel_summary
+from scripts.build_reservation_panels import FILES, RAW_DIR, load_panel, panel_summary
 
 
 ORACLE = {
@@ -15,6 +15,8 @@ ORACLE = {
 
 @pytest.mark.parametrize("locality", ORACLE)
 def test_reservation_panel_oracle(locality):
+    if not (RAW_DIR / FILES[locality]).exists():
+        pytest.skip("optional raw reservation data not available")
     summary = panel_summary(load_panel(locality))
     expected = ORACLE[locality]
     assert summary["date_min"].strftime("%Y-%m-%d") == expected[0]

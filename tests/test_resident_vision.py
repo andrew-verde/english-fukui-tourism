@@ -5,9 +5,16 @@ import pytest
 
 from scripts.build_resident_vision import (
     METHOD_SHIFT_CAVEAT,
+    OVERVIEW_FILE,
+    TIMESERIES_FILE,
     build_tables,
     load_inputs,
     write_report,
+)
+
+pytestmark = pytest.mark.skipif(
+    not OVERVIEW_FILE.exists() or not TIMESERIES_FILE.exists(),
+    reason="optional raw resident-vision data not available",
 )
 
 

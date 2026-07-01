@@ -1,10 +1,12 @@
 import pytest
 
-from scripts.build_japan_kanko_panel import build_panel
+from scripts.build_japan_kanko_panel import RAW, build_panel
 
 
 @pytest.fixture(scope="module")
 def panel():
+    if len(list(RAW.glob("city20*.csv"))) != 5:
+        pytest.skip("optional raw japan-kanko-stat data not available")
     return build_panel()
 
 
