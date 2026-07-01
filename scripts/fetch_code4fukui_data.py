@@ -105,6 +105,12 @@ def main() -> int:
                 f"{key}: SHA256 mismatch: expected {expected_sha256}, "
                 f"got {actual_sha256}. File not accepted."
             )
+        expected_rows = attrs.get("rows")
+        actual_rows = _row_count(data)
+        if expected_rows is not None and actual_rows != int(expected_rows):
+            raise ValueError(
+                f"{key}: row-count mismatch: expected {expected_rows}, got {actual_rows}"
+            )
         if status == "downloaded":
             temporary_path = out_path.with_suffix(out_path.suffix + ".tmp")
             temporary_path.write_bytes(data)
@@ -118,7 +124,7 @@ def main() -> int:
             "description": attrs.get("description", ""),
             "path": str(out_path.relative_to(ROOT)),
             "bytes": len(data),
-            "rows_excluding_header": _row_count(data),
+            "rows_excluding_header": actual_rows,
             "sha256": actual_sha256,
             "expected_sha256": expected_sha256,
             "checksum_verified": True,

@@ -1,24 +1,32 @@
 PYTHON = .venv/bin/python3
 
-.PHONY: help official-all fetch-official-fukui build-ftas stats-official \
+.PHONY: help fetch official-all fetch-official-fukui build-ftas stats-official \
 	synth-official chinese-social fetch-hokuriku-merged hokuriku-did-audit \
 	hokuriku-did-event-study fetch-estat fetch-estat-list fetch-national-direct \
-	accommodation-panel sem-ftas nudge-ranking result-charts data-manifest \
+	fetch-ff-data fetch-japan-kanko-stat accommodation-panel ff-data-panel japan-kanko-panel synthetic-control \
+	vision-descriptive sem-ftas nudge-ranking result-charts data-manifest \
 	reproduce-submission test nudge-pilot-serve
 
 help:
 	@echo "Fukui official-data tourism analysis"
 	@echo ""
 	@echo "  make official-all              Build and analyze official FTAS data"
+	@echo "  make fetch                     Reconstruct checksum-pinned raw data"
 	@echo "  make sem-ftas                  Run two-stage FTAS SEM"
 	@echo "  make nudge-ranking             Build evidence-weighted nudge ranking"
 	@echo "  make hokuriku-did-event-study  Run thesis DiD/event study"
+	@echo "  make fetch-ff-data             Fetch MLIT FF-DATA API records"
 	@echo "  make accommodation-panel      Build JTA overnight-stay panel"
+	@echo "  make ff-data-panel             Build FF-DATA quarterly flow panel"
+	@echo "  make fetch-japan-kanko-stat    Fetch pinned municipal visitor panel"
+	@echo "  make synthetic-control         Run Fukui City synthetic control"
 	@echo "  make result-charts             Generate official-data charts"
 	@echo "  make reproduce-submission      Run no-network reproduction path"
 	@echo "  make test                      Run maintained tests"
 
 official-all: build-ftas stats-official synth-official
+
+fetch: fetch-official-fukui fetch-japan-kanko-stat
 
 reproduce-submission: test build-ftas stats-official synth-official sem-ftas nudge-ranking hokuriku-did-event-study data-manifest
 
@@ -55,8 +63,26 @@ fetch-estat-list:
 fetch-national-direct:
 	$(PYTHON) scripts/fetch_national_direct.py
 
+fetch-ff-data:
+	$(PYTHON) scripts/fetch_ff_data.py
+
 accommodation-panel:
 	$(PYTHON) scripts/build_accommodation_panel.py
+
+ff-data-panel:
+	$(PYTHON) scripts/build_ff_data_panel.py
+
+fetch-japan-kanko-stat:
+	$(PYTHON) scripts/fetch_japan_kanko_stat.py
+
+japan-kanko-panel:
+	$(PYTHON) scripts/build_japan_kanko_panel.py
+
+synthetic-control:
+	$(PYTHON) scripts/synthetic_control_fukui.py
+
+vision-descriptive:
+	$(PYTHON) scripts/build_resident_vision.py
 
 sem-ftas:
 	$(PYTHON) scripts/sem_ftas.py

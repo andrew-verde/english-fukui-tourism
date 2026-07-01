@@ -40,6 +40,60 @@ sources:
     sha256: "a248b024ab91d49e93be4fbd516c85edac5c03d12f28fe72bcc0614b6eb0545d"
     filename: "fukui_reservation_prefecture_sum.csv"
     description: "Daily Fukui tourism reservation totals by origin prefecture"
+  fukui_station_reservation:
+    upstream_repo: "https://github.com/code4fukui/fukui-station-kanko-reservation"
+    commit: "2e6d8e6a30b3518d4d2c36440555a1de8aaaed69"
+    source_path: "latest_rsv_sum.csv"
+    sha256: "a865c9b769b3517de723b24200f3bb3139a2c952dbb258e926e48091120e3aa5"
+    filename: "fukui_station_reservation.csv"
+    rows: 1095
+    role: "treated"
+    description: "Fukui-station catchment daily reservations"
+  obama_reservation:
+    upstream_repo: "https://github.com/code4fukui/obama-kanko-reservation"
+    commit: "732082687a3cdfad5c403331c78c830265772afd"
+    source_path: "latest_rsv_sum.csv"
+    sha256: "d04aa6c9d08cc3e940da10b65fd4e8d6a7c88e327936945ab8e4463ead055b73"
+    filename: "obama_reservation.csv"
+    rows: 1071
+    role: "treated"
+    description: "Obama-area daily reservations"
+  echizen_coast_reservation:
+    upstream_repo: "https://github.com/code4fukui/echizen-coast-kanko-reservation"
+    commit: "6742d707dbfc3247893c3e8ce174f250e3820a15"
+    source_path: "latest_rsv_sum.csv"
+    sha256: "0e4c9a857c47679dda102823d6e98d7de8b6f3489657b59d6ae982b284d55d22"
+    filename: "echizen_coast_reservation.csv"
+    rows: 698
+    role: "post_only"
+    description: "Echizen-coast daily reservations"
+  mikatagoko_reservation:
+    upstream_repo: "https://github.com/code4fukui/mikatagoko-kanko-reservation"
+    commit: "0e715aa3f6d2a5a467ad0aca071d4c1619448a5b"
+    source_path: "latest_rsv_sum.csv"
+    sha256: "53be386fa5a39a8cf0ada7f3c1818923c445daf28e352dd9976af8cc1a8e43a5"
+    filename: "mikatagoko_reservation.csv"
+    rows: 523
+    role: "post_only"
+    description: "Mikata-goko daily reservations"
+  fukui_vision_overview:
+    upstream_repo: "https://github.com/code4fukui/fukui-vision-data"
+    commit: "7eba2ff6ba50f73bb28e36554787882231007527"
+    source_path: "survey_overview.csv"
+    sha256: "9bba3649b4558e1a44b81afe8cd110f4d077d566bac43258c22b31506508b68e"
+    filename: "fukui_vision_overview.csv"
+    rows: 7
+    role: "metadata"
+    description: "Fukui resident survey wave metadata"
+  fukui_vision_timeseries:
+    upstream_repo: "https://github.com/code4fukui/fukui-vision-data"
+    commit: "7eba2ff6ba50f73bb28e36554787882231007527"
+    source_path: "questionnaire_timeseries.csv"
+    sha256: "47c9cc79a32b26307b4437600861961c279b62e81b60c5fd739e3d0101abb930"
+    filename: "fukui_vision_timeseries.csv"
+    rows: 159
+    role: "descriptive"
+    description: "Fukui resident survey aggregate indicator time series"
   ishikawa_survey_all:
     upstream_repo: "https://github.com/code4fukui/ishikawa-kanko-survey"
     commit: "a02e12abd32b9ab6f9a558fe3d7b36afff9623ec"

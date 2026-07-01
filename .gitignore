@@ -184,3 +184,5 @@ output/hokuriku_merged/raw/*
 # National-stats raw downloads (refetch via scripts/fetch_national_direct.py / fetch_estat_data.py)
 output/national_stats/raw/
 output/national_stats/estat/raw/
+output/national_stats/ff_data/raw/
+output/national_stats/japan_kanko_stat/raw/

@@ -12,6 +12,7 @@ FTAS SEM + Shinkansen DiD analyses, and how to obtain JR ridership data.
 | JTA 宿泊旅行統計調査 (e-Stat code 00601020) | Overnight stays: total / Japanese / foreign; occupancy | Monthly, prefecture, since 2007 | e-Stat API (free AppID) | `make fetch-estat` |
 | JNTO statistics site (statistics.jnto.go.jp) | Visitor arrivals, prefecture overnight stays | Monthly, prefecture | Tableau views; CSV download per view, no API | manual cross-check |
 | JR West press releases | Hokuriku Shinkansen (Kanazawa–Tsuruga) boardings, first 12 months; FY2024 transport density | Line/section level | Free PDFs | `make fetch-national-direct` |
+| FF-DATA 訪日外国人流動データ (e-Stat code 00600466) | Cross-prefecture foreign visitor flow: nationality × purpose × transport mode, inter-prefecture OD | Quarterly/annual, prefecture, since 2014 | 国土交通データプラットフォーム API (mlit-data.jp, free AppID reg, XML/JSON/CSV, ≤100 items/query) or e-Stat file download | new — see below |
 
 ### Tier 2 — context / robustness
 
@@ -21,7 +22,7 @@ FTAS SEM + Shinkansen DiD analyses, and how to obtain JR ridership data.
 | MLIT 鉄道輸送統計調査 (00600350) | Rail passengers/revenue, monthly | Operator-level only — JR West aggregate, no line split |
 | 国土数値情報 S12 | Station-level annual boardings (GeoJSON) | FY2022 latest; post-opening release ~2027. Pre-extension baseline only |
 | Fukui Pref. 観光客入込数 | Site/municipality visitor counts | Annual, PDF only |
-| RAIDA (raida.go.jp) | RESAS successor — prefecture travel dashboards | No API; RESAS API discontinued March 2025, do not cite it |
+| RAIDA (raida.go.jp) | RESAS successor — prefecture travel dashboards | No API (re-verified 2026-07-01); RESAS API discontinued March 2025, do not cite it. Dashboard covers lodging-guest-attribute change + regional economic effect for Fukui; usable only as manual descriptive/qualitative citation, never as pipeline input. Site notes some features discontinued as of March 2026 — re-check before citing |
 
 ### Thesis fit
 
@@ -34,6 +35,17 @@ FTAS SEM + Shinkansen DiD analyses, and how to obtain JR ridership data.
   first-stage, not as an estimated quantity.
 - **Triangulation**: JNTO prefecture overnight stays as cross-check on the JTA
   series (same underlying survey, different publication path).
+- **FF-DATA flow panel (new, found 2026-07-01)**: combines JTA 訪日外国人消費動向調査
+  + civil aviation bureau + immigration stats into cross-prefecture foreign
+  visitor flow (nationality × purpose × transport mode), quarterly/annual.
+  Complements the accommodation panel by answering "did visitors actually move
+  into Fukui" rather than just "did stays rise" — a second hard-count outcome
+  for the event study, built from independent source surveys (less mechanical
+  overlap with 00601020 than another stays series would be). Access via
+  mlit-data.jp API (separate AppID registration from e-stat) or e-Stat file
+  download (00600466). Granularity is coarser (quarterly, not monthly) so
+  treat as a robustness/triangulation series alongside the monthly
+  accommodation panel, not a replacement.
 
 Caveats for the methods appendix: 宿泊旅行統計調査 has a facility-size
 reporting threshold and preliminary→confirmed revisions (use confirmed or 2nd
@@ -92,6 +104,13 @@ parallel-trends discussion. Fukui March total stays: 322,200 (2018) →
 
 ### Remaining steps (ordered)
 
+0. Build FF-DATA flow panel: `scripts/fetch_ff_data.py` (mlit-data.jp API,
+   AppID env var, prefecture × quarter, nationality/purpose/transport
+   dimensions) → `scripts/build_ff_data_panel.py` (tidy panel, mirrors
+   `build_accommodation_panel.py`) → `output/national_stats/ff_data_panel.csv`.
+   Add `ff_data` block to `config/national_data_sources.yaml`. Gate with a
+   test mirroring `tests/test_accommodation_panel.py`. No source-ledger row
+   until a number from this panel is actually cited.
 1. Extend `hokuriku_did_event_study.py` (or a sibling script) to run the same
    event-study spec on `output/national_stats/accommodation_panel.csv`
    (log stays, prefecture × month, treatment = Fukui, opening 2024-03-16;

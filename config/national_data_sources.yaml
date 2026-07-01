@@ -9,6 +9,41 @@
 # Provenance: both scripts write raw copies plus a sha256 source manifest under
 # output/national_stats/, mirroring the official_fukui pipeline.
 
+ff_data:
+  # FF-DATA 訪日外国人流動データ. The former mlit-data.jp service migrated to
+  # the MLIT Data Platform; its current API is GraphQL/JSON and authenticates
+  # with an apikey header. MLIT_DATA_APP_ID is separate from ESTAT_APP_ID.
+  api_base: "https://data-platform.mlit.go.jp/api/v1/"
+  app_id_env: "MLIT_DATA_APP_ID"
+  catalog_id: "ffd"
+  stats_code: "00600466"
+  dataset_id_template: "ffd_{year}"
+  years: [2018, 2019, 2022, 2023, 2024]
+  area_codes: ["18000", "17000", "16000", "21000"]  # Fukui, Ishikawa, Toyama, Gifu
+  granularity: "prefecture x quarter"
+  dimensions: ["nationality", "purpose", "transport_mode"]
+  source: "MLIT FF-DATA (訪日外国人流動データ), e-Stat statistics code 00600466"
+  license: "Public Data License 1.0 (PDL1.0); attribution required"
+  notes: >
+    Quarterly inter-prefecture foreign-visitor flows for Fukui and three
+    comparison prefectures around the 2024-03-16 Hokuriku Shinkansen extension.
+    Raw API responses and a sha256 manifest are retained under
+    output/national_stats/. The historical mlit-data.jp API documentation
+    described XML/JSON/CSV and at most 100 items per query; the current
+    data-platform.mlit.go.jp endpoint uses GraphQL JSON with an apikey header.
+
+japan_kanko_stat:
+  repo: "https://github.com/code4fukui/japan-kanko-stat"
+  commit: "dfb906975b63adcaef20a3e7a35f2a10ab22ada5"
+  role: "synthetic_control_donor_pool"
+  description: "Monthly municipal tourist visitor estimates, 2021-2025"
+  files:
+    - {path: "data/city2021.csv", sha256: "20db2aaaa766c1985ee09b37f741f27e40902fe320ce7649078deea1259fe554", rows: 22408}
+    - {path: "data/city2022.csv", sha256: "e47e44560bcc08537306bf9a99c637409fffefb91863eeb077000bedc23aabb4", rows: 22400}
+    - {path: "data/city2023.csv", sha256: "9a6a15f5f431d26b3116033a8b8cd224bbe9757936f2a1ff294f19b01ef3faf6", rows: 22412}
+    - {path: "data/city2024.csv", sha256: "3349691e0613829f3ec267eac2f38bd5415d5a4c61f1ddae114f81f185619953", rows: 22413}
+    - {path: "data/city2025.csv", sha256: "7c31fed0a71168b684e61ecc5e092cf8d63679494a9eeeac384ceb58f17d5216", rows: 22434}
+
 estat:
   # JTA 宿泊旅行統計調査 — kept for table discovery/audit only. The e-Stat API
   # DB tables for this survey are FROZEN at 2014–2016 (verified 2026-06-12:
