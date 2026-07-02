@@ -10,7 +10,9 @@ demand shock into durable visitation while others retain only a transient bump,
 and Direction B specifies **how** to test the corresponding fix. Read together
 they form one causal story — a diagnosed constraint, an identified conversion
 mechanism, and a pre-registered experiment — rather than three independent
-analyses placed side by side.
+analyses placed side by side. All quantities regenerate from committed
+artifacts (`make synthesis durability-mechanisms causal-robustness
+nudge-pilot-power`; evidence bindings in `thesis_master.md`).
 
 ## 6.1 What the diagnosis established
 

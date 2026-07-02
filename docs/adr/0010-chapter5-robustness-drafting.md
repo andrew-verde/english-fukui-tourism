@@ -22,7 +22,7 @@ Figs. 4–6.
    survives, handing the durability question to §6.
 2. **Stated the significant-set threshold explicitly as the 10% one-sided
    level.** The set {Eiheiji, Fukui City, Tsuruga, Sakai} is defined in
-   `causal_robustness.py` as `p_open_1s < 0.10 & good_fit` (Tsuruga p = 0.077,
+   `scripts/causal_robustness.py` as `p_open_1s < 0.10 & good_fit` (Tsuruga p = 0.077,
    Sakai p = 0.096); earlier summaries named the set without its threshold,
    which a reader could mistake for 5%. The chapter notes Eiheiji and Fukui
    City also clear 5%.

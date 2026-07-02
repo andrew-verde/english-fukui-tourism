@@ -4,7 +4,8 @@
 > finished thesis prose. Exact numbers below are verified from committed CSVs /
 > the SEM output and must be preserved byte-for-byte. `[FABLE: …]` marks prose to
 > write. Do not invent figures; if a number isn't here, pull it from the cited
-> artifact and cite the source.
+> artifact and cite the source. All numbers below regenerate from
+> `make synthesis durability-mechanisms causal-robustness nudge-pilot-power`.
 
 ## 6.0 Purpose of this chapter
 [FABLE: 2–3 sentences. Chapters 4–5 diagnosed *where* Fukui's inbound-tourism
