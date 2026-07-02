@@ -15,7 +15,7 @@ reproduction contract offered to a reviewer.
 ## 2.1 Data families
 
 **Survey microdata (Chapters 3–4, 6).** The core source is the Fukui Tourism
-Attitude Survey (FTAS), distributed as open data and pinned at its 2026-06-30
+Area Survey (FTAS), distributed as open data and pinned at its 2026-06-30
 upstream vintage: 97,866 response rows, which the documented ID/time
 deduplication rule reduces to **51,399 unique respondents** (46,467 repeat
 responses dropped — the ~47% repeat share that also motivates Chapter 3's

@@ -23,7 +23,7 @@ All quantities below regenerate from committed artifacts
 
 ## 4.1 Diagnostic inputs: structural damage paths and demand regimes
 
-**The structural model.** The Fukui Tourism Attitude Survey (FTAS) asks every
+**The structural model.** The Fukui Tourism Area Survey (FTAS) asks every
 respondent — not only complainants — whether they experienced inconvenience,
 which makes `reported_inconvenience` a selection-bias-free exposure. A
 confirmatory factor analysis holds the three satisfaction items as a single
