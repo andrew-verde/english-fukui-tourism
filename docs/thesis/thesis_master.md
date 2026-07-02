@@ -35,7 +35,7 @@ nudge pilot tests the fix at its causal joint (Direction B).
 | 2 | Data, provenance, and reproducibility | **to draft** | — |
 | 3 | Impact: the Hokuriku Shinkansen extension as a friction shock (DiD) | **to draft** | — |
 | 4 | Diagnosis: where friction concentrates (SEM + synthesis) | **written** | `section4_diagnosis.md` |
-| 5 | Robustness: is the demand signal real? (synthetic control, Direction D) | **to draft** | — |
+| 5 | Robustness: is the demand signal real? (synthetic control, Direction D) | **written** | `section5_robustness.md` |
 | 6 | From diagnosis to intervention (Directions C + B) | **written** | `section6_intervention.md` |
 | 7 | Conclusion and transferable template | **to draft** | — |
 
