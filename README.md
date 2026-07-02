@@ -48,7 +48,7 @@ make hokuriku-did-event-study     # thesis DiD/event-study battery
 make accommodation-panel         # JTA prefecture-month stays panel
 make result-charts                # official-data result charts
 make data-manifest                # hashes, schemas, row counts
-make reproduce-submission         # no-network verification path
+make reproduce-submission         # verification path; offline except synth-causal-arm (network fetch of pinned panel)
 make test                         # full maintained test suite
 ```
 

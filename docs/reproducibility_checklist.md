@@ -29,4 +29,6 @@ study, and aggregate manifest from pinned inputs.
 - Confirm `output/data_manifest.json` covers official, SEM, DiD, national, and
   standalone Chinese side-analysis tables only.
 
-Network fetch targets are excluded from no-network reproduction.
+The reproduction path is offline except the synth-causal-arm target, which fetches
+the pinned code4fukui panel (DATA_COMMIT dfb90697...) over the network to regenerate
+the byte-stable Feed A fixture. All other targets read pre-staged local inputs.

@@ -26,7 +26,7 @@ help:
 	@echo "  make durability-mechanisms     Compute durable-regime mechanism table"
 	@echo "  make durability-figures        Render durability-mechanism figures"
 	@echo "  make result-charts             Generate official-data charts"
-	@echo "  make reproduce-submission      Run no-network reproduction path"
+	@echo "  make reproduce-submission      Reproduction path; offline except synth-causal-arm (fetches pinned panel)"
 	@echo "  make test                      Run maintained tests"
 	@echo "  make nudge-pilot-power         Regenerate nudge-pilot power analysis"
 
