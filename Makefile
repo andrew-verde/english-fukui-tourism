@@ -4,7 +4,7 @@ PYTHON = .venv/bin/python3
 	synth-official chinese-social fetch-hokuriku-merged hokuriku-did-audit \
 	hokuriku-did-event-study fetch-estat fetch-estat-list fetch-national-direct \
 	fetch-ff-data fetch-japan-kanko-stat accommodation-panel ff-data-panel japan-kanko-panel synthetic-control \
-	vision-descriptive sem-ftas nudge-ranking synth-causal-arm causal-robustness robustness-figures synthesis synthesis-figures result-charts data-manifest \
+	vision-descriptive sem-ftas nudge-ranking synth-causal-arm causal-robustness robustness-figures gap-trajectories synthesis synthesis-figures durability-mechanisms durability-figures result-charts data-manifest \
 	reproduce-submission test nudge-pilot-serve
 
 help:
@@ -22,6 +22,9 @@ help:
 	@echo "  make synthetic-control         Run Fukui City synthetic control"
 	@echo "  make causal-robustness         Run causal-arm falsification tests"
 	@echo "  make robustness-figures        Render causal-robustness figures"
+	@echo "  make gap-trajectories          Export per-target SCM gap trajectories"
+	@echo "  make durability-mechanisms     Compute durable-regime mechanism table"
+	@echo "  make durability-figures        Render durability-mechanism figures"
 	@echo "  make result-charts             Generate official-data charts"
 	@echo "  make reproduce-submission      Run no-network reproduction path"
 	@echo "  make test                      Run maintained tests"
@@ -30,7 +33,11 @@ official-all: build-ftas stats-official synth-official
 
 fetch: fetch-official-fukui fetch-japan-kanko-stat
 
-reproduce-submission: test synth-causal-arm causal-robustness robustness-figures build-ftas stats-official synth-official sem-ftas nudge-ranking synthesis synthesis-figures hokuriku-did-event-study data-manifest
+# reproduce-submission is a no-network path. Required pre-staged (git-untracked) input:
+#   output/national_stats/japan_kanko_stat_panel.csv  (make fetch-japan-kanko-stat japan-kanko-panel)
+# Exception: synth-causal-arm fetches the pinned panel over the network; its Feed A
+# fixture is byte-stable and regeneration normally leaves it untouched.
+reproduce-submission: test synth-causal-arm causal-robustness robustness-figures gap-trajectories build-ftas stats-official synth-official sem-ftas nudge-ranking synthesis synthesis-figures durability-mechanisms durability-figures hokuriku-did-event-study data-manifest
 
 fetch-official-fukui:
 	$(PYTHON) scripts/fetch_code4fukui_data.py
@@ -101,11 +108,20 @@ causal-robustness:
 robustness-figures:
 	$(PYTHON) scripts/plot_robustness_figures.py
 
+gap-trajectories:
+	$(PYTHON) scripts/export_scm_gap_trajectories.py
+
 synthesis:
 	$(PYTHON) scripts/synthesis_friction_causal.py
 
 synthesis-figures:
 	$(PYTHON) scripts/plot_synthesis_figures.py
+
+durability-mechanisms:
+	$(PYTHON) scripts/durability_mechanisms.py
+
+durability-figures:
+	$(PYTHON) scripts/plot_durability_figures.py
 
 result-charts:
 	$(PYTHON) scripts/generate_result_charts.py
