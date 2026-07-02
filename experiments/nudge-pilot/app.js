@@ -2,6 +2,15 @@ const STORAGE_KEY = "fukui_nudge_pilot_sessions";
 const CURRENT_KEY = "fukui_nudge_pilot_current";
 const API_HEALTH_ENDPOINT = "/api/health";
 const API_SUBMIT_ENDPOINT = "/api/submit";
+const API_ASSIGN_ENDPOINT = "/api/assign";
+const TASK_PAIRS = [
+  [0, 1],
+  [1, 0],
+  [0, 2],
+  [2, 0],
+  [1, 2],
+  [2, 1]
+];
 
 let config;
 let state;
@@ -30,17 +39,22 @@ async function init() {
   config = await fetch("study-config.json").then((response) => response.json());
   remoteApiAvailable = await checkRemoteApi();
   state = loadCurrentState() || createState();
+  ensureTaskAssignment();
   stepIndex = state.stepIndex || 0;
   render();
 }
 
 function createState() {
   const sessionId = `pilot_${new Date().toISOString().replace(/[-:.TZ]/g, "")}_${cryptoRandom(6)}`;
-  return {
+  const newState = {
     study_id: config.study_id,
     version: config.version,
     session_id: sessionId,
-    assigned_condition: assignCondition(sessionId),
+    assigned_condition: "",
+    assignment_method: "",
+    assignment_stratum: "",
+    assigned_task_ids: [],
+    task_order: [],
     started_at: new Date().toISOString(),
     completed_at: "",
     consent: false,
@@ -57,14 +71,62 @@ function createState() {
     },
     stepIndex: 0
   };
+  state = newState;
+  ensureTaskAssignment();
+  return newState;
 }
 
-function assignCondition(seed) {
+function hashString(seed) {
   let hash = 0;
   for (let i = 0; i < seed.length; i += 1) {
     hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
   }
-  return config.conditions[hash % config.conditions.length].id;
+  return hash;
+}
+
+function ensureTaskAssignment() {
+  if (state.assigned_task_ids?.length === 2 && state.task_order?.length === 2) return;
+  const pairIndex = hashString(`${state.session_id}|tasks`) % TASK_PAIRS.length;
+  state.task_order = TASK_PAIRS[pairIndex].slice();
+  state.assigned_task_ids = state.task_order.map((index) => config.tasks[index].id);
+}
+
+function getAssignedTasks() {
+  ensureTaskAssignment();
+  return state.assigned_task_ids.map((taskId) => (
+    config.tasks.find((task) => task.id === taskId)
+  ));
+}
+
+async function assignCondition() {
+  if (state.assigned_condition) return;
+  const stratum = `${state.background.fukui_familiarity}|${state.background.japan_travel_experience}`;
+  state.assignment_stratum = stratum;
+  try {
+    const response = await fetch(API_ASSIGN_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        session_id: state.session_id,
+        stratum
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    const validCondition = config.conditions.some((condition) => condition.id === result.condition);
+    if (!response.ok || !validCondition) {
+      throw new Error(result.error || `Assignment failed with HTTP ${response.status}`);
+    }
+    state.assigned_condition = result.condition;
+    state.assignment_method = "server_block";
+  } catch (_error) {
+    const index = hashString(`${state.session_id}|${stratum}`) % config.conditions.length;
+    state.assigned_condition = config.conditions[index].id;
+    state.assignment_method = "hash_fallback";
+  }
+  saveCurrentState();
 }
 
 function cryptoRandom(length) {
@@ -135,24 +197,27 @@ function renderBackground() {
     </div>
   `;
   bindBack();
-  document.getElementById("nextBtn").addEventListener("click", () => {
+  document.getElementById("nextBtn").addEventListener("click", async () => {
     const errors = collectQuestions(config.background_questions, state.background);
     if (errors.length) {
       showErrors(errors);
       return;
     }
+    const button = document.getElementById("nextBtn");
+    button.disabled = true;
+    button.textContent = "Assigning...";
+    await assignCondition();
     logEvent("background_complete", {});
     nextStep();
   });
 }
 
 function renderTask(taskIndex) {
-  const task = config.tasks[taskIndex];
-  const condition = getCondition();
+  const task = getAssignedTasks()[taskIndex];
   const activeNudges = getActiveNudges(task);
   const saved = state.tasks[task.id] || {};
   const nudgeHtml = activeNudges.length
-    ? `<aside class="nudge-box"><h3>${condition.label}</h3><ul>${activeNudges.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></aside>`
+    ? `<aside class="nudge-box"><h3>Planning notes</h3><ul>${activeNudges.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></aside>`
     : `<aside class="nudge-box"><h3>Planning information</h3><p>This version provides the baseline destination description only.</p></aside>`;
 
   app.innerHTML = `
@@ -228,7 +293,7 @@ function renderTask(taskIndex) {
 }
 
 function renderSurvey(taskIndex) {
-  const task = config.tasks[taskIndex];
+  const task = getAssignedTasks()[taskIndex];
   const saved = state.surveys[task.id] || {};
   const items = [];
   config.constructs.forEach((construct) => {
@@ -682,6 +747,10 @@ function flattenSession(session) {
     version: session.version,
     session_id: session.session_id,
     assigned_condition: session.assigned_condition,
+    assignment_method: session.assignment_method || "",
+    assignment_stratum: session.assignment_stratum || "",
+    assigned_task_ids: (session.assigned_task_ids || []).join("|"),
+    task_order: (session.task_order || []).join("|"),
     started_at: session.started_at,
     completed_at: session.completed_at,
     remote_submission_status: session.remote_submission?.status || "",

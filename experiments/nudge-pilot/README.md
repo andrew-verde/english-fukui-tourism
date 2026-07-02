@@ -38,10 +38,22 @@ The pilot uses a between-subjects assignment. Each participant is assigned to on
 - `itinerary_fit_time_cost`
 - `combined`
 
-Each participant completes the same two tourism-planning tasks, then answers the same SEM-oriented Likert items after each task. The current tasks use:
+Each participant completes a counterbalanced, ordered two-of-three rotation of
+tourism-planning tasks, then answers the same SEM-oriented Likert items after
+each task. The three tasks use:
 
 - Eiheiji Temple
 - Fukui Prefectural Dinosaur Museum
+- Tojinbo Cliffs
+
+Nudge panels use the neutral header **Planning notes**, never the condition
+label. Assignment occurs after background questions using five-condition
+permuted blocks stratified by Fukui familiarity and Japan travel experience.
+`/api/assign` performs server-side assignment through Supabase; static/local
+mode falls back to deterministic stratum-seeded hashing.
+
+See [`DESIGN.md`](DESIGN.md) for the full design contract and
+[`power_analysis.md`](power_analysis.md) for reproducible power calculations.
 
 The current app stores no names, emails, precise locations, or reviewer identity data.
 

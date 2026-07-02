@@ -9,6 +9,10 @@ create table if not exists public.nudge_pilot_responses (
   study_version text not null,
   session_id text not null unique,
   assigned_condition text not null,
+  assignment_method text not null default '',
+  assignment_stratum text not null default '',
+  assigned_task_ids jsonb not null default '[]'::jsonb,
+  task_order jsonb not null default '[]'::jsonb,
   started_at timestamptz not null,
   completed_at timestamptz not null,
   consent boolean not null default false,
@@ -24,6 +28,15 @@ create table if not exists public.nudge_pilot_responses (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.nudge_pilot_responses
+  add column if not exists assignment_method text not null default '';
+alter table public.nudge_pilot_responses
+  add column if not exists assignment_stratum text not null default '';
+alter table public.nudge_pilot_responses
+  add column if not exists assigned_task_ids jsonb not null default '[]'::jsonb;
+alter table public.nudge_pilot_responses
+  add column if not exists task_order jsonb not null default '[]'::jsonb;
 
 create index if not exists nudge_pilot_responses_study_id_idx
   on public.nudge_pilot_responses (study_id);
@@ -88,3 +101,17 @@ select
   flattened
 from public.nudge_pilot_responses
 order by completed_at;
+
+-- Per-stratum permuted-block assignments. Written only by /api/assign using
+-- SUPABASE_SERVICE_ROLE_KEY; never expose that key to browser clients.
+create table if not exists public.nudge_pilot_assignments (
+  id bigserial primary key,
+  stratum text not null,
+  position integer not null,
+  condition text not null,
+  session_id text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists nudge_pilot_assignments_stratum_idx
+  on public.nudge_pilot_assignments (stratum);

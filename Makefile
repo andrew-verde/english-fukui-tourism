@@ -5,7 +5,7 @@ PYTHON = .venv/bin/python3
 	hokuriku-did-event-study fetch-estat fetch-estat-list fetch-national-direct \
 	fetch-ff-data fetch-japan-kanko-stat accommodation-panel ff-data-panel japan-kanko-panel synthetic-control \
 	vision-descriptive sem-ftas nudge-ranking synth-causal-arm causal-robustness robustness-figures gap-trajectories synthesis synthesis-figures durability-mechanisms durability-figures result-charts data-manifest \
-	reproduce-submission test nudge-pilot-serve
+	reproduce-submission test nudge-pilot-serve nudge-pilot-power
 
 help:
 	@echo "Fukui official-data tourism analysis"
@@ -28,6 +28,7 @@ help:
 	@echo "  make result-charts             Generate official-data charts"
 	@echo "  make reproduce-submission      Run no-network reproduction path"
 	@echo "  make test                      Run maintained tests"
+	@echo "  make nudge-pilot-power         Regenerate nudge-pilot power analysis"
 
 official-all: build-ftas stats-official synth-official
 
@@ -134,3 +135,6 @@ test:
 
 nudge-pilot-serve:
 	python3 -m http.server 8765 --directory experiments/nudge-pilot
+
+nudge-pilot-power:
+	$(PYTHON) scripts/nudge_pilot_power.py

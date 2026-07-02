@@ -1,6 +1,6 @@
 {
   "study_id": "fukui_nudge_pilot_v1",
-  "version": "2026-06-10",
+  "version": "2026-07-02",
   "conditions": [
     {
       "id": "control",
@@ -76,8 +76,8 @@
       },
       "nudges": {
         "transport_access": [
-          "Transit note: From Fukui Station, plan for a train or bus connection plus local transfer time. Service may be less frequent outside peak periods.",
-          "Planning cue: Check the return connection before departure and avoid leaving the return trip undecided."
+          "Transit note: From Fukui Station, take the direct Eiheiji Liner bus (about 30 minutes) or the Echizen Railway to Eiheijiguchi with a local bus transfer. Direct buses run roughly once or twice an hour.",
+          "Planning cue: Check the last return bus before you depart — evening departures are sparse — and buy a round-trip ticket so the return is decided in advance."
         ],
         "opening_hours_availability": [
           "Availability note: Check current entry hours before departure. Some temple areas may close earlier than general grounds.",
@@ -114,8 +114,8 @@
       },
       "nudges": {
         "transport_access": [
-          "Transit note: Confirm the route from Fukui Station before departure. The museum is not a simple station-adjacent walk.",
-          "Planning cue: Use a route plan with departure and return times rather than relying on a general map estimate."
+          "Transit note: From Fukui Station, take the Echizen Railway toward Katsuyama (about 55 minutes), then the connecting shuttle bus to the museum. Trains run about twice an hour; the shuttle is timed to selected trains.",
+          "Planning cue: Check the timed connection for your return leg before setting out — missing the shuttle can add up to an hour of waiting."
         ],
         "opening_hours_availability": [
           "Availability note: Confirm current opening days, timed-entry rules, and ticket availability before travel.",
@@ -135,6 +135,44 @@
         "label": "What should a careful visitor verify before committing?",
         "options": ["Route, timing, and admission availability", "Only souvenir prices", "Only restaurant reviews", "Only photo spots"],
         "correct": "Route, timing, and admission availability"
+      }
+    },
+    {
+      "id": "tojinbo_awara",
+      "poi_name": "Tojinbo Cliffs",
+      "city": "Awara / Sakai",
+      "prompt": "You have arrived at Awara-Onsen Station on the Hokuriku Shinkansen. Decide whether to visit the Tojinbo Cliffs before evening and choose a basic plan.",
+      "baseline": {
+        "title": "Tojinbo Cliffs",
+        "body": [
+          "Tojinbo is a stretch of basalt sea cliffs on the Sakai coast, designated a national natural monument.",
+          "The site offers cliff-top walking paths, sea views, and a nearby shopping street.",
+          "Visitors usually spend one to two hours at the cliffs, plus travel time from the station."
+        ]
+      },
+      "nudges": {
+        "transport_access": [
+          "Transit note: From Awara-Onsen Station, the Tojinbo-bound bus leaves from the station forecourt and takes about 40 minutes. Buses run roughly once an hour — check the departure board on arrival.",
+          "Planning cue: Note the last return bus before you board; after early evening the return options are effectively taxi only."
+        ],
+        "opening_hours_availability": [
+          "Availability note: The cliffs are open at all hours, but the shopping street and observation tower keep daytime hours and begin closing in the late afternoon.",
+          "Planning cue: Check current hours for the tower and sightseeing boats before departure; sea conditions can suspend boat services."
+        ],
+        "itinerary_fit_time_cost": [
+          "Itinerary cue: Allow about three hours door-to-door from Awara-Onsen Station, including the bus both ways and time on the cliffs.",
+          "Planning cue: Pair Tojinbo with Maruoka Castle or an Awara onsen stop in the same half-day, rather than combining it with destinations on the far side of Fukui."
+        ]
+      },
+      "decision_options": [
+        "Yes, I would go this afternoon",
+        "Maybe, but only with more information",
+        "No, I would skip it for this trip"
+      ],
+      "accuracy_question": {
+        "label": "Which planning issue matters most for this task?",
+        "options": ["Bus schedule and last return time", "Hotel breakfast hours", "Luggage storage pricing", "Visa requirements"],
+        "correct": "Bus schedule and last return time"
       }
     }
   ],
