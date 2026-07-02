@@ -33,7 +33,7 @@ nudge pilot tests the fix at its causal joint (Direction B).
 |---|---|---|---|
 | 1 | Introduction and motivation | **to draft** | — |
 | 2 | Data, provenance, and reproducibility | **to draft** | — |
-| 3 | Impact: the Hokuriku Shinkansen extension as a friction shock (DiD) | **to draft** | — |
+| 3 | Impact: the Hokuriku Shinkansen extension as a friction shock (DiD) | **written** | `section3_impact.md` |
 | 4 | Diagnosis: where friction concentrates (SEM + synthesis) | **written** | `section4_diagnosis.md` |
 | 5 | Robustness: is the demand signal real? (synthetic control, Direction D) | **written** | `section5_robustness.md` |
 | 6 | From diagnosis to intervention (Directions C + B) | **written** | `section6_intervention.md` |
@@ -144,8 +144,10 @@ The **§4.1 / §4.2 / §4.3 subsection numbering referenced by §6 is fixed here
 | 5 | Backdated in-time placebo | `output/national_stats/causal_robustness/figures/fig5_intime_placebo.png` |
 | 6 | Target gap trajectories | `output/synthesis/figures/fig6_gap_trajectories.png` |
 | 7 | Durability mechanisms | `output/synthesis/figures/fig7_durability_mechanisms.png` |
+| 8 | DiD event study | `output/hokuriku_merged/did_event_study.png` |
+| 9 | Parallel-trends diagnostic | `output/hokuriku_merged/parallel_trends.png` |
 
-New figures append (Fig. 8+); renumbering existing figures requires touching
+New figures append (Fig. 10+); renumbering existing figures requires touching
 the producing script, the chapter prose, and this table together.
 
 ## House rules for chapter drafting
