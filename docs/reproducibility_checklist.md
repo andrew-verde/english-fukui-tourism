@@ -19,7 +19,8 @@ study, and aggregate manifest from pinned inputs.
 
 ## Reviewer checks
 
-- Confirm Git LFS inputs materialized.
+- Confirm pinned raw inputs materialized via the fetch targets and match
+  source-manifest SHA-256 values.
 - Compare source-manifest hashes and vintages.
 - Verify respondent deduplication audits.
 - Verify friction denominators use eligible official-survey rows.

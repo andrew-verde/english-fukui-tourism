@@ -21,16 +21,17 @@ full FTAS sample by arrival mode, shinkansen arrivers report transport-access
 friction at **7.09%**, against **0.66%** for car arrivers and **1.77%** pooled
 across other modes — a roughly **fourfold** gap (n = 10,493 rail vs 74,266 car;
 z = 51.5 vs car, z = 34.5 vs pooled). In the §4.3 priority matrix,
-`transport_access` is the unique occupant of the top-right "act now" quadrant
-(normalized priority = 1.000, causal opportunity = 1.000). The structural model
+`transport_access` is the unique occupant of the top-right corner of the
+"act now" quadrant, attaining the maximum of both axes (normalized
+priority = 1.000, causal opportunity = 1.000). The structural model
 concurs: in SEM Stage 2, `transport_access` is the single largest damage path to
 visitor satisfaction (β ≈ −0.123, p ≈ 1.2 × 10⁻⁸). Direction D's robustness work
 confirmed the demand signal these frictions gate is real, not an artifact of the
 March 2024 Hokuriku Shinkansen extension: Fukui City's opening-window surge of
 **+29.2%** clears a one-sided in-space placebo test at **p = 0.041** against 1,538
 well-fitting donor municipalities, a backdated-2023 negative control is silent
-(p = 0.47), and the well-fitting significant set is exactly {Eiheiji, Fukui City,
-Tsuruga, Sakai}. The diagnosis is therefore well-identified and causally credible:
+(p = 0.47), and the well-fitting significant set (at the 10% one-sided level;
+see §5.3) is exactly {Eiheiji, Fukui City, Tsuruga, Sakai}. The diagnosis is therefore well-identified and causally credible:
 transport access is both the largest measured friction and the one with the
 clearest opportunity for intervention.
 
@@ -51,8 +52,8 @@ Sakai. Fukui City (JIS 18201), by contrast, captures the arrival — passengers 
 off the train there — but leaks the conversion, and so records a transient bump
 rather than durable growth. The mechanism is corroborated at the friction level:
 across thirteen high-confidence municipalities, transport-access friction correlates
-with the leaked synthetic-control lift at **r = 0.826**, tying the conversion story
-directly back to the constraint the diagnosis flagged.
+with the leaked synthetic-control lift at **r = 0.826** (Fig. 7), tying the conversion
+story directly back to the constraint the diagnosis flagged.
 
 The crucial and initially surprising observation is that **repeat-visit share
 anti-predicts durability**. This is not a paradox once the mechanism is stated

@@ -2,7 +2,10 @@
 
 ## Pinned official inputs
 
-Thesis-critical official microdata is tracked with Git LFS:
+Thesis-critical official microdata is **not committed**; it is re-materialized
+from immutable commit-addressed upstream URLs and verified against the SHA-256
+hashes recorded in the source manifests (`make fetch-official-fukui
+fetch-hokuriku-merged`):
 
 - `output/official_fukui/raw/ftas_survey_all.csv`
 - `output/official_fukui/raw/ishikawa_survey_*.csv`
@@ -54,8 +57,8 @@ pinned inputs without reviewing source manifests and resulting estimate diffs.
 3. Run `python scripts/fetch_code4fukui_data.py --force`.
 4. Rebuild all dependent outputs and compare row counts, schemas, diagnostics,
    and estimates with prior vintage.
-5. Commit lock config, source manifest, raw Git LFS objects, and reviewed
-   analytical outputs together.
+5. Commit lock config, source manifest, and reviewed analytical outputs
+   together; re-stage the raw files locally via the fetch targets.
 
 For publication, deposit final replication package in a durable research-data
 repository (for example Zenodo, OSF, or an institutional repository), obtain a

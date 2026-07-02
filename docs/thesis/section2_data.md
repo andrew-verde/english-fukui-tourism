@@ -58,8 +58,10 @@ into `output/data_manifest.json`. Third, **a source ledger**
 (`docs/source_ledger.md`): one row per headline number, with a controlled
 status vocabulary — `verified`, `estimated`, `simulated/demo`, `hypothesis` —
 and the rule that no number appears in an outward-facing document without a
-row. Raw thesis-critical microdata is tracked in Git LFS so a fresh clone
-materializes the exact bytes analyzed.
+row. Raw thesis-critical microdata is not committed to the repository; a
+fresh clone re-materializes the exact bytes analyzed by fetching from the
+immutable commit-addressed URLs and verifying against the manifest SHA-256
+values.
 
 Two provenance gates are load-bearing enough to name. The causal arm's
 per-municipality summary (Feed A, `data/causal/fukui_municipalities_scm.csv`)
