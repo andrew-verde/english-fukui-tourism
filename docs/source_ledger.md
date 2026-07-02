@@ -24,9 +24,9 @@ living; exact commits, checksums, recreation, and drift rules are in
 | Number | Claim | Status | Command | Script | Input | Output artifact |
 |---|---|---|---|---|---|---|
 | DiD NPS +0.55 (robust +0.65) | Shinkansen extension raised Fukui NPS vs Ishikawa | verified | `make hokuriku-did-event-study` | `scripts/hokuriku_did_event_study.py` | `output/hokuriku_merged/raw/` (merged tri-prefecture microdata, CC-BY) | `output/hokuriku_merged/did_thesis_estimates.csv`, `did_event_study_report.md` |
-| DiD transport satisfaction +0.05 | Transport satisfaction rose post-extension | verified | `make hokuriku-did-event-study` | `scripts/hokuriku_did_event_study.py` | same | same |
+| DiD transport satisfaction +0.055 (robust +0.077) | Transport satisfaction rose post-extension | verified | `make hokuriku-did-event-study` | `scripts/hokuriku_did_event_study.py` | same | same |
 | DiD revisit intention +0.04 | Fragile — not headlined | verified (fragile) | `make hokuriku-did-event-study` | `scripts/hokuriku_did_event_study.py` | same | same |
-| SEM β = −0.21 / 0.80 / −0.06; ~72% mediation | Friction → satisfaction → intention transmission | verified | `make sem-ftas` | `scripts/sem_ftas.py` | `output/official_fukui/ftas_tagged_survey.csv` (deduplicated respondents) | `output/sem/` |
+| SEM β = −0.21 / 0.80 / −0.06; ≈73% mediation | Friction → satisfaction → intention transmission | verified | `make sem-ftas` | `scripts/sem_ftas.py` | `output/official_fukui/ftas_tagged_survey.csv` (deduplicated respondents) | `output/sem/` |
 | Nudge priorities 0.0200 / 0.0034 / 0.0017 | Transport/access dominates ~6× | verified | `make nudge-ranking` | `scripts/rank_nudge_priorities.py` | SEM stage-2 paths + prevalence | `output/sem/nudge_priority_ranking.md` |
 | 97,866 rows ↔ 51,399 unique members | FTAS dedup justification | verified | `make stats-official` | `scripts/statistical_validation_official.py` | `output/official_fukui/ftas_survey_normalized.csv` | `output/official_fukui/` |
 | reported_inconvenience rate 15.4% | True felt-inconvenience rate after recode | verified | `make stats-official` | `scripts/statistical_validation_official.py` | same | same |
