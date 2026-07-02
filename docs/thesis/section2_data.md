@@ -92,7 +92,9 @@ A reviewer reproduces the thesis with one command:
 make reproduce-submission
 ```
 
-This runs the full test suite (131 passed, 1 skipped at this writing) and
+This runs the full test suite (133 passed, 1 skipped at this writing — a
+count that grows with each committed document, since the provenance guard
+parametrizes over them) and
 rebuilds, in dependency order, the causal arm and its robustness battery, the
 FTAS builds and official statistics, the SEM and nudge ranking, the synthesis
 join and durability mechanisms, the DiD event study, all thesis figures, and
