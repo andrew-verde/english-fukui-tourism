@@ -17,12 +17,12 @@ falsification tests whose target quantity matches the effect's shape:
   3. Leave-one-out donor sensitivity for Fukui City: drop each positive-weight
      donor and refit, reporting the range of the opening surge.
 
-Deterministic (Frank-Wolfe SCM, no RNG). Pure function of the pinned panel
-fetched by build_causal_arm_summary.fetch_panel(). Writes CSVs + metrics.json
-to output/national_stats/causal_robustness/.
+Deterministic (Frank-Wolfe SCM, no RNG). Reads the pre-staged local panel
+(git-untracked, same pinned commit per japan_kanko_stat_manifest.json), with no
+network access. Writes CSVs + metrics.json to
+output/national_stats/causal_robustness/.
 """
 import argparse
-import io
 import json
 import sys
 from pathlib import Path
@@ -33,16 +33,22 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_causal_arm_summary import (  # noqa: E402
-    fetch_panel, fw_scm_sparse, EVENT_YM, HOKURIKU_PREFS, EN_NAMES, GOOD_FIT_RMSPE,
+    fw_scm_sparse, EVENT_YM, HOKURIKU_PREFS, EN_NAMES, GOOD_FIT_RMSPE,
 )
 
+PANEL_CSV = ROOT / "output" / "national_stats" / "japan_kanko_stat_panel.csv"
 OUT_DIR = ROOT / "output" / "national_stats" / "causal_robustness"
 INTIME_EVENT_YM = 202303  # backdated placebo: one year before the real event
 RMSPE_FIT_MULT = 5.0      # placebo restriction: drop donors with pre_rmspe > 5x treated
 
 
 def _panel_matrices():
-    raw = fetch_panel()
+    if not PANEL_CSV.exists():
+        raise FileNotFoundError(
+            f"{PANEL_CSV} is missing; stage it with: "
+            "make fetch-japan-kanko-stat japan-kanko-panel"
+        )
+    raw = pd.read_csv(PANEL_CSV)
     raw["ym"] = raw["年"] * 100 + raw["月"]
     wide = raw.pivot_table(index="地域コード", columns="ym", values="人数", aggfunc="sum")
     meta = raw.groupby("地域コード").agg(pref=("都道府県コード", "first")).reset_index()

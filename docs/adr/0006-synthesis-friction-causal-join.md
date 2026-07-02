@@ -43,9 +43,26 @@ CSVs, with no network access or RNG, and are written to `output/synthesis/figure
 Causal-arm robustness is a separate downstream target, `causal-robustness`,
 covering opening-window in-space placebos, an in-time backdated placebo, and
 leave-one-out donor sensitivity. It is a deterministic function of the same
-pinned panel as `synth-causal-arm`, with no network access beyond that panel
-fetch and no RNG. Figure rendering is provided by the downstream
-`robustness-figures` target.
+pinned panel, read from the pre-staged local copy
+`output/national_stats/japan_kanko_stat_panel.csv` (git-untracked; staged by
+`make fetch-japan-kanko-stat japan-kanko-panel`, provenance pinned to the same
+commit via the panel manifest) — no network access and no RNG. Figure rendering
+is provided by the downstream `robustness-figures` target.
+`build_causal_arm_summary.py` continues to fetch the panel over the network:
+rebuilding Feed A from the local panel reproduces it only to BLAS-level noise
+(max observed `2.5e-12`), not byte-identically, so the byte-stable fixture
+keeps its original producer.
+
+Per-target monthly gap trajectories are exported by the downstream
+`gap-trajectories` target (`scripts/export_scm_gap_trajectories.py`) from the
+same local panel, self-checked against Feed A's `open_pct`/`sust_pct` at
+`atol=1e-4`.
+
+The `durability-mechanisms` target joins the FTAS respondent-level survey to
+the regime map and tests the four candidate durability mechanisms
+(repeat-visit share, overnight share, arrival mode, attraction mix) with
+pooled two-proportion z-tests over the high-confidence durable and transient
+pools; `durability-figures` renders the trajectory and mechanism figures.
 
 ## Consequences
 
@@ -55,6 +72,21 @@ leaked lift, and causal-opportunity score. `make synthesis` reproducibly emits
 the three supporting tables and machine-readable narrative metrics. Figures and
 the thesis narrative remain separate thesis artifacts.
 
+The durability mechanism analysis reverses the loyalty interpretation of the
+durable regime. Durable municipalities (Eiheiji, Sakai) have a lower
+repeat-visit share than the transient pool (50.2% vs 57.4%, z = -14.5) and no
+overnight advantage (61.6% vs 64.8%); what distinguishes them is car-dominant
+access (71.0% vs 62.3%, z = +18.2) and an anchor attraction (Eiheiji: historic
+sites 47%, the only non-food top purpose besides Katsuyama's museum).
+Trajectory shape confirms the mechanism: durable lift is a delayed ramp
+(Eiheiji peaks at +60% in Q+2 and plateaus at +11-23% through 2025), not a
+persistent opening spike, while transient lift is an opening-quarter spike
+gone within one quarter (Fukui City +18% to roughly zero). The durable regime
+therefore reflects new-audience acquisition — opening awareness converting
+into planned, car-accessed anchor visits — rather than retention of
+rail-delivered arrivals. For the last-mile pilot this shifts the target from
+repeat conversion to station-to-anchor first-visit conversion.
+
 ## Caveats
 
 - Intercept-survey selection means the 7.09% Shinkansen-arrival prevalence is a
@@ -63,3 +95,6 @@ the thesis narrative remain separate thesis artifacts.
 - The cross-municipality analysis has 13 high-confidence observations and is
   pattern-level evidence.
 - The cross-arrival-mode contrast is the load-bearing quantitative result.
+- The durable pool is two municipalities; the mechanism z-tests are pooled
+  respondent-level contrasts (n = 15,570 vs 27,788), but the municipality-level
+  pattern rests on six high-confidence regime labels.
