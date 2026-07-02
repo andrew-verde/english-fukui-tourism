@@ -4,7 +4,7 @@ PYTHON = .venv/bin/python3
 	synth-official chinese-social fetch-hokuriku-merged hokuriku-did-audit \
 	hokuriku-did-event-study fetch-estat fetch-estat-list fetch-national-direct \
 	fetch-ff-data fetch-japan-kanko-stat accommodation-panel ff-data-panel japan-kanko-panel synthetic-control \
-	vision-descriptive sem-ftas nudge-ranking synth-causal-arm synthesis synthesis-figures result-charts data-manifest \
+	vision-descriptive sem-ftas nudge-ranking synth-causal-arm causal-robustness robustness-figures synthesis synthesis-figures result-charts data-manifest \
 	reproduce-submission test nudge-pilot-serve
 
 help:
@@ -20,6 +20,8 @@ help:
 	@echo "  make ff-data-panel             Build FF-DATA quarterly flow panel"
 	@echo "  make fetch-japan-kanko-stat    Fetch pinned municipal visitor panel"
 	@echo "  make synthetic-control         Run Fukui City synthetic control"
+	@echo "  make causal-robustness         Run causal-arm falsification tests"
+	@echo "  make robustness-figures        Render causal-robustness figures"
 	@echo "  make result-charts             Generate official-data charts"
 	@echo "  make reproduce-submission      Run no-network reproduction path"
 	@echo "  make test                      Run maintained tests"
@@ -28,7 +30,7 @@ official-all: build-ftas stats-official synth-official
 
 fetch: fetch-official-fukui fetch-japan-kanko-stat
 
-reproduce-submission: test synth-causal-arm build-ftas stats-official synth-official sem-ftas nudge-ranking synthesis synthesis-figures hokuriku-did-event-study data-manifest
+reproduce-submission: test synth-causal-arm causal-robustness robustness-figures build-ftas stats-official synth-official sem-ftas nudge-ranking synthesis synthesis-figures hokuriku-did-event-study data-manifest
 
 fetch-official-fukui:
 	$(PYTHON) scripts/fetch_code4fukui_data.py
@@ -92,6 +94,12 @@ nudge-ranking:
 
 synth-causal-arm:
 	$(PYTHON) scripts/build_causal_arm_summary.py
+
+causal-robustness:
+	$(PYTHON) scripts/causal_robustness.py
+
+robustness-figures:
+	$(PYTHON) scripts/plot_robustness_figures.py
 
 synthesis:
 	$(PYTHON) scripts/synthesis_friction_causal.py

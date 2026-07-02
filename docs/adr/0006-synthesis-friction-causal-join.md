@@ -40,6 +40,13 @@ Figure rendering is a separate downstream target, `synthesis-figures`, implement
 `scripts/plot_synthesis_figures.py`. The figures are a pure function of the synthesis
 CSVs, with no network access or RNG, and are written to `output/synthesis/figures/`.
 
+Causal-arm robustness is a separate downstream target, `causal-robustness`,
+covering opening-window in-space placebos, an in-time backdated placebo, and
+leave-one-out donor sensitivity. It is a deterministic function of the same
+pinned panel as `synth-causal-arm`, with no network access beyond that panel
+fetch and no RNG. Figure rendering is provided by the downstream
+`robustness-figures` target.
+
 ## Consequences
 
 Transport/last-mile access is the single dominant intervention target across
