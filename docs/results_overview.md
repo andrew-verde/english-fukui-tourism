@@ -35,12 +35,12 @@ magnitudes against the ±0.1–0.4 mixed-sign pre-wobble.
 `make sem-ftas` — deduplicated FTAS respondents; exposure =
 `reported_inconvenience` (asked of everyone — selection-bias-free).
 
-- CFA: the three satisfaction items hold as one latent (loadings .87/.53/.86).
-- Stage 1 (n=15,776; CFI .990, RMSEA .044):
+- CFA: the three satisfaction items hold as one latent (loadings .87/.51/.84).
+- Stage 1 (n=16,219; CFI .990, RMSEA .044):
   friction → satisfaction **β = −0.21**; satisfaction → intention **β = 0.80**;
-  direct friction → intention β = −0.06 → **~72% of friction's damage to visit
+  direct friction → intention β = −0.06 → **≈73% of friction's damage to visit
   intention is mediated through satisfaction.**
-- Stage 2 (n=2,503 friction reporters with free text; CFI .91): friction-type
+- Stage 2 (n=2,565 friction reporters with free text; CFI .91): friction-type
   paths ranked below. Conditioning on reporters avoids coding non-writers as
   friction-free.
 

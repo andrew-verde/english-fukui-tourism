@@ -34,7 +34,7 @@ nudge pilot tests the fix at its causal joint (Direction B).
 | 1 | Introduction and motivation | **to draft** | — |
 | 2 | Data, provenance, and reproducibility | **to draft** | — |
 | 3 | Impact: the Hokuriku Shinkansen extension as a friction shock (DiD) | **to draft** | — |
-| 4 | Diagnosis: where friction concentrates (SEM + synthesis) | **to draft** | — |
+| 4 | Diagnosis: where friction concentrates (SEM + synthesis) | **written** | `section4_diagnosis.md` |
 | 5 | Robustness: is the demand signal real? (synthetic control, Direction D) | **to draft** | — |
 | 6 | From diagnosis to intervention (Directions C + B) | **written** | `section6_intervention.md` |
 | 7 | Conclusion and transferable template | **to draft** | — |
@@ -73,18 +73,22 @@ byte-for-byte (see "House rules" at the end).
 
 The **§4.1 / §4.2 / §4.3 subsection numbering referenced by §6 is fixed here**:
 
-- **§4.1 regime × friction map** — `output/synthesis/synthesis_regime_friction_map.csv`,
-  Fig. 1 (`output/synthesis/figures/fig1_regime_friction_map.png`).
+- **§4.1 diagnostic inputs: SEM damage paths + regime × friction map** —
+  `output/synthesis/synthesis_regime_friction_map.csv`,
+  Fig. 1 (`output/synthesis/figures/fig1_regime_friction_map.png`). The SEM
+  results below are presented here as the chapter's first input.
 - **§4.2 arrival-mode contrast** (lead mechanism) —
   `output/synthesis/synthesis_mode_friction.csv`, Fig. 2. Headline:
   transport_access 7.09% shinkansen vs 0.66% car vs 1.77% pooled-other (≈4.00×).
 - **§4.3 priority × causal-opportunity matrix** —
   `output/synthesis/synthesis_priority_matrix.csv`, Fig. 3. transport_access is
   the unique ACT-NOW corner (priority_n = 1.000, causal_opportunity = 1.000).
-- SEM: `make sem-ftas`; `output/sem/sem_stage1_results.csv` (friction →
-  satisfaction β = −0.21, satisfaction → intention β = 0.80, ~72% mediated),
-  `output/sem/sem_stage2_results.csv` (transport_access β ≈ −0.123,
-  p ≈ 1.2e-08), `output/sem/nudge_priority_ranking.csv`.
+- SEM: `make sem-ftas`; `output/sem/sem_stage1_results.csv` (n = 16,219;
+  friction → satisfaction β = −0.21, satisfaction → intention β = 0.80,
+  ≈73% mediated), `output/sem/sem_stage2_results.csv` (n = 2,565;
+  transport_access β ≈ −0.123, p ≈ 1.2e-08),
+  `output/sem/nudge_priority_ranking.csv`. Sample sizes per
+  `output/sem/sem_fit_indices.csv` (authoritative over any prose summary).
 - Machine-readable oracles: `output/synthesis/synthesis_narrative_metrics.json`.
 - Targets: `make sem-ftas nudge-ranking synthesis synthesis-figures`.
 - ADRs: 0001, 0006.
