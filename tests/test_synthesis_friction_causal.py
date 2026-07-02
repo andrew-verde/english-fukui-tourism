@@ -22,6 +22,11 @@ INPUT_CHECKSUMS = {
     "output/sem/nudge_priority_ranking.csv":
         "738239c6da60797df0e5f224bf6b9855bfcb30f9ced9ad97fc6cd9274a49d374",
 }
+GENERATED_INPUTS = {
+    "output/official_fukui/ftas_friction_by_municipality.csv",
+    "output/official_fukui/ftas_friction_by_transport_mode.csv",
+    "output/sem/nudge_priority_ranking.csv",
+}
 
 
 @pytest.fixture(scope="module")
@@ -52,6 +57,10 @@ def test_input_feed_checksums():
     for relative, expected in INPUT_CHECKSUMS.items():
         path = ROOT / relative
         if not path.exists():
+            # These gitignored feeds are produced by `make build-ftas` /
+            # `make nudge-ranking` and are absent in a clean CI checkout.
+            if relative in GENERATED_INPUTS:
+                continue
             pytest.fail(f"Missing pinned synthesis input: {path}")
         actual = hashlib.sha256(path.read_bytes()).hexdigest()
         if actual != expected:
